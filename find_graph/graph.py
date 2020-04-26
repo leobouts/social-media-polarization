@@ -16,6 +16,12 @@ def check_graph_permutations(number_of_vertices, graph):
     # creates all possible pairs, pairs of two, of three etc.. up to number of vertices-1
     possible_combs = [i for i in itertools.combinations(edge_permutations, number_of_vertices-1)]
 
+    # wrap the edges addition in a tuple for compatibility issues bellow
+    additions_tuple = list(zip(edge_permutations))
+
+    # join all the possible edge additions in one list
+    possible_combs.extend(additions_tuple)
+
     # check all value and edge combinations
 
     for perm in value_permutations:
@@ -107,3 +113,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
