@@ -30,14 +30,16 @@ def check_graph_permutations(number_of_vertices, graph):
 
             # check if the addition already exist in the graph, every addition must NOT be
             # an edge that exists inside the graph beforehand.
+            # exist = True : all edge_additions does not exist in the current graph
+            # exist = False: at least one edge addition in edge_additions exist in the current graph
 
-            exist = all(x in graph.edges() for x in edge_additions)
+            exist = all(x not in graph.edges() for x in edge_additions)
 
             # check that all the connections are with different opinions
 
             all_connections_different_opinions = all(perm[y[0]] * perm[y[1]] < 0 for y in edge_additions)
 
-            if not exist and all_connections_different_opinions:
+            if exist and all_connections_different_opinions:
 
                 for edge_perm in edge_additions:
                     g.add_edge(edge_perm[0], edge_perm[1])
