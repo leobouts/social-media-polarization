@@ -24,6 +24,8 @@ def check_graph_permutations(number_of_vertices, graph):
 
     # check all value and edge combinations
 
+    decrease = {}
+
     for perm in value_permutations:
 
         initial_polarization = get_polarization(graph, perm)
@@ -52,6 +54,9 @@ def check_graph_permutations(number_of_vertices, graph):
 
                 new_pol = get_polarization(g, perm)
 
+                decrease[initial_polarization-new_pol] = {'graph': graph.name, 'values': perm,
+                                                          'edge_additions': edge_additions}
+
                 if new_pol > initial_polarization:
                     # print(nx.info(graph))
                     # print(nx.info(g))
@@ -62,7 +67,8 @@ def check_graph_permutations(number_of_vertices, graph):
                     print("after:", new_pol)
                     print("addition", edge_additions)
                     print("==============")
-
+    print(max(decrease))
+    print(decrease[max(decrease)])
 
 # solves a system of linear equations that are taken from the graph topology
 # then computes the polarization.
