@@ -9,7 +9,8 @@ def check_graph_permutations(number_of_vertices, graph):
     lst_nodes = [node for node in range(number_of_vertices)]
 
     # get all possible permutations for the values
-    value_permutations = [list(i) for i in itertools.product([-1, 1], repeat=number_of_vertices)]
+    value_permutations = [list(i) for i in itertools.product([-1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0,
+                                                              -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 1], repeat=number_of_vertices)]
 
     edge_permutations = [i for i in itertools.combinations(lst_nodes, 2)]
 
@@ -57,21 +58,23 @@ def check_graph_permutations(number_of_vertices, graph):
                 decrease[initial_polarization-new_pol] = {'graph': graph.name, 'values': perm,
                                                           'edge_additions': edge_additions}
 
-                if new_pol > initial_polarization:
+                #if new_pol > initial_polarization:
                     # print(nx.info(graph))
                     # print(nx.info(g))
-                    print("===================")
-                    print("graph topology:", graph.name)
-                    print("values", perm)
-                    print("initial:", initial_polarization)
-                    print("after:", new_pol)
-                    print("addition", edge_additions)
-                    print("==============")
+                    # print("===================")
+                    # print("graph topology:", graph.name)
+                    # print("values", perm)
+                    # print("initial:", initial_polarization)
+                    # print("after:", new_pol)
+                    # print("addition", edge_additions)
+                    # print("==============")
+
     print(max(decrease))
     print(decrease[max(decrease)])
 
 # solves a system of linear equations that are taken from the graph topology
 # then computes the polarization.
+
 
 def get_polarization(g, values):
 
@@ -100,12 +103,20 @@ def get_polarization(g, values):
 
     summed = np.sum(squared)
 
-    rooted = np.sqrt(summed)
+    #rooted = np.sqrt(summed)
 
-    return rooted / len(list(g.nodes))
+    return summed / len(list(g.nodes))
 
 
-def main():
+def find_increase_in_graphs_with_addition():
+
+    '''
+    finds if a graph has increased polarization after adding an edge
+    between different opinions. the functions takes all the topologies
+    that are specified in the graph_topologies.py file
+
+    :return: nothing, prints all graphs that have increased polarization
+    '''
 
     for g_type in get_all_graphs():
 
@@ -115,6 +126,15 @@ def main():
         size = graph[1]
 
         check_graph_permutations(size, topology)
+
+
+def main():
+
+    find_increase_in_graphs_with_addition()
+
+
+    g = nx.gnm_random_graph(n = 100, m = 1000)
+    #print(nx.info(g))
 
 
 if __name__ == "__main__":
