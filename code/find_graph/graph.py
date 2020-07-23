@@ -9,8 +9,7 @@ def check_graph_permutations(number_of_vertices, graph):
     lst_nodes = [node for node in range(number_of_vertices)]
 
     # get all possible permutations for the values
-    value_permutations = [list(i) for i in itertools.product([-1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0,
-                                                              -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 1], repeat=number_of_vertices)]
+    value_permutations = [list(i) for i in itertools.product([-0.8, -0.5, 0.1, 0, -0.9, 0.8, -0.1, 0.5], repeat=number_of_vertices)]
 
     edge_permutations = [i for i in itertools.combinations(lst_nodes, 2)]
 
@@ -55,7 +54,7 @@ def check_graph_permutations(number_of_vertices, graph):
 
                 new_pol = get_polarization(g, perm)
 
-                decrease[initial_polarization-new_pol] = {'graph': graph.name, 'values': perm,
+                decrease[abs(initial_polarization-new_pol)] = {'graph': graph.name, 'values': perm,
                                                           'edge_additions': edge_additions}
 
                 #if new_pol > initial_polarization:

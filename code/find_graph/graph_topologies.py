@@ -109,5 +109,6 @@ def get_all_graphs():
     graphs = ['diamond', 'paw', 'c4', 'claw', 'p4', 'p3_union_2k1',
               'w4', 'claw_union_k1', 'p2_union_p3', 'gem', 'k3_union2k1', 'k14', 'butterfly', 'chair',
               'cofork', 'dart', 'p5', 'house', 'k23', 'banner', 'pdash', 'bull', 'cricket', 'c5']
+
     return graphs
 
