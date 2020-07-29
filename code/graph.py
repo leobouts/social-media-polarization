@@ -1,5 +1,7 @@
 import networkx as nx
 import numpy as np
+from tqdm import tqdm
+import pickle
 
 
 def get_polarization(g):
@@ -75,6 +77,14 @@ def load_graph(gml_file, change_zeros_to_negatives):
     """
 
     graph = nx.read_gml(gml_file, label='id')
+
+    # make sure we convert the graph to a simple one if the data
+    # contain multiple same edges (multigraph)
+    # also multigraph data must have the flag "multigraph 1" in the header
+    # to work
+
+    graph = nx.Graph(graph)
+
     value_dictionary = nx.get_node_attributes(graph, 'value')
 
     if change_zeros_to_negatives:
@@ -131,7 +141,7 @@ def attach_values_from_list_to_graph(g, values):
     return g
 
 
-def brute_force_opposing_views(graph):
+def brute_force_opposing_views(graph, pickle_name):
     """""
     This method brute forces all opposing opinion nodes and find the decrease of the network
     by adding every possible edge between them. (1 edge at a time)
@@ -139,6 +149,7 @@ def brute_force_opposing_views(graph):
     ##todo maybe implement 2,3,4,.. edge additions? too much time?
 
     -----------------------------------------------------------------------------------------
+    :param pickle_name: name of the file that the results will be stored
     :param graph: networkx graph
     :return: dictionary that holds information about the decrease after adding an edge
     """
@@ -148,33 +159,6 @@ def brute_force_opposing_views(graph):
     positive_indices = [k for (k, v) in value_dictionary.items() if v == 1]
 
     negative_indices = [k for (k, v) in value_dictionary.items() if v == -1]
-
-    ######################################
-    #    possible properties to check    #
-    ######################################
-
-    # holds centrality values of every node
-    closeness_c = nx.closeness_centrality(graph)
-    betweenness_c = nx.betweenness_centrality(graph)
-
-    # max centralities of the whole graph
-    node_with_max_closeness_c = max(closeness_c, key=closeness_c.get)
-    node_with_max_betweenness_c = max(betweenness_c, key=betweenness_c.get)
-
-    # holds the centralities of negative values
-    negative_clossenes_c = {k: v for k, v in closeness_c.items() if k not in positive_indices}
-
-    # holds the centralities of positive values
-    positive_clossenes_c = {k: v for k, v in closeness_c.items() if k not in negative_indices}
-
-    most_central_node_of_positive = max(positive_clossenes_c, key=positive_clossenes_c.get)
-    most_central_node_of_negative = max(negative_clossenes_c, key=negative_clossenes_c.get)
-
-    # Compute node connectivity between all pairs of nodes.
-    connectivities = nx.all_pairs_node_connectivity(graph)
-
-    ##########################################################################################
-
 
     # create all edge pairs to be added
     all_pairs = [[pos_node, neg_node] for pos_node in positive_indices for neg_node in negative_indices]
@@ -187,11 +171,12 @@ def brute_force_opposing_views(graph):
     # holds values of decrease fo each addition
     difference = {}
 
-    for edge_addition in all_pairs:
+    for i in tqdm(range(len(all_pairs))):
+
         # add a new addition every time
         g_copy = graph.copy()
 
-        g_copy.add_edge(edge_addition[0], edge_addition[1])
+        g_copy.add_edge(all_pairs[i][0], all_pairs[i][1])
 
         # check if the addition already exist in the graph, every addition must NOT be
         # an edge that exists inside the graph beforehand.
@@ -200,27 +185,24 @@ def brute_force_opposing_views(graph):
 
         new_pol = get_polarization(g_copy)
 
-        difference[abs(initial_polarization - new_pol)] = {'addition': f"{edge_addition[0]}->{edge_addition[1]}"}
+        difference[abs(initial_polarization - new_pol)] = {'addition': f"{all_pairs[i][0]}->{all_pairs[i][1]}"}
 
-    for key in sorted(difference):
-        print("%s: %s" % (key, difference[key]))
+    # Store data (serialize)
+    with open(pickle_name, 'wb') as handle:
+        pickle.dump(difference, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+    #for key in sorted(difference):
+    #    print("%s: %s" % (key, difference[key]))
 
 
 def main():
     # find_increase_in_graphs_with_addition()
 
-    graph = nx.Graph()
-    graph.add_edges_from([(0, 1), (1, 2), (2, 3), (3, 4), (1, 3)])
-    graph.name = 'test'
-    values = [-1, 1, -1, -1, 1]
+    # options karate.gml, polblogs.gml
+    name = 'polblogs'
+    graph = load_graph(f'{name}.gml', True)
 
-    graph = attach_values_from_list_to_graph(graph, values)
-
-    print(get_polarization(graph))
-
-    graph = load_graph("karate.gml", True)
-
-    brute_force_opposing_views(graph)
+    brute_force_opposing_views(graph, f'{name}.pickle')
 
     print(get_polarization(graph))
 
