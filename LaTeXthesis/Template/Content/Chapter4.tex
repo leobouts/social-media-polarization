@@ -6,36 +6,35 @@
 \section{Intuition}
 \label{sec:intuition}
 
-To solve this problem we have to evaluate all possible edge combinations. Even for greedy heuristics we need to limit the edge candidates. The algorithm considers nodes with a high expressed value. According to our model the smallest decrease is happening when we connect a value near zero and a relatively high value. Consider an arbitraty example with two nodes. node a has z_a of -0.02 and node b has z_b of 0.5. the weights are = 1. both of the z_i denominators will be increased by one. The numerator of the one node a will be increased by a lot and the numerator of the node b will be decreased by a a small value. The new z_a will not change a lot because the big addition in the numerator will approach the +1 addition of the denominator. On the other hand the new z_b will see a big change as the numerator had a small decrease thus creating a big decrease for this node. We can clearly see that only one of the two nodes will come closer to a big decrease. 
-
-Now consider a second example of two nodes node c = -0.8 and node d = 0.9. After the addition node d will have a big decrease because we add two conflicting values that almost neutralize each other but the addition of the +1 on the denominator stands still. On the other hand node C will also see a big decrease for the same reason. With this type of connection both of the nodes have a significant decrease.
-
-
-### fix the above to proper english sentences u fucking donkey
-
-
-## remove previous stuff from bellow, adjust the algorithm table
-
-
+To solve this problem we have to evaluate all possible edge combinations. Even for greedy heuristics we need to limit the edge candidates. The algorithm considers nodes with a high expressed value. According to our model the smallest decrease is happening when we connect a value near zero and a relatively high value.
 \\
 \\
-Let $G$ be our social network graph. In the figure~\ref{fig:starA} bellow we can see how it resemble a star like shaped network. Nodes $0-4$ have an internal value of $Z_i = 1$ and nodes $5-9$ have an internal value of $Z_i=-1$. Now we are going to compute the polarization index for the network $G$. 
+We will now see why this statement holds by examining how the expressed opinion changes with an addition in the Friedkin and Johnsen model. Consider an arbitrary example with two nodes inside a network. Node $a$ has $z_a = -0.02$ and node $b$ has $z_b = 0.5$. Also for this example we assume that $w_{ii}=w_{ij}=w_{ji}=1$. 
 \\
-
-
-
-Therefore, the maximum decrease is achieved by the addition of node $4\rightarrow6$. Even though real graphs do not match this case exactly, they often have a structure that resembles star-graphs in certain ways: a small number of highly popular vertices receive incoming edges from a large number of other vertices \cite{garimella}.
+\\
+If we connect these two nodes with an edge and re calculate the expressed opinions both of the $z_i$ denominators will be increased by one. This emerges from the fact that both nodes will have an additional neighbour and that all weights equal with one. The numerator of the one node $a$ will be increased by a lot and the numerator of the node $b$ will be decreased by a small value.
+\\
+\\
+The new $z_a$ will not change a lot because the big addition in the numerator will approach the +1 addition of the denominator. On the other hand the new $z_b$ will see a big change as the numerator had a small decrease thus creating a big decrease overall for this node. We can clearly see that only one of the two nodes will amount to a big decrease. 
+\\
+\\
+Now consider a second example of two nodes node $c$ has $z_c = -0.8$ and node $d$ has $z_d = 0.9$. After the addition node $d$ will see a big decrease because we add two conflicting values that almost neutralise each other on the numerator but the addition of the +1 on the denominator stands still. On the other hand node $c$ will also see a big decrease for the same reason. With this type of connection both of the nodes have a significant decrease.
 
 \section{Proposed Algorithm}
 \label{sec:proposedAlgorithm}
 
-The results from section~\ref{sec:intuition} makes us consider edge addition between low-degree vertices from each side of the polarized communities. The algorithm can be seen in the figure Algorithm~\ref{alg:algorithm}.
+The results from section~\ref{sec:intuition} makes us consider edge addition between high conflicting value nodes. After making this edge connection between two nodes we will see a big decrease. After this decrease the network will recalculate the expressed opinions since we are using a repeated averaging model. 
+\\
+\\
+These two nodes that were decreased and became more neutral will now start to influence their other neighbours. If their other neighbours have a high value the new calculation will not see a big decrease due to the fact that the smallest decrease is happening when we connect a value near zero and a relatively high value, as we saw in ~\ref{sec:intuition}. To find out we will have to compute the decrease of each high conflicting values and get the best of them. 
+
+The algorithm can be seen in the figure ~\ref{alg:algorithm}.
 
 \begin{algorithm}[t]
 	\caption{Minimization of the polarization index $\pi(z)$}
 	\label{alg:algorithm}
 	\begin{flushleft}
-        		\textbf{INPUT:} Graph $G$, number of edges to add , $k$; $k1$, $k2$, High polarization vertices of each opinion , [-1,0] and [0,1], $X$,$Y$ respectively.\\
+        		\textbf{INPUT:} Graph $G$, number of edges to add , $k$; $k1$, $k2$, High polarization vertices of each opinion, [-1,0] and [0,1], $X$,$Y$ respectively.\\
         		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
 	\end{flushleft}
 	\begin{algorithmic}[1]
@@ -52,5 +51,6 @@ The results from section~\ref{sec:intuition} makes us consider edge addition bet
 		\STATE Return top $k$ from $Sorted$
 	\end{algorithmic}
 \end{algorithm}
+\input{../SampleThesis.tex}
 
 
