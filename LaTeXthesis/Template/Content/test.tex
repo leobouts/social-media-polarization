@@ -346,6 +346,41 @@ To πακέτο \texttt{xgreek}\footnote{\url{https://www.ctan.org/pkg/xgreek?la
 }
 \end{verbatim}
 
+\section{Proposed Algorithm}
+\label{sec:proposedAlgorithm}
+
+The results from section~\ref{sec:intuition} makes us consider edge addition between high conflicting value nodes. After making this edge connection between two nodes we will see a big decrease. After this decrease the network will recalculate the expressed opinions since we are using a repeated averaging model. 
+\\
+\\
+These two nodes that were decreased and became more neutral will now start to influence their other neighbours. If their other neighbours have a high value the new calculation will not see a big decrease due to the fact that the smallest decrease is happening when we connect a value near zero and a relatively high value, as we saw in ~\ref{sec:intuition}. To find out we will have to compute the decrease of each high conflicting values and get the best of them. 
+
+The algorithm can be seen in the figure ~\ref{alg:algorithm}.
+
+\begin{algorithm}[t]
+	\caption{Minimization of the polarization index $\pi(z)$}
+	\label{alg:algorithm}
+	\begin{flushleft}
+        		\textbf{INPUT:} Graph $G$, number of edges to add , $k$; $k1$, $k2$, High polarization vertices of each opinion, [-1,0] and [0,1], $X$,$Y$ respectively.\\
+        		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
+	\end{flushleft}
+	\begin{algorithmic}[1]
+		\STATE $Out \leftarrow Empty List;$
+		\FOR {$i = 1:k1 \ do$}
+		\STATE $Vertex \ u = X[i]$
+		\FOR {$j= 1:k2 \ do$}
+		\STATE $Vertex \ v = Y[i]$
+		\STATE Compute $\pi(z)$, the decrease if the edge $(u,v)$ is added;
+		\STATE Append edge $(u,v)$ to Out;
+		\ENDFOR
+		\ENDFOR
+		\STATE $Sorted \leftarrow sort(Out)$ by $\pi(z)$ by decreasing order;
+		\STATE Return top $k$ from $Sorted$
+	\end{algorithmic}
+\end{algorithm}
+\input{../SampleThesis.tex}
+
+
+
 Κάθε καταχώρηση ξεκινά με τη δήλωση του τύπου της αναφοράς.
 Το παραπάνω παράδειγμα αποτελεί αναφορά σε ένα άρθρο περιοδικού, επομένως η καταχώρηση ξεκινά με τη δήλωση \verb|@article|.
 Στη συνέχεια αναθέτουμε ένα μοναδικό κλειδί στην καταχώρηση, π.χ. \verb|Newman2003a|, το οποίο χρησιμοποιούμε στο κείμενο της διατριβής για να αναφερθούμε σε αυτή με την εντολή \verb|\cite{Newman2003a}|.

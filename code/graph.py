@@ -1,6 +1,7 @@
 import networkx as nx
 import numpy as np
 from tqdm import tqdm
+from check_properties import check_properties
 import pickle
 
 
@@ -144,7 +145,8 @@ def attach_values_from_list_to_graph(g, values):
 def brute_force_opposing_views(graph, pickle_name):
     """""
     This method brute forces all opposing opinion nodes and find the decrease of the network
-    by adding every possible edge between them. (1 edge at a time)
+    by adding every possible edge between them. (1 edge at a time). Also stores the resulting
+    dictionary in a pickle file
 
     ##todo maybe implement 2,3,4,.. edge additions? too much time?
 
@@ -192,17 +194,21 @@ def brute_force_opposing_views(graph, pickle_name):
         pickle.dump(difference, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     #for key in sorted(difference):
-    #    print("%s: %s" % (key, difference[key]))
+    #   print("%s: %s" % (key, difference[key]))
+
+    return difference
 
 
 def main():
     # find_increase_in_graphs_with_addition()
 
-    # options karate.gml, polblogs.gml
-    name = 'polblogs'
+    # options karate, polblogs
+    name = 'karate'
     graph = load_graph(f'{name}.gml', True)
 
-    brute_force_opposing_views(graph, f'{name}.pickle')
+    decreasing_dictionary = brute_force_opposing_views(graph, f'{name}.pickle')
+
+    check_properties(graph, decreasing_dictionary)
 
     print(get_polarization(graph))
 

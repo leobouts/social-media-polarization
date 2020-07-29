@@ -19,38 +19,83 @@ The new $z_a$ will not change a lot because the big addition in the numerator wi
 \\
 \\
 Now consider a second example of two nodes node $c$ has $z_c = -0.8$ and node $d$ has $z_d = 0.9$. After the addition node $d$ will see a big decrease because we add two conflicting values that almost neutralise each other on the numerator but the addition of the +1 on the denominator stands still. On the other hand node $c$ will also see a big decrease for the same reason. With this type of connection both of the nodes have a significant decrease.
-
-\section{Proposed Algorithm}
-\label{sec:proposedAlgorithm}
-
-The results from section~\ref{sec:intuition} makes us consider edge addition between high conflicting value nodes. After making this edge connection between two nodes we will see a big decrease. After this decrease the network will recalculate the expressed opinions since we are using a repeated averaging model. 
 \\
 \\
-These two nodes that were decreased and became more neutral will now start to influence their other neighbours. If their other neighbours have a high value the new calculation will not see a big decrease due to the fact that the smallest decrease is happening when we connect a value near zero and a relatively high value, as we saw in ~\ref{sec:intuition}. To find out we will have to compute the decrease of each high conflicting values and get the best of them. 
+\section{Properties of nodes having a large decrease}
+\label{sec:properties}
 
-The algorithm can be seen in the figure ~\ref{alg:algorithm}.
+When analysing a social graph we need centrality measures. We will examine nodes that have a large decrease of the polarization index in contrast with nodes that the decrease is almost insignificant. One of the centrality measures is the betweenness centrality. This metric measures the number of times a node lies on the shortest path between other nodes and shows which nodes are bridges between nodes in a network. The other is the closeness centrality. This metric scores each node based on their closeness to all other nodes in the network by calculating the shortest paths between all nodes and assigning each node a score based on its sum of shortest paths.
+\\
+\\
+The karate club social network\cite{nr} consists of a small pollarized community between two opposing karate teachers and their followers. After finding all possible connections between opposing opinions we compare the betweenness and closeness centrality of them.
+\\
+\\
 
-\begin{algorithm}[t]
-	\caption{Minimization of the polarization index $\pi(z)$}
-	\label{alg:algorithm}
-	\begin{flushleft}
-        		\textbf{INPUT:} Graph $G$, number of edges to add , $k$; $k1$, $k2$, High polarization vertices of each opinion, [-1,0] and [0,1], $X$,$Y$ respectively.\\
-        		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
-	\end{flushleft}
-	\begin{algorithmic}[1]
-		\STATE $Out \leftarrow Empty List;$
-		\FOR {$i = 1:k1 \ do$}
-		\STATE $Vertex \ u = X[i]$
-		\FOR {$j= 1:k2 \ do$}
-		\STATE $Vertex \ v = Y[i]$
-		\STATE Compute $\pi(z)$, the decrease if the edge $(u,v)$ is added;
-		\STATE Append edge $(u,v)$ to Out;
-		\ENDFOR
-		\ENDFOR
-		\STATE $Sorted \leftarrow sort(Out)$ by $\pi(z)$ by decreasing order;
-		\STATE Return top $k$ from $Sorted$
-	\end{algorithmic}
-\end{algorithm}
-\input{../SampleThesis.tex}
+\begin{table}[t]
+ \centering
+ \caption{Nodes with the largest decrease}
+ \label{tab:nodesLargest}
+ \begin{tabular}{| l || l | l | l |}
+ \hline
+  Node id & Betweeness Centrality& Closeness Centrality & Eigen Centrality\\
+  \hline
+  \hline
+  6 & 0.38372 & 0.02998 & 0.07948\\
+  \hline
+  7 & 0.38372 & 0.02998 & 0.07948\\
+  \hline
+  17 & 0.28448 & 0.0 &  0.02363\\
+  \hline
+  24 & 0.39285 & 0.01761 & 0.15012\\
+  \hline
+  26 & 0.375 & 0.00384 & 0.05920\\
+  \hline
+  27 & 0.36263 & 0.0 & 0.07558\\ 
+  \hline
+  30 & 0.38372 & 0.00292 & 0.13496\\ 
+  \hline
+  \hline
+  Norm & 0.97422 & 0.04617 & 0.251324\\ 
+  \hline
+ \end{tabular}
+\end{table}
+
+\begin{table}[t]
+ \centering
+ \caption{Nodes with the smallest decrease}
+ \label{tab:nodesSmallest}
+ \begin{tabular}{| l || l | l | l |}
+ \hline
+  Node id & Betweeness Centrality& Closeness Centrality & Eigen Centrality\\
+  \hline
+  \hline
+  3 & 0.55932 & 0.14365 & 0.31718\\
+  \hline
+  9 & 0.51562 & 0.05592 & 0.22740\\
+  \hline
+  10 & 0.43421 & 0.00084 &  0.10267\\
+  \hline
+  14 & 0.51562 & 0.04586 & 0.22646\\
+  \hline
+  20 & 0.5 & 0.03247 & 0.147911\\
+  \hline
+  28 &  0.02233 & 0.0 & 0.13347\\ 
+  \hline
+  29 & 0.00179 & 0.00292 & 0.13107\\
+   \hline
+  31 & 0.01441 & 0.00292 & 0.17476\\ 
+   \hline
+  32 & 0.13827 & 0.00292 & 0.19103\\ 
+   \hline
+  33 & 0.14524 & 0.00292 & 0.30865\\ 
+   \hline
+  34 & 0.30407 & 0.00292 & 0.37337\\  
+  \hline
+  \hline
+    Norm & 1.66392 & 0.40038 & 0.75679\\ 
+  \hline
+ \end{tabular}
+\end{table}
+
 
 

@@ -65,8 +65,9 @@
 
 % Γραμματοσειρές
 \setmainfont[Mapping=tex-text]{GFS Didot}
-\setsansfont{DejaVuSans}
-\setmonofont[Path = /Users/leonidas/Desktop/Spring2020/thesis/LaTeXthesis/Template/Font/ ,
+\setsansfont{DejaVu Sans}
+
+\setmonofont[Path = /Users/leonidas/Desktop/september2020/thesis/LaTeXthesis/Template/Font/,
 	UprightFont    = *-R,
 	BoldFont       = *-B,
 	ItalicFont     = *-RI,
