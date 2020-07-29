@@ -26,19 +26,18 @@ def get_polarization(g):
 
         mapping = {}
         for i in nodes:
-            mapping[i] = i-1
+            mapping[i] = i - 1
 
         g = nx.relabel_nodes(g, mapping)
 
         nodes = list(g.nodes)
         nodes = sorted(nodes)
 
-    #print(list(g.nodes(data=True)))
+    # print(list(g.nodes(data=True)))
 
     values = list(nx.get_node_attributes(g, 'value').values())
 
     for node in nodes:
-
         neighbors = [n for n in g.neighbors(node)]
         neighbors = sorted(neighbors)
 
@@ -104,9 +103,9 @@ def load_graph(gml_file, change_zeros_to_negatives):
 
     graph = attach_values_from_list_to_graph(graph, list_of_graph_values)
 
-    #print(list(graph.nodes(data=True)))
-    #print(nx.info(graph))
-    #print(get_polarization(graph))
+    # print(list(graph.nodes(data=True)))
+    # print(nx.info(graph))
+    # print(get_polarization(graph))
 
     return graph
 
@@ -132,15 +131,88 @@ def attach_values_from_list_to_graph(g, values):
     return g
 
 
-def main():
+def brute_force_opposing_views(graph):
+    """""
+    This method brute forces all opposing opinion nodes and find the decrease of the network
+    by adding every possible edge between them. (1 edge at a time)
 
-    #find_increase_in_graphs_with_addition()
+    ##todo maybe implement 2,3,4,.. edge additions? too much time?
+
+    -----------------------------------------------------------------------------------------
+    :param graph: networkx graph
+    :return: dictionary that holds information about the decrease after adding an edge
+    """
+
+    value_dictionary = nx.get_node_attributes(graph, 'value')
+
+    positive_indices = [k for (k, v) in value_dictionary.items() if v == 1]
+
+    negative_indices = [k for (k, v) in value_dictionary.items() if v == -1]
+
+    ######################################
+    #    possible properties to check    #
+    ######################################
+
+    # holds centrality values of every node
+    closeness_c = nx.closeness_centrality(graph)
+    betweenness_c = nx.betweenness_centrality(graph)
+
+    # max centralities of the whole graph
+    node_with_max_closeness_c = max(closeness_c, key=closeness_c.get)
+    node_with_max_betweenness_c = max(betweenness_c, key=betweenness_c.get)
+
+    # holds the centralities of negative values
+    negative_clossenes_c = {k: v for k, v in closeness_c.items() if k not in positive_indices}
+
+    # holds the centralities of positive values
+    positive_clossenes_c = {k: v for k, v in closeness_c.items() if k not in negative_indices}
+
+    most_central_node_of_positive = max(positive_clossenes_c, key=positive_clossenes_c.get)
+    most_central_node_of_negative = max(negative_clossenes_c, key=negative_clossenes_c.get)
+
+    # Compute node connectivity between all pairs of nodes.
+    connectivities = nx.all_pairs_node_connectivity(graph)
+
+    ##########################################################################################
+
+
+    # create all edge pairs to be added
+    all_pairs = [[pos_node, neg_node] for pos_node in positive_indices for neg_node in negative_indices]
+
+    # clean duplicate edges if exist, [a,b]==[b,a]
+    all_pairs = list({tuple(sorted(item)) for item in all_pairs})
+
+    initial_polarization = get_polarization(graph)
+
+    # holds values of decrease fo each addition
+    difference = {}
+
+    for edge_addition in all_pairs:
+        # add a new addition every time
+        g_copy = graph.copy()
+
+        g_copy.add_edge(edge_addition[0], edge_addition[1])
+
+        # check if the addition already exist in the graph, every addition must NOT be
+        # an edge that exists inside the graph beforehand.
+        # exist = True : all edge_additions does not exist in the current graph
+        # exist = False: at least one edge addition in edge_additions exist in the current graph
+
+        new_pol = get_polarization(g_copy)
+
+        difference[abs(initial_polarization - new_pol)] = {'addition': f"{edge_addition[0]}->{edge_addition[1]}"}
+
+    for key in sorted(difference):
+        print("%s: %s" % (key, difference[key]))
+
+
+def main():
+    # find_increase_in_graphs_with_addition()
 
     graph = nx.Graph()
     graph.add_edges_from([(0, 1), (1, 2), (2, 3), (3, 4), (1, 3)])
     graph.name = 'test'
     values = [-1, 1, -1, -1, 1]
-
 
     graph = attach_values_from_list_to_graph(graph, values)
 
@@ -148,8 +220,9 @@ def main():
 
     graph = load_graph("karate.gml", True)
 
-    print(get_polarization(graph))
+    brute_force_opposing_views(graph)
 
+    print(get_polarization(graph))
 
 
 if __name__ == "__main__":
