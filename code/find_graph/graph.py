@@ -1,142 +1,156 @@
-from graph_topologies import *
-import itertools
+import networkx as nx
 import numpy as np
 
 
-def check_graph_permutations(number_of_vertices, graph):
+def get_polarization(g):
+    """"
+    Creates the L+I matrix that is holded in variable f where L is the laplacian matrix of the graph.
+    solves the (L+I)^-1 * S system and computes the polarization index value from the second norm of this
+    array squared and normalized.
 
-    # make a list of nodes e.g. for 3 nodes returns [1,2,3]
-    lst_nodes = [node for node in range(number_of_vertices)]
-
-    # get all possible permutations for the values
-    value_permutations = [list(i) for i in itertools.product([-0.8, -0.5, 0.1, 0, -0.9, 0.8, -0.1, 0.5], repeat=number_of_vertices)]
-
-    edge_permutations = [i for i in itertools.combinations(lst_nodes, 2)]
-
-    # creates all possible pairs, pairs of two, of three etc.. up to number of vertices-1
-    possible_combs = [i for i in itertools.combinations(edge_permutations, number_of_vertices-1)]
-
-    # wrap the edges addition in a tuple for compatibility issues bellow
-    additions_tuple = list(zip(edge_permutations))
-
-    # join all the possible edge additions in one list
-    possible_combs.extend(additions_tuple)
-
-    # check all value and edge combinations
-
-    decrease = {}
-
-    for perm in value_permutations:
-
-        initial_polarization = get_polarization(graph, perm)
-
-        for edge_additions in possible_combs:
-
-            # re-init graph to check different edge scenario
-            g = nx.Graph()
-            g.add_edges_from(graph.edges())
-
-            # check if the addition already exist in the graph, every addition must NOT be
-            # an edge that exists inside the graph beforehand.
-            # exist = True : all edge_additions does not exist in the current graph
-            # exist = False: at least one edge addition in edge_additions exist in the current graph
-
-            exist = all(x not in graph.edges() for x in edge_additions)
-
-            # check that all the connections are with different opinions
-
-            all_connections_different_opinions = all(perm[y[0]] * perm[y[1]] < 0 for y in edge_additions)
-
-            if exist and all_connections_different_opinions:
-
-                for edge_perm in edge_additions:
-                    g.add_edge(edge_perm[0], edge_perm[1])
-
-                new_pol = get_polarization(g, perm)
-
-                decrease[abs(initial_polarization-new_pol)] = {'graph': graph.name, 'values': perm,
-                                                          'edge_additions': edge_additions}
-
-                #if new_pol > initial_polarization:
-                    # print(nx.info(graph))
-                    # print(nx.info(g))
-                    # print("===================")
-                    # print("graph topology:", graph.name)
-                    # print("values", perm)
-                    # print("initial:", initial_polarization)
-                    # print("after:", new_pol)
-                    # print("addition", edge_additions)
-                    # print("==============")
-
-    print(max(decrease))
-    print(decrease[max(decrease)])
-
-# solves a system of linear equations that are taken from the graph topology
-# then computes the polarization.
-
-
-def get_polarization(g, values):
+    --------------------------------------------------------------------------------------------------
+    :param g: networkx graph with value attributes
+    :return: Value of the polarization index
+    """
 
     equations = []
 
     nodes = list(g.nodes)
     nodes = sorted(nodes)
 
+    # check if the networkx graph has nodes named '1'
+    # if so remove 1 so we can accept both naming conventions
+    # and dont have a problem with linalg.solve
+
+    if nodes[0] == 1:
+
+        mapping = {}
+        for i in nodes:
+            mapping[i] = i-1
+
+        g = nx.relabel_nodes(g, mapping)
+
+        nodes = list(g.nodes)
+        nodes = sorted(nodes)
+
+    #print(list(g.nodes(data=True)))
+
+    values = list(nx.get_node_attributes(g, 'value').values())
+
     for node in nodes:
 
         neighbors = [n for n in g.neighbors(node)]
         neighbors = sorted(neighbors)
 
+        # create the matrix according to adjacent nodes
         f = [-1 if a in neighbors else 0 for a in nodes]
 
+        # +1 for the identity matrix
         f[node] = len(neighbors) + 1
-
         equations.append(f)
 
     a = np.array(equations)
     b = np.array(values)
 
+    # solving (L+I)^-1 * S
     solutions = np.linalg.solve(a, b)
 
+    # squaring and summing the opinion vector
     squared = np.square(solutions)
 
     summed = np.sum(squared)
 
-    #rooted = np.sqrt(summed)
-
+    # result is normalized according to network size
     return summed / len(list(g.nodes))
 
 
-def find_increase_in_graphs_with_addition():
+def load_graph(gml_file, change_zeros_to_negatives):
+    """"
+    Loads the graph from the gml_file that also have the values of expressed opinions. If these values
+    are in the [0,1] the function can change them to [-1,1] by turning the zeros into negatives.
 
-    '''
-    finds if a graph has increased polarization after adding an edge
-    between different opinions. the functions takes all the topologies
-    that are specified in the graph_topologies.py file
+    :param gml_file: name of the stored values
+    :param change_zeros_to_negatives: true/false
 
-    :return: nothing, prints all graphs that have increased polarization
-    '''
+    :return: networkx graph
+    """
 
-    for g_type in get_all_graphs():
+    graph = nx.read_gml(gml_file, label='id')
+    value_dictionary = nx.get_node_attributes(graph, 'value')
 
-        graph = get_graph_type(g_type)
+    if change_zeros_to_negatives:
 
-        topology = graph[0]
-        size = graph[1]
+        # get the values of the new graph in a dictionary
+        value_dictionary = nx.get_node_attributes(graph, 'value')
 
-        check_graph_permutations(size, topology)
+        # opinions vary from 0 to 1, find all zero occurences
+        zero_indices = [k for (k, v) in value_dictionary.items() if v == 0]
+
+        # empty dictionary
+        attrs = {}
+
+        # create the dictionary that will update 0 nodes to -1
+        for obj in zero_indices:
+            d = {obj: {'value': -1}}
+            attrs.update(d)
+
+        # se the new opinion values
+        nx.set_node_attributes(graph, attrs)
+
+        # get the values of the new graph in a dictionary
+        value_dictionary = nx.get_node_attributes(graph, 'value')
+
+    list_of_graph_values = list(value_dictionary.values())
+
+    graph = attach_values_from_list_to_graph(graph, list_of_graph_values)
+
+    #print(list(graph.nodes(data=True)))
+    #print(nx.info(graph))
+    #print(get_polarization(graph))
+
+    return graph
+
+
+def attach_values_from_list_to_graph(g, values):
+    """
+    attaches values to each node of a graph
+    ------------------------------------------------------
+    :param g: networkx graph
+    :param values: list of values of each node
+    :return: networkx graph with attributes named 'value'.
+    Each node now has their opinion stored.
+    """
+
+    attrs = {}
+
+    for i, node in enumerate(g.nodes):
+        attrs[node] = {'value': values[i]}
+
+    # se the new opinion values
+    nx.set_node_attributes(g, attrs)
+
+    return g
 
 
 def main():
 
-    find_increase_in_graphs_with_addition()
+    #find_increase_in_graphs_with_addition()
+
+    graph = nx.Graph()
+    graph.add_edges_from([(0, 1), (1, 2), (2, 3), (3, 4), (1, 3)])
+    graph.name = 'test'
+    values = [-1, 1, -1, -1, 1]
 
 
-    g = nx.gnm_random_graph(n = 100, m = 1000)
-    #print(nx.info(g))
+    graph = attach_values_from_list_to_graph(graph, values)
+
+    print(get_polarization(graph))
+
+    graph = load_graph("karate.gml", True)
+
+    print(get_polarization(graph))
+
 
 
 if __name__ == "__main__":
     main()
-
-
