@@ -19,16 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebe1ed42-6450-4d8d-a087-ec634a62fbd6" name="Default Changelist" comment="forgot to add all one edge additions. script now works as expected.">
-      <change beforePath="$PROJECT_DIR$/../../LaTeXthesis/Template/Content/Chapter4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../LaTeXthesis/Template/Content/Chapter4.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../LaTeXthesis/Template/SampleThesis.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../LaTeXthesis/Template/SampleThesis.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../LaTeXthesis/Template/SampleThesis.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../LaTeXthesis/Template/SampleThesis.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../LaTeXthesis/Template/cseuoi-thesis.cls" beforeDir="false" afterPath="$PROJECT_DIR$/../../LaTeXthesis/Template/cseuoi-thesis.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="ebe1ed42-6450-4d8d-a087-ec634a62fbd6" name="Default Changelist" comment="forgot to add all one edge additions. script now works as expected." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +35,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="1fKZxBl5N68MQx1yanuCrHpy2MC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -51,12 +48,22 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="find_graph" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="find_graph" />
+      </console-settings>
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -110,7 +117,7 @@
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>$USER_HOME$/.subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -129,6 +136,7 @@
       <workItem from="1595061382030" duration="154000" />
       <workItem from="1595096395563" duration="97000" />
       <workItem from="1595968990855" duration="9294000" />
+      <workItem from="1596016231616" duration="197000" />
     </task>
     <task id="LOCAL-00001" summary="fixed logic bug for edge addition">
       <created>1587939079173</created>
@@ -188,30 +196,36 @@
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
+      <path value="$PROJECT_DIR$/../.." />
     </ignored-roots>
     <MESSAGE value="fixed logic bug for edge addition" />
     <MESSAGE value="forgot to add all one edge additions. script now works as expected." />
     <option name="LAST_COMMIT_MESSAGE" value="forgot to add all one edge additions. script now works as expected." />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2514" height="293" key="GridCell.Tab.0.bottom" timestamp="1596015649777">
+    <state width="2514" height="352" key="GridCell.Tab.0.bottom" timestamp="1596016428718">
       <screen x="-648" y="-1417" width="2560" height="1417" />
     </state>
-    <state width="2514" height="293" key="GridCell.Tab.0.bottom/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596015649777" />
-    <state width="2514" height="293" key="GridCell.Tab.0.center" timestamp="1596015649775">
+    <state width="2514" height="352" key="GridCell.Tab.0.bottom/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596016428718" />
+    <state width="2514" height="352" key="GridCell.Tab.0.center" timestamp="1596016428717">
       <screen x="-648" y="-1417" width="2560" height="1417" />
     </state>
-    <state width="2514" height="293" key="GridCell.Tab.0.center/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596015649775" />
-    <state width="2514" height="293" key="GridCell.Tab.0.left" timestamp="1596015649774">
+    <state width="2514" height="352" key="GridCell.Tab.0.center/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596016428717" />
+    <state width="2514" height="352" key="GridCell.Tab.0.left" timestamp="1596016428716">
       <screen x="-648" y="-1417" width="2560" height="1417" />
     </state>
-    <state width="2514" height="293" key="GridCell.Tab.0.left/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596015649774" />
-    <state width="2514" height="293" key="GridCell.Tab.0.right" timestamp="1596015649776">
+    <state width="2514" height="352" key="GridCell.Tab.0.left/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596016428716" />
+    <state width="2514" height="352" key="GridCell.Tab.0.right" timestamp="1596016428717">
       <screen x="-648" y="-1417" width="2560" height="1417" />
     </state>
-    <state width="2514" height="293" key="GridCell.Tab.0.right/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596015649776" />
+    <state width="2514" height="352" key="GridCell.Tab.0.right/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596016428717" />
+    <state x="141" y="-1080" key="SettingsEditor" timestamp="1596016420964">
+      <screen x="-648" y="-1417" width="2560" height="1417" />
+    </state>
+    <state x="141" y="-1080" key="SettingsEditor/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596016420964" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/find_graph$graph.coverage" NAME="graph Coverage Results" MODIFIED="1596015649754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$graph.coverage" NAME="graph Coverage Results" MODIFIED="1596016520341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
