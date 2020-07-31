@@ -24,7 +24,10 @@ Now consider a second example of two nodes node $c$ has $z_c = -0.8$ and node $d
 \section{Properties of nodes having a large decrease}
 \label{sec:properties}
 
-When analysing a social graph we need centrality measures. We will examine nodes that have a large decrease of the polarization index in contrast with nodes that the decrease is almost insignificant. One of the centrality measures is the betweenness centrality. This metric measures the number of times a node lies on the shortest path between other nodes and shows which nodes are bridges between nodes in a network. The other is the closeness centrality. This metric scores each node based on their closeness to all other nodes in the network by calculating the shortest paths between all nodes and assigning each node a score based on its sum of shortest paths.
+When analysing a social graph we need centrality measures. We will examine nodes that have a large decrease of the polarization index in contrast with nodes that the decrease is almost insignificant. 
+One of the centrality measures is the betweenness centrality. This metric measures the number of times a node lies on the shortest path between other nodes and shows which nodes are bridges between nodes in a network. 
+Another metric is the closeness centrality. This metric scores each node based on their closeness to all other nodes in the network by calculating the shortest paths between all nodes and assigning each node a score based on its sum of shortest paths. 
+Finally eigen centrality will measure a node's influence based on the number of links it has but also taking into account how well connected a node is, and how many links their connections have.
 \\
 \\
 The karate club social network\cite{nr} consists of a small pollarized community between two opposing karate teachers and their followers. After finding all possible connections between opposing opinions we compare the betweenness and closeness centrality of them.
@@ -33,7 +36,7 @@ The karate club social network\cite{nr} consists of a small pollarized community
 
 \begin{table}[t]
  \centering
- \caption{Nodes with the largest decrease}
+ \caption{Nodes with the 5 largest decrease}
  \label{tab:nodesLargest}
  \begin{tabular}{| l || l | l | l |}
  \hline
@@ -50,19 +53,17 @@ The karate club social network\cite{nr} consists of a small pollarized community
   \hline
   26 & 0.375 & 0.00384 & 0.05920\\
   \hline
-  27 & 0.36263 & 0.0 & 0.07558\\ 
   \hline
-  30 & 0.38372 & 0.00292 & 0.13496\\ 
-  \hline
-  \hline
-  Norm & 0.97422 & 0.04617 & 0.251324\\ 
+  Norm & 0.80470 & 0.04258 & 0.14970\\ 
   \hline
  \end{tabular}
 \end{table}
 
+
+
 \begin{table}[t]
  \centering
- \caption{Nodes with the smallest decrease}
+ \caption{Nodes with the 5 smallest decrease}
  \label{tab:nodesSmallest}
  \begin{tabular}{| l || l | l | l |}
  \hline
@@ -79,23 +80,12 @@ The karate club social network\cite{nr} consists of a small pollarized community
   \hline
   20 & 0.5 & 0.03247 & 0.147911\\
   \hline
-  28 &  0.02233 & 0.0 & 0.13347\\ 
   \hline
-  29 & 0.00179 & 0.00292 & 0.13107\\
-   \hline
-  31 & 0.01441 & 0.00292 & 0.17476\\ 
-   \hline
-  32 & 0.13827 & 0.00292 & 0.19103\\ 
-   \hline
-  33 & 0.14524 & 0.00292 & 0.30865\\ 
-   \hline
-  34 & 0.30407 & 0.00292 & 0.37337\\  
-  \hline
-  \hline
-    Norm & 1.66392 & 0.40038 & 0.75679\\ 
+    Norm & 1.11498 & 0.21229 & 0.53728\\ 
   \hline
  \end{tabular}
 \end{table}
 
 
+Nodes with the smallest decrease of polarization index have bigger betweenness, closeness and Eigen centrality. This means that these nodes are individuals who influence and are better placed to influence the flow around the whole network. This leads us to consider connecting nodes that not only have high opposing opinions but also lie in the periphery of the network and are more isolated.
 

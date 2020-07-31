@@ -1,69 +1,7 @@
-import networkx as nx
-import numpy as np
-from tqdm import tqdm
+from connect_opposing import brute_force_opposing_views
+from compute_polarization import get_polarization
 from check_properties import check_properties
-import pickle
-
-
-def get_polarization(g):
-    """"
-    Creates the L+I matrix that is holded in variable f where L is the laplacian matrix of the graph.
-    solves the (L+I)^-1 * S system and computes the polarization index value from the second norm of this
-    array squared and normalized.
-
-    --------------------------------------------------------------------------------------------------
-    :param g: networkx graph with value attributes
-    :return: Value of the polarization index
-    """
-
-    equations = []
-
-    nodes = list(g.nodes)
-    nodes = sorted(nodes)
-
-    # check if the networkx graph has nodes named '1'
-    # if so remove 1 so we can accept both naming conventions
-    # and dont have a problem with linalg.solve
-
-    if nodes[0] == 1:
-
-        mapping = {}
-        for i in nodes:
-            mapping[i] = i - 1
-
-        g = nx.relabel_nodes(g, mapping)
-
-        nodes = list(g.nodes)
-        nodes = sorted(nodes)
-
-    # print(list(g.nodes(data=True)))
-
-    values = list(nx.get_node_attributes(g, 'value').values())
-
-    for node in nodes:
-        neighbors = [n for n in g.neighbors(node)]
-        neighbors = sorted(neighbors)
-
-        # create the matrix according to adjacent nodes
-        f = [-1 if a in neighbors else 0 for a in nodes]
-
-        # +1 for the identity matrix
-        f[node] = len(neighbors) + 1
-        equations.append(f)
-
-    a = np.array(equations)
-    b = np.array(values)
-
-    # solving (L+I)^-1 * S
-    solutions = np.linalg.solve(a, b)
-
-    # squaring and summing the opinion vector
-    squared = np.square(solutions)
-
-    summed = np.sum(squared)
-
-    # result is normalized according to network size
-    return summed / len(list(g.nodes))
+import networkx as nx
 
 
 def load_graph(gml_file, change_zeros_to_negatives):
@@ -142,64 +80,8 @@ def attach_values_from_list_to_graph(g, values):
     return g
 
 
-def brute_force_opposing_views(graph, pickle_name):
-    """""
-    This method brute forces all opposing opinion nodes and find the decrease of the network
-    by adding every possible edge between them. (1 edge at a time). Also stores the resulting
-    dictionary in a pickle file
-
-    ##todo maybe implement 2,3,4,.. edge additions? too much time?
-
-    -----------------------------------------------------------------------------------------
-    :param pickle_name: name of the file that the results will be stored
-    :param graph: networkx graph
-    :return: dictionary that holds information about the decrease after adding an edge
-    """
-
-    value_dictionary = nx.get_node_attributes(graph, 'value')
-
-    positive_indices = [k for (k, v) in value_dictionary.items() if v == 1]
-
-    negative_indices = [k for (k, v) in value_dictionary.items() if v == -1]
-
-    # create all edge pairs to be added
-    all_pairs = [[pos_node, neg_node] for pos_node in positive_indices for neg_node in negative_indices]
-
-    # clean duplicate edges if exist, [a,b]==[b,a]
-    all_pairs = list({tuple(sorted(item)) for item in all_pairs})
-
-    initial_polarization = get_polarization(graph)
-
-    # holds values of decrease fo each addition
-    difference = {}
-
-    for i in tqdm(range(len(all_pairs))):
-
-        # add a new addition every time
-        g_copy = graph.copy()
-
-        g_copy.add_edge(all_pairs[i][0], all_pairs[i][1])
-
-        # check if the addition already exist in the graph, every addition must NOT be
-        # an edge that exists inside the graph beforehand.
-        # exist = True : all edge_additions does not exist in the current graph
-        # exist = False: at least one edge addition in edge_additions exist in the current graph
-
-        new_pol = get_polarization(g_copy)
-
-        difference[abs(initial_polarization - new_pol)] = {'addition': f"{all_pairs[i][0]}->{all_pairs[i][1]}"}
-
-    # Store data (serialize)
-    with open(pickle_name, 'wb') as handle:
-        pickle.dump(difference, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-    #for key in sorted(difference):
-    #   print("%s: %s" % (key, difference[key]))
-
-    return difference
-
-
 def main():
+
     # find_increase_in_graphs_with_addition()
 
     # options karate, polblogs

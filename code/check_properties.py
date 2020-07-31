@@ -36,8 +36,8 @@ def check_properties(graph, decrease_dictionary):
     top_decrease_nodes = list(map(int, top_decrease_nodes))
     small_decrease_nodes = list(map(int, small_decrease_nodes))
 
-    top_decrease_nodes = sorted(top_decrease_nodes)
-    small_decrease_nodes = sorted(small_decrease_nodes)
+    top_decrease_nodes = sorted(top_decrease_nodes[:5])
+    small_decrease_nodes = sorted(small_decrease_nodes[:5])
 
 
     # holds centrality values of every node
@@ -74,11 +74,7 @@ def check_properties(graph, decrease_dictionary):
     print(LA.norm(small_node_eigen))
 
 
-    # max centralities of the whole graph
-    node_with_max_closeness_c = max(closeness_c, key=closeness_c.get)
-    node_with_max_betweenness_c = max(betweenness_c, key=betweenness_c.get)
+def compute_eigen_values_of_laplace():
 
-    # Compute node connectivity between all pairs of nodes.
-    connectivities = nx.all_pairs_node_connectivity(graph)
-
-    ##########################################################################################
+    print("")
+    #todo
