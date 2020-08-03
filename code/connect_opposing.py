@@ -4,17 +4,19 @@ import networkx as nx
 import pickle
 
 
-def brute_force_opposing_views(graph, pickle_name):
+def brute_force_opposing_views(graph, pickle_name, verbose):
     """""
     This method brute forces all opposing opinion nodes and find the decrease of the network
     by adding every possible edge between them. (1 edge at a time). Also stores the resulting
     dictionary in a pickle file
 
-    ##todo maybe implement 3,4,.. edge additions, too much time tho :/
+    #todo 1. maybe implement 3,4,.. edge additions, too much time for larger networks.
+    #todo 2. implement it for graphs that have intermediate values not only -1 and 1
 
     -----------------------------------------------------------------------------------------
     :param pickle_name: name of the file that the results will be stored
     :param graph: networkx graph
+    :param verbose: =1 prints result to terminal, =0 hides result from terminal
     :return: dictionary that holds information about the decrease after adding an edge
     """
 
@@ -32,45 +34,29 @@ def brute_force_opposing_views(graph, pickle_name):
 
     initial_polarization = get_polarization(graph)
 
-    # holds values of decrease fo each addition
+    # holds values of decrease for each addition
     difference = {}
 
     for i in tqdm(range(len(all_pairs))):
 
-        # add a new addition every time
         g_copy = graph.copy()
 
+        # add a new addition every time
         g_copy.add_edge(all_pairs[i][0], all_pairs[i][1])
 
-        # check if the addition already exist in the graph, every addition must NOT be
-        # an edge that exists inside the graph beforehand.
-        # exist = True : all edge_additions does not exist in the current graph
-        # exist = False: at least one edge addition in edge_additions exist in the current graph
-
+        # get the new polarization after addition
         new_pol = get_polarization(g_copy)
 
+        # compute and store decrease
         difference[abs(initial_polarization - new_pol)] = {'addition': f"{all_pairs[i][0]}->{all_pairs[i][1]}"}
 
-    # Store data (serialize)
+    # store data (serialize) into pickle file
     with open(pickle_name, 'wb') as handle:
         pickle.dump(difference, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-    #for key in sorted(difference):
-    #   print("%s: %s" % (key, difference[key]))
+    # prints to terminal
+    if verbose:
+        for key in sorted(difference):
+            print("%s: %s" % (key, difference[key]))
 
     return difference
-
-
-def connect_opposing_seperated_in_areas(graph):
-
-    value_dictionary = nx.get_node_attributes(graph, 'value')
-
-    positive_indices = [k for (k, v) in value_dictionary.items() if v == 1]
-
-    negative_indices = [k for (k, v) in value_dictionary.items() if v == -1]
-
-    max_of_positive = max(positive_indices)
-    max_of_negative = min(negative_indices)
-
-    ## todo
-

@@ -1,6 +1,7 @@
 from connect_opposing import brute_force_opposing_views
 from compute_polarization import get_polarization
-from check_properties import check_properties
+from properties import centralities
+from visualize import visualize_graph
 import networkx as nx
 
 
@@ -88,11 +89,14 @@ def main():
     name = 'karate'
     graph = load_graph(f'{name}.gml', True)
 
-    decreasing_dictionary = brute_force_opposing_views(graph, f'{name}.pickle')
+    decreasing_dictionary = brute_force_opposing_views(graph, f'{name}.pickle', 0)
 
-    check_properties(graph, decreasing_dictionary)
+    top_decrease, small_decrease = centralities(graph, decreasing_dictionary, 5)
 
-    print(get_polarization(graph))
+    print(top_decrease)
+    visualize_graph(graph, top_decrease, small_decrease)
+
+    #print(get_polarization(graph))
 
 
 if __name__ == "__main__":
