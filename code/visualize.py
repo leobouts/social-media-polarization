@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import networkx as nx
-import copy
 
 
 def visualize_graph(g, top_decrease, small_decrease):
@@ -68,7 +66,7 @@ def visualize_graph(g, top_decrease, small_decrease):
                      pos=pos,
                      node_size=[10000*v for v in pr.values()])
     plt.title('Largest decrease additions')
-    plt.savefig('largest.png', dpi=1200)
+    plt.savefig('largest.png', dpi=800)
     plt.show()
 
     pr = nx.pagerank(g_small)
@@ -84,7 +82,7 @@ def visualize_graph(g, top_decrease, small_decrease):
                      pos=pos,
                      node_size=[10000*v for v in pr.values()])
     plt.title('Smallest decrease additions')
-    plt.savefig('smallest.png', dpi=1200)
+    plt.savefig('smallest.png', dpi=800)
     plt.show()
 
 
