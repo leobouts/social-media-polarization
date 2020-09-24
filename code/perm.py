@@ -30,7 +30,7 @@ def check_graph_permutations(number_of_vertices, graph):
 
     for perm in value_permutations:
 
-        initial_polarization = get_polarization(graph, perm)
+        initial_polarization = get_polarization(graph)
 
         for edge_additions in possible_combs:
 
@@ -54,21 +54,21 @@ def check_graph_permutations(number_of_vertices, graph):
                 for edge_perm in edge_additions:
                     g.add_edge(edge_perm[0], edge_perm[1])
 
-                new_pol = get_polarization(g, perm)
+                new_pol = get_polarization(g)
 
                 decrease[abs(initial_polarization-new_pol)] = {'graph': graph.name, 'values': perm,
                                                           'edge_additions': edge_additions}
 
-                #if new_pol > initial_polarization:
-                    # print(nx.info(graph))
-                    # print(nx.info(g))
-                    # print("===================")
-                    # print("graph topology:", graph.name)
-                    # print("values", perm)
-                    # print("initial:", initial_polarization)
-                    # print("after:", new_pol)
-                    # print("addition", edge_additions)
-                    # print("==============")
+                if new_pol > initial_polarization:
+                    print(nx.info(graph))
+                    print(nx.info(g))
+                    print("===================")
+                    print("graph topology:", graph.name)
+                    print("values", perm)
+                    print("initial:", initial_polarization)
+                    print("after:", new_pol)
+                    print("addition", edge_additions)
+                    print("==============")
 
     print(max(decrease))
     print(decrease[max(decrease)])
@@ -82,7 +82,7 @@ def find_increase_in_graphs_with_addition():
     that are specified in the graph_topologies.py file
     --------------------------------------------------------------------
 
-    :return: nothing, prints all graphs that have increased polarization
+    :returns: nothing, prints all graphs that have increased polarization
     """
 
     for g_type in get_all_graphs():

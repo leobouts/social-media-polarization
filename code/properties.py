@@ -2,8 +2,6 @@ from numpy import linalg as LA
 import networkx as nx
 
 
-# todo 1. Eigenvalue properties.
-
 def centralities(graph, decrease_dictionary, no_of_nodes):
     """
     Given a network x graph and information about the polarization
@@ -61,24 +59,24 @@ def centralities(graph, decrease_dictionary, no_of_nodes):
     eigen_centrality = nx.eigenvector_centrality(graph)
 
     top_node_closeness_c = [closeness_c[node] for node in top_decrease_nodes]
-    top_node_betweeness = [betweenness_c[node] for node in top_decrease_nodes]
+    top_node_betweenness = [betweenness_c[node] for node in top_decrease_nodes]
     top_node_eigen = [eigen_centrality[node] for node in top_decrease_nodes]
 
     small_node_closeness_c = [closeness_c[int(node)] for node in small_decrease_nodes]
-    small_node_betweeness = [betweenness_c[int(node)] for node in small_decrease_nodes]
+    small_node_betweenness = [betweenness_c[int(node)] for node in small_decrease_nodes]
     small_node_eigen = [eigen_centrality[node] for node in small_decrease_nodes]
 
-    print_res(top_decrease_nodes, top_node_closeness_c, top_node_betweeness, top_node_eigen, 'Largest')
-    print_res(small_decrease_nodes, small_node_closeness_c, small_node_betweeness, small_node_eigen, 'Smallest')
+    print_res(top_decrease_nodes, top_node_closeness_c, top_node_betweenness, top_node_eigen, 'Largest')
+    print_res(small_decrease_nodes, small_node_closeness_c, small_node_betweenness, small_node_eigen, 'Smallest')
 
     return biggest_decrease_edges, smallest_decrease_edges
 
 
-def print_res(nodes, closeness_c, betweeness_c, eigen_c, mode):
+def print_res(nodes, closeness_c, betweenness_c, eigen_c, mode):
     '''
     :param nodes: id of nodes, same index with the results
     :param closeness_c: list of closeness centralities of nodes
-    :param betweeness_c: list of betweeness centralities of nodes
+    :param betweenness_c: list of betweeness centralities of nodes
     :param eigen_c: list of Eigen centralities of nodes
     :param mode: just a string input for the print output, e.g. 'largest'
     :return: prints the results of the centralities methods and their norms
@@ -93,9 +91,9 @@ def print_res(nodes, closeness_c, betweeness_c, eigen_c, mode):
     print(LA.norm(closeness_c))
     print("============================")
     print("Betweeness centrality:")
-    print(betweeness_c)
+    print(betweenness_c)
     print("Norm:")
-    print(LA.norm(betweeness_c))
+    print(LA.norm(betweenness_c))
     print("============================")
     print("Eigen centrality:")
     print(eigen_c)
@@ -103,7 +101,43 @@ def print_res(nodes, closeness_c, betweeness_c, eigen_c, mode):
     print(LA.norm(eigen_c))
 
 
-def compute_eigen_values_of_laplace():
+def edges_centralities(graph, decrease_dictionary, no_of_nodes):
 
-    print("")
-    #todo
+    #todo fix this mess
+    sorted_dict = sorted(decrease_dictionary)
+
+    smallest_decrease = sorted_dict[:no_of_nodes]
+    biggest_decrease = sorted_dict[-no_of_nodes:]
+
+    top_decrease = {}
+    small_decrease = {}
+
+    for value in biggest_decrease:
+        decrease = decrease_dictionary[value]
+        edge_removed = decrease['edge_removal']
+        top_decrease[str(decrease)] = {'edge_removed': edge_removed}
+
+    for value in smallest_decrease:
+        decrease = decrease_dictionary[value]
+        edge_removed = decrease['edge_removal']
+        small_decrease[str(decrease)] = {'edge_removed': edge_removed}
+
+    for key, value in smallest_decrease.items():
+        print(key, value)
+
+    # map the to int so they can be sorted and accessed
+    top_decrease = list(map(int, top_decrease))
+    small_decrease = list(map(int, small_decrease))
+
+    top_decrease = sorted(top_decrease[:no_of_nodes])
+    small_decrease = sorted(small_decrease[:no_of_nodes])
+
+    # holds centrality values of every edge
+    betweenness_c = nx.edge_betweenness_centrality(graph)
+
+    top_edge_betweenness = [betweenness_c[node] for node in top_decrease]
+    small_edge_betweenness = [betweenness_c[node] for node in small_decrease]
+
+    print(top_edge_betweenness)
+    print(small_edge_betweenness)
+    return top_edge_betweenness, small_edge_betweenness

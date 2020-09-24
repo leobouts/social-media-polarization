@@ -55,7 +55,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -141,7 +141,9 @@
       <workItem from="1596056834494" duration="69000" />
       <workItem from="1596182108056" duration="1762000" />
       <workItem from="1596467584651" duration="10736000" />
-      <workItem from="1596545892032" duration="876000" />
+      <workItem from="1596545892032" duration="1178000" />
+      <workItem from="1597042971967" duration="63000" />
+      <workItem from="1600979042838" duration="6057000" />
     </task>
     <task id="LOCAL-00001" summary="fixed logic bug for edge addition">
       <created>1587939079173</created>
@@ -208,33 +210,54 @@
     <option name="LAST_COMMIT_MESSAGE" value="forgot to add all one edge additions. script now works as expected." />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="113" key="GridCell.Tab.0.bottom" timestamp="1596546529089">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state width="1430" height="249" key="GridCell.Tab.0.bottom" timestamp="1600985482846">
+      <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state width="2513" height="132" key="GridCell.Tab.0.bottom/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596184583555" />
-    <state width="1398" height="113" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1596546529089" />
-    <state width="1398" height="113" key="GridCell.Tab.0.center" timestamp="1596546529088">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state width="1398" height="113" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1596551137082" />
+    <state width="1430" height="249" key="GridCell.Tab.0.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1600985482846" />
+    <state width="1430" height="249" key="GridCell.Tab.0.center" timestamp="1600985482845">
+      <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state width="2513" height="132" key="GridCell.Tab.0.center/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596184583554" />
-    <state width="1398" height="113" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1596546529088" />
-    <state width="1398" height="113" key="GridCell.Tab.0.left" timestamp="1596546529087">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state width="1398" height="113" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1596551137082" />
+    <state width="1430" height="249" key="GridCell.Tab.0.center/0.23.2560.1361@0.23.2560.1361" timestamp="1600985482845" />
+    <state width="1430" height="249" key="GridCell.Tab.0.left" timestamp="1600985482845">
+      <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state width="2513" height="132" key="GridCell.Tab.0.left/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596184583554" />
-    <state width="1398" height="113" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1596546529087" />
-    <state width="1398" height="113" key="GridCell.Tab.0.right" timestamp="1596546529088">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state width="1398" height="113" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1596551137081" />
+    <state width="1430" height="249" key="GridCell.Tab.0.left/0.23.2560.1361@0.23.2560.1361" timestamp="1600985482845" />
+    <state width="1430" height="249" key="GridCell.Tab.0.right" timestamp="1600985482846">
+      <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state width="2513" height="132" key="GridCell.Tab.0.right/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596184583554" />
-    <state width="1398" height="113" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1596546529088" />
-    <state x="141" y="-1080" key="SettingsEditor" timestamp="1596016420964">
-      <screen x="-648" y="-1417" width="2560" height="1417" />
+    <state width="1398" height="113" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1596551137082" />
+    <state width="1430" height="249" key="GridCell.Tab.0.right/0.23.2560.1361@0.23.2560.1361" timestamp="1600985482846" />
+    <state width="1485" height="479" key="GridCell.Tab.1.bottom" timestamp="1600982761661">
+      <screen x="0" y="23" width="2560" height="1361" />
+    </state>
+    <state width="1485" height="479" key="GridCell.Tab.1.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1600982761661" />
+    <state width="1485" height="479" key="GridCell.Tab.1.center" timestamp="1600982761660">
+      <screen x="0" y="23" width="2560" height="1361" />
+    </state>
+    <state width="1485" height="479" key="GridCell.Tab.1.center/0.23.2560.1361@0.23.2560.1361" timestamp="1600982761660" />
+    <state width="1485" height="479" key="GridCell.Tab.1.left" timestamp="1600982761659">
+      <screen x="0" y="23" width="2560" height="1361" />
+    </state>
+    <state width="1485" height="479" key="GridCell.Tab.1.left/0.23.2560.1361@0.23.2560.1361" timestamp="1600982761659" />
+    <state width="1485" height="479" key="GridCell.Tab.1.right" timestamp="1600982761661">
+      <screen x="0" y="23" width="2560" height="1361" />
+    </state>
+    <state width="1485" height="479" key="GridCell.Tab.1.right/0.23.2560.1361@0.23.2560.1361" timestamp="1600982761661" />
+    <state x="789" y="347" key="SettingsEditor" timestamp="1600979174155">
+      <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state x="141" y="-1080" key="SettingsEditor/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596016420964" />
+    <state x="789" y="347" key="SettingsEditor/0.23.2560.1361@0.23.2560.1361" timestamp="1600979174155" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/find_graph$graph.coverage" NAME="graph Coverage Results" MODIFIED="1596015649754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$graph.coverage" NAME="graph Coverage Results" MODIFIED="1596546529076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$graph.coverage" NAME="graph Coverage Results" MODIFIED="1600985552633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

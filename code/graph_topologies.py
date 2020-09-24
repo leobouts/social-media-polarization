@@ -2,6 +2,10 @@ import networkx as nx
 
 
 def get_graph_type(g_type):
+    """
+    :param g_type: name of the graph
+    :return: networkx graph of the respected topology
+    """
 
     graph = nx.Graph()
 
@@ -105,7 +109,10 @@ def get_graph_type(g_type):
 
 
 def get_all_graphs():
-
+    """
+    After adding a specific topology get_graph_type must be updated with the respective nxgraph edges
+    :return: all of the available topologies that get_graph_type can implement
+    """
     graphs = ['diamond', 'paw', 'c4', 'claw', 'p4', 'p3_union_2k1',
               'w4', 'claw_union_k1', 'p2_union_p3', 'gem', 'k3_union2k1', 'k14', 'butterfly', 'chair',
               'cofork', 'dart', 'p5', 'house', 'k23', 'banner', 'pdash', 'bull', 'cricket', 'c5']
