@@ -3,7 +3,7 @@ from compute_polarization import get_polarization
 from properties import centralities, edges_centralities
 from visualize import visualize_graph
 import networkx as nx
-
+import pprint
 
 def load_graph(gml_file, change_zeros_to_negatives):
     """"
@@ -101,8 +101,8 @@ def main():
     edge_dict = brute_force_all_edges_removal(graph, f'{name}_edges.pickle', 0)
     top_edge_decrease, small_edge_decrease = edges_centralities(graph, edge_dict, 5)
 
-    print(top_edge_decrease)
-    print(small_edge_decrease)
+    pprint.pprint(top_edge_decrease)
+    pprint.pprint(small_edge_decrease)
 
 
 if __name__ == "__main__":
