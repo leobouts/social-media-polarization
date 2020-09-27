@@ -98,8 +98,11 @@ def main():
     #print(top_decrease)
     #visualize_graph(graph, top_decrease, small_decrease)
 
-    edge_dict = brute_force_all_edges_removal(graph, f'{name}_edges.pickle', 1)
-    #top_edge_decrease, small_edge_decrease = edges_centralities(graph, edge_dict, 5)
+    edge_dict = brute_force_all_edges_removal(graph, f'{name}_edges.pickle', 0)
+    top_edge_decrease, small_edge_decrease = edges_centralities(graph, edge_dict, 5)
+
+    print(top_edge_decrease)
+    print(small_edge_decrease)
 
 
 if __name__ == "__main__":

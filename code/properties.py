@@ -73,14 +73,14 @@ def centralities(graph, decrease_dictionary, no_of_nodes):
 
 
 def print_res(nodes, closeness_c, betweenness_c, eigen_c, mode):
-    '''
+    """
     :param nodes: id of nodes, same index with the results
     :param closeness_c: list of closeness centralities of nodes
     :param betweenness_c: list of betweeness centralities of nodes
     :param eigen_c: list of Eigen centralities of nodes
     :param mode: just a string input for the print output, e.g. 'largest'
     :return: prints the results of the centralities methods and their norms
-    '''
+    """
 
     print(f"-----{mode} decrease------")
     print("Node ids:")
@@ -102,8 +102,17 @@ def print_res(nodes, closeness_c, betweenness_c, eigen_c, mode):
 
 
 def edges_centralities(graph, decrease_dictionary, no_of_nodes):
-
-    #todo fix this mess
+    """
+    Computes the edge centralities of the graph and returns the top #no_of_nodes
+    with the biggest and the smallest polarization decrease after removing an edge
+    in their graph.
+    :param graph: netrowkx graph
+    :param decrease_dictionary: holds the decrease of the polarization with edge removals
+    for every available edge in the graph
+    :param no_of_nodes: number of bigger/smaller decrease with removal
+    in polarization that I want to keep
+    :return: 2 dictionaries, one for smaller one for bigger decrease of edge centralities
+    """
     sorted_dict = sorted(decrease_dictionary)
 
     smallest_decrease = sorted_dict[:no_of_nodes]
@@ -115,29 +124,28 @@ def edges_centralities(graph, decrease_dictionary, no_of_nodes):
     for value in biggest_decrease:
         decrease = decrease_dictionary[value]
         edge_removed = decrease['edge_removal']
-        top_decrease[str(decrease)] = {'edge_removed': edge_removed}
+        top_decrease[value] = {'edge_removed': edge_removed}
 
     for value in smallest_decrease:
         decrease = decrease_dictionary[value]
         edge_removed = decrease['edge_removal']
-        small_decrease[str(decrease)] = {'edge_removed': edge_removed}
+        small_decrease[value] = {'edge_removed': edge_removed}
 
-    for key, value in smallest_decrease.items():
-        print(key, value)
-
-    # map the to int so they can be sorted and accessed
-    top_decrease = list(map(int, top_decrease))
-    small_decrease = list(map(int, small_decrease))
-
-    top_decrease = sorted(top_decrease[:no_of_nodes])
-    small_decrease = sorted(small_decrease[:no_of_nodes])
-
-    # holds centrality values of every edge
     betweenness_c = nx.edge_betweenness_centrality(graph)
 
-    top_edge_betweenness = [betweenness_c[node] for node in top_decrease]
-    small_edge_betweenness = [betweenness_c[node] for node in small_decrease]
+    returned_edge_info_biggest_decrease = {}
+    returned_edge_info_smallest_decrease = {}
 
-    print(top_edge_betweenness)
-    print(small_edge_betweenness)
-    return top_edge_betweenness, small_edge_betweenness
+    for value in top_decrease:
+        edge_to_get_val = top_decrease[value]['edge_removed']
+        edge_bet_centrality = betweenness_c[edge_to_get_val]
+        returned_edge_info_biggest_decrease[value] = {'edge_removed': edge_to_get_val,
+                                                      'edge_centrality': edge_bet_centrality}
+
+    for value in small_decrease:
+        edge_to_get_val = small_decrease[value]['edge_removed']
+        edge_bet_centrality = betweenness_c[edge_to_get_val]
+        returned_edge_info_smallest_decrease[value] = {'edge_removed': edge_to_get_val,
+                                                       'edge_centrality': edge_bet_centrality}
+
+    return returned_edge_info_biggest_decrease, returned_edge_info_smallest_decrease
