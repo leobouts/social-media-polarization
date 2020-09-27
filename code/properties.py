@@ -5,7 +5,7 @@ import networkx as nx
 def centralities(graph, decrease_dictionary, no_of_nodes):
     """
     Given a network x graph and information about the polarization
-    finds the closeness, betweeness and Eigen centrality of the nodes that were connected
+    finds the closeness, betweenness and Eigen centrality of the nodes that were connected
     and had the biggest and the smallest decrease
 
     --------------------------------------------------------------------------------
@@ -139,13 +139,21 @@ def edges_centralities(graph, decrease_dictionary, no_of_nodes):
     for value in top_decrease:
         edge_to_get_val = top_decrease[value]['edge_removed']
         edge_bet_centrality = betweenness_c[edge_to_get_val]
+        sign = decrease_dictionary[value]['multiplication']
+        addition = decrease_dictionary[value]['addition']
         returned_edge_info_biggest_decrease[value] = {'edge_removed': edge_to_get_val,
-                                                      'edge_centrality': edge_bet_centrality}
+                                                      'edge_centrality': edge_bet_centrality,
+                                                      'sign': sign,
+                                                      'addition': addition}
 
     for value in small_decrease:
         edge_to_get_val = small_decrease[value]['edge_removed']
         edge_bet_centrality = betweenness_c[edge_to_get_val]
+        sign = decrease_dictionary[value]['multiplication']
+        addition = decrease_dictionary[value]['addition']
         returned_edge_info_smallest_decrease[value] = {'edge_removed': edge_to_get_val,
-                                                       'edge_centrality': edge_bet_centrality}
+                                                       'edge_centrality': edge_bet_centrality,
+                                                      'sign': sign,
+                                                      'addition': addition}
 
     return returned_edge_info_biggest_decrease, returned_edge_info_smallest_decrease
