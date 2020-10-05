@@ -79,6 +79,7 @@ def brute_force_all_edges_removal(graph, pickle_name, verbose):
     nodeDict = dict(graph.nodes(data=True))
     difference = {}
 
+
     for edge in tqdm(graph_edges):
 
         g_copy = graph.copy()

@@ -5,6 +5,7 @@ from visualize import visualize_graph
 import networkx as nx
 import pprint
 
+
 def load_graph(gml_file, change_zeros_to_negatives):
     """"
     Loads the graph from the gml_file that also have the values of expressed opinions. If these values
@@ -26,6 +27,28 @@ def load_graph(gml_file, change_zeros_to_negatives):
     graph = nx.Graph(graph)
 
     value_dictionary = nx.get_node_attributes(graph, 'value')
+
+    if gml_file == 'books.gml':
+        # empty dictionary
+
+        attrs = {}
+
+        for key, value in value_dictionary.items():
+            # c = conservative, l=liberal, n=neutral
+
+            if value_dictionary[key] == 'c':
+                value_dictionary[key] = 1
+
+            elif value_dictionary[key] == 'l':
+                value_dictionary[key] = -1
+
+            else:
+                value_dictionary[key] = 0
+
+            d = {key: {'value': value_dictionary[key]}}
+            attrs.update(d)
+
+        nx.set_node_attributes(graph, attrs)
 
     if change_zeros_to_negatives:
 
@@ -86,8 +109,9 @@ def main():
     # find_increase_in_graphs_with_addition()
 
     # options karate, polblogs, books
-    name = 'polblogs'
+    name = 'books'
     graph = load_graph(f'{name}.gml', True)
+    print(graph)
     print(get_polarization(graph))
 
     # costly brute force, polblogs dataset needs arround 200 hours to check, karate is ok.
