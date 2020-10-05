@@ -85,8 +85,8 @@ def main():
     # function that supports Lemma 3.1
     # find_increase_in_graphs_with_addition()
 
-    # options karate, polblogs
-    name = 'karate'
+    # options karate, polblogs, books
+    name = 'polblogs'
     graph = load_graph(f'{name}.gml', True)
     print(get_polarization(graph))
 
