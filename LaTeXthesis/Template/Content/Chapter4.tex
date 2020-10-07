@@ -22,7 +22,7 @@ Now consider a second example of two nodes node $c$ has $z_c = -0.8$ and node $d
 \\
 
 
-\section{Removing edges and their properties}
+\section{Experiment by removing edges}
 \label{sec:properties}
 Bellow we examine the removal of edges from a social graph and their result in polarization. We also use the edge betweenness centrality. The edge betweenness centrality is defined as the number of the shortest paths that go through an edge in a graph or network.(add cite Girvan and Newman 2002). 
 
@@ -74,9 +74,7 @@ In the tables following Sign and Addition refer to the multiplication and the ad
  
 \end{table}
 
-We can clearly see that there is not a direct association between the edge betweenness centrality and the decrease in polarization. Edge (20,34) has almost the same betweenness centrality with edge (32,34). The one is among the edges that their removal contributes in one of the biggest polarization decrease while the other is among the ones with the smallest. We will examine two more datasets.
-
-
+We can clearly see that there is not a direct association between the edge betweenness centrality and the decrease in polarization. For example in the karate dataset edge (20,34) has almost the same betweenness centrality with edge (32,34). The first is among the edges that their removal contributes in one of the biggest polarization decreases while the other is among the ones with the smallest. A second thing that we can see in all three datasets is that the biggest decrease is coming from the removal of edges that connect opposing opinions.
 
 \begin{table}[!htb]
  \centering
@@ -84,7 +82,7 @@ We can clearly see that there is not a direct association between the edge betwe
  \label{tab:edgesLargest}
  \begin{tabular}{| l || l | l | l | l |}
  \hline
-  Edge & Betweeness Centrality & Polarization Decrease & Sign & Addition\\
+  Edge & Betweenness Centrality & Polarization Decrease & Sign & Addition\\
   \hline
   \hline
   (213, 793) & $0.00219$ & $0.00091$ & - &  0\\
@@ -105,7 +103,7 @@ We can clearly see that there is not a direct association between the edge betwe
  \label{tab:edgesLargest}
  \begin{tabular}{| l || l | l | l | l |}
  \hline
-  Edge & Betweeness Centrality & Polarization Decrease & Sign & Addition\\
+  Edge & Betweenness Centrality & Polarization Decrease & Sign & Addition\\
   \hline
   \hline
   (384, 385) & $9.01465*10^{-7}$ & $0.0$ & + &  -2\\
@@ -126,5 +124,49 @@ We can clearly see that there is not a direct association between the edge betwe
 
 
 
+\begin{table}[!htb]
+ \centering
+ \caption{Edges with the 5 largest decrease (Books Dataset)}
+ \label{tab:edgesLargest}
+ \begin{tabular}{| l || l | l | l | l |}
+ \hline
+  Edge & Betweeness Centrality & Polarization Decrease & Sign & Addition\\
+  \hline
+  \hline
+  (53, 76) & $0.06290$ & $0.01985$ & - &  0\\
+  \hline
+  (46, 102) & $0.04914$ & $0.01541$ & + &  -2\\
+  \hline
+  (19, 77) & $0.04367$ & $0.01458$ & + &  +2\\
+  \hline
+  (9, 51) & $0.02812$ & $0.01000$ & - &  0\\
+  \hline
+  (49, 72) & $0.06809$ & $0.00952$ & - &  0\\
+  \hline
+ \end{tabular}
+ 
+ \vspace{\floatsep}
+ 
+ \caption{Edges with the 5 smallest decrease (Books Dataset)}
+ \label{tab:edgesLargest}
+ \begin{tabular}{| l || l | l | l | l |}
+ \hline
+  Edge & Betweeness Centrality & Polarization Decrease & Sign & Addition\\
+  \hline
+  \hline
+  (13, 40) & $0.00305$ & $3.89807*10^{-9}$ & + &  +2\\
+  \hline
+  (35, 37) & $0.00078$ & $8.65544*10^{-9}$ & + &  +2\\
+  \hline
+  (88, 89) & $0.00036$ & $1.00835*10^{-8}$ & + &  -2\\
+  \hline
+  (65, 69) & $0.00072$ & $1.51261*10^{-8}$ & + &  -2\\
+  \hline
+  (35, 36) & $0.00146$ & $2.92727*10^{-8}$ & + &  +2\\
+  \hline
+  \hline
+ \end{tabular}
+ 
+\end{table}
 
 

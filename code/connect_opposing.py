@@ -17,6 +17,7 @@ def brute_force_opposing_views(graph, pickle_name, verbose):
     :param graph: networkx graph
     :param verbose: =1 prints result to terminal, =0 hides result from terminal
     :return: dictionary that holds information about the decrease after adding an edge
+    example : "{0.01938319984207737: {'addition': '15->20'}, ...}"
     """
 
     value_dictionary = nx.get_node_attributes(graph, 'value')

@@ -1,6 +1,6 @@
 from connect_opposing import brute_force_opposing_views, brute_force_all_edges_removal
 from compute_polarization import get_polarization
-from properties import centralities, edges_centralities
+from properties import centralities, edges_centralities, create_edge_list
 from visualize import visualize_graph
 import networkx as nx
 import pprint
@@ -109,23 +109,28 @@ def main():
     # find_increase_in_graphs_with_addition()
 
     # options karate, polblogs, books
-    name = 'books'
+    name = 'karate'
     graph = load_graph(f'{name}.gml', True)
     print(get_polarization(graph))
 
     # costly brute force, polblogs dataset needs arround 200 hours to check, karate is ok.
     # find biggest and smallest decrease of nodes after adding an edge.
     # However this measures the state of the nodes and not the edges.
-    #decreasing_dictionary = brute_force_opposing_views(graph, f'{name}.pickle', 0)
-    #top_decrease, small_decrease = centralities(graph, decreasing_dictionary, 5)
-    #print(top_decrease)
-    #visualize_graph(graph, top_decrease, small_decrease)
+    # decreasing_dictionary = brute_force_opposing_views(graph, f'{name}.pickle', 0)
+    # top_decrease, small_decrease = centralities(graph, decreasing_dictionary, 5)
+
+    # visualize_graph(graph, top_decrease, small_decrease, 'addition')
+    # print(top_decrease)
 
     edge_dict = brute_force_all_edges_removal(graph, f'{name}_edges.pickle', 0)
     top_edge_decrease, small_edge_decrease = edges_centralities(graph, edge_dict, 5)
 
-    pprint.pprint(top_edge_decrease)
-    pprint.pprint(small_edge_decrease)
+    top_list_for_vis = create_edge_list(top_edge_decrease)
+    small_list_for_vis = create_edge_list(small_edge_decrease)
+
+    visualize_graph(graph, top_list_for_vis, small_list_for_vis, 'removal')
+
+    # pprint.pprint(small_edge_decrease)
 
 
 if __name__ == "__main__":

@@ -2,7 +2,15 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 
-def visualize_graph(g, top_decrease, small_decrease):
+def visualize_graph(g, top_decrease, small_decrease, operation):
+    '''
+
+    :param g:
+    :param top_decrease:
+    :param small_decrease:
+    :param operation: 'removal' or 'addition'
+    :return:
+    '''
 
     top_tuples = []
     small_tuples = []
@@ -19,9 +27,9 @@ def visualize_graph(g, top_decrease, small_decrease):
 
     for polarization_value in node_values.values():
         if polarization_value > 0:
-            node_colors.append('#f11712')
+            node_colors.append('#00c08a')
         else:
-            node_colors.append('#0099f7')
+            node_colors.append('#ffb74b')
 
     # create edges to add
     for i in range(len(top_decrease)):
@@ -37,20 +45,27 @@ def visualize_graph(g, top_decrease, small_decrease):
     edge_colors_top = []
     edge_colors_small = []
 
+    edge_weights_top = []
+    edge_weights_small = []
+
     # keep same layout
     #pos = nx.spring_layout(g_top, scale=15)
     pos = nx.nx_agraph.graphviz_layout(g_top, prog='twopi')
     for edge in g_top.edges:
         if edge in top_tuples:
-            edge_colors_top.append('#ffe63a')
+            edge_colors_top.append('#ff5255')
+            edge_weights_top.append(2.5)
         else:
             edge_colors_top.append('black')
+            edge_weights_top.append(0.7)
 
     for edge in g_small.edges:
         if edge in small_tuples:
-            edge_colors_small.append('#ffe63a')
+            edge_colors_small.append('#ff5255')
+            edge_weights_small.append(2.5)
         else:
             edge_colors_small.append('black')
+            edge_weights_small.append(0.7)
 
     # bigger nodes -> more central
     pr = nx.pagerank(g_top)
@@ -64,11 +79,11 @@ def visualize_graph(g, top_decrease, small_decrease):
                      with_labels=True,
                      linewidths=1,
                      pos=pos,
-                     node_size=[10000*v for v in pr.values()])
-    plt.title('Largest decrease additions')
+                     node_size=[10000*v for v in pr.values()],
+                     width=edge_weights_top)
+    plt.title(f'Largest decrease {operation}')
     plt.savefig('largest.png', dpi=800)
     plt.show()
-
     pr = nx.pagerank(g_small)
     nodes = nx.draw_networkx_nodes(g_small,
                                    pos,
@@ -80,8 +95,9 @@ def visualize_graph(g, top_decrease, small_decrease):
                      with_labels=True,
                      linewidths=1,
                      pos=pos,
-                     node_size=[10000*v for v in pr.values()])
-    plt.title('Smallest decrease additions')
+                     node_size=[10000*v for v in pr.values()],
+                     width=edge_weights_small)
+    plt.title(f'Smallest decrease {operation}')
     plt.savefig('smallest.png', dpi=800)
     plt.show()
 

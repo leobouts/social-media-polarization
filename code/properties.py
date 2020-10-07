@@ -14,6 +14,7 @@ def centralities(graph, decrease_dictionary, no_of_nodes):
     :param no_of_nodes: number of nodes that the function will print for biggest and smallest decrease
     :return: 1. list of edges with the biggest polarization index decrease
              2. list of edges with the smallest polarization index decrease
+             example: ['6,30', '7,30', '17,26', '17,24', '17,30']
     """
 
     sorted_dict = sorted(decrease_dictionary)
@@ -157,3 +158,23 @@ def edges_centralities(graph, decrease_dictionary, no_of_nodes):
                                                       'addition': addition}
 
     return returned_edge_info_biggest_decrease, returned_edge_info_smallest_decrease
+
+
+def create_edge_list(dict_to_format):
+    """
+
+    :param dict_to_format: dictionary of type
+    "0.04669391074827928: {'addition': 0,
+                       'edge_centrality': 0.1272599949070537,
+                       'edge_removed': (1, 32),
+                       'sign': -1}}"
+    :return: list of type ["1,2","2,3",..]
+    """
+    edge_list = []
+    for keys in dict_to_format.keys():
+        edge = str(dict_to_format[keys]['edge_removed']).replace(" ", "")
+        edge = edge.replace("(", "")
+        edge = edge.replace(")", "")
+        edge_list.append(edge)
+
+    return edge_list
