@@ -111,7 +111,6 @@ def main():
     # options karate, polblogs, books
     name = 'books'
     graph = load_graph(f'{name}.gml', True)
-    print(graph)
     print(get_polarization(graph))
 
     # costly brute force, polblogs dataset needs arround 200 hours to check, karate is ok.

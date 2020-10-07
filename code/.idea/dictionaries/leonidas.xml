@@ -2,8 +2,10 @@
   <dictionary name="leonidas">
     <words>
       <w>betweenness</w>
+      <w>centralities</w>
       <w>cofork</w>
       <w>eigen</w>
+      <w>netrowkx</w>
     </words>
   </dictionary>
 </component>
