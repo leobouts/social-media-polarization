@@ -51,16 +51,32 @@ We did not normalize the polarization index here by dividing with the size of th
 \section{Problem Definition}
 \label{sec:problemDef}
 
-Let $C \subseteq	V \times V$ a set of edges that are not in the graph. We want to find a subset of $S \subseteq C$ of $k$ edges whose addition to a graph $G$ leads to the greatest reduction of $\pi(z)$.
-
+Real world events such as Brexit and the 2016 U.S. presidential elections gives us a clear hint about the polarization our society is witnessing. Social media polarization has a strong effect on politics, opinion formation and how people interact with each other in a society. Users of social media are now receiving biased information that amplify their own viewpoints. Enclosed in their filter bubble, they will ignore everyone else and only acknowledge opinions that fit their own reality. In combination with fake news a malicious entity could use social media as a tool to polarize certain groups of people for their own interest. Problem 3 and 4 examine this case. Reducing online polarization is crucial, Problem 1 and 2 can help combat this phenomenon.
+\\
+\\
+\textit{Problem 1}. Let $C \subseteq	V \times V$ a set of edges that are not in the graph. We want to find a subset of $S \subseteq C$ of $k$ edges whose addition to a graph $G$ leads to the greatest reduction of $\pi(z)$.
+\\
+\\
+\\
+\textbf{Problem 2}. Let $S$ a set of edges that are proposed for addition in the graph $G$ from \textbf{Problem 1}. We want to find the probabilities of these changes being accepted.
+\\
+\\
+\\
+\textbf{Problem 3}. Let $V \times V$ the set of edges of graph $G$. We want to find a subset of edges $S = k, k \in V \times V$   whose removal from the graph $G$ leads to the greatest increase of $\pi(z)$.
+\\
+\\
+\\
+\textbf{Problem 4}. Let $S$ the set of edges that are proposed for removal in the graph $G$ from \textbf{Problem 3}. We want to find the probabilities of these changes being accepted.
+\\
 
 \section{Monotonicity of the Problem}
 \label{sec:monotonicity}
-
+\vspace{20pt}
 We observe that $\pi(z)$ is not monotone with respect to the edge additions. This means that adding an edge will not necessarily decrease the polarization index. We will  show that this is true with a counter example. In the network~\ref{fig:p5} nodes 0, 2 and 3 have a value of $s_i=-1$, and nodes 2 and 4 have a value of $s_i=+1$. For both examples we assume that $w_{ii}=w_{ij}=w_{ji}=1$ and $n$ the number of nodes.
 We will now compute the polarization index of the original graph
-
-\begin{figure}[t]
+\\
+\\
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}[t]{0.3\textwidth}
 		\centering
@@ -75,6 +91,7 @@ We will now compute the polarization index of the original graph
 		\caption{}
 		\label{subfig:monotonicityB}
 	\end{subfigure}
+	\vspace{20pt}
 	\hfill
 	\caption{Edge addition between opposed opinions.}
 	\label{fig:p5}
@@ -219,8 +236,47 @@ We will now compute the polarization index after the addition of the edge $1\rig
 	\end{aligned}
 \end{equation}
 \\
-We can see an increase of the polarization index after adding this particular edge.
+We can see an increase of the polarization index after adding this particular edge. This example was discovered after brute-forcing different graph topologies with different combinations of opinion values.
 \\	
 \begin{lemma}
 The polarization index does not necessarily decrease after an edge addition between opposing views.
 \end{lemma}
+
+\section{Polarization in a complete graph}
+\label{sec:fullgraph}
+\vspace{20pt}
+Given a polarized graph $G$ we will compute the polarization index $\pi(z)$ before and after converting the graph $G$ to a full graph. 
+
+\begin{table}[!htb]
+ \centering
+ \caption{Polarization Before and after converting to a full graph}
+ \label{tab:fullgraph}
+ \begin{tabular}{| l || l | l | l | l |}
+ \hline
+  Dataset & Number of Nodes & Number of edges & Average Degree & $\pi(z)$\\
+  \hline
+  \hline
+  Karate Before & $34$ & $78$ & $4.5882$ &  $0.35857$\\
+  \hline
+  Karate After & $34$ & $561$ & $33$ &  $0.00081$\\
+  \hline
+  \hline
+  Books Before & $105$ & $441$ & $8.4000$ &  $0.44046$\\
+  \hline
+  Books After & $105$ & $5460$ & $104.0000$ &  $0.00453$\\
+  \hline
+  \hline
+  Blogs Before & $1490$ & $16718$ & $22.4403$ &  $0.27909$\\
+  \hline
+  Blogs After & $1490$ & $1109308$ & $1489.0040$ &  $0.00030$\\
+  \hline
+ \end{tabular}
+ \end{table}
+
+\vspace{20pt}
+We can see the results from the karate, books and blogs datasets at table ~\ref{tab:fullgraph} The results leads us to the following lemma.
+\\	
+\begin{lemma}
+The polarization index does not drop to zero in a fully connected graph.
+\end{lemma}
+

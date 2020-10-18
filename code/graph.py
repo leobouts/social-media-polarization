@@ -1,5 +1,7 @@
 from connect_opposing import brute_force_opposing_views, brute_force_all_edges_removal
 from compute_polarization import get_polarization
+from make_graph_fully_connected import make_graph_fully_connected
+from perm import *
 from properties import centralities, edges_centralities, create_edge_list
 from visualize import visualize_graph
 import networkx as nx
@@ -108,10 +110,17 @@ def main():
     # function that supports Lemma 3.1
     # find_increase_in_graphs_with_addition()
 
+    #intuition example
+    example_increase_that_confirms_intuition()
+
     # options karate, polblogs, books
-    name = 'karate'
+    name = 'books'
     graph = load_graph(f'{name}.gml', True)
     print(get_polarization(graph))
+    force_example(graph)
+    print("hh")
+    fully_connected_graph = make_graph_fully_connected(graph)
+    print(get_polarization(fully_connected_graph))
 
     # costly brute force, polblogs dataset needs arround 200 hours to check, karate is ok.
     # find biggest and smallest decrease of nodes after adding an edge.

@@ -68,10 +68,10 @@
 \setsansfont{DejaVu Sans}
 
 \setmonofont[Path = /Users/leonidas/Desktop/thesis/LaTeXthesis/Template/Font/,
-	UprightFont    = *-R,
-	BoldFont       = *-B,
-	ItalicFont     = *-RI,
-	BoldItalicFont = *-BI,
+	UprightFont    = *-R.ttf,
+	BoldFont       = *-B.ttf,
+	ItalicFont     = *-RI.ttf,
+	BoldItalicFont = *-BI.ttf,
 	Scale          = 0.95
 ]{UbuntuMono}
 

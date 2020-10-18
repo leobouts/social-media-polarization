@@ -4,7 +4,6 @@ import networkx as nx
 
 def visualize_graph(g, top_decrease, small_decrease, operation):
     '''
-
     :param g:
     :param top_decrease:
     :param small_decrease:

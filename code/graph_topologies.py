@@ -106,6 +106,10 @@ def get_graph_type(g_type):
         graph.add_edges_from([(0, 1), (1, 2), (2, 3), (3, 4), (4, 0)])
         graph.name = 'c5'
         return [graph, 5]
+    elif g_type == 'intuition_graph':
+        graph.add_edges_from([(0, 1), (0, 2), (1, 2), (2, 3), (3, 4), (4, 5), (4, 6), (5, 6)])
+        graph.name = 'intuition_graph'
+        return [graph, 7]
 
 
 def get_all_graphs():
@@ -115,7 +119,6 @@ def get_all_graphs():
     """
     graphs = ['diamond', 'paw', 'c4', 'claw', 'p4', 'p3_union_2k1',
               'w4', 'claw_union_k1', 'p2_union_p3', 'gem', 'k3_union2k1', 'k14', 'butterfly', 'chair',
-              'cofork', 'dart', 'p5', 'house', 'k23', 'banner', 'pdash', 'bull', 'cricket', 'c5']
+              'cofork', 'dart', 'p5', 'house', 'k23', 'banner', 'pdash', 'bull', 'cricket', 'c5', 'intuition_graph']
 
     return graphs
-

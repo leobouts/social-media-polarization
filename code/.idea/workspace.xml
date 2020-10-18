@@ -55,6 +55,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -114,6 +115,9 @@
       <module name="find_graph" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -164,7 +168,8 @@
       <workItem from="1596545892032" duration="1178000" />
       <workItem from="1597042971967" duration="63000" />
       <workItem from="1600979042838" duration="15726000" />
-      <workItem from="1601923809822" duration="4191000" />
+      <workItem from="1601923809822" duration="4923000" />
+      <workItem from="1602928246429" duration="20800000" />
     </task>
     <task id="LOCAL-00001" summary="fixed logic bug for edge addition">
       <created>1587939079173</created>
@@ -235,62 +240,511 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="1118" y="336" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1417@0.23.2560.1417" timestamp="1601500653301" />
-    <state width="2511" height="267" key="GridCell.Tab.0.bottom" timestamp="1602103522504">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="2518" height="479" key="GridCell.Tab.-1.bottom" timestamp="1602962661699">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
     </state>
+    <state width="2518" height="479" key="GridCell.Tab.-1.bottom/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602962661699" />
+    <state width="2518" height="479" key="GridCell.Tab.-1.center" timestamp="1602962661698">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state width="2518" height="479" key="GridCell.Tab.-1.center/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602962661698" />
+    <state width="2518" height="479" key="GridCell.Tab.-1.left" timestamp="1602962661697">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state width="2518" height="479" key="GridCell.Tab.-1.left/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602962661697" />
+    <state width="2518" height="479" key="GridCell.Tab.-1.right" timestamp="1602962661698">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state width="2518" height="479" key="GridCell.Tab.-1.right/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602962661698" />
+    <state width="1379" height="500" key="GridCell.Tab.0.bottom" timestamp="1603034798823">
+      <screen x="-2560" y="-272" width="2560" height="1417" />
+    </state>
+    <state width="1379" height="500" key="GridCell.Tab.0.bottom/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034798823" />
+    <state width="1231" height="96" key="GridCell.Tab.0.bottom/0.23.1280.721/-2560.-272.2560.1417@0.23.1280.721" timestamp="1602705252483" />
     <state width="2513" height="132" key="GridCell.Tab.0.bottom/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596184583555" />
-    <state width="1377" height="83" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1601305167485" />
-    <state width="2511" height="267" key="GridCell.Tab.0.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1602103522504" />
+    <state width="2518" height="873" key="GridCell.Tab.0.bottom/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1603012078036" />
+    <state width="1398" height="221" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1602932524251" />
+    <state width="2511" height="267" key="GridCell.Tab.0.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1602103830622" />
     <state width="1485" height="479" key="GridCell.Tab.0.bottom/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691918" />
-    <state width="2511" height="267" key="GridCell.Tab.0.center" timestamp="1602103522502">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1379" height="500" key="GridCell.Tab.0.center" timestamp="1603034798822">
+      <screen x="-2560" y="-272" width="2560" height="1417" />
     </state>
+    <state width="1379" height="500" key="GridCell.Tab.0.center/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034798822" />
+    <state width="1231" height="96" key="GridCell.Tab.0.center/0.23.1280.721/-2560.-272.2560.1417@0.23.1280.721" timestamp="1602705252482" />
     <state width="2513" height="132" key="GridCell.Tab.0.center/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596184583554" />
-    <state width="1377" height="83" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1601305167484" />
-    <state width="2511" height="267" key="GridCell.Tab.0.center/0.23.2560.1361@0.23.2560.1361" timestamp="1602103522502" />
+    <state width="2518" height="873" key="GridCell.Tab.0.center/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1603012078034" />
+    <state width="1398" height="221" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1602932524250" />
+    <state width="2511" height="267" key="GridCell.Tab.0.center/0.23.2560.1361@0.23.2560.1361" timestamp="1602103830621" />
     <state width="1485" height="479" key="GridCell.Tab.0.center/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691918" />
-    <state width="2511" height="267" key="GridCell.Tab.0.left" timestamp="1602103522502">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1379" height="500" key="GridCell.Tab.0.left" timestamp="1603034798821">
+      <screen x="-2560" y="-272" width="2560" height="1417" />
     </state>
+    <state width="1379" height="500" key="GridCell.Tab.0.left/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034798821" />
+    <state width="1231" height="96" key="GridCell.Tab.0.left/0.23.1280.721/-2560.-272.2560.1417@0.23.1280.721" timestamp="1602705252481" />
     <state width="2513" height="132" key="GridCell.Tab.0.left/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596184583554" />
-    <state width="1377" height="83" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1601305167483" />
-    <state width="2511" height="267" key="GridCell.Tab.0.left/0.23.2560.1361@0.23.2560.1361" timestamp="1602103522502" />
+    <state width="2518" height="873" key="GridCell.Tab.0.left/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1603012077973" />
+    <state width="1398" height="221" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1602932524249" />
+    <state width="2511" height="267" key="GridCell.Tab.0.left/0.23.2560.1361@0.23.2560.1361" timestamp="1602103830621" />
     <state width="1485" height="479" key="GridCell.Tab.0.left/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691917" />
-    <state width="2511" height="267" key="GridCell.Tab.0.right" timestamp="1602103522503">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1379" height="500" key="GridCell.Tab.0.right" timestamp="1603034798822">
+      <screen x="-2560" y="-272" width="2560" height="1417" />
     </state>
+    <state width="1379" height="500" key="GridCell.Tab.0.right/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034798822" />
+    <state width="1231" height="96" key="GridCell.Tab.0.right/0.23.1280.721/-2560.-272.2560.1417@0.23.1280.721" timestamp="1602705252482" />
     <state width="2513" height="132" key="GridCell.Tab.0.right/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596184583554" />
-    <state width="1377" height="83" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1601305167484" />
-    <state width="2511" height="267" key="GridCell.Tab.0.right/0.23.2560.1361@0.23.2560.1361" timestamp="1602103522503" />
+    <state width="2518" height="873" key="GridCell.Tab.0.right/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1603012078035" />
+    <state width="1398" height="221" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1602932524250" />
+    <state width="2511" height="267" key="GridCell.Tab.0.right/0.23.2560.1361@0.23.2560.1361" timestamp="1602103830621" />
     <state width="1485" height="479" key="GridCell.Tab.0.right/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691918" />
-    <state width="1485" height="479" key="GridCell.Tab.1.bottom" timestamp="1601500691920">
-      <screen x="0" y="23" width="2560" height="1417" />
+    <state x="-561" y="-272" width="1379" height="500" key="GridCell.Tab.1.bottom" timestamp="1603034797054">
+      <screen x="0" y="23" width="1280" height="721" />
     </state>
+    <state x="-561" y="-272" width="1379" height="500" key="GridCell.Tab.1.bottom/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034797054" />
+    <state x="-561" y="-272" width="2518" height="873" key="GridCell.Tab.1.bottom/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1603012078384" />
     <state width="1485" height="479" key="GridCell.Tab.1.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1600982761661" />
     <state width="1485" height="479" key="GridCell.Tab.1.bottom/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691920" />
-    <state width="1485" height="479" key="GridCell.Tab.1.center" timestamp="1601500691919">
-      <screen x="0" y="23" width="2560" height="1417" />
+    <state x="-561" y="-272" width="1379" height="500" key="GridCell.Tab.1.center" timestamp="1603034797054">
+      <screen x="0" y="23" width="1280" height="721" />
     </state>
+    <state x="-561" y="-272" width="1379" height="500" key="GridCell.Tab.1.center/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034797054" />
+    <state x="-561" y="-272" width="2518" height="873" key="GridCell.Tab.1.center/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1603012078097" />
     <state width="1485" height="479" key="GridCell.Tab.1.center/0.23.2560.1361@0.23.2560.1361" timestamp="1600982761660" />
     <state width="1485" height="479" key="GridCell.Tab.1.center/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691919" />
-    <state width="1485" height="479" key="GridCell.Tab.1.left" timestamp="1601500691919">
-      <screen x="0" y="23" width="2560" height="1417" />
+    <state x="-561" y="-272" width="1379" height="500" key="GridCell.Tab.1.left" timestamp="1603034797053">
+      <screen x="0" y="23" width="1280" height="721" />
     </state>
+    <state x="-561" y="-272" width="1379" height="500" key="GridCell.Tab.1.left/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034797053" />
+    <state x="-561" y="-272" width="2518" height="873" key="GridCell.Tab.1.left/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1603012078087" />
     <state width="1485" height="479" key="GridCell.Tab.1.left/0.23.2560.1361@0.23.2560.1361" timestamp="1600982761659" />
     <state width="1485" height="479" key="GridCell.Tab.1.left/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691919" />
-    <state width="1485" height="479" key="GridCell.Tab.1.right" timestamp="1601500691920">
-      <screen x="0" y="23" width="2560" height="1417" />
+    <state x="-561" y="-272" width="1379" height="500" key="GridCell.Tab.1.right" timestamp="1603034797054">
+      <screen x="0" y="23" width="1280" height="721" />
     </state>
+    <state x="-561" y="-272" width="1379" height="500" key="GridCell.Tab.1.right/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034797054" />
+    <state x="-561" y="-272" width="2518" height="873" key="GridCell.Tab.1.right/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1603012078159" />
     <state width="1485" height="479" key="GridCell.Tab.1.right/0.23.2560.1361@0.23.2560.1361" timestamp="1600982761661" />
     <state width="1485" height="479" key="GridCell.Tab.1.right/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691920" />
+    <state x="-561" y="-272" width="561" height="1341" key="GridCell.Tab.2.bottom" timestamp="1602965605403">
+      <screen x="-2560" y="-272" width="2560" height="1417" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1341" key="GridCell.Tab.2.bottom/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1602965605403" />
+    <state x="-561" y="-272" width="561" height="1341" key="GridCell.Tab.2.center" timestamp="1602965605402">
+      <screen x="-2560" y="-272" width="2560" height="1417" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1341" key="GridCell.Tab.2.center/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1602965605402" />
+    <state x="-561" y="-272" width="561" height="1341" key="GridCell.Tab.2.left" timestamp="1602965605401">
+      <screen x="-2560" y="-272" width="2560" height="1417" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1341" key="GridCell.Tab.2.left/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1602965605401" />
+    <state x="-561" y="-272" width="561" height="1341" key="GridCell.Tab.2.right" timestamp="1602965605402">
+      <screen x="-2560" y="-272" width="2560" height="1417" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1341" key="GridCell.Tab.2.right/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1602965605402" />
     <state x="789" y="347" key="SettingsEditor" timestamp="1600979174155">
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state x="141" y="-1080" key="SettingsEditor/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596016420964" />
     <state x="789" y="347" key="SettingsEditor/0.23.2560.1361@0.23.2560.1361" timestamp="1600979174155" />
+    <state x="-561" y="-269" width="561" height="1357" key="dock-window-1" timestamp="1602962697444">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-269" width="561" height="1357" key="dock-window-1/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602962697444" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-10" timestamp="1602963004164">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-10/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004164" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-11" timestamp="1602963004165">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-11/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004165" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-12" timestamp="1602963004165">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-12/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004165" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-13" timestamp="1602963004167">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-13/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004167" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-14" timestamp="1602963004167">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-14/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004167" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-15" timestamp="1602963004168">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-15/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004168" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-16" timestamp="1602963004169">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-16/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004169" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-17" timestamp="1602963004170">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-17/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004170" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-18" timestamp="1602963004170">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-18/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004170" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-19" timestamp="1602963004171">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-19/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004171" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-2" timestamp="1602962697445">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-2/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602962697445" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-20" timestamp="1602963004171">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-20/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004171" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-21" timestamp="1602963004172">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-21/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004172" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-22" timestamp="1602963004173">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-22/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004173" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-23" timestamp="1602963004173">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-23/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004173" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-24" timestamp="1602963004174">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-24/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004174" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-25" timestamp="1602963004174">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-25/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004174" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-26" timestamp="1602963004175">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-26/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004175" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-27" timestamp="1602963438180">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-27/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438180" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-28" timestamp="1602963438182">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-28/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438182" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-29" timestamp="1602963438183">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-29/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438183" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-3" timestamp="1602963004176">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-3/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004176" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-30" timestamp="1602963438184">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-30/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438184" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-31" timestamp="1602963438185">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-31/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438185" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-32" timestamp="1602963438185">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-32/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438185" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-33" timestamp="1602963438186">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-33/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438186" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-34" timestamp="1602963438187">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-34/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438187" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-35" timestamp="1602963438187">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-35/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438187" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-36" timestamp="1602963438188">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-36/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438188" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-37" timestamp="1602963438189">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-37/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438189" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-38" timestamp="1602963438190">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-38/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438190" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-39" timestamp="1602963438190">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-39/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438190" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-4" timestamp="1602963004176">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-4/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004176" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-40" timestamp="1602963438191">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-40/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438191" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-41" timestamp="1602963438192">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-41/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438192" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-42" timestamp="1602963438192">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-42/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438192" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-43" timestamp="1602963438193">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-43/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438193" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-44" timestamp="1602963438194">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-44/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438194" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-45" timestamp="1602963438194">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-45/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438194" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-46" timestamp="1602963438195">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-46/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438195" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-47" timestamp="1602963438196">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-47/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438196" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-48" timestamp="1602963438196">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-48/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438196" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-49" timestamp="1602963438197">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-49/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438197" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-5" timestamp="1602963004177">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-5/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004177" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-50" timestamp="1602963438198">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-50/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438198" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-51" timestamp="1602963438198">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-51/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438198" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-52" timestamp="1602963438199">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-52/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438199" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-53" timestamp="1602963438200">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-53/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438200" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-54" timestamp="1602963438201">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-54/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438201" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-55" timestamp="1602963438202">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-55/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438202" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-56" timestamp="1602963438203">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-56/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963438203" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-57" timestamp="1602963809874">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-57/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809874" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-58" timestamp="1602963809875">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-58/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809875" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-59" timestamp="1602963809875">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-59/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809875" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-6" timestamp="1602963004178">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-6/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004178" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-60" timestamp="1602963809876">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-60/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809876" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-61" timestamp="1602963809876">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-61/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809876" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-62" timestamp="1602963809877">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-62/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809877" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-63" timestamp="1602963809877">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-63/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809877" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-64" timestamp="1602963809878">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-64/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809878" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-65" timestamp="1602963809878">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-65/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809878" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-66" timestamp="1602963809879">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-66/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809879" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-67" timestamp="1602963809879">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-67/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809879" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-68" timestamp="1602963809880">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-68/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809880" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-69" timestamp="1602963809880">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-69/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809880" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-7" timestamp="1602963004178">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-7/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004178" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-70" timestamp="1602963809881">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-70/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809881" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-71" timestamp="1602963809881">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-71/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809881" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-72" timestamp="1602963809882">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-72/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809882" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-73" timestamp="1602963809882">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-73/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809882" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-74" timestamp="1602963809883">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-74/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809883" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-75" timestamp="1602963809883">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-75/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809883" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-76" timestamp="1602963809884">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-76/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809884" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-77" timestamp="1602963809884">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-77/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809884" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-78" timestamp="1602963809885">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-78/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809885" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-79" timestamp="1602963809885">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-79/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809885" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-8" timestamp="1602963004179">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-8/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004179" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-80" timestamp="1602963809885">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-80/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963809885" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-81" timestamp="1602964634228">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-81/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634228" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-82" timestamp="1602964634228">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-82/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634228" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-83" timestamp="1602964634229">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-83/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634229" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-84" timestamp="1602964634230">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-84/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634230" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-85" timestamp="1602964634230">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-85/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634230" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-86" timestamp="1602964634231">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-86/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634231" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-87" timestamp="1602964634232">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-87/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634232" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-88" timestamp="1602964634232">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-88/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634232" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-89" timestamp="1602964634233">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-89/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634233" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-9" timestamp="1602963004179">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-9/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602963004179" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-90" timestamp="1602964634233">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-90/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602964634233" />
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-91" timestamp="1602965691074">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-561" y="-272" width="561" height="1357" key="dock-window-91/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602965691074" />
+    <state x="-861" y="-212" width="473" height="1357" key="dock-window-92" timestamp="1602967552954">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-861" y="-212" width="473" height="1357" key="dock-window-92/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602967552954" />
+    <state x="-1812" y="-201" width="1064" height="1219" key="find.popup" timestamp="1602966285091">
+      <screen x="-2560" y="-272" width="2560" height="1361" />
+    </state>
+    <state x="-1812" y="-198" width="1064" height="1269" key="find.popup/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1602961782082" />
+    <state x="-1812" y="-201" width="1064" height="1219" key="find.popup/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602966285091" />
+    <state x="421" y="66" width="598" height="735" key="find.popup/0.23.1440.821@0.23.1440.821" timestamp="1602929447997" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/graph.py</url>
+          <line>120</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/graph.py</url>
+          <line>116</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/find_graph$graph.coverage" NAME="graph Coverage Results" MODIFIED="1596015649754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$graph.coverage" NAME="graph Coverage Results" MODIFIED="1602103830605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$graph.coverage" NAME="graph Coverage Results" MODIFIED="1603034681844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -1,5 +1,9 @@
+import random
+
+from tqdm import tqdm
+
 from graph_topologies import *
-from graph import get_polarization
+from graph import get_polarization, attach_values_from_list_to_graph
 import itertools
 
 
@@ -93,3 +97,75 @@ def find_increase_in_graphs_with_addition():
         size = graph[1]
 
         check_graph_permutations(size, topology)
+
+
+def example_increase_that_confirms_intuition():
+
+    graph, size = get_graph_type('intuition_graph')
+    nodeDict = dict(graph.nodes(data=True))
+    opinion_list = []
+
+    list_negative = [comb for comb in itertools.combinations([-0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, -1], 4)]
+    print(len(list_negative))
+    print(list_negative)
+    list_positive = [comb for comb in itertools.permutations([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1], 3)]
+    print(len(list_positive))
+    print(list_positive)
+
+    c = list(itertools.product(list_negative, list_positive))
+    opinion_list = [list(itertools.chain(*items)) for items in c]
+    print(len(opinion_list))
+    print(opinion_list)
+    print("ddd")
+
+    for opinions in tqdm(opinion_list):
+
+        graph = attach_values_from_list_to_graph(graph, opinions)
+
+        edges_to_add = nx.non_edges(graph)
+        original_polarization = get_polarization(graph)
+
+        for edge in edges_to_add:
+
+            node_a_val = nodeDict[edge[0]]['value']
+            node_b_val = nodeDict[edge[1]]['value']
+            g_copy = graph.copy()
+
+            diff = abs(node_a_val - node_b_val)
+            mul = node_a_val * node_b_val
+
+            if 1.2 >= diff >= 0.8 and mul < 0:
+                g_copy.add_edges_from([edge])
+                polarization_after_addition = get_polarization(g_copy)
+
+                if polarization_after_addition > original_polarization:
+                    print("found one:")
+                    print(edge)
+                    print(nx.info(g_copy))
+                    print(opinion_list)
+                    return
+
+
+def force_example(graph):
+
+    nodeDict = dict(graph.nodes(data=True))
+    edges_to_add = nx.non_edges(graph)
+    original_polarization = get_polarization(graph)
+
+    for edge in edges_to_add:
+
+        node_a_val = nodeDict[edge[0]]['value']
+        node_b_val = nodeDict[edge[1]]['value']
+        g_copy = graph.copy()
+
+        diff = abs(node_a_val - node_b_val)
+        mul = node_a_val * node_b_val
+
+        if 1.5 >= diff >= 0.8 and mul < 0:
+            g_copy.add_edges_from([edge])
+            polarization_after_addition = get_polarization(g_copy)
+
+            if polarization_after_addition > original_polarization:
+                print("found one:")
+                print(edge)
+                print(nx.info(g_copy))
