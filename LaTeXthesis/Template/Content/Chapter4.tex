@@ -29,7 +29,7 @@ Bellow we examine the removal of edges from a social graph and their result in p
 In the tables following Sign and Addition refer to the multiplication and the addition of the opinions of the nodes that are attached to the specific edge examined. 
 \\
 
-\begin{table}[!htb]
+\begin{table}[htbp]
  \centering
  \caption{Edges with the 5 largest decrease (Karate Dataset)}
  \label{tab:edgesLargest}
@@ -49,9 +49,7 @@ In the tables following Sign and Addition refer to the multiplication and the ad
   (3, 28) & $0.04119$ & $0.02068$ & - &  0\\
   \hline
  \end{tabular}
- 
- \vspace{\floatsep}
- 
+  
  \caption{Edges with the 5 smallest decrease (Karate Dataset)}
  \label{tab:edgesLargest}
  \begin{tabular}{| l || l | l | l | l |}
@@ -76,7 +74,7 @@ In the tables following Sign and Addition refer to the multiplication and the ad
 
 We can clearly see that there is not a direct association between the edge betweenness centrality and the decrease in polarization. For example in the karate dataset edge (20,34) has almost the same betweenness centrality with edge (32,34). The first is among the edges that their removal contributes in one of the biggest polarization decreases while the other is among the ones with the smallest. A second thing that we can see in all three datasets is that the biggest decrease is coming from the removal of edges that connect opposing opinions.
 
-\begin{table}[!htb]
+\begin{table}[htbp]
  \centering
  \caption{Edges with the 5 largest decrease (Blogs Dataset)}
  \label{tab:edgesLargest}
@@ -97,7 +95,6 @@ We can clearly see that there is not a direct association between the edge betwe
   \hline
  \end{tabular}
  
- \vspace{\floatsep}
  
  \caption{Edges with the 5 smallest decrease (Blogs Dataset)}
  \label{tab:edgesLargest}
@@ -123,8 +120,7 @@ We can clearly see that there is not a direct association between the edge betwe
 
 
 
-
-\begin{table}[!htb]
+\begin{table}[htbp]
  \centering
  \caption{Edges with the 5 largest decrease (Books Dataset)}
  \label{tab:edgesLargest}
@@ -145,7 +141,6 @@ We can clearly see that there is not a direct association between the edge betwe
   \hline
  \end{tabular}
  
- \vspace{\floatsep}
  
  \caption{Edges with the 5 smallest decrease (Books Dataset)}
  \label{tab:edgesLargest}
@@ -168,5 +163,119 @@ We can clearly see that there is not a direct association between the edge betwe
  \end{tabular}
  
 \end{table}
+
+\clearpage
+
+\section{Heuristics}
+\label{sec:heuristics}
+
+In this section we  consider some heuristic algorithms for minimising $\pi(z)$. All the heuristics use the intuition that connecting the most extreme opinions of each community draw both of them into neutrality. The algorithms use two lists. One for each viewpoint sorted according to their opinion value. The naive Algorithm ~\ref{alg:naiveAlgo} stops when the first $k$ edges are found.
+
+\vspace{10pt}
+
+\begin{algorithm}[htbp]
+	\caption{Naive minimization of $\pi(z)$}
+	\label{alg:naiveAlgo}
+	\begin{flushleft}
+        		\textbf{INPUTS:} Graph $G$; $k$ number of edges to add;
+		$X$, $Y $, the set of $k$ vertices that have the highest polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
+		\vspace{6pt}
+        		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
+	\end{flushleft}
+	\begin{algorithmic}[1]
+		\STATE $EdgesToAdd \leftarrow Empty List;$
+		\FOR {$i = 1:n \ $}
+		\STATE $Vertex \ u = X[i]$
+		\FOR {$j= 1:n \ $}
+		\STATE $Vertex \ v = Y[i]$
+		\IF {edge$(u,ve)$ does not exist in the graph}
+		
+			\STATE Compute $\pi(z)$, the decrease if the edge $(u,v)$ is added;
+			\STATE Append edge $(u,v)$ to EdgesToAdd;
+		
+			\IF  {$SizeOf(EdgesToAdd) = k$}
+				\STATE return EdgesToAdd;
+			\ENDIF
+		\ENDIF
+		\ENDFOR
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
+
+An improvement can be done by using the $\pi(z)$ as a condition to continue. A list of $\pi(z)$ will be created with a traversal. This list will contain the polarization of each node of one of the viewpoints after adding an edge between him and the most extreme of the other.
+This list can be used to break the second loop and reduce the number of computations and can be seen in ~\ref{alg:GreedyAlgo}. Even though the worst complexity is the same with ~\ref{alg:naiveAlgo} it will not reach them in an average case.
+
+\begin{algorithm}[htbp]
+	\caption{Greedy minimization of $\pi(z)$}
+	\label{alg:GreedyAlgo}
+	\begin{flushleft}
+        		\textbf{INPUTS:} Graph $G$; $k$ number of edges to add; Number of nodes $n$;
+		$X$, $Y $, the set of $k$ vertices that have the highest polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
+		\vspace{6pt}
+        		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
+	\end{flushleft}
+	\begin{algorithmic}[1]
+		\STATE $EdgesToAdd \leftarrow Empty List;$
+		\STATE $PolarizationFirstPass \leftarrow Empty List;$
+		\STATE $Vertex \ u = X[0]$
+		\FOR {$i = 1:n \ $}
+		\STATE $Vertex \ v = Y[i]$
+		\STATE Add edge $(u,v)$ and compute $\pi(z)$;
+		\STATE Append the result to $PolarizationFirstPass$;
+		\STATE Remove the edge $(u,v)$ from the graph to stay as previous;
+		\ENDFOR
+		
+		\FOR{$i= 1:n\ $}
+		\STATE $Vertex \ u = X[i]$
+		\FOR {$j= 1:n \ $}
+		\STATE $Vertex \ v = Y[i]$
+		\STATE Compute $\pi(z)$, the decrease if the edge $(u,v)$ is added;
+		\IF {$i \neq k$}
+			\IF  {$\pi(z) > PolarizationFirstPass[i+1] $}
+				\STATE break;
+			\ENDIF
+		\ENDIF
+		\STATE Append edge $(u,v)$ to EdgesToAdd;
+		\IF  {$SizeOf(EdgesToAdd) = k$}
+			\STATE return EdgesToAdd;
+		\ENDIF
+		\ENDFOR
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
+\clearpage
+
+We can improve further Algorithm ~\ref{alg:GreedyAlgo} by removing the need for the first pass. Instead the $\pi(z)$ a function of distance can be used as condition to continue. The same holds for the complexity with ~\ref{alg:GreedyAlgo}.
+
+
+\begin{algorithm}[htbp]
+	\caption{Distance minimization of $\pi(z)$}
+	\label{alg:DisAlgo}
+	\begin{flushleft}
+        		\textbf{INPUTS:} Graph $G$; $k$ number of edges to add; Number of nodes $n$;
+		$X$, $Y $, the set of $k$ vertices that have the highest polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
+		\vspace{6pt}
+        		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
+	\end{flushleft}
+	\begin{algorithmic}[1]
+		\STATE $EdgesToAdd \leftarrow Empty List;$
+		\FOR{$i= 1:n\ $}
+		\STATE $Vertex \ u = X[i]$
+		\FOR {$j= 1:n \ $}
+		\STATE $Vertex \ v = Y[i]$
+		\IF {$i \neq k$}
+			\IF {$Abs(v)+Abs(u) \leqslant Abs(X[i+1]) + Abs(Y[0])$}
+				\STATE continue;
+			\ENDIF
+		\ENDIF
+		\STATE Compute $\pi(z)$, the decrease if the edge $(u,v)$ is added;
+		\STATE Append edge $(u,v)$ to EdgesToAdd;
+		\IF  {$SizeOf(EdgesToAdd) = k$}
+			\STATE return EdgesToAdd;
+		\ENDIF
+		\ENDFOR
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
 
 
