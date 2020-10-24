@@ -115,14 +115,25 @@ def heuristics_driver():
     results = {}
 
     for ds in available_datasets:
+        graph = load_graph(f'{ds}.gml', True)
 
         if ds != 'polblogs':
-            graph = load_graph(f'{ds}.gml', True)
+
             naive_start = time.time()
-            naive_results = naive_algorithm(graph)
+            naive_results, naive_polarization = naive_algorithm(5, graph)
             naive_end = time.time()
             naive_elapsed = naive_end - naive_start
-            results[ds] = {'algorithm': 'naive', 'result_dictionary': naive_results, 'time': naive_elapsed}
+            results[f'naive_{ds}'] = {'result_dictionary': naive_results, 'time': naive_elapsed,
+                                      'polarization': naive_polarization}
+
+            merge_start = time.time()
+            merge_results, merge_polarization = merge_pol_algorithm(5, graph)
+            merge_end = time.time()
+            merge_elapsed = merge_end - merge_start
+            results[f'merge_{ds}'] = {'result_dictionary': merge_results, 'time': merge_elapsed,
+                                      'polarization': merge_polarization}
+
+    pprint.pprint(results)
 
 
 def main():
@@ -145,14 +156,13 @@ def main():
     #     Heuristics experiment               #
     # --------------------------------------- #
 
-    #heuristics_driver()
-    merge_pol_algorithm(graph)
+    heuristics_driver()
 
-    print("ddd")
-    force_example(graph)
-    print("hh")
-    fully_connected_graph = make_graph_fully_connected(graph)
-    print(get_polarization(fully_connected_graph))
+    # print("ddd")
+    # force_example(graph)
+    # print("hh")
+    # fully_connected_graph = make_graph_fully_connected(graph)
+    # print(get_polarization(fully_connected_graph))
 
     # costly brute force, polblogs dataset needs arround 200 hours to check, karate is ok.
     # find biggest and smallest decrease of nodes after adding an edge.
@@ -163,13 +173,13 @@ def main():
     # visualize_graph(graph, top_decrease, small_decrease, 'addition')
     # print(top_decrease)
 
-    edge_dict = brute_force_all_edges_removal(graph, f'{name}_edges.pickle', 0)
-    top_edge_decrease, small_edge_decrease = edges_centralities(graph, edge_dict, 5)
-
-    top_list_for_vis = create_edge_list(top_edge_decrease)
-    small_list_for_vis = create_edge_list(small_edge_decrease)
-
-    visualize_graph(graph, top_list_for_vis, small_list_for_vis, 'removal')
+    # edge_dict = brute_force_all_edges_removal(graph, f'{name}_edges.pickle', 0)
+    # top_edge_decrease, small_edge_decrease = edges_centralities(graph, edge_dict, 5)
+    #
+    # top_list_for_vis = create_edge_list(top_edge_decrease)
+    # small_list_for_vis = create_edge_list(small_edge_decrease)
+    #
+    # visualize_graph(graph, top_list_for_vis, small_list_for_vis, 'removal')
 
     # pprint.pprint(small_edge_decrease)
 

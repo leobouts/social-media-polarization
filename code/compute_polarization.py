@@ -61,3 +61,4 @@ def get_polarization(g):
 
     # result is normalized according to network size
     return summed / len(list(g.nodes))
+

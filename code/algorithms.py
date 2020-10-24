@@ -1,10 +1,12 @@
 import networkx as nx
+from numpy import take
 from tqdm import tqdm
 
 from compute_polarization import get_polarization
+from helpers import add_edges_and_count_polarization
 
 
-def naive_algorithm(graph):
+def naive_algorithm(k, graph):
 
     edges_to_add = nx.non_edges(graph)
     original_polarization = get_polarization(graph)
@@ -16,12 +18,19 @@ def naive_algorithm(graph):
         g_copy.add_edges_from([edge])
         polarization_after_addition = get_polarization(g_copy)
         decrease = original_polarization - polarization_after_addition
-        addition_info[edge] = {'polarization_decrease': decrease}
+        addition_info[edge] = decrease
 
-    return addition_info
+    sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
+
+    k_items = sorted_edges[:5]
+
+    edges_to_add_list = [edge[0] for edge in k_items]
+    polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
+
+    return k_items, polarization
 
 
-def merge_pol_algorithm(graph):
+def merge_pol_algorithm(k, graph):
 
     nodeDict = dict(graph.nodes(data=True))
     positive_dictionary = {}
@@ -41,14 +50,36 @@ def merge_pol_algorithm(graph):
     positive_dictionary = sorted(positive_dictionary.items(), key=lambda x: x[1], reverse=True)
     negative_dictionary = sorted(negative_dictionary.items(), key=lambda x: x[1], reverse=True)
 
-    first_of_negative = negative_dictionary[0][1]
+    first_of_negative = negative_dictionary[0][0]
+
+    edges_to_add_list = []
 
     for positive_opinion in positive_dictionary:
 
         g_copy = graph.copy()
-
-        g_copy.add_edges_from([(positive_opinion[1], first_of_negative)])
+        g_copy.add_edges_from([(positive_opinion[0], first_of_negative)])
         polarization_after_addition = get_polarization(g_copy)
 
         first_pass_polarization.append(polarization_after_addition)
+
+    for i, node_pos in enumerate(positive_dictionary):
+        for j, node_neg in enumerate(negative_dictionary):
+
+            edge_to_add = (node_pos[0], node_neg[0])
+
+            if i == len(positive_dictionary):
+                polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
+                return edges_to_add_list, polarization
+
+            g_copy = graph.copy()
+            g_copy.add_edges_from([edge_to_add])
+            polarization_after_addition = get_polarization(g_copy)
+
+            if first_pass_polarization[i+1] < polarization_after_addition:
+                break
+
+            edges_to_add_list.append(edge_to_add)
+            if len(edges_to_add_list) == k:
+                polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
+                return edges_to_add_list, polarization
 
