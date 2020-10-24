@@ -178,7 +178,7 @@ In this section we  consider some heuristic algorithms for minimising $\pi(z)$. 
 	\label{alg:naiveAlgo}
 	\begin{flushleft}
         		\textbf{INPUTS:} Graph $G$; $k$ number of edges to add;
-		$X$, $Y $, the set of $k$ vertices that have the highest polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
+		$X$, $Y $, the set of vertices of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
 		\vspace{6pt}
         		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
 	\end{flushleft}
@@ -188,17 +188,14 @@ In this section we  consider some heuristic algorithms for minimising $\pi(z)$. 
 		\STATE $Vertex \ u = X[i]$
 		\FOR {$j= 1:n \ $}
 		\STATE $Vertex \ v = Y[i]$
-		\IF {edge$(u,ve)$ does not exist in the graph}
-		
+		\IF {edge$(u,v)$ does not exist in the graph}
 			\STATE Compute $\pi(z)$, the decrease if the edge $(u,v)$ is added;
 			\STATE Append edge $(u,v)$ to EdgesToAdd;
-		
-			\IF  {$SizeOf(EdgesToAdd) = k$}
-				\STATE return EdgesToAdd;
-			\ENDIF
 		\ENDIF
 		\ENDFOR
 		\ENDFOR
+		\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by the decrease of $\pi(z)$ by decreasing order;
+		\STATE Return top $k$ from $Sorted$
 	\end{algorithmic}
 \end{algorithm}
 
@@ -210,7 +207,7 @@ This list can be used to break the second loop and reduce the number of computat
 	\label{alg:GreedyAlgo}
 	\begin{flushleft}
         		\textbf{INPUTS:} Graph $G$; $k$ number of edges to add; Number of nodes $n$;
-		$X$, $Y $, the set of $k$ vertices that have the highest polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
+		$X$, $Y $, the sorted set of vertices according to polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
 		\vspace{6pt}
         		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
 	\end{flushleft}
@@ -253,7 +250,7 @@ We can improve further Algorithm ~\ref{alg:GreedyAlgo} by removing the need for 
 	\label{alg:DisAlgo}
 	\begin{flushleft}
         		\textbf{INPUTS:} Graph $G$; $k$ number of edges to add; Number of nodes $n$;
-		$X$, $Y $, the set of $k$ vertices that have the highest polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
+		$X$, $Y $, the sorted set of vertices according to polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
 		\vspace{6pt}
         		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
 	\end{flushleft}

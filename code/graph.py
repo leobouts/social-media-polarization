@@ -1,3 +1,6 @@
+import time
+
+from algorithms import naive_algorithm, merge_pol_algorithm
 from connect_opposing import brute_force_opposing_views, brute_force_all_edges_removal
 from compute_polarization import get_polarization
 from make_graph_fully_connected import make_graph_fully_connected
@@ -106,17 +109,46 @@ def attach_values_from_list_to_graph(g, values):
     return g
 
 
+def heuristics_driver():
+
+    available_datasets = ['karate', 'books', 'polblogs']
+    results = {}
+
+    for ds in available_datasets:
+
+        if ds != 'polblogs':
+            graph = load_graph(f'{ds}.gml', True)
+            naive_start = time.time()
+            naive_results = naive_algorithm(graph)
+            naive_end = time.time()
+            naive_elapsed = naive_end - naive_start
+            results[ds] = {'algorithm': 'naive', 'result_dictionary': naive_results, 'time': naive_elapsed}
+
+
 def main():
-    # function that supports Lemma 3.1
+    # --------------------------------------- #
+    # function that supports Lemma 3.1        #
+    # --------------------------------------- #
+
     # find_increase_in_graphs_with_addition()
 
-    #intuition example
-    example_increase_that_confirms_intuition()
+    # --------------------------------------- #
+    #      Graph Init                         #
+    #      options: karate, polblogs, books   #
+    # --------------------------------------- #
 
-    # options karate, polblogs, books
-    name = 'books'
+    name = 'karate'
     graph = load_graph(f'{name}.gml', True)
-    print(get_polarization(graph))
+    # print(get_polarization(graph))
+
+    # --------------------------------------- #
+    #     Heuristics experiment               #
+    # --------------------------------------- #
+
+    #heuristics_driver()
+    merge_pol_algorithm(graph)
+
+    print("ddd")
     force_example(graph)
     print("hh")
     fully_connected_graph = make_graph_fully_connected(graph)
