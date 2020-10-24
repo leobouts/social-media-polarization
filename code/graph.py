@@ -1,6 +1,6 @@
 import time
 
-from algorithms import naive_algorithm, merge_pol_algorithm
+from algorithms import naive_algorithm, merge_pol_algorithm, merge_pol_without_p_z
 from connect_opposing import brute_force_opposing_views, brute_force_all_edges_removal
 from compute_polarization import get_polarization
 from make_graph_fully_connected import make_graph_fully_connected
@@ -109,8 +109,7 @@ def attach_values_from_list_to_graph(g, values):
     return g
 
 
-def heuristics_driver():
-
+def heuristics_driver(k):
     available_datasets = ['karate', 'books', 'polblogs']
     results = {}
 
@@ -118,20 +117,27 @@ def heuristics_driver():
         graph = load_graph(f'{ds}.gml', True)
 
         if ds != 'polblogs':
-
             naive_start = time.time()
-            naive_results, naive_polarization = naive_algorithm(5, graph)
+            naive_results, naive_polarization = naive_algorithm(k, graph)
             naive_end = time.time()
             naive_elapsed = naive_end - naive_start
             results[f'naive_{ds}'] = {'result_dictionary': naive_results, 'time': naive_elapsed,
                                       'polarization': naive_polarization}
 
             merge_start = time.time()
-            merge_results, merge_polarization = merge_pol_algorithm(5, graph)
+            merge_results, merge_polarization = merge_pol_algorithm(k, graph)
             merge_end = time.time()
             merge_elapsed = merge_end - merge_start
             results[f'merge_{ds}'] = {'result_dictionary': merge_results, 'time': merge_elapsed,
                                       'polarization': merge_polarization}
+
+            distance_start = time.time()
+            distance_results, distance_polarization = merge_pol_without_p_z(k, graph)
+
+            distance_end = time.time()
+            distance_elapsed = distance_end - distance_start
+            results[f'distance_{ds}'] = {'result_dictionary': distance_results, 'time': distance_elapsed,
+                                         'polarization': distance_polarization}
 
     pprint.pprint(results)
 
@@ -146,17 +152,22 @@ def main():
     # --------------------------------------- #
     #      Graph Init                         #
     #      options: karate, polblogs, books   #
+    #      k: top-k edges to add              #
     # --------------------------------------- #
 
     name = 'karate'
     graph = load_graph(f'{name}.gml', True)
-    # print(get_polarization(graph))
+    k = 5
+    print(get_polarization(graph))
+    name = 'books'
+    graph = load_graph(f'{name}.gml', True)
+    print(get_polarization(graph))
 
     # --------------------------------------- #
     #     Heuristics experiment               #
     # --------------------------------------- #
 
-    heuristics_driver()
+    heuristics_driver(k)
 
     # print("ddd")
     # force_example(graph)

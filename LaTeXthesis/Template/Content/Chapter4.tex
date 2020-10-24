@@ -275,4 +275,33 @@ We can improve further Algorithm ~\ref{alg:GreedyAlgo} by removing the need for 
 	\end{algorithmic}
 \end{algorithm}
 
+\clearpage
+
+Bellow we can see the results of these algorithms in two datasets.
+
+\begin{table}[htbp]
+ \centering
+ \caption{Heuristics algorithm comparison}
+ \label{tab:heuristics}
+ \begin{tabular}{| l || l | l | l | l |}
+ \hline
+  Algorithm & Dataset & Before & After & time\\
+  \hline
+  \hline
+  Naive & Karate & $0.35857$ & 0.23116 &  0.93457\\
+  \hline
+  Merge & Karate & $0.35857$ & 0.15205 &  0.02955\\
+  \hline
+  Distance & Karate & $0.35857$ & 0.13423 &  0.00262\\
+  \hline
+  \hline
+  Naive & Books & $0.44046$ & 0.35138 &  30.53548\\
+  \hline
+  Merge & Books & $0.44046$ & 0.34692 &  0.29411\\
+  \hline
+  Distance & Books & $0.44046$ & 0.34719 &  0.01033\\
+  \hline
+ \end{tabular}
+ 
+\end{table}
 
