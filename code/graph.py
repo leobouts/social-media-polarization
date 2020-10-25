@@ -1,12 +1,11 @@
 import time
-
 from algorithms import naive_algorithm, merge_pol_algorithm, merge_pol_without_p_z
 from connect_opposing import brute_force_opposing_views, brute_force_all_edges_removal
 from compute_polarization import get_polarization
-from make_graph_fully_connected import make_graph_fully_connected
+from helpers import make_graph_fully_connected
 from perm import *
 from properties import centralities, edges_centralities, create_edge_list
-from visualize import visualize_graph
+from visualize import visualize_graph, vis_graphs_heuristics
 import networkx as nx
 import pprint
 
@@ -110,39 +109,79 @@ def attach_values_from_list_to_graph(g, values):
 
 
 def heuristics_driver(k):
-    available_datasets = ['karate', 'books', 'polblogs']
+
+    available_datasets = ['karate', 'books']
     results = {}
 
     for ds in available_datasets:
         graph = load_graph(f'{ds}.gml', True)
 
-        if ds != 'polblogs':
+        naive_polarization_decrease_list = []
+        naive_time = []
+
+        merge_polarization_decrease_list = []
+        merge_time = []
+
+        distance_polarization_decrease_list = []
+        distance_time = []
+
+        for k_edges in k:
+            naive_polarization = 0
+            merge_polarization = 0
+            distance_polarization = 0
+
             naive_start = time.time()
-            naive_results, naive_polarization = naive_algorithm(k, graph)
+            naive_results, naive_polarization = naive_algorithm(k_edges, graph)
+            naive_polarization_decrease_list.append(naive_polarization)
             naive_end = time.time()
             naive_elapsed = naive_end - naive_start
+            naive_time.append(naive_elapsed)
             results[f'naive_{ds}'] = {'result_dictionary': naive_results, 'time': naive_elapsed,
                                       'polarization': naive_polarization}
 
             merge_start = time.time()
-            merge_results, merge_polarization = merge_pol_algorithm(k, graph)
+            merge_results, merge_polarization = merge_pol_algorithm(k_edges, graph)
+            merge_polarization_decrease_list.append(merge_polarization)
             merge_end = time.time()
             merge_elapsed = merge_end - merge_start
+            merge_time.append(merge_elapsed)
             results[f'merge_{ds}'] = {'result_dictionary': merge_results, 'time': merge_elapsed,
                                       'polarization': merge_polarization}
 
             distance_start = time.time()
-            distance_results, distance_polarization = merge_pol_without_p_z(k, graph)
-
+            distance_results, distance_polarization = merge_pol_without_p_z(k_edges, graph)
+            distance_polarization_decrease_list.append(distance_polarization)
             distance_end = time.time()
             distance_elapsed = distance_end - distance_start
+            distance_time.append(distance_elapsed)
             results[f'distance_{ds}'] = {'result_dictionary': distance_results, 'time': distance_elapsed,
                                          'polarization': distance_polarization}
 
-    pprint.pprint(results)
+        vis_graphs_heuristics(k,
+                              naive_polarization_decrease_list,
+                              merge_polarization_decrease_list,
+                              distance_polarization_decrease_list,
+                              f"{ds} Naive",
+                              f"{ds} Merge",
+                              f"{ds} Distance",
+                              f"{ds} Polarization Decrease",
+                              "Number of Edges",
+                              "π(z)")
+
+        vis_graphs_heuristics(k,
+                              naive_time,
+                              merge_time,
+                              distance_time,
+                              f"{ds} Naive",
+                              f"{ds} Merge",
+                              f"{ds} Distance",
+                              f"{ds} Time Elapsed",
+                              "Number of Edges",
+                              "Seconds")
 
 
 def main():
+
     # --------------------------------------- #
     # function that supports Lemma 3.1        #
     # --------------------------------------- #
@@ -167,7 +206,10 @@ def main():
     #     Heuristics experiment               #
     # --------------------------------------- #
 
+    k = [5, 10, 15, 20]
+
     heuristics_driver(k)
+
 
     # print("ddd")
     # force_example(graph)

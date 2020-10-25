@@ -242,41 +242,4 @@ We can see an increase of the polarization index after adding this particular ed
 The polarization index does not necessarily decrease after an edge addition between opposing views.
 \end{lemma}
 
-\section{Polarization in a complete graph}
-\label{sec:fullgraph}
-\vspace{20pt}
-Given a polarized graph $G$ we will compute the polarization index $\pi(z)$ before and after converting the graph $G$ to a full graph. 
-
-\begin{table}[!htb]
- \centering
- \caption{Polarization Before and after converting to a full graph}
- \label{tab:fullgraph}
- \begin{tabular}{| l || l | l | l | l |}
- \hline
-  Dataset & Number of Nodes & Number of edges & Average Degree & $\pi(z)$\\
-  \hline
-  \hline
-  Karate Before & $34$ & $78$ & $4.5882$ &  $0.35857$\\
-  \hline
-  Karate After & $34$ & $561$ & $33$ &  $0.00081$\\
-  \hline
-  \hline
-  Books Before & $105$ & $441$ & $8.4000$ &  $0.44046$\\
-  \hline
-  Books After & $105$ & $5460$ & $104.0000$ &  $0.00453$\\
-  \hline
-  \hline
-  Blogs Before & $1490$ & $16718$ & $22.4403$ &  $0.27909$\\
-  \hline
-  Blogs After & $1490$ & $1109308$ & $1489.0040$ &  $0.00030$\\
-  \hline
- \end{tabular}
- \end{table}
-
-\vspace{20pt}
-We can see the results from the karate, books and blogs datasets at table ~\ref{tab:fullgraph} The results leads us to the following lemma.
-\\	
-\begin{lemma}
-The polarization index does not drop to zero in a fully connected graph.
-\end{lemma}
 

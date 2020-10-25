@@ -11,6 +11,7 @@ def naive_algorithm(k, graph):
     edges_to_add = nx.non_edges(graph)
     original_polarization = get_polarization(graph)
     addition_info = {}
+
     for edge in tqdm(edges_to_add):
 
         g_copy = graph.copy()
@@ -22,10 +23,13 @@ def naive_algorithm(k, graph):
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
-    k_items = sorted_edges[:5]
+    k_items = sorted_edges[:k]
 
     edges_to_add_list = [edge[0] for edge in k_items]
     polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
+
+    if not polarization:
+        print('bruh wtf')
 
     return k_items, polarization
 

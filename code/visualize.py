@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+import numpy as np
+import pandas as pd
 
 
 def visualize_graph(g, top_decrease, small_decrease, operation):
@@ -48,7 +50,7 @@ def visualize_graph(g, top_decrease, small_decrease, operation):
     edge_weights_small = []
 
     # keep same layout
-    #pos = nx.spring_layout(g_top, scale=15)
+    # pos = nx.spring_layout(g_top, scale=15)
     pos = nx.nx_agraph.graphviz_layout(g_top, prog='twopi')
     for edge in g_top.edges:
         if edge in top_tuples:
@@ -70,7 +72,7 @@ def visualize_graph(g, top_decrease, small_decrease, operation):
     pr = nx.pagerank(g_top)
     nodes = nx.draw_networkx_nodes(g_top,
                                    pos,
-                                   node_size=[11000*v for v in pr.values()])
+                                   node_size=[11000 * v for v in pr.values()])
     nodes.set_edgecolor('black')
     nx.draw_networkx(g_top,
                      node_color=node_colors,
@@ -78,7 +80,7 @@ def visualize_graph(g, top_decrease, small_decrease, operation):
                      with_labels=True,
                      linewidths=1,
                      pos=pos,
-                     node_size=[10000*v for v in pr.values()],
+                     node_size=[10000 * v for v in pr.values()],
                      width=edge_weights_top)
     plt.title(f'Largest decrease {operation}')
     plt.savefig('largest.png', dpi=800)
@@ -94,10 +96,27 @@ def visualize_graph(g, top_decrease, small_decrease, operation):
                      with_labels=True,
                      linewidths=1,
                      pos=pos,
-                     node_size=[10000*v for v in pr.values()],
+                     node_size=[10000 * v for v in pr.values()],
                      width=edge_weights_small)
     plt.title(f'Smallest decrease {operation}')
     plt.savefig('smallest.png', dpi=800)
     plt.show()
 
 
+def vis_graphs_heuristics(x_axis, y_axis_1, y_axis_2, y_axis_3, label_1, label_2, label_3, title, x_label, y_label):
+
+    plt.plot(x_axis, y_axis_1, label=label_1)
+    plt.plot(x_axis, y_axis_2, label=label_2)
+    plt.plot(x_axis, y_axis_3, label=label_3)
+
+    # Add legend
+    plt.legend(loc='lower left')
+
+    # Add title and x, y labels
+    plt.title(title, fontsize=16, fontweight='bold')
+
+    plt.xticks(x_axis)
+
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.show()
