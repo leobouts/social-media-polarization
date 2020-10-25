@@ -157,6 +157,14 @@ def heuristics_driver(k):
             results[f'distance_{ds}'] = {'result_dictionary': distance_results, 'time': distance_elapsed,
                                          'polarization': distance_polarization}
 
+        # print(ds)
+        # print(naive_polarization_decrease_list)
+        # print(naive_time)
+        # print(merge_polarization_decrease_list)
+        # print(merge_time)
+        # print(distance_polarization_decrease_list)
+        # print(distance_time)
+
         vis_graphs_heuristics(k,
                               naive_polarization_decrease_list,
                               merge_polarization_decrease_list,

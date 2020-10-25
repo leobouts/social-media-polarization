@@ -18,36 +18,116 @@ In this section we consider datasets that are separated in two opposing communit
 \section{Experiments with heuristics}
 \label{sec:experimHeuristics}
 
- we evaluate the heuristic algorithms by comparing them with the naive. The goal is to validate that they minimize the polarization index in the same way the naive algorithm does but in less time. 
+ We evaluate the heuristic algorithms by comparing them with the naive. The goal is to validate that they minimize the polarization index in the same way the naive algorithm does but in less time. 
 
 
 \begin{table}[htbp]
  \centering
- \caption{Heuristics algorithm comparison}
- \label{tab:heuristics}
- \begin{tabular}{|c || c |l| c | c | c | c ||}
+ \caption{Heuristics algorithms comparison on the Karate}
+ \label{tab:heuristicsKarate}
+ \begin{tabular}{|c |l| c | c | c | c ||}
  \hline
-  Algorithm & Dataset & $\pi(z)$ Before &  $\pi(z)$ After & Time (sec) & k\\
+  Algorithm & $\pi(z)$ Before &  $\pi(z)$ After & Time (sec) & k\\
   \hline
   \hline
-  Naive & Karate & $0.35857$ & 0.23116 &  0.93457&5 \\
+  Naive  & $0.35857$ & 0.23116 &  0.71483&5 \\
   \hline
-  Merge & Karate & $0.35857$ & 0.15205 &  0.02955&5 \\
+  Merge & $0.35857$ & 0.23979 &  0.04088&5 \\
   \hline
-  Distance & Karate & $0.35857$ & 0.13423 &  0.00262 &5\\
+  Distance &  $0.35857$ & 0.31491 &  0.00237 &5\\
   \hline
   \hline
-  Naive & Books & $0.44046$ & 0.35138 &  30.53548 &5\\
+  Naive &  $0.35857$ & 0.19331 &  0.54732 &10\\
   \hline
-  Merge & Books & $0.44046$ & 0.34692 &  0.29411&5 \\
+  Merge &  $0.35857$ & 0.18291 &  0.05307&10 \\
   \hline
-  Distance & Books & $0.44046$ & 0.34719 &  0.01033&5\\
+  Distance &  $0.35857$ & 0.29321 &  0.00436&10\\
+  \hline
+  \hline
+  Naive &  $0.35857$ & 0.17656 &  0.55274 &15\\
+  \hline
+  Merge &  $0.35857$ & 0.16946 &  0.04806&15\\
+  \hline
+  Distance &  $0.35857$ & 0.28158 &  0.00515&15\\
+  \hline
+  \hline
+  Naive &  $0.35857$ & 0.14977 &  0.5511 &20\\
+  \hline
+  Merge &  $0.35857$ & 0.14569 &  0.05337&20\\
+  \hline
+  Distance &  $0.35857$ & 0.24387 &  0.00671&20\\
   \hline
  \end{tabular}
- 
 \end{table}
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/karate_pol}
+	\caption{Heuristic comparison of the decrease in Karate}
+	\label{fig:karate_pol}
+\end{figure}
 
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/karate_time}
+	\caption{Heuristic comparison of time in Karate}
+	\label{fig:karate_time}
+\end{figure}
+
+\begin{table}[htbp]
+ \centering
+ \caption{Heuristics algorithms comparison on the Books}
+ \label{tab:heuristicsKarate}
+ \begin{tabular}{|c |l| c | c | c | c ||}
+ \hline
+  Algorithm & $\pi(z)$ Before &  $\pi(z)$ After & Time (sec) & k\\
+  \hline
+  \hline
+  Naive  & $0.44046$ & 0.35138 &  28.76573&5 \\
+  \hline
+  Merge & $0.44046$ & 0.43515 &  0.3107&5 \\
+  \hline
+  Distance &  $0.44046$ & 0.43547 &  0.01219 &5\\
+  \hline
+  \hline
+  Naive &  $0.44046$ & 0.30969 &  28.13354 &10\\
+  \hline
+  Merge &  $0.44046$ & 0.43006 &  0.32842&10 \\
+  \hline
+  Distance &  $0.44046$ & 0.41711 &  0.01954&10\\
+  \hline
+  \hline
+  Naive &  $0.44046$ & 0.28730 &  26.88918 &15\\
+  \hline
+  Merge &  $0.44046$ & 0.39831 &  0.34483&15\\
+  \hline
+  Distance &  $0.44046$ & 0.39297 &  0.02893&15\\
+  \hline
+  \hline
+  Naive &  $0.44046$ & 0.26987 &  29.96203 &20\\
+  \hline
+  Merge &  $0.44046$ & 0.36770 &  0.37486&20\\
+  \hline
+  Distance &  $0.44046$ & 0.38424 &  0.03249&20\\
+  \hline
+ \end{tabular}
+\end{table}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/books_pol}
+	\caption{Heuristic comparison of the decrease}
+	\label{fig:books_pol}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/books_time}
+	\caption{Heuristic comparison of time}
+	\label{fig:books_time}
+\end{figure}
 
 
 
@@ -56,7 +136,7 @@ In this section we consider datasets that are separated in two opposing communit
 \vspace{20pt}
 Given a polarized graph $G$ we will compute the polarization index $\pi(z)$ before and after converting the graph $G$ to a full graph. 
 
-\begin{table}[!htb]
+\begin{table}[!htbp]
  \centering
  \caption{Polarization Before and after converting to a full graph}
  \label{tab:fullgraph}

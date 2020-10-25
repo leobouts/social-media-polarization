@@ -122,4 +122,5 @@ def vis_graphs_heuristics(x_axis, y_axis_1, y_axis_2, y_axis_3, label_1, label_2
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.grid(True)
+    plt.savefig(f'{title}.eps', format='eps', dpi=1200)
     plt.show()
