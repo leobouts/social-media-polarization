@@ -110,7 +110,9 @@ def vis_graphs_heuristics(x_axis, y_axis_1, y_axis_2, y_axis_3, label_1, label_2
     plt.plot(x_axis, y_axis_3, label=label_3)
 
     # Add legend
-    plt.legend(loc='lower left')
+    # Put a legend below current axis
+    plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05),
+               fancybox=True, shadow=True, ncol=5)
 
     # Add title and x, y labels
     plt.title(title, fontsize=16, fontweight='bold')
@@ -119,4 +121,5 @@ def vis_graphs_heuristics(x_axis, y_axis_1, y_axis_2, y_axis_3, label_1, label_2
 
     plt.xlabel(x_label)
     plt.ylabel(y_label)
+    plt.grid(True)
     plt.show()
