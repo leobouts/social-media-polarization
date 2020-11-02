@@ -56,7 +56,7 @@ def greedy_without_consideration_algorithm(k, graph):
     return k_items, polarization
 
 
-def merge_pol_algorithm(k, graph):
+def skip_algorithm(k, graph):
     nodeDict = dict(graph.nodes(data=True))
     positive_dictionary = {}
     negative_dictionary = {}
@@ -106,7 +106,7 @@ def merge_pol_algorithm(k, graph):
                 return edges_to_add_list, polarization
 
 
-def merge_pol_without_p_z(k, graph):
+def distance_algorithm(k, graph):
     nodeDict = dict(graph.nodes(data=True))
     positive_dictionary = {}
     negative_dictionary = {}

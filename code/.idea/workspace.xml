@@ -19,8 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebe1ed42-6450-4d8d-a087-ec634a62fbd6" name="Default Changelist" comment="forgot to add all one edge additions. script now works as expected.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ebe1ed42-6450-4d8d-a087-ec634a62fbd6" name="Default Changelist" comment="added greedy algorithm, changed name of naive">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph.py" afterDir="false" />
     </list>
@@ -198,7 +198,7 @@
       <workItem from="1601923809822" duration="4923000" />
       <workItem from="1602928246429" duration="21271000" />
       <workItem from="1603469611114" duration="31144000" />
-      <workItem from="1604348766378" duration="785000" />
+      <workItem from="1604348766378" duration="874000" />
     </task>
     <task id="LOCAL-00001" summary="fixed logic bug for edge addition">
       <created>1587939079173</created>
@@ -214,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587940436875</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added greedy algorithm, changed name of naive">
+      <created>1604349585968</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1604349585968</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -262,7 +269,8 @@
     </ignored-roots>
     <MESSAGE value="fixed logic bug for edge addition" />
     <MESSAGE value="forgot to add all one edge additions. script now works as expected." />
-    <option name="LAST_COMMIT_MESSAGE" value="forgot to add all one edge additions. script now works as expected." />
+    <MESSAGE value="added greedy algorithm, changed name of naive" />
+    <option name="LAST_COMMIT_MESSAGE" value="added greedy algorithm, changed name of naive" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1118" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601500653301">

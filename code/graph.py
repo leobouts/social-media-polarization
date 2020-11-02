@@ -1,5 +1,5 @@
 import time
-from algorithms import greedy_without_consideration_algorithm, merge_pol_algorithm, merge_pol_without_p_z
+from algorithms import greedy_without_consideration_algorithm, skip_algorithm, distance_algorithm
 from connect_opposing import brute_force_opposing_views, brute_force_all_edges_removal
 from compute_polarization import get_polarization
 from helpers import make_graph_fully_connected
@@ -140,7 +140,7 @@ def heuristics_driver(k):
                                       'polarization': naive_polarization}
 
             merge_start = time.time()
-            merge_results, merge_polarization = merge_pol_algorithm(k_edges, graph)
+            merge_results, merge_polarization = skip_algorithm(k_edges, graph)
             merge_polarization_decrease_list.append(merge_polarization)
             merge_end = time.time()
             merge_elapsed = merge_end - merge_start
@@ -149,7 +149,7 @@ def heuristics_driver(k):
                                       'polarization': merge_polarization}
 
             distance_start = time.time()
-            distance_results, distance_polarization = merge_pol_without_p_z(k_edges, graph)
+            distance_results, distance_polarization = distance_algorithm(k_edges, graph)
             distance_polarization_decrease_list.append(distance_polarization)
             distance_end = time.time()
             distance_elapsed = distance_end - distance_start
