@@ -1,19 +1,41 @@
 import networkx as nx
-from numpy import take
 from tqdm import tqdm
 
 from compute_polarization import get_polarization
 from helpers import add_edges_and_count_polarization
 
 
-def naive_algorithm(k, graph):
+def greedy_algorithm(k, graph):
+    edges_to_add = nx.non_edges(graph)
 
+    addition_info = {}
+    k_items = []
+
+    for i in range(k):
+        original_polarization = get_polarization(graph)
+
+        for edge in tqdm(edges_to_add):
+            g_copy = graph.copy()
+            g_copy.add_edges_from([edge])
+
+            polarization_after_addition = get_polarization(g_copy)
+            decrease = original_polarization - polarization_after_addition
+            addition_info[edge] = decrease
+
+        sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
+
+        k_items.append(sorted_edges[0])
+        graph.add_eges_grom([sorted_edges[0]])
+
+    return k_items, get_polarization(graph)
+
+
+def greedy_without_consideration_algorithm(k, graph):
     edges_to_add = nx.non_edges(graph)
     original_polarization = get_polarization(graph)
     addition_info = {}
 
     for edge in tqdm(edges_to_add):
-
         g_copy = graph.copy()
 
         g_copy.add_edges_from([edge])
@@ -35,12 +57,9 @@ def naive_algorithm(k, graph):
 
 
 def merge_pol_algorithm(k, graph):
-
     nodeDict = dict(graph.nodes(data=True))
     positive_dictionary = {}
     negative_dictionary = {}
-
-    original_polarization = get_polarization(graph)
 
     first_pass_polarization = []
 
@@ -59,7 +78,6 @@ def merge_pol_algorithm(k, graph):
     edges_to_add_list = []
 
     for positive_opinion in positive_dictionary:
-
         g_copy = graph.copy()
         g_copy.add_edges_from([(positive_opinion[0], first_of_negative)])
         polarization_after_addition = get_polarization(g_copy)
@@ -79,7 +97,7 @@ def merge_pol_algorithm(k, graph):
             g_copy.add_edges_from([edge_to_add])
             polarization_after_addition = get_polarization(g_copy)
 
-            if first_pass_polarization[i+1] < polarization_after_addition:
+            if first_pass_polarization[i + 1] < polarization_after_addition:
                 break
 
             edges_to_add_list.append(edge_to_add)
@@ -89,7 +107,6 @@ def merge_pol_algorithm(k, graph):
 
 
 def merge_pol_without_p_z(k, graph):
-
     nodeDict = dict(graph.nodes(data=True))
     positive_dictionary = {}
     negative_dictionary = {}
@@ -122,7 +139,7 @@ def merge_pol_without_p_z(k, graph):
             g_copy.add_edges_from([edge_to_add])
 
             distance_current = abs(node_pos_value - node_neg_value)
-            distance_to_check = abs(positive_dictionary[i+1][1] - node_neg_value)
+            distance_to_check = abs(positive_dictionary[i + 1][1] - node_neg_value)
 
             if distance_to_check > distance_current:
                 break
