@@ -102,79 +102,40 @@ def print_res(nodes, closeness_c, betweenness_c, eigen_c, mode):
     print(LA.norm(eigen_c))
 
 
-def edges_centralities(graph, decrease_dictionary, no_of_nodes):
+def edges_centralities(graph, dictionary, no_of_nodes, mode):
     """
     Computes the edge centralities of the graph and returns the top #no_of_nodes
     with the biggest and the smallest polarization decrease after removing an edge
     in their graph.
     :param graph: netrowkx graph
-    :param decrease_dictionary: holds the decrease of the polarization with edge removals
+    :param dictionary: holds the decrease of the polarization with edge removals
     for every available edge in the graph
     :param no_of_nodes: number of bigger/smaller decrease with removal
     in polarization that I want to keep
-    :return: 2 dictionaries, one for smaller one for bigger decrease of edge centralities
+    :param mode: Boolean-> True for decrease, False for increase
+    :return: 1 dictionary for increase or decrease with edge centralities
     """
-    sorted_dict = sorted(decrease_dictionary)
+    sorted_dict = sorted(dictionary, reverse=mode)
 
-    smallest_decrease = sorted_dict[:no_of_nodes]
-    biggest_decrease = sorted_dict[-no_of_nodes:]
-
-    top_decrease = {}
-    small_decrease = {}
-
-    for value in biggest_decrease:
-        decrease = decrease_dictionary[value]
-        edge_removed = decrease['edge_removal']
-        top_decrease[value] = {'edge_removed': edge_removed}
-
-    for value in smallest_decrease:
-        decrease = decrease_dictionary[value]
-        edge_removed = decrease['edge_removal']
-        small_decrease[value] = {'edge_removed': edge_removed}
-
+    sorted_dict = sorted_dict[:no_of_nodes]
     betweenness_c = nx.edge_betweenness_centrality(graph)
+    dictionary_to_return = {}
+    top = {}
 
-    returned_edge_info_biggest_decrease = {}
-    returned_edge_info_smallest_decrease = {}
+    for value in sorted_dict:
+        decrease = dictionary[value]
+        edge_removed = decrease['edge_removal']
+        top[value] = {'edge_removed': edge_removed}
 
-    for value in top_decrease:
-        edge_to_get_val = top_decrease[value]['edge_removed']
+    for value in top:
+
+        edge_to_get_val = top[value]['edge_removed']
         edge_bet_centrality = betweenness_c[edge_to_get_val]
-        sign = decrease_dictionary[value]['multiplication']
-        addition = decrease_dictionary[value]['addition']
-        returned_edge_info_biggest_decrease[value] = {'edge_removed': edge_to_get_val,
-                                                      'edge_centrality': edge_bet_centrality,
-                                                      'sign': sign,
-                                                      'addition': addition}
+        sign = dictionary[value]['multiplication']
+        addition = dictionary[value]['addition']
+        dictionary_to_return[value] = {'edge_removed': edge_to_get_val,
+                                       'edge_centrality': edge_bet_centrality,
+                                       'sign': sign,
+                                       'addition': addition}
 
-    for value in small_decrease:
-        edge_to_get_val = small_decrease[value]['edge_removed']
-        edge_bet_centrality = betweenness_c[edge_to_get_val]
-        sign = decrease_dictionary[value]['multiplication']
-        addition = decrease_dictionary[value]['addition']
-        returned_edge_info_smallest_decrease[value] = {'edge_removed': edge_to_get_val,
-                                                       'edge_centrality': edge_bet_centrality,
-                                                      'sign': sign,
-                                                      'addition': addition}
-
-    return returned_edge_info_biggest_decrease, returned_edge_info_smallest_decrease
-
-
-def create_edge_list(dict_to_format):
-    """
-
-    :param dict_to_format: dictionary of type
-    "0.04669391074827928: {'addition': 0,
-                       'edge_centrality': 0.1272599949070537,
-                       'edge_removed': (1, 32),
-                       'sign': -1}}"
-    :return: list of type ["1,2","2,3",..]
-    """
-    edge_list = []
-    for keys in dict_to_format.keys():
-        edge = str(dict_to_format[keys]['edge_removed']).replace(" ", "")
-        edge = edge.replace("(", "")
-        edge = edge.replace(")", "")
-        edge_list.append(edge)
-
-    return edge_list
+    return dictionary_to_return

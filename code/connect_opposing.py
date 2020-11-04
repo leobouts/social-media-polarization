@@ -80,7 +80,6 @@ def brute_force_all_edges_removal(graph, pickle_name, verbose):
     nodeDict = dict(graph.nodes(data=True))
     difference = {}
 
-
     for edge in tqdm(graph_edges):
 
         g_copy = graph.copy()
@@ -96,7 +95,7 @@ def brute_force_all_edges_removal(graph, pickle_name, verbose):
         mul = node_a_polarization * node_b_polarization
         add = node_a_polarization + node_b_polarization
 
-        difference[abs(graph_polarization - new_polarization)] = {'edge_removal': edge,
+        difference[graph_polarization - new_polarization] = {'edge_removal': edge,
                                                                   'multiplication': mul,
                                                                   'addition': add}
 
