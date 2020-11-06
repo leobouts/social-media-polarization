@@ -4,13 +4,13 @@
 \section{Datasets}
 \label{sec:ds}
 
-In this section we consider datasets that are separated in two opposing communities. The information about the opinions of each member of this community is known. Thus, we can assign internal opinions -1 and 1 to the nodes depending on their community membership\cite{tsapMatakosTerzi}. 
+In this section we consider datasets that are separated in two opposing communities. The information about the opinions of each member of this community is known. Thus, we can assign internal opinions -1 and 1 to the nodes depending on their community membership\cite{tsapMatakosTerzi}.  We consider the following.
 
 \begin{enumerate}
 
-  \item The Karate dataset, that represents the friendships between the members of a karate club at a US university. This network is split in two equal size polarized communities arround two rival instructors.
+  \item The Karate dataset, that represents the friendships between the members of a karate club at a US university. This network is split in two equal size polarized communities around two rival karate instructors.
   
-  \item The Books dataset that is a networkd of US politics books. These books were published near the 2004 presidential election and sold by Amazon.com . These Books are classified as "Liberal", "Conservative", or "Neutral".
+  \item The Books dataset, that is a network of US politics books. These books were published near the 2004 presidential election and sold by Amazon.com . These Books are classified as "Liberal", "Conservative", or "Neutral".
   
   \item The Blogs dataset. A network of hyperlinks between online blogs on US politics.
   
@@ -18,47 +18,7 @@ In this section we consider datasets that are separated in two opposing communit
 \section{Experiments with heuristics}
 \label{sec:experimHeuristics}
 
- We evaluate the heuristic algorithms by comparing them with the naive. The goal is to validate that they minimize the polarization index in the same way the naive algorithm does but in less time. 
-
-
-\begin{table}[htbp]
- \centering
- \caption{Heuristics algorithms comparison on the Karate}
- \label{tab:heuristicsKarate}
- \begin{tabular}{|c |l| c | c | c | c ||}
- \hline
-  Algorithm & $\pi(z)$ Before &  $\pi(z)$ After & Time (sec) & k\\
-  \hline
-  \hline
-  Naive  & $0.35857$ & 0.23116 &  0.71483&5 \\
-  \hline
-  Merge & $0.35857$ & 0.23979 &  0.04088&5 \\
-  \hline
-  Distance &  $0.35857$ & 0.31491 &  0.00237 &5\\
-  \hline
-  \hline
-  Naive &  $0.35857$ & 0.19331 &  0.54732 &10\\
-  \hline
-  Merge &  $0.35857$ & 0.18291 &  0.05307&10 \\
-  \hline
-  Distance &  $0.35857$ & 0.29321 &  0.00436&10\\
-  \hline
-  \hline
-  Naive &  $0.35857$ & 0.17656 &  0.55274 &15\\
-  \hline
-  Merge &  $0.35857$ & 0.16946 &  0.04806&15\\
-  \hline
-  Distance &  $0.35857$ & 0.28158 &  0.00515&15\\
-  \hline
-  \hline
-  Naive &  $0.35857$ & 0.14977 &  0.5511 &20\\
-  \hline
-  Merge &  $0.35857$ & 0.14569 &  0.05337&20\\
-  \hline
-  Distance &  $0.35857$ & 0.24387 &  0.00671&20\\
-  \hline
- \end{tabular}
-\end{table}
+ We evaluate the heuristic algorithms by comparing them with the Greedy  algorithm. 
 
 \begin{figure}[!htbp]
 	\centering
@@ -75,44 +35,7 @@ In this section we consider datasets that are separated in two opposing communit
 	\label{fig:karate_time}
 \end{figure}
 
-\begin{table}[htbp]
- \centering
- \caption{Heuristics algorithms comparison on the Books}
- \label{tab:heuristicsKarate}
- \begin{tabular}{|c |l| c | c | c | c ||}
- \hline
-  Algorithm & $\pi(z)$ Before &  $\pi(z)$ After & Time (sec) & k\\
-  \hline
-  \hline
-  Naive  & $0.44046$ & 0.35138 &  28.76573&5 \\
-  \hline
-  Merge & $0.44046$ & 0.43515 &  0.3107&5 \\
-  \hline
-  Distance &  $0.44046$ & 0.43547 &  0.01219 &5\\
-  \hline
-  \hline
-  Naive &  $0.44046$ & 0.30969 &  28.13354 &10\\
-  \hline
-  Merge &  $0.44046$ & 0.43006 &  0.32842&10 \\
-  \hline
-  Distance &  $0.44046$ & 0.41711 &  0.01954&10\\
-  \hline
-  \hline
-  Naive &  $0.44046$ & 0.28730 &  26.88918 &15\\
-  \hline
-  Merge &  $0.44046$ & 0.39831 &  0.34483&15\\
-  \hline
-  Distance &  $0.44046$ & 0.39297 &  0.02893&15\\
-  \hline
-  \hline
-  Naive &  $0.44046$ & 0.26987 &  29.96203 &20\\
-  \hline
-  Merge &  $0.44046$ & 0.36770 &  0.37486&20\\
-  \hline
-  Distance &  $0.44046$ & 0.38424 &  0.03249&20\\
-  \hline
- \end{tabular}
-\end{table}
+
 
 \begin{figure}[!htbp]
 	\centering
@@ -163,28 +86,35 @@ Given a polarized graph $G$ we will compute the polarization index $\pi(z)$ befo
  \end{table}
 
 \vspace{20pt}
-We can see the results from the karate, books and blogs datasets at table ~\ref{tab:fullgraph} The results leads us to the following lemma.
+\noindent
+We can see the results from the karate, books and blogs datasets at table ~\ref{tab:fullgraph}. The results leads us to the following lemma.
 \\	
 \begin{lemma}
-The polarization index does not drop to zero in a fully connected graph.
+The polarization index does not necessarily drops to zero in a fully connected graph.
 \end{lemma}
 
 
-
-\section{Experiment by removing edges}
-\label{sec:properties}
-Bellow we examine the removal of edges from a social graph and their result in polarization. We also use the edge betweenness centrality. The edge betweenness centrality is defined as the number of the shortest paths that go through an edge in a graph or network.(add cite Girvan and Newman 2002). 
-
-In the tables following Sign and Addition refer to the multiplication and the addition of the opinions of the nodes that are attached to the specific edge examined. 
+\section{Polarization decrease by removing edges}
+\label{sec:polremovingdecrease}
+Bellow we examine the removal of edges from a social graph and their result in polarization. We also find the edge betweenness centrality of each edge. 
+\\
+\\
+The edge betweenness centrality is defined as the number of the shortest paths that go through an edge in a graph or network.(add cite Girvan and Newman 2002). 
+\\
+\\
+In the tables following, Sign and Addition refer to the multiplication and the addition of the opinions of the nodes that are attached to the specific edge examined. Graphs in the books and blogs datasets, due to size, are omitted.
+\\
 \\
 
-\begin{table}[htbp]
+\subsection{Edges removal in the Karate dataset}
+
+\begin{table}[H]
  \centering
- \caption{Edges with the 5 largest decrease (Karate Dataset)}
+ \caption{Edges with the biggest increase of polarization}
  \label{tab:edgesLargest}
  \begin{tabular}{| l || l | l | l | l |}
  \hline
-  Edge & Betweeness Centrality & Polarization Decrease & Sign & Addition\\
+  Edge & Betweenness Centrality & Polarization Increase & Sign & Addition\\
   \hline
   \hline
   (1, 32) & $0.12725$ & $0.04669$ & - &  0\\
@@ -199,14 +129,12 @@ In the tables following Sign and Addition refer to the multiplication and the ad
   \hline
  \end{tabular}
   
- \caption{Edges with the 5 smallest decrease (Karate Dataset)}
+ \caption{Edges with the biggest decrease of polarization }
  \label{tab:edgesLargest}
  \begin{tabular}{| l || l | l | l | l |}
  \hline
-  Edge & Betweeness Centrality & Polarization Decrease & Sign & Addition\\
+  Edge & Betweenness Centrality & Polarization Decrease & Sign & Addition\\
   \hline
-  \hline
-  (6, 7) & $0.00297$ & $0.0$ & + &  -2\\
   \hline
   (5, 11) & $0.00297$ & $5.55111*10^{-17}$ & + &  -2\\
   \hline
@@ -214,20 +142,38 @@ In the tables following Sign and Addition refer to the multiplication and the ad
   \hline
   (1, 4) & $0.02049$ & $1.38023*10^{-5}$ & + &  -2\\
   \hline
-  (32, 34) & $0.05339$ & $1.61826*10^{-5}$ & - &  +2\\
+  (32, 34) & $0.05339$ & $1.61826*10^{-5}$ & + &  +2\\
+  \hline
+  (1, 8) & $0.02282$ & $1.93446*10^{-5}$ & + &  -2\\
   \hline
   \hline
  \end{tabular}
- 
 \end{table}
 
-\begin{table}[htbp]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/karate_increase}
+	\label{fig:karate_increase}
+	\caption{Removing edges in Karate}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/karate_decrease}
+	\label{fig:karate_decrease}
+	\caption{Removing edges in Karate}
+\end{figure}
+
+
+\subsection{Edges removal in the Blogs dataset}
+
+\begin{table}[H]
  \centering
- \caption{Edges with the 5 largest decrease (Blogs Dataset)}
+ \caption{Edges with the biggest increase of polarization}
  \label{tab:edgesLargest}
  \begin{tabular}{| l || l | l | l | l |}
  \hline
-  Edge & Betweenness Centrality & Polarization Decrease & Sign & Addition\\
+  Edge & Betweenness Centrality & Polarization Increase & Sign & Addition\\
   \hline
   \hline
   (213, 793) & $0.00219$ & $0.00091$ & - &  0\\
@@ -243,37 +189,58 @@ In the tables following Sign and Addition refer to the multiplication and the ad
  \end{tabular}
  
  
- \caption{Edges with the 5 smallest decrease (Blogs Dataset)}
+ \caption{Edges with the biggest decrease of polarization }
  \label{tab:edgesLargest}
  \begin{tabular}{| l || l | l | l | l |}
  \hline
   Edge & Betweenness Centrality & Polarization Decrease & Sign & Addition\\
   \hline
   \hline
-  (384, 385) & $9.01465*10^{-7}$ & $0.0$ & + &  -2\\
+  (574, 1380) & $0.00014$ & $2.09620*10^{-6}$ & - &  0\\
   \hline
-  (301, 644) & $2.11840*10^{-5}$ & $4.64017*10^{-13}$ & + &  -2\\
+  (23, 1380) & $0.00021$ & $2.18102*10^{-6}$ & - &  0\\
   \hline
-  (775, 1369) & $4.23796*10^{-5}$ & $8.28614*10^{-13}$ & + &  -2\\
+  (600, 1021) & $0.00024$ & $2.41460*10^{-6}$ & - &  0\\
   \hline
-  (233, 736) & $1.37432*10^{-5}$ & $1.26054*10^{-12}$ & + &  -2\\
+  (634, 1380) & $0.00010$ & $2.60119*10^{-6}$ & - &  0\\
   \hline
-  (1330, 1410) & $4.08651*10^{-5}$ & $2.12324*10^{-12}$ & + &  +2\\
+  (219, 1380) & $0.00014$ & $2.91467*10^{-6}$ & - &  0\\
   \hline
   \hline
  \end{tabular}
  
 \end{table}
 
-
-
-\begin{table}[htbp]
+\subsection{Edges removal in the Books dataset}
+\begin{table}[H]
  \centering
- \caption{Edges with the 5 largest decrease (Books Dataset)}
+ \caption{Edges with the biggest increase of polarization }
  \label{tab:edgesLargest}
  \begin{tabular}{| l || l | l | l | l |}
  \hline
-  Edge & Betweeness Centrality & Polarization Decrease & Sign & Addition\\
+  Edge & Betweenness Centrality & Polarization Increase & Sign & Addition\\
+  \hline
+  \hline
+  (0, 5) & $0.00056$ & $2.65885*10^5$ & - &  0\\
+  \hline
+  (7, 58) & $0.00713$ & $0.00012$ & - &  0\\
+  \hline
+  (5, 6) & $0.00222$ & $0.00012$ & - &  0\\
+  \hline
+  (6, 18) & $0.00858$ & $0.00014$ & +& -2\\
+  \hline
+  (0, 2) & $0.00031$ & $0.00349$ & - &  0\\
+  \hline
+ \end{tabular}
+\end{table}
+
+\begin{table}[H]
+ \centering
+ \caption{Edges with the biggest decrease of polarization}
+ \label{tab:edgesLargest}
+ \begin{tabular}{| l || l | l | l | l |}
+ \hline
+  Edge & Betweenness Centrality & Polarization Decrease & Sign & Addition\\
   \hline
   \hline
   (53, 76) & $0.06290$ & $0.01985$ & - &  0\\
@@ -286,30 +253,20 @@ In the tables following Sign and Addition refer to the multiplication and the ad
   \hline
   (49, 72) & $0.06809$ & $0.00952$ & - &  0\\
   \hline
- \end{tabular}
- 
- 
- \caption{Edges with the 5 smallest decrease (Books Dataset)}
- \label{tab:edgesLargest}
- \begin{tabular}{| l || l | l | l | l |}
- \hline
-  Edge & Betweeness Centrality & Polarization Decrease & Sign & Addition\\
-  \hline
-  \hline
-  (13, 40) & $0.00305$ & $3.89807*10^{-9}$ & + &  +2\\
-  \hline
-  (35, 37) & $0.00078$ & $8.65544*10^{-9}$ & + &  +2\\
-  \hline
-  (88, 89) & $0.00036$ & $1.00835*10^{-8}$ & + &  -2\\
-  \hline
-  (65, 69) & $0.00072$ & $1.51261*10^{-8}$ & + &  -2\\
-  \hline
-  (35, 36) & $0.00146$ & $2.92727*10^{-8}$ & + &  +2\\
-  \hline
-  \hline
- \end{tabular}
- 
+ \end{tabular} 
 \end{table}
 
+\subsection{Remarks about the edge removals}
 
-We can clearly see that there is not a direct association between the edge betweenness centrality and the decrease in polarization. For example in the karate dataset edge (20,34) has almost the same betweenness centrality with edge (32,34). The first is among the edges that their removal contributes in one of the biggest polarization decreases while the other is among the ones with the smallest. A second thing that we can see in all three datasets is that the biggest decrease is coming from the removal of edges that connect opposing opinions.
+We can clearly see that there is an association between the edge betweenness centrality and the decrease in polarization. Edges that contribute to a bigger decrease have larger betweenness centrality. 
+\\
+\\
+A second thing that we see in all three datasets is that the biggest increase is coming from the removal of edges that connect opposing opinions.
+\\
+\\
+In addition, during the experiments on the karate dataset, the removal of edge $(6, 7)$ had no effect on the polarization index. This leads to the following lemma.
+
+\begin{lemma}
+The polarization index can stay the same after an edge removal.
+\end{lemma}
+

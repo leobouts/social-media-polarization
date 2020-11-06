@@ -1,0 +1,37 @@
+\section{Proposed Algorithm}
+\label{sec:proposed}
+
+As we saw in ~\ref{sec:intuition} we need to find the edges that have bigger expressed opinions so they can neutralize each other. Minimum spanning trees can help us achieve this.
+\\
+\\
+A minimum spanning tree (MST) or minimum weight spanning tree is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.
+\\
+\\
+By using the complement of the graph we can get a graph that contains all possible edge additions. The minimum spanning tree algorithm will find the edges that have the smallest weight. In our case the weight is defined as $\mid \mid{z_u}\mid - \mid{z_v}\mid\mid$. This can measure the distance from neutrality. Closer to zero means that the addition of this edge will bring a bigger decrease in $\pi(z)$. 
+\\
+\\
+The same applies for graphs that $w_{ii} \neq w_{ij} \neq w_{ji} \neq 1$. But in this case the weight will be computed as $\mid \mid{z_u*w_{ij}}\mid - \mid{z_v*w_{ij}}\mid\mid$.
+\\
+\\
+A minimum spanning tree can be created with Kruskal's or Prim's algorithms and it is well known that they run in $\mathcal{O}(n\log{}n)$.
+
+\begin{algorithm}[htbp]
+	\caption{Spanning minimization of $\pi(z)$}
+	\label{alg:spanning}
+	\begin{flushleft}
+        		\textbf{INPUTS:} Complement graph $G'(V, E)$ of $G(V, E)$; $k$ number of edges to add;
+		\vspace{6pt}
+        		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
+	\end{flushleft}
+	\begin{algorithmic}[1]
+		\STATE Compute weights according to $\mid \mid{z_u}\mid - \mid{z_v}\mid\mid$ for every edge and add them to $G'$;
+		\STATE $U \leftarrow randomVertex$;
+		\STATE $T \leftarrow \emptyset$;
+		\WHILE {$U \neq V$}
+			\STATE let $(u, v)$ be the least cost edge such that $u$ $\epsilon$ $U$ and $v$ $\epsilon$ $V - U$;
+			\STATE $T = T \cup {(u, v)}$;
+			\STATE $U = U \cup {v}$;
+		\ENDWHILE
+		\STATE Sort $T$ by edge weight and return top $k$;
+	\end{algorithmic}
+\end{algorithm}

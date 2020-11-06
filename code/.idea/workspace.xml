@@ -19,22 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebe1ed42-6450-4d8d-a087-ec634a62fbd6" name="Default Changelist" comment="changed names in algorithms">
+    <list default="true" id="ebe1ed42-6450-4d8d-a087-ec634a62fbd6" name="Default Changelist" comment="moved some functions in helpers, changed the edge_removal function so that works properly and remove extra code, also changes the visualization function for edge removals">
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter4.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter5.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter5.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/books_pol.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/books_pol.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/books_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/books_time.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/karate_pol.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/karate_pol.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/karate_time.eps" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/karate_time.eps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books Polarization Decrease.eps" beforeDir="false" afterPath="$PROJECT_DIR$/books Polarization Decrease.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books Time Elapsed.eps" beforeDir="false" afterPath="$PROJECT_DIR$/books Time Elapsed.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books_edges.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/books_edges.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connect_opposing.py" beforeDir="false" afterPath="$PROJECT_DIR$/connect_opposing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/karate Polarization Decrease.eps" beforeDir="false" afterPath="$PROJECT_DIR$/karate Polarization Decrease.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/karate Time Elapsed.eps" beforeDir="false" afterPath="$PROJECT_DIR$/karate Time Elapsed.eps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/karate_edges.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/karate_edges.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/largest.png" beforeDir="false" afterPath="$PROJECT_DIR$/largest.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/properties.py" beforeDir="false" afterPath="$PROJECT_DIR$/properties.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallest.png" beforeDir="false" afterPath="$PROJECT_DIR$/smallest.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/largest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polblogs_edges.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/polblogs_edges.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallest.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +207,7 @@
       <workItem from="1601923809822" duration="4923000" />
       <workItem from="1602928246429" duration="21271000" />
       <workItem from="1603469611114" duration="31144000" />
-      <workItem from="1604348766378" duration="16591000" />
+      <workItem from="1604348766378" duration="22804000" />
     </task>
     <task id="LOCAL-00001" summary="fixed logic bug for edge addition">
       <created>1587939079173</created>
@@ -240,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604349661018</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="moved some functions in helpers, changed the edge_removal function so that works properly and remove extra code, also changes the visualization function for edge removals">
+      <created>1604523490063</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1604523490063</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +285,8 @@
     <MESSAGE value="forgot to add all one edge additions. script now works as expected." />
     <MESSAGE value="added greedy algorithm, changed name of naive" />
     <MESSAGE value="changed names in algorithms" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed names in algorithms" />
+    <MESSAGE value="moved some functions in helpers, changed the edge_removal function so that works properly and remove extra code, also changes the visualization function for edge removals" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved some functions in helpers, changed the edge_removal function so that works properly and remove extra code, also changes the visualization function for edge removals" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1118" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601500653301">
@@ -316,8 +321,8 @@
       <screen x="-2560" y="-272" width="2560" height="1361" />
     </state>
     <state width="2518" height="479" key="GridCell.Tab.-1.right/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602962661698" />
-    <state width="892" height="138" key="GridCell.Tab.0.bottom" timestamp="1604523277967">
-      <screen x="1280" y="23" width="1366" height="689" />
+    <state width="1238" height="114" key="GridCell.Tab.0.bottom" timestamp="1604672290656">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1379" height="500" key="GridCell.Tab.0.bottom/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034798823" />
     <state width="1231" height="96" key="GridCell.Tab.0.bottom/0.23.1280.721/-2560.-272.2560.1417@0.23.1280.721" timestamp="1602705252483" />
@@ -326,9 +331,10 @@
     <state width="1398" height="65" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1603639798450" />
     <state width="1293" height="347" key="GridCell.Tab.0.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1603668747325" />
     <state width="1485" height="479" key="GridCell.Tab.0.bottom/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691918" />
-    <state width="892" height="138" key="GridCell.Tab.0.bottom/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604523277967" />
-    <state width="892" height="138" key="GridCell.Tab.0.center" timestamp="1604523277966">
-      <screen x="1280" y="23" width="1366" height="689" />
+    <state width="1238" height="114" key="GridCell.Tab.0.bottom/1280.23.1366.689/0.23.1280.777@0.23.1280.777" timestamp="1604672290656" />
+    <state width="486" height="391" key="GridCell.Tab.0.bottom/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604528098053" />
+    <state width="1238" height="114" key="GridCell.Tab.0.center" timestamp="1604672290656">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1379" height="500" key="GridCell.Tab.0.center/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034798822" />
     <state width="1231" height="96" key="GridCell.Tab.0.center/0.23.1280.721/-2560.-272.2560.1417@0.23.1280.721" timestamp="1602705252482" />
@@ -337,9 +343,10 @@
     <state width="1398" height="65" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1603639798449" />
     <state width="1293" height="347" key="GridCell.Tab.0.center/0.23.2560.1361@0.23.2560.1361" timestamp="1603668747322" />
     <state width="1485" height="479" key="GridCell.Tab.0.center/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691918" />
-    <state width="892" height="138" key="GridCell.Tab.0.center/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604523277966" />
-    <state width="892" height="138" key="GridCell.Tab.0.left" timestamp="1604523277965">
-      <screen x="1280" y="23" width="1366" height="689" />
+    <state width="1238" height="114" key="GridCell.Tab.0.center/1280.23.1366.689/0.23.1280.777@0.23.1280.777" timestamp="1604672290656" />
+    <state width="486" height="391" key="GridCell.Tab.0.center/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604528098052" />
+    <state width="1238" height="114" key="GridCell.Tab.0.left" timestamp="1604672290655">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1379" height="500" key="GridCell.Tab.0.left/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034798821" />
     <state width="1231" height="96" key="GridCell.Tab.0.left/0.23.1280.721/-2560.-272.2560.1417@0.23.1280.721" timestamp="1602705252481" />
@@ -348,9 +355,10 @@
     <state width="1398" height="65" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1603639798449" />
     <state width="1293" height="347" key="GridCell.Tab.0.left/0.23.2560.1361@0.23.2560.1361" timestamp="1603668747321" />
     <state width="1485" height="479" key="GridCell.Tab.0.left/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691917" />
-    <state width="892" height="138" key="GridCell.Tab.0.left/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604523277965" />
-    <state width="892" height="138" key="GridCell.Tab.0.right" timestamp="1604523277966">
-      <screen x="1280" y="23" width="1366" height="689" />
+    <state width="1238" height="114" key="GridCell.Tab.0.left/1280.23.1366.689/0.23.1280.777@0.23.1280.777" timestamp="1604672290655" />
+    <state width="486" height="391" key="GridCell.Tab.0.left/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604528098051" />
+    <state width="1238" height="114" key="GridCell.Tab.0.right" timestamp="1604672290656">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1379" height="500" key="GridCell.Tab.0.right/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1603034798822" />
     <state width="1231" height="96" key="GridCell.Tab.0.right/0.23.1280.721/-2560.-272.2560.1417@0.23.1280.721" timestamp="1602705252482" />
@@ -359,7 +367,8 @@
     <state width="1398" height="65" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1603639798450" />
     <state width="1293" height="347" key="GridCell.Tab.0.right/0.23.2560.1361@0.23.2560.1361" timestamp="1603668747324" />
     <state width="1485" height="479" key="GridCell.Tab.0.right/0.23.2560.1417@0.23.2560.1417" timestamp="1601500691918" />
-    <state width="892" height="138" key="GridCell.Tab.0.right/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604523277966" />
+    <state width="1238" height="114" key="GridCell.Tab.0.right/1280.23.1366.689/0.23.1280.777@0.23.1280.777" timestamp="1604672290656" />
+    <state width="486" height="391" key="GridCell.Tab.0.right/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604528098053" />
     <state x="-561" y="-272" width="1143" height="265" key="GridCell.Tab.1.bottom" timestamp="1604522282108">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -418,6 +427,10 @@
     <state x="141" y="-1080" key="SettingsEditor/0.23.1280.721/-648.-1417.2560.1417@-648.-1417.2560.1417" timestamp="1596016420964" />
     <state x="789" y="347" key="SettingsEditor/0.23.2560.1361@0.23.2560.1361" timestamp="1600979174155" />
     <state x="1410" y="23" key="SettingsEditor/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604348739812" />
+    <state x="1563" y="107" key="Vcs.Push.Dialog.v2" timestamp="1604523504544">
+      <screen x="1280" y="23" width="1366" height="689" />
+    </state>
+    <state x="1563" y="107" key="Vcs.Push.Dialog.v2/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1604523504544" />
     <state width="683" height="344" key="XDebugger.FullValuePopup" timestamp="1604435567179">
       <screen x="1280" y="23" width="1366" height="689" />
     </state>
@@ -794,13 +807,14 @@
       <screen x="-2560" y="-272" width="2560" height="1361" />
     </state>
     <state x="-861" y="-212" width="473" height="1357" key="dock-window-92/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602967552954" />
-    <state x="748" y="94" width="1064" height="1219" key="find.popup" timestamp="1603652103930">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state x="374" y="64" width="568" height="696" key="find.popup" timestamp="1604672289309">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="-1812" y="-198" width="1064" height="1269" key="find.popup/0.23.1280.721/-2560.-272.2560.1417@-2560.-272.2560.1417" timestamp="1602961782082" />
     <state x="-1812" y="-201" width="1064" height="1219" key="find.popup/0.23.1280.777/-2560.-272.2560.1361@-2560.-272.2560.1361" timestamp="1602966285091" />
     <state x="421" y="66" width="598" height="735" key="find.popup/0.23.1440.821@0.23.1440.821" timestamp="1602929447997" />
     <state x="748" y="94" width="1064" height="1219" key="find.popup/0.23.2560.1361@0.23.2560.1361" timestamp="1603652103930" />
+    <state x="374" y="64" width="568" height="696" key="find.popup/1280.23.1366.689/0.23.1280.777@0.23.1280.777" timestamp="1604672289309" />
     <state x="385" y="168" width="670" height="676" key="search.everywhere.popup" timestamp="1603479441713">
       <screen x="0" y="23" width="1440" height="821" />
     </state>
@@ -824,6 +838,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/find_graph$graph.coverage" NAME="graph Coverage Results" MODIFIED="1596015649754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$graph.coverage" NAME="graph Coverage Results" MODIFIED="1604523352150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$graph.coverage" NAME="graph Coverage Results" MODIFIED="1604672290639" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -1,3 +1,4 @@
+import pprint
 import time
 
 from algorithms import greedy_without_consideration_algorithm, skip_algorithm, distance_algorithm, greedy_algorithm
@@ -230,11 +231,17 @@ def edge_removals(graph, name):
             increase_dict[decrease] = edge_dict[decrease]
 
         else:
-            print("edge that has not effect on polarization")
+            print("edge(s) that has not effect on polarization")
             print(edge_dict[decrease])
 
     top_decrease = edges_centralities(graph, edge_dict, 5, True)
     top_increase = edges_centralities(graph, edge_dict, 5, False)
+
+    print("=================")
+    pprint.pprint(top_decrease)
+    print("-----------------")
+    pprint.pprint(top_increase)
+    print("=================")
 
     decrease_list_for_vis = format_edge_list(top_decrease)
     increase_list_for_vis = format_edge_list(top_increase)
