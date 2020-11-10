@@ -63,3 +63,53 @@ def format_edge_list(dict_to_format):
         edge_list.append(edge)
 
     return edge_list
+
+
+def convert_dataset_to_gml(node_values_path, edges_path, name_to_save):
+
+    f = open(node_values_path, "r")
+    label_list = []
+    value_list = []
+    tuples_list = []
+
+    for x in f:
+        splitted = x.rstrip().split(",")
+        label_list.append(splitted[0])
+        value_list.append(splitted[1])
+
+    f = open(edges_path, "r")
+
+    if "ClintonTrump" not in name_to_save:
+        for x in f:
+            splitted = x.rstrip().split(",")
+            edge_1 = splitted[0]
+            edge_2 = splitted[1]
+            tuples_list.append((edge_1, edge_2))
+    else:
+        for x in f:
+            splitted = x.rstrip().split(" ")
+            edge_1 = splitted[0]
+            edge_2 = splitted[1]
+            tuples_list.append((edge_1, edge_2))
+
+    with open(f'../datasets/{name_to_save}', 'w') as the_file:
+
+        the_file.write('graph\n')
+        the_file.write('[\n')
+
+        for i, node in enumerate(label_list):
+
+            the_file.write('\tnode\n')
+            the_file.write('\t[\n')
+            the_file.write(f'\t\tid {i}\n')
+            the_file.write(f'\t\tlabel {node}\n')
+            the_file.write(f'\t\tvalue {value_list[i]}\n')
+            the_file.write('\t]\n')
+
+        for edge in tuples_list:
+            the_file.write('\tedge\n')
+            the_file.write('\t[\n')
+            the_file.write(f'\t\tsource {label_list.index(edge[0])}\n')
+            the_file.write(f'\t\ttarget {label_list.index(edge[1])}\n')
+            the_file.write('\t]\n')
+        the_file.write(']\n')

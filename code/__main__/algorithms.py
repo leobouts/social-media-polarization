@@ -13,7 +13,6 @@ def greedy_algorithm(k, graph_in):
     for i in tqdm(range(k)):
         original_polarization = get_polarization(graph)
         addition_info = {}
-        sorted_edges = []
 
         for edge in edges_to_add:
             g_copy = graph.copy()

@@ -1,4 +1,3 @@
-Creator "Lada Adamic on Tue Aug 15 2006"
 graph [
   directed 0
   multigraph 1

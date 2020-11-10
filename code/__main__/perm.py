@@ -1,14 +1,12 @@
-import random
+import itertools
 
 from tqdm import tqdm
 
-from graph_topologies import *
 from graph import get_polarization, attach_values_from_list_to_graph
-import itertools
+from graph_topologies import *
 
 
 def check_graph_permutations(number_of_vertices, graph):
-
     # make a list of nodes e.g. for 3 nodes returns [1,2,3]
     lst_nodes = [node for node in range(number_of_vertices)]
 
@@ -20,7 +18,7 @@ def check_graph_permutations(number_of_vertices, graph):
     edge_permutations = [i for i in itertools.combinations(lst_nodes, 2)]
 
     # creates all possible pairs, pairs of two, of three etc.. up to number of vertices-1
-    possible_combs = [i for i in itertools.combinations(edge_permutations, number_of_vertices-1)]
+    possible_combs = [i for i in itertools.combinations(edge_permutations, number_of_vertices - 1)]
 
     # wrap the edges addition in a tuple for compatibility issues bellow
     additions_tuple = list(zip(edge_permutations))
@@ -60,8 +58,8 @@ def check_graph_permutations(number_of_vertices, graph):
 
                 new_pol = get_polarization(g)
 
-                decrease[abs(initial_polarization-new_pol)] = {'graph': graph.name, 'values': perm,
-                                                          'edge_additions': edge_additions}
+                decrease[abs(initial_polarization - new_pol)] = {'graph': graph.name, 'values': perm,
+                                                                 'edge_additions': edge_additions}
 
                 if new_pol > initial_polarization:
                     print(nx.info(graph))
@@ -79,7 +77,6 @@ def check_graph_permutations(number_of_vertices, graph):
 
 
 def find_increase_in_graphs_with_addition():
-
     """
     finds if a graph has increased polarization after adding an edge
     between different opinions. the functions takes all the topologies
@@ -90,7 +87,6 @@ def find_increase_in_graphs_with_addition():
     """
 
     for g_type in get_all_graphs():
-
         graph = get_graph_type(g_type)
 
         topology = graph[0]
@@ -100,12 +96,12 @@ def find_increase_in_graphs_with_addition():
 
 
 def example_increase_that_confirms_intuition():
-
     graph, size = get_graph_type('intuition_graph')
     nodeDict = dict(graph.nodes(data=True))
     opinion_list = []
 
-    list_negative = [comb for comb in itertools.combinations([-0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, -1], 4)]
+    list_negative = [comb for comb in
+                     itertools.combinations([-0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, -1], 4)]
     print(len(list_negative))
     print(list_negative)
     list_positive = [comb for comb in itertools.permutations([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1], 3)]
@@ -147,7 +143,6 @@ def example_increase_that_confirms_intuition():
 
 
 def force_example(graph):
-
     nodeDict = dict(graph.nodes(data=True))
     edges_to_add = nx.non_edges(graph)
     original_polarization = get_polarization(graph)

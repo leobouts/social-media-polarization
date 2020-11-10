@@ -64,16 +64,14 @@ def visualize_edge_removal(g, edge_list, title, img_name):
                      node_size=[10000 * v for v in pr.values()],
                      width=edge_weights)
     plt.title(f'{title}')
-    plt.savefig(f'{img_name}.png', dpi=800)
+    plt.savefig(f'../figures_generated/{img_name}.png', dpi=800)
     plt.show()
 
 
-def vis_graphs_heuristics(x_axis, y_axis_0, y_axis_1, y_axis_2, y_axis_3, label_0, label_1, label_2, label_3, title, x_label, y_label):
+def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label):
 
-    plt.plot(x_axis, y_axis_0, label=label_0)
-    plt.plot(x_axis, y_axis_1, label=label_1)
-    plt.plot(x_axis, y_axis_2, label=label_2)
-    plt.plot(x_axis, y_axis_3, label=label_3)
+    for i, y_xis in enumerate(list_of_axes):
+        plt.plot(x_axis, y_xis, label=list_of_labels[i])
 
     # Add legend
     # Put a legend below current axis
@@ -88,5 +86,5 @@ def vis_graphs_heuristics(x_axis, y_axis_0, y_axis_1, y_axis_2, y_axis_3, label_
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.grid(True)
-    plt.savefig(f'{title}.eps', format='eps', dpi=1200)
+    plt.savefig(f'../figures_generated/{title}.eps', format='eps', dpi=1200)
     plt.show()

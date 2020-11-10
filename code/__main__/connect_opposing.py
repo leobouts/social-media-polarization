@@ -52,7 +52,7 @@ def brute_force_opposing_views(graph, pickle_name, verbose):
         difference[abs(initial_polarization - new_pol)] = {'addition': f"{all_pairs[i][0]}->{all_pairs[i][1]}"}
 
     # store data (serialize) into pickle file
-    with open(pickle_name, 'wb') as handle:
+    with open(f"../pickles/{pickle_name}", 'wb') as handle:
         pickle.dump(difference, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     # prints to terminal
@@ -100,7 +100,7 @@ def brute_force_all_edges_removal(graph, pickle_name, verbose):
                                                                   'addition': add}
 
     # store data (serialize) into pickle file
-    with open(pickle_name, 'wb') as handle:
+    with open(f"../pickles/{pickle_name}", 'wb') as handle:
         pickle.dump(difference, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     # prints to terminal
