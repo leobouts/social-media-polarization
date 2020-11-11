@@ -21,7 +21,6 @@ def load_graph(gml_file):
 
     :return: networkx graph
     """
-
     graph = nx.read_gml(gml_file, label='id')
 
     # make sure we convert the graph to a simple one if the data
@@ -42,16 +41,15 @@ def load_graph(gml_file):
 
     if gml_file in conservative_liberal_convert:
         # empty dictionary
-
         attrs = {}
 
         for key, value in value_dictionary.items():
             # c = conservative, l=liberal, n=neutral
 
-            if value_dictionary[key] == 'c':
+            if value_dictionary[key] == "c":
                 value_dictionary[key] = 1
 
-            elif value_dictionary[key] == 'l':
+            elif value_dictionary[key] == "l":
                 value_dictionary[key] = -1
 
             else:
@@ -117,7 +115,9 @@ def attach_values_from_list_to_graph(g, values):
 
 
 def heuristics_driver(k):
-    available_datasets = ['karate', 'books', 'polblogs', 'beefban', 'sxsw', 'ClintonTrump']
+    available_datasets = ['karate', 'books', 'polblogs', 'GermanWings', 'beefban', 'sxsw', 'ClintonTrump']
+    #available_datasets = ['ClintonTrump']
+
     results = {}
     karate_normalised = False
 
@@ -164,7 +164,7 @@ def heuristics_driver(k):
                          distance_time]
 
         list_of_labels = ["Greedy",
-                          "Greedy without consideration",
+                          "Greedy Batch",
                           "Skip",
                           "Distance"]
 
@@ -189,34 +189,34 @@ def heuristics_driver(k):
                 results[f'naive_{ds}'] = {'result_dictionary': greedy_without_results, 'time': greedy_without_elapsed,
                                           'polarization': greedy_without_polarization}
 
-            merge_start = time.time()
-            merge_results, merge_polarization = skip_algorithm(k_edges, graph)
-            merge_polarization_decrease_list.append(merge_polarization)
-            merge_end = time.time()
-            merge_elapsed = merge_end - merge_start
-            merge_time.append(merge_elapsed)
-            results[f'merge_{ds}'] = {'result_dictionary': merge_results, 'time': merge_elapsed,
-                                      'polarization': merge_polarization}
-
             if ds not in skip_merge_list:
-                distance_start = time.time()
-                distance_results, distance_polarization = distance_algorithm(k_edges, graph)
-                distance_polarization_decrease_list.append(distance_polarization)
-                distance_end = time.time()
-                distance_elapsed = distance_end - distance_start
-                distance_time.append(distance_elapsed)
-                results[f'distance_{ds}'] = {'result_dictionary': distance_results, 'time': distance_elapsed,
-                                             'polarization': distance_polarization}
+                merge_start = time.time()
+                merge_results, merge_polarization = skip_algorithm(k_edges, graph)
+                merge_polarization_decrease_list.append(merge_polarization)
+                merge_end = time.time()
+                merge_elapsed = merge_end - merge_start
+                merge_time.append(merge_elapsed)
+                results[f'merge_{ds}'] = {'result_dictionary': merge_results, 'time': merge_elapsed,
+                                          'polarization': merge_polarization}
 
-        # print(ds)
-        # print(greedy_polarization_decrease_list)
-        # print(greedy_time)
-        # print(greedy_without_polarization_decrease_list)
-        # print(greedy_without_time)
-        # print(merge_polarization_decrease_list)
-        # print(merge_time)
-        # print(distance_polarization_decrease_list)
-        # print(distance_time)
+            distance_start = time.time()
+            distance_results, distance_polarization = distance_algorithm(k_edges, graph)
+            distance_polarization_decrease_list.append(distance_polarization)
+            distance_end = time.time()
+            distance_elapsed = distance_end - distance_start
+            distance_time.append(distance_elapsed)
+            results[f'distance_{ds}'] = {'result_dictionary': distance_results, 'time': distance_elapsed,
+                                         'polarization': distance_polarization}
+
+        print(ds)
+        print(greedy_polarization_decrease_list)
+        print(greedy_time)
+        print(greedy_without_polarization_decrease_list)
+        print(greedy_without_time)
+        print(merge_polarization_decrease_list)
+        print(merge_time)
+        print(distance_polarization_decrease_list)
+        print(distance_time)
 
         empty_indexes = [i for i, x in enumerate(list_of_decreases) if not x]
 
@@ -272,25 +272,26 @@ def edge_removals(graph, name):
     visualize_edge_removal(graph, increase_list_for_vis, "Edges that had the biggest increase with removal",
                            "increase_removal")
 
-    def convert_datasets_driver():
-        base_data_dir = "/Users/leonidas/desktop/February 21/thesis/Data/"
 
-        communities_values = ["Germanwings/communities_germanwings",
-                              "Beefban/communities_beefban",
-                              "sxsw/communities_sxsw",
-                              "Elections/ClintonTrumpCommunities3000"]
+def convert_datasets_driver():
+    base_data_dir = "/Users/leonidas/desktop/February 21/thesis/Data/"
 
-        communities_connections = ["Germanwings/germanwings_followers_network_part_largest_CC",
-                                   "Beefban/beefban_followers_network_part_largest_CC",
-                                   "sxsw/sxsw_followers_network_part_largest_CC",
-                                   "Elections/ClintonTrumpEdges3000"]
+    communities_values = ["Germanwings/communities_germanwings",
+                          "Beefban/communities_beefban",
+                          "sxsw/communities_sxsw",
+                          "Elections/ClintonTrumpCommunities3000"]
 
-        names_to_save = ["GermanWings.gml", "beefban.gml", "sxsw.gml", "ClintonTrump.gml"]
+    communities_connections = ["Germanwings/germanwings_followers_network_part_largest_CC",
+                               "Beefban/beefban_followers_network_part_largest_CC",
+                               "sxsw/sxsw_followers_network_part_largest_CC",
+                               "Elections/ClintonTrumpEdges3000"]
 
-        for i in range(len(communities_values)):
-            val = base_data_dir + communities_values[i]
-            ed = base_data_dir + communities_connections[i]
-            convert_dataset_to_gml(val, ed, names_to_save[i])
+    names_to_save = ["GermanWings.gml", "beefban.gml", "sxsw.gml", "ClintonTrump.gml"]
+
+    for i in range(len(communities_values)):
+        val = base_data_dir + communities_values[i]
+        ed = base_data_dir + communities_connections[i]
+        convert_dataset_to_gml(val, ed, names_to_save[i])
 
 
 def main():
@@ -298,7 +299,7 @@ def main():
     #     convert datasets to gml             #
     # --------------------------------------- #
 
-    # convert_datasets_driver
+    convert_datasets_driver()
 
     # --------------------------------------- #
     # function that supports Lemma 3.1        #

@@ -97,19 +97,25 @@ def convert_dataset_to_gml(node_values_path, edges_path, name_to_save):
         the_file.write('graph\n')
         the_file.write('[\n')
 
+        if "ClintonTrump" in name_to_save:
+            the_file.write('  directed 0\n')
+
         for i, node in enumerate(label_list):
 
-            the_file.write('\tnode\n')
-            the_file.write('\t[\n')
-            the_file.write(f'\t\tid {i}\n')
-            the_file.write(f'\t\tlabel {node}\n')
-            the_file.write(f'\t\tvalue {value_list[i]}\n')
-            the_file.write('\t]\n')
+            the_file.write('  node\n')
+            the_file.write('  [\n')
+            the_file.write(f'    id {i}\n')
+            the_file.write(f'    label "{node}"\n')
+            if "ClintonTrump" in name_to_save:
+                the_file.write(f'    value "{value_list[i]}"\n')
+            else:
+                the_file.write(f'    value {value_list[i]}\n')
+            the_file.write('  ]\n')
 
         for edge in tuples_list:
-            the_file.write('\tedge\n')
-            the_file.write('\t[\n')
-            the_file.write(f'\t\tsource {label_list.index(edge[0])}\n')
-            the_file.write(f'\t\ttarget {label_list.index(edge[1])}\n')
-            the_file.write('\t]\n')
+            the_file.write('  edge\n')
+            the_file.write('  [\n')
+            the_file.write(f'    source {label_list.index(edge[0])}\n')
+            the_file.write(f'    target {label_list.index(edge[1])}\n')
+            the_file.write('  ]\n')
         the_file.write(']\n')
