@@ -67,7 +67,7 @@
 \setmainfont[Mapping=tex-text]{GFS Didot}
 \setsansfont{DejaVu Sans}
 
-\setmonofont[Path = /Users/leonidas/Desktop/thesis/LaTeXthesis/Template/Font/,
+\setmonofont[Path = /Users/leonidas/Desktop/February 21/thesis/LaTeXthesis/Template/Font/,
 	UprightFont    = *-R.ttf,
 	BoldFont       = *-B.ttf,
 	ItalicFont     = *-RI.ttf,
