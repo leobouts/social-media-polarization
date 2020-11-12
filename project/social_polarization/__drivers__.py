@@ -28,6 +28,8 @@ def heuristic_driver(k, datasets, algorithms):
             decrease_list = []
             time_list = []
 
+            # append initial polarization for the graph output
+            decrease_list.append(get_polarization(graph))
             for k_edges in k:
                 polarization = 0
                 results = []
@@ -60,18 +62,20 @@ def heuristic_driver(k, datasets, algorithms):
 
         decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms)
 
-        vis_graphs_heuristics(k,
+        k_copy = k.copy()
+        k_copy.insert(0, 0)
+        vis_graphs_heuristics(k_copy,
                               decreases_checked,
                               labels_checked,
                               f"{ds} Polarization Decrease",
-                              "Number of Edges",
+                              "Number of Edges Added",
                               "π(z)")
 
         vis_graphs_heuristics(k,
                               total_times,
                               algorithms,
                               f"{ds} Time Elapsed",
-                              "Number of Edges",
+                              "Number of Edges Added",
                               "Seconds")
 
     return info

@@ -49,8 +49,6 @@ def main():
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
 
-    # TODO add the initial polarization to the graph, dont add 0 here it will crash
-
     k = [1, 5, 10, 15, 20]
 
     algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME"]
