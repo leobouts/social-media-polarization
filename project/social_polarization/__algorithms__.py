@@ -1,52 +1,42 @@
-import networkx as nx
+from __compute_polarization__ import get_polarization
+from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
 from tqdm import tqdm
 
-from __compute_polarization__ import get_polarization
-from __helpers__ import add_edges_and_count_polarization
 
-
-# TODO fix non edges
 def greedy(k, graph_in):
     graph = graph_in.copy()
-    edges_to_add = list(nx.non_edges(graph))
     k_items = []
 
     for i in tqdm(range(k)):
-        original_polarization = get_polarization(graph)
-        addition_info = {}
 
-        for edge in edges_to_add:
-            g_copy = graph.copy()
-            g_copy.add_edges_from([edge])
+        edges, polarization = greedy_batch(k, graph)
 
-            polarization_after_addition = get_polarization(g_copy)
-            decrease = original_polarization - polarization_after_addition
-            addition_info[edge] = decrease
+        edge_1 = edges[0][0][0]
+        edge_2 = edges[0][0][1]
 
-        sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
-
-        k_items.append(sorted_edges[0])
-        edge_1 = sorted_edges[0][0][0]
-        edge_2 = sorted_edges[0][0][1]
         graph.add_edge(edge_1, edge_2)
-        edges_to_add.pop(edges_to_add.index((edge_1, edge_2)))
+        k_items.append((edge_1, edge_2))
 
     return k_items, get_polarization(graph)
 
 
-# TODO fix non edges
 def greedy_batch(k, graph_in):
     graph = graph_in.copy()
-    edges_to_add = nx.non_edges(graph)
+    nodeDict = dict(graph.nodes(data=True))
     original_polarization = get_polarization(graph)
     addition_info = {}
 
-    for edge in tqdm(edges_to_add):
-        g_copy = graph.copy()
-        g_copy.add_edges_from([edge])
-        polarization_after_addition = get_polarization(g_copy)
-        decrease = original_polarization - polarization_after_addition
-        addition_info[edge] = decrease
+    positive_dictionary, negative_dictionary = get_positive_and_negative_values(nodeDict)
+
+    for i, node_pos in enumerate(positive_dictionary):
+        for j, node_neg in enumerate(negative_dictionary):
+
+            edge_to_add = (node_pos[0], node_neg[0])
+            g_copy = graph.copy()
+            g_copy.add_edges_from([edge_to_add])
+            polarization_after_addition = get_polarization(g_copy)
+            decrease = original_polarization - polarization_after_addition
+            addition_info[edge_to_add] = decrease
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
@@ -55,9 +45,6 @@ def greedy_batch(k, graph_in):
     edges_to_add_list = [edge[0] for edge in k_items]
     polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
 
-    if not polarization:
-        print('bruh wtf')
-
     return k_items, polarization
 
 
@@ -65,20 +52,9 @@ def skip(k, graph_in):
     graph = graph_in.copy()
 
     nodeDict = dict(graph.nodes(data=True))
-    positive_dictionary = {}
-    negative_dictionary = {}
+    positive_dictionary, negative_dictionary = get_positive_and_negative_values(nodeDict)
 
     first_pass_polarization = []
-
-    for node in nodeDict:
-        node_value = nodeDict[node]['value']
-        if node_value > 0:
-            positive_dictionary[node] = node_value
-        else:
-            negative_dictionary[node] = node_value
-
-    positive_dictionary = sorted(positive_dictionary.items(), key=lambda x: x[1], reverse=True)
-    negative_dictionary = sorted(negative_dictionary.items(), key=lambda x: x[1], reverse=True)
 
     first_of_negative = negative_dictionary[0][0]
 
@@ -116,18 +92,7 @@ def skip(k, graph_in):
 def distance(k, graph_in):
     graph = graph_in.copy()
     nodeDict = dict(graph.nodes(data=True))
-    positive_dictionary = {}
-    negative_dictionary = {}
-
-    for node in nodeDict:
-        node_value = nodeDict[node]['value']
-        if node_value > 0:
-            positive_dictionary[node] = node_value
-        else:
-            negative_dictionary[node] = node_value
-
-    positive_dictionary = sorted(positive_dictionary.items(), key=lambda x: x[1], reverse=True)
-    negative_dictionary = sorted(negative_dictionary.items(), key=lambda x: x[1], reverse=True)
+    positive_dictionary, negative_dictionary = get_positive_and_negative_values(nodeDict)
 
     edges_to_add_list = []
 
@@ -158,10 +123,8 @@ def distance(k, graph_in):
                 return edges_to_add_list, polarization
 
 
-# TODO fix non edges
 def expressed(k, graph_in, mode):
     """
-
     :param k:
     :param graph_in:
     :param mode: 1 for distance, 2 for multiplication
@@ -169,26 +132,31 @@ def expressed(k, graph_in, mode):
     """
     graph = graph_in.copy()
     nodeDict = dict(graph.nodes(data=True))
-    edges_to_add = nx.non_edges(graph)
     addition_info = {}
 
-    for edge in tqdm(edges_to_add):
-        g_copy = graph.copy()
-        g_copy.add_edges_from([edge])
-        node_1 = nodeDict[edge[0]]['value']
-        node_2 = nodeDict[edge[1]]['value']
+    positive_dictionary, negative_dictionary = get_positive_and_negative_values(nodeDict)
 
-        if mode == 1:
-            val = abs(node_1 - node_2)
-        else:
-            val = node_1 * node_2
+    for i, node_pos in enumerate(positive_dictionary):
+        for j, node_neg in enumerate(negative_dictionary):
 
-        addition_info[edge] = val
+            edge_to_add = (node_pos[0], node_neg[0])
 
-        if mode == 1:
-            flag = True
-        else:
-            flag = False
+            g_copy = graph.copy()
+            g_copy.add_edges_from([edge_to_add])
+            node_1 = nodeDict[node_pos[0]]['value']
+            node_2 = nodeDict[node_neg[0]]['value']
+
+            if mode == 1:
+                val = abs(node_1 - node_2)
+            else:
+                val = node_1 * node_2
+
+            addition_info[edge_to_add] = val
+
+            if mode == 1:
+                flag = True
+            else:
+                flag = False
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=flag)
 

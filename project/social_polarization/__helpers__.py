@@ -234,13 +234,14 @@ def check_for_same_results(total_decreases, algorithms):
 
     new_list_decreases = []
     algorithms_new = []
+    last_flag = True
 
     for i in range(len(algorithms)):
-        for j in range(len(algorithms)):
-
+        for j in range(i, len(algorithms)):
             if i == j:
                 continue
             if total_decreases[i] == total_decreases[j]:
+                last_flag = False
                 new_list_decreases = total_decreases.copy()
                 new_list_decreases.remove(total_decreases[i])
 
@@ -249,6 +250,27 @@ def check_for_same_results(total_decreases, algorithms):
                 algorithms_new[j] = new_label
 
                 algorithms_new.remove(algorithms[i])
-                check_for_same_results(new_list_decreases, algorithms_new)
+                new_list_decreases, algorithms_new = check_for_same_results(new_list_decreases, algorithms_new)
 
-    return new_list_decreases, algorithms_new
+    if last_flag:
+        return total_decreases, algorithms
+    else:
+        return new_list_decreases, algorithms_new
+
+
+def get_positive_and_negative_values(nodeDict):
+
+    positive_dictionary = {}
+    negative_dictionary = {}
+
+    for node in nodeDict:
+        node_value = nodeDict[node]['value']
+        if node_value > 0:
+            positive_dictionary[node] = node_value
+        else:
+            negative_dictionary[node] = node_value
+
+    positive_dictionary = sorted(positive_dictionary.items(), key=lambda x: x[1], reverse=True)
+    negative_dictionary = sorted(negative_dictionary.items(), key=lambda x: x[1], reverse=True)
+
+    return positive_dictionary, negative_dictionary
