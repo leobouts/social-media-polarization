@@ -2,6 +2,7 @@ from __drivers__ import *
 
 
 def main():
+
     # --------------------------------------- #
     #     convert datasets to gml             #
     # --------------------------------------- #
@@ -51,8 +52,8 @@ def main():
 
     k = [1, 5, 10, 15, 20]
 
-    algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME"]
-    datasets = ["karate"]
+    algorithms = ["Distance"]
+    datasets = ["polblogs"]
     heuristic_driver(k, datasets, algorithms)
 
     # heuristic_driver(k, ["sxsw", "ClintonTrump", "GermanWings"], ["Distance"])
@@ -70,15 +71,6 @@ def main():
     # --------------------------------------- #
 
     # edge_removals_driver(graph, name)
-
-    # costly brute force, polblogs dataset needs arround 200 hours to check, karate is ok.
-    # find biggest and smallest decrease of nodes after adding an edge.
-    # However this measures the state of the nodes and not the edges.
-    # decreasing_dictionary = brute_force_opposing_views(graph, f'{name}.pickle', 0)
-    # top_decrease, small_decrease = centralities(graph, decreasing_dictionary, 5)
-
-    # visualize_graph(graph, top_decrease, small_decrease, 'addition')
-    # print(top_decrease)
 
 
 if __name__ == "__main__":

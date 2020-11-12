@@ -229,8 +229,12 @@ def check_for_same_results(total_decreases, algorithms):
     :return: merged list for visualisation and labels
     """
 
+    if range(len(algorithms) == 1):
+        return total_decreases, algorithms
+
     new_list_decreases = []
     algorithms_new = []
+
     for i in range(len(algorithms)):
         for j in range(len(algorithms)):
 

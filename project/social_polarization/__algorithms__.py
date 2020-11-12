@@ -5,6 +5,7 @@ from __compute_polarization__ import get_polarization
 from __helpers__ import add_edges_and_count_polarization
 
 
+# TODO fix non edges
 def greedy(k, graph_in):
     graph = graph_in.copy()
     edges_to_add = list(nx.non_edges(graph))
@@ -33,6 +34,7 @@ def greedy(k, graph_in):
     return k_items, get_polarization(graph)
 
 
+# TODO fix non edges
 def greedy_batch(k, graph_in):
     graph = graph_in.copy()
     edges_to_add = nx.non_edges(graph)
@@ -156,6 +158,7 @@ def distance(k, graph_in):
                 return edges_to_add_list, polarization
 
 
+# TODO fix non edges
 def expressed(k, graph_in, mode):
     """
 

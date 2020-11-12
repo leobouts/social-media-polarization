@@ -64,6 +64,7 @@ def heuristic_driver(k, datasets, algorithms):
 
         k_copy = k.copy()
         k_copy.insert(0, 0)
+
         vis_graphs_heuristics(k_copy,
                               decreases_checked,
                               labels_checked,
