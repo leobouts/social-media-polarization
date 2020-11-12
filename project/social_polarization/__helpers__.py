@@ -216,3 +216,35 @@ def print_res(nodes, closeness_c, betweenness_c, eigen_c, mode):
     print(eigen_c)
     print("Norm:")
     print(linear_algebra.norm(eigen_c))
+
+
+def check_for_same_results(total_decreases, algorithms):
+    """
+    This function merges all same polarization decreases in one, for example
+    if two algorithms have the exact same decrease list then this will merge them
+    and also merge its labels so it can be visualized correctly
+
+    :param total_decreases: list of lists that contain polarization decreases
+    :param algorithms: list of string labels
+    :return: merged list for visualisation and labels
+    """
+
+    new_list_decreases = []
+    algorithms_new = []
+    for i in range(len(algorithms)):
+        for j in range(len(algorithms)):
+
+            if i == j:
+                continue
+            if total_decreases[i] == total_decreases[j]:
+                new_list_decreases = total_decreases.copy()
+                new_list_decreases.remove(total_decreases[i])
+
+                algorithms_new = algorithms.copy()
+                new_label = algorithms[i] + " and " + algorithms[j]
+                algorithms_new[j] = new_label
+
+                algorithms_new.remove(algorithms[i])
+                check_for_same_results(new_list_decreases, algorithms_new)
+
+    return new_list_decreases, algorithms_new

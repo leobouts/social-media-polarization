@@ -3,7 +3,7 @@ import time
 from __algorithms__ import *
 from connect_opposing import brute_force_all_edges_removal
 from __load_graph_data__ import load_graph
-from __helpers__ import convert_dataset_to_gml, format_edge_list
+from __helpers__ import convert_dataset_to_gml, format_edge_list, check_for_same_results
 from __graph_properties__ import edges_centralities
 from __visualize__ import vis_graphs_heuristics, visualize_edge_removal
 
@@ -58,9 +58,11 @@ def heuristic_driver(k, datasets, algorithms):
             total_decreases.append(decrease_list)
             total_times.append(time_list)
 
+        decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms)
+
         vis_graphs_heuristics(k,
-                              total_decreases,
-                              algorithms,
+                              decreases_checked,
+                              labels_checked,
                               f"{ds} Polarization Decrease",
                               "Number of Edges",
                               "π(z)")

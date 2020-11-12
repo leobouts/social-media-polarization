@@ -2,6 +2,7 @@ from __drivers__ import *
 
 
 def main():
+
     # --------------------------------------- #
     #     convert datasets to gml             #
     # --------------------------------------- #
@@ -28,13 +29,22 @@ def main():
     # --------------------------------------- #
     #     Heuristics experiment               #
     # --------------------------------------- #
+    #                                         #
+    #     Available Algorithms:               #
+    #     1) Greedy                           #
+    #     2) Greedy_Batch                     #
+    #     3) Skip                             #
+    #     4) Distance                         #
+    #     5) Distance_Missing                 #
+    #     6) Multiplication_Missing           #
+    # --------------------------------------- #
 
     k = [1, 5, 10, 15, 20]
-    algorithms = ["Skip", "Distance"]
+
+    algorithms = ["Distance_Missing", "Multiplication_Missing"]
     datasets = ["karate", "books"]
 
     heuristic_driver(k, datasets, algorithms)
-    #heuristic_driver(k, ["karate", "books"], ["Skip"])
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #
