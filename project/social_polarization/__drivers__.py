@@ -35,15 +35,15 @@ def heuristic_driver(k, datasets, algorithms):
                 start = time.time()
                 if algorithm == 'Greedy':
                     results, polarization = greedy(k_edges, graph)
-                elif algorithm == 'Greedy_Batch':
+                elif algorithm == 'GBatch':
                     results, polarization = greedy_batch(k_edges, graph)
                 elif algorithm == 'Skip':
                     results, polarization = skip(k_edges, graph)
                 elif algorithm == 'Distance':
                     results, polarization = distance(k_edges, graph)
-                elif algorithm == 'Distance_Missing':
+                elif algorithm == 'DME':
                     results, polarization = expressed(k_edges, graph, 1)
-                elif algorithm == 'Multiplication_Missing':
+                elif algorithm == 'MME':
                     results, polarization = expressed(k_edges, graph, 1)
 
                 decrease_list.append(polarization)
