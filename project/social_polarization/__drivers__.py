@@ -17,13 +17,14 @@ def heuristic_driver(k, datasets, algorithms):
      the this key to store informattion ---> info[{algorithm}_{dataset}_{edges}] = {...}
     """
     info = {}
-
+    print("============================================")
     for ds in datasets:
         graph = load_graph(f'../datasets/{ds}.gml')
         total_decreases = []
         total_times = []
 
         for algorithm in algorithms:
+            print(f'\r Now in --> Dataset: {ds}, algorithm: {algorithm}', end='', flush=True)
 
             decrease_list = []
             time_list = []
@@ -60,7 +61,7 @@ def heuristic_driver(k, datasets, algorithms):
             total_decreases.append(decrease_list)
             total_times.append(time_list)
 
-        decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms)
+        decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms, 1)
 
         k_copy = k.copy()
         k_copy.insert(0, 0)
@@ -70,14 +71,19 @@ def heuristic_driver(k, datasets, algorithms):
                               labels_checked,
                               f"{ds} Polarization Decrease",
                               "Number of Edges Added",
-                              "π(z)")
+                              "π(z)",
+                              0)
+
+        times_checked, time_labels_checked = check_for_same_results(total_times, algorithms, 0)
 
         vis_graphs_heuristics(k,
-                              total_times,
-                              algorithms,
+                              times_checked,
+                              time_labels_checked,
                               f"{ds} Time Elapsed",
                               "Number of Edges Added",
-                              "Seconds")
+                              "Seconds",
+                              1)
+    print("=================================")
 
     return info
 

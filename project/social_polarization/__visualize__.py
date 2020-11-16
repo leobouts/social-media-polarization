@@ -68,10 +68,10 @@ def visualize_edge_removal(g, edge_list, title, img_name):
     plt.show()
 
 
-def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label):
-
+def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
     for i, y_xis in enumerate(list_of_axes):
-        plt.plot(x_axis, y_xis, label=list_of_labels[i])
+        ls = ['-', '--', '-.', ':'][i % 4]
+        plt.plot(x_axis, y_xis, label=list_of_labels[i], linestyle=ls)
 
     # Add legend
     # Put a legend below current axis
@@ -81,7 +81,10 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     # Add title and x, y labels
     plt.title(title, fontsize=16, fontweight='bold')
 
+    maximum_of_values = max([sublist[-1] for sublist in list_of_axes])
     plt.xticks(x_axis)
+    if mode == 1:
+        plt.yticks(np.arange(0, maximum_of_values, 0.3))
 
     plt.xlabel(x_label)
     plt.ylabel(y_label)

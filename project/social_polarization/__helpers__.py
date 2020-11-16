@@ -218,7 +218,7 @@ def print_res(nodes, closeness_c, betweenness_c, eigen_c, mode):
     print(linear_algebra.norm(eigen_c))
 
 
-def check_for_same_results(total_decreases, algorithms):
+def check_for_same_results(total_decreases, algorithms, mode):
     """
     This function merges all same polarization decreases in one, for example
     if two algorithms have the exact same decrease list then this will merge them
@@ -226,6 +226,7 @@ def check_for_same_results(total_decreases, algorithms):
 
     :param total_decreases: list of lists that contain polarization decreases
     :param algorithms: list of string labels
+    :param mode: 0 for time graphs, 1 for polarization graphs
     :return: merged list for visualisation and labels
     """
 
@@ -240,7 +241,20 @@ def check_for_same_results(total_decreases, algorithms):
         for j in range(i, len(algorithms)):
             if i == j:
                 continue
-            if total_decreases[i] == total_decreases[j]:
+
+            check = 0
+
+            if mode == 1:
+                if total_decreases[i] == total_decreases[j]:
+                    check = 1
+            else:
+                sum_1 = sum(total_decreases[i])
+                sum_2 = sum(total_decreases[j])
+                equal_range = 0.45
+                if sum_1 + equal_range > sum_2 > sum_1 - equal_range:
+                    check = 1
+
+            if check:
                 last_flag = False
                 new_list_decreases = total_decreases.copy()
                 new_list_decreases.remove(total_decreases[i])
@@ -250,7 +264,7 @@ def check_for_same_results(total_decreases, algorithms):
                 algorithms_new[j] = new_label
 
                 algorithms_new.remove(algorithms[i])
-                new_list_decreases, algorithms_new = check_for_same_results(new_list_decreases, algorithms_new)
+                new_list_decreases, algorithms_new = check_for_same_results(new_list_decreases, algorithms_new, mode)
 
     if last_flag:
         return total_decreases, algorithms
@@ -259,7 +273,6 @@ def check_for_same_results(total_decreases, algorithms):
 
 
 def get_positive_and_negative_values(nodeDict):
-
     positive_dictionary = {}
     negative_dictionary = {}
 

@@ -1,14 +1,12 @@
 from __compute_polarization__ import get_polarization
 from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
-from tqdm import tqdm
 
 
 def greedy(k, graph_in):
     graph = graph_in.copy()
     k_items = []
 
-    for i in tqdm(range(k)):
-
+    for i in range(k):
         edges, polarization = greedy_batch(k, graph)
 
         edge_1 = edges[0][0][0]
@@ -32,6 +30,10 @@ def greedy_batch(k, graph_in):
         for j, node_neg in enumerate(negative_dictionary):
 
             edge_to_add = (node_pos[0], node_neg[0])
+
+            if graph.has_edge(*edge_to_add):
+                continue
+
             g_copy = graph.copy()
             g_copy.add_edges_from([edge_to_add])
             polarization_after_addition = get_polarization(g_copy)
@@ -72,6 +74,9 @@ def skip(k, graph_in):
 
             edge_to_add = (node_pos[0], node_neg[0])
 
+            if graph.has_edge(*edge_to_add):
+                continue
+
             if i == len(positive_dictionary):
                 polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
                 return edges_to_add_list, polarization
@@ -103,6 +108,9 @@ def distance(k, graph_in):
 
             node_neg_value = node_neg[1]
             edge_to_add = (node_pos[0], node_neg[0])
+
+            if graph.has_edge(*edge_to_add):
+                continue
 
             if i == len(positive_dictionary):
                 polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
@@ -140,6 +148,9 @@ def expressed(k, graph_in, mode):
         for j, node_neg in enumerate(negative_dictionary):
 
             edge_to_add = (node_pos[0], node_neg[0])
+
+            if graph.has_edge(*edge_to_add):
+                continue
 
             g_copy = graph.copy()
             g_copy.add_edges_from([edge_to_add])

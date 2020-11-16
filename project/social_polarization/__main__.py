@@ -53,8 +53,9 @@ def main():
     k = [1, 5, 10, 15, 20]
 
     algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME"]
-    datasets = ["karate"]
-    heuristic_driver(k, datasets, algorithms)
+
+    datasets = ["sxsw", "ClintonTrump", "GermanWings"]
+    heuristic_driver(k, ["karate", "books"], algorithms)
 
     # heuristic_driver(k, ["sxsw", "ClintonTrump", "GermanWings"], ["Distance"])
     # heuristic_driver(k, ["beefban", "polblogs"], ["Skip", "Distance"])
