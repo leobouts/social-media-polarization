@@ -250,7 +250,7 @@ def check_for_same_results(total_decreases, algorithms, mode):
             else:
                 sum_1 = sum(total_decreases[i])
                 sum_2 = sum(total_decreases[j])
-                equal_range = 0.45
+                equal_range = 0.3
                 if sum_1 + equal_range > sum_2 > sum_1 - equal_range:
                     check = 1
 
