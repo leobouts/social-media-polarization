@@ -10,11 +10,21 @@ In this section we consider datasets that are separated in two opposing communit
 
   \item The Karate dataset, that represents the friendships between the members of a karate club at a US university. This network is split in two equal size polarized communities around two rival karate instructors.
   
-  \item The Books dataset, that is a network of US politics books. These books were published near the 2004 presidential election and sold by Amazon.com . These Books are classified as "Liberal", "Conservative", or "Neutral".
+  \item The Books dataset, that is a network of US politics books. These books were published near the 2004 presidential election and sold by Amazon.com . These Books are classified as "Liberal", "Conservative", or "Neutral".  There are in total 43 liberal books, 49 conservative and 13 neutral.
   
-  \item The Blogs dataset. A network of hyperlinks between online blogs on US politics.
+  \item The Blogs dataset, a network of hyperlinks between online blogs on US politics. Blogs are classified as either Liberal or Conservative.
   
+  \item The Elections dataset, this dataset is the network between the Twitter followers of Hillary Clinton and Donald Trump collected in the period 15/12/2016-15/01/2017 – around the time of the 2016 presidential elections. Members of this network are assigned an internal opinion of 1 or -1 based on which one of the two candidates they follow. We took a subsampled portion that has be done by Matakos, et al. !!cite here!!
+  
+  \item The beefban dataset, a  hashtag that Twitter users used in March 2015 to signal that their posts referred to a decision by the Indian government about the consumption of beef meat in India.
+  
+  \item The GermanWings dataset, a  hashtag that Twitter users used after the crash of Germanwings Flight 9525.
+  
+  \item The SXSW dataset, a hashtag that Twitter users used about the SXSW conference.
+
 \end{enumerate}
+
+
 \section{Experiments with heuristics}
 \label{sec:experimHeuristics}
 
@@ -60,12 +70,126 @@ In this section we consider datasets that are separated in two opposing communit
 
 \subsection{Heuristics in the Polblogs dataset}
 \subsection{Heuristics in the Beefban dataset}
+
 \subsection{Heuristics in the GermanWings dataset}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/GermanWings Polarization Decrease}
+	\caption{Heuristic comparison of the decrease in Books}
+	\label{fig:germanwings_pol}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/GermanWings Time Elapsed}
+	\caption{Heuristic comparison of time in Books}
+	\label{fig:germanwings_time}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/GermanWings Polarization Decrease 2}
+	\caption{Heuristic comparison of the decrease in Books}
+	\label{fig:germanwings_pol}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/GermanWings Time Elapsed 2}
+	\caption{Heuristic comparison of time in Books}
+	\label{fig:germanwings_time}
+\end{figure}
+\clearpage
+
+
 \subsection{Heuristics in the ClintonTrump dataset}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/ClintonTrump Polarization Decrease}
+	\caption{Heuristic comparison of the decrease in Books}
+	\label{fig:ClintonTrump_pol}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/ClintonTrump Time Elapsed}
+	\caption{Heuristic comparison of time in Books}
+	\label{fig:ClintonTrump_time}
+\end{figure}
+\clearpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/ClintonTrump Polarization Decrease 2}
+	\caption{Heuristic comparison of the decrease in Books}
+	\label{fig:ClintonTrump_pol}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/ClintonTrump Time Elapsed 2}
+	\caption{Heuristic comparison of time in Books}
+	\label{fig:ClintonTrump_time}
+\end{figure}
+\clearpage
+
+
 \subsection{Heuristics in the SXSW dataset}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/sxsw Polarization Decrease}
+	\caption{Heuristic comparison of the decrease in Books}
+	\label{fig:sxsw_pol}
+\end{figure}
 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/sxsw Time Elapsed}
+	\caption{Heuristic comparison of time in Books}
+	\label{fig:sxsw_time}
+\end{figure}
 
+\clearpage
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/sxsw Polarization Decrease 2}
+	\caption{Heuristic comparison of the decrease in Books}
+	\label{fig:sxsw_pol}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/sxsw Time Elapsed 2}
+	\caption{Heuristic comparison of time in Books}
+	\label{fig:sxsw_time}
+\end{figure}
+
+\clearpage
+
+\subsection{Remarks about the experiments}
+
+All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE.
+\\
+\\
+ We can only experiment with the karate and the books dataset on all the heuristics. The rest of the datasets would need much more time as they contain thousands of nodes. In more detail, the greedy algorithm needs to consider the changes in the network structure so it is impossible to compute the polarization so many times.
+\\
+\\ 
+This holds not only for the change of the structure but also in all the heuristics that need to compute $\pi(z)$. The same applies for the missing edges algorithms. The set of edges that is required to be explored increases dramatically as the number of nodes gets bigger. 
+\\
+\\
+Only the Distance heuristic can run in a sensible time but provide us with a small decrease in polarization. This decrease can be greater if we consider a bigger number of edge additions that are proportional with the number of edges added on the smaller datasets. 
+\\
+\\
+Experiments that had similar results in terms of polarization or time, in the karate and books dataset, were grouped together in a way that the graphs are readable. The time results of the greedy algorithm after the first additions are omitted so the rest of the data can be shown properly.
 
 \section{Polarization in a complete graph}
 \label{sec:fullgraph}

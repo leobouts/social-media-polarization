@@ -1,5 +1,6 @@
 import pprint
 import time
+
 from __algorithms__ import *
 from connect_opposing import brute_force_all_edges_removal
 from __load_graph_data__ import load_graph
@@ -17,7 +18,7 @@ def heuristic_driver(k, datasets, algorithms):
      the this key to store informattion ---> info[{algorithm}_{dataset}_{edges}] = {...}
     """
     info = {}
-    print("============================================")
+    print("===============================================")
     for ds in datasets:
         graph = load_graph(f'../datasets/{ds}.gml')
         total_decreases = []
@@ -83,7 +84,7 @@ def heuristic_driver(k, datasets, algorithms):
                               "Number of Edges Added",
                               "Seconds",
                               1)
-    print("=================================")
+    print("\r Finished.")
 
     return info
 

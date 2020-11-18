@@ -50,12 +50,13 @@ def main():
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
 
-    k = [1, 5, 10, 15, 20]
+    k = [1000, 1200, 1400, 1600, 1800]
 
     algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME"]
+    algorithms1 = ["Distance"]
 
     datasets = ["sxsw", "ClintonTrump", "GermanWings"]
-    heuristic_driver(k, ["karate", "books"], algorithms)
+    heuristic_driver(k, datasets, algorithms1)
 
     # heuristic_driver(k, ["sxsw", "ClintonTrump", "GermanWings"], ["Distance"])
     # heuristic_driver(k, ["beefban", "polblogs"], ["Skip", "Distance"])

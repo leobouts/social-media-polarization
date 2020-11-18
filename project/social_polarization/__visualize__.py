@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import pandas as pd
+import math
 
 
 def visualize_edge_removal(g, edge_list, title, img_name):
@@ -83,12 +84,14 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
 
     maximum_of_values = max([sublist[-1] for sublist in list_of_axes])
     plt.xticks(x_axis)
+    maximum_of_greedy = max(list_of_axes[0])
+    minimum_of_greedy = min(list_of_axes[0])
 
     # adjust values here according to dataset
-
-    if mode == 1:
-        plt.yticks(np.arange(0, maximum_of_values, 0.3))
-        plt.ylim(0, maximum_of_values * 0.5)
+    #if mode == 1:
+        # math.ceil(minimum_of_greedy/2)
+        #plt.yticks(np.arange(0, maximum_of_greedy+1, 4))
+        #plt.ylim(0, round(minimum_of_greedy+25))
 
     plt.xlabel(x_label)
     plt.ylabel(y_label)
