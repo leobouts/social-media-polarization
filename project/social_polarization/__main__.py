@@ -56,7 +56,7 @@ def main():
     algorithms1 = ["Distance"]
 
     datasets = ["karate"]
-    info = heuristic_driver(k, datasets, algorithms)
+    info = heuristic_driver(k, datasets, ["Greedy"])
 
     ######################################################################
     # to Access information returned by edge additions                   #
@@ -74,7 +74,7 @@ def main():
     # visualize graph edges, mode = 1 addition, = 0 removal   #
     # ------------------------------------------------------- #
 
-    visualize_edge(graph, edge_list, "top-10 edge addition from Greedy",
+    visualize_edge(graph.copy(), edge_list, "top-10 edge addition from Greedy",
                    "top-10_greedy", 1)
 
     # --------------------------------------- #
@@ -88,7 +88,7 @@ def main():
     #              edge removals              #
     # --------------------------------------- #
 
-    # edge_removals_driver(graph, name)
+    #edge_removals_driver(graph, name)
 
 
 if __name__ == "__main__":
