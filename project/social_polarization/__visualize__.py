@@ -5,13 +5,14 @@ import pandas as pd
 import math
 
 
-def visualize_edge_removal(g, edge_list, title, img_name):
+def visualize_edge(g, edge_list, title, img_name, mode):
     """
-    :param g:
-    :param dictionary:
-    :param title:
-    :param img_name:
-    :return:
+    :param g: networkx graph
+    :param edge_list: edges that are removed or added
+    :param title: title we want the graph to have
+    :param img_name: name of the image to be saved
+    :param mode: 0 = removal, 1 = addition
+    :return: visualization of addition/removal of edges
     """
 
     tuples = []
@@ -44,7 +45,10 @@ def visualize_edge_removal(g, edge_list, title, img_name):
     pos = nx.nx_agraph.graphviz_layout(g, prog='twopi')
     for edge in g.edges:
         if edge in tuples:
-            edge_colors.append('#ff5255')
+            if mode:
+                node_colors.append('#00c08a')
+            else:
+                edge_colors.append('#ff5255')
             edge_weights.append(2.5)
         else:
             edge_colors.append('black')

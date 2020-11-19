@@ -6,7 +6,7 @@ from connect_opposing import brute_force_all_edges_removal
 from __load_graph_data__ import load_graph
 from __helpers__ import convert_dataset_to_gml, format_edge_list, check_for_same_results
 from __graph_properties__ import edges_centralities
-from __visualize__ import vis_graphs_heuristics, visualize_edge_removal
+from __visualize__ import *
 
 
 def heuristic_driver(k, datasets, algorithms):
@@ -139,7 +139,7 @@ def edge_removals_driver(graph, name):
     decrease_list_for_vis = format_edge_list(top_decrease)
     increase_list_for_vis = format_edge_list(top_increase)
 
-    visualize_edge_removal(graph, decrease_list_for_vis, "Edges that had the biggest decrease with removal",
-                           "decrease_removal")
-    visualize_edge_removal(graph, increase_list_for_vis, "Edges that had the biggest increase with removal",
-                           "increase_removal")
+    visualize_edge(graph, decrease_list_for_vis, "Edges that had the biggest decrease with removal",
+                   "decrease_removal", 0)
+    visualize_edge(graph, increase_list_for_vis, "Edges that had the biggest increase with removal",
+                   "increase_removal", 0)

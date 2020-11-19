@@ -30,9 +30,9 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    # name = 'sxsw'
-    # graph = load_graph(f'../datasets/{name}.gml')
-    # print(get_polarization(graph))
+    name = 'karate'
+    graph = load_graph(f'../datasets/{name}.gml')
+    print(get_polarization(graph))
 
     # --------------------------------------- #
     #     Heuristics experiment               #
@@ -50,16 +50,32 @@ def main():
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
 
-    k = [1000, 1200, 1400, 1600, 1800]
+    k = [5, 10, 15, 20]
 
     algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME"]
     algorithms1 = ["Distance"]
 
-    datasets = ["sxsw", "ClintonTrump", "GermanWings"]
-    heuristic_driver(k, datasets, algorithms1)
+    datasets = ["karate"]
+    info = heuristic_driver(k, datasets, algorithms)
 
-    # heuristic_driver(k, ["sxsw", "ClintonTrump", "GermanWings"], ["Distance"])
-    # heuristic_driver(k, ["beefban", "polblogs"], ["Skip", "Distance"])
+    ######################################################################
+    # to Access information returned by edge additions                   #
+    # you have to specify this : info['{algorithm}_{ds}_{k_edges}'][x]   #
+    # where x can be 'result_dictionary', 'time', 'polarization'         #
+    ######################################################################
+
+    edge_list = (info['Greedy_karate_10']['result_dictionary'])
+
+    # convert the tuple list into the format that visualize_edge takes
+
+    edge_list = [f'{e[0]},{e[1]}' for e in edge_list]
+
+    # ------------------------------------------------------- #
+    # visualize graph edges, mode = 1 addition, = 0 removal   #
+    # ------------------------------------------------------- #
+
+    visualize_edge(graph, edge_list, "top-10 edge addition from Greedy",
+                   "top-10_greedy", 1)
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #
