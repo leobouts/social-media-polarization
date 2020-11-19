@@ -33,32 +33,30 @@ def visualize_edge(g, edge_list, title, img_name, mode):
         else:
             node_colors.append('#ffb74b')
 
-    # create edges to add
+    # create edges as a tuple
     for i in range(len(edge_list)):
         edge_splitted = edge_list[i].split(",")
         tuples.append((int(edge_splitted[0]), int(edge_splitted[1])))
 
+    tuples = [tuple(sorted(tup)) for tup in tuples]
     g.add_edges_from(tuples)
 
+    print(g.edges)
+    print(tuples)
     # keep same layout
     # pos = nx.spring_layout(g_top, scale=15)
     pos = nx.nx_agraph.graphviz_layout(g, prog='twopi')
-    if mode:
-        for edge in g.edges+tuples:
-            if edge in tuples:
+
+    for edge in g.edges:
+        if edge in tuples:
+            if mode:
                 edge_colors.append('#00c08a')
-                edge_weights.append(2.5)
             else:
-                edge_colors.append('black')
-                edge_weights.append(0.7)
-    else:
-        for edge in g.edges:
-            if edge in tuples:
                 edge_colors.append('#ff5255')
-                edge_weights.append(2.5)
-            else:
-                edge_colors.append('black')
-                edge_weights.append(0.7)
+            edge_weights.append(2.5)
+        else:
+            edge_colors.append('black')
+            edge_weights.append(0.7)
 
     # bigger nodes -> more central
     pr = nx.pagerank(g)
