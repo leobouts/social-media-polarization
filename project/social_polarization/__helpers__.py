@@ -46,6 +46,10 @@ def open_pickles(pickle_name):
         pprint.pprint(sorted(edge_dictionary))
 
 
+def format_edge_list_from_tuples(edge_list):
+    return [f'{e[0]},{e[1]}' for e in edge_list]
+
+
 def format_edge_list(dict_to_format):
     """
     :param dict_to_format: dictionary of type
@@ -287,3 +291,7 @@ def get_positive_and_negative_values(nodeDict):
     negative_dictionary = sorted(negative_dictionary.items(), key=lambda x: x[1], reverse=True)
 
     return positive_dictionary, negative_dictionary
+
+
+def get_dataset_statistics(g):
+    return nx.info(g)

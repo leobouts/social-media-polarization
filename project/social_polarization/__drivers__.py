@@ -4,7 +4,7 @@ import time
 from __algorithms__ import *
 from connect_opposing import brute_force_all_edges_removal
 from __load_graph_data__ import load_graph
-from __helpers__ import convert_dataset_to_gml, format_edge_list, check_for_same_results
+from __helpers__ import convert_dataset_to_gml, format_edge_list, check_for_same_results, get_dataset_statistics
 from __graph_properties__ import edges_centralities
 from __visualize__ import *
 
@@ -143,3 +143,23 @@ def edge_removals_driver(graph, name):
                    "decrease_removal", 0)
     visualize_edge(graph, increase_list_for_vis, "Edges that had the biggest increase with removal",
                    "increase_removal", 0)
+
+
+def dataset_statistics_driver(datasets, verbose):
+
+    info = {}
+
+    for ds in datasets:
+        graph = load_graph(f'../datasets/{ds}.gml')
+        polarization = get_polarization(graph)
+        stats = get_dataset_statistics(graph)
+
+        if verbose:
+            print(stats)
+            print("Polarization:", end='')
+            print(polarization)
+            print("---------------------")
+
+        info[ds] = {'polarization': polarization, 'info': stats}
+
+    return info

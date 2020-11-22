@@ -1,8 +1,8 @@
 from __drivers__ import *
+from __helpers__ import format_edge_list_from_tuples
 
 
 def main():
-
     # --------------------------------------- #
     #     convert datasets to gml             #
     # --------------------------------------- #
@@ -32,7 +32,6 @@ def main():
 
     name = 'karate'
     graph = load_graph(f'../datasets/{name}.gml')
-    print(get_polarization(graph))
 
     # --------------------------------------- #
     #     Heuristics experiment               #
@@ -51,12 +50,10 @@ def main():
     # --------------------------------------- #
 
     k = [5, 10, 15, 20]
-
     algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME"]
-    algorithms1 = ["Distance"]
+    datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    datasets = ["karate"]
-    info = heuristic_driver(k, datasets, ["Greedy"])
+    # info = heuristic_driver(k, datasets, ["Greedy"])
 
     ######################################################################
     # to Access information returned by edge additions                   #
@@ -64,18 +61,18 @@ def main():
     # where x can be 'result_dictionary', 'time', 'polarization'         #
     ######################################################################
 
-    edge_list = (info['Greedy_karate_10']['result_dictionary'])
+    # edge_list = (info['Greedy_karate_10']['result_dictionary'])
 
     # convert the tuple list into the format that visualize_edge takes
 
-    edge_list = [f'{e[0]},{e[1]}' for e in edge_list]
+    # edge_list = format_edge_list_from_tuples(edge_list)
 
     # ------------------------------------------------------- #
     # visualize graph edges, mode = 1 addition, = 0 removal   #
     # ------------------------------------------------------- #
 
-    visualize_edge(graph.copy(), edge_list, "top-10 edge addition from Greedy",
-                   "top-10_greedy", 1)
+    # visualize_edge(graph, edge_list, "top-10 edge addition in books from Greedy",
+    #               "top-10_karate_greedy", 1)
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #
@@ -88,7 +85,14 @@ def main():
     #              edge removals              #
     # --------------------------------------- #
 
-    #edge_removals_driver(graph, name)
+    # edge_removals_driver(graph, name)
+
+    # --------------------------------------- #
+    #              dataset statistics         #
+    #              verbose = 1 prints them    #
+    # --------------------------------------- #
+
+    #ds_stats = dataset_statistics_driver(datasets, 1)
 
 
 if __name__ == "__main__":

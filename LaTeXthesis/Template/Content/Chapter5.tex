@@ -28,11 +28,48 @@ In this section we consider datasets that are separated in two opposing communit
 \section{Experiments with heuristics}
 \label{sec:experimHeuristics}
 
- We evaluate the heuristic algorithms by comparing them with the Greedy  algorithm. 
+All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE. We can only experiment with the karate and the books dataset on all the heuristics. The rest of the datasets would need much more time as they contain thousands of nodes. In more detail, the greedy algorithm needs to consider the changes in the network structure so it is impossible to compute the polarization so many times.
+\\
+\\ 
+This holds not only for the change of the structure but also in all the heuristics that need to compute $\pi(z)$. The same applies for the missing edges algorithms. The set of edges that is required to be explored increases dramatically as the number of nodes gets bigger. 
+\\
+\\
+Only the Distance heuristic can run in a sensible time but provide us with a small decrease in polarization. This decrease can be greater if we consider a bigger number of edge additions that are proportional with the number of edges added on the smaller datasets. 
+\\
+\\
+Experiments that had similar results in terms of polarization or time, in the karate and books dataset, were grouped together in a way that the graphs are readable. The time results of the greedy algorithm after the first additions are omitted so the rest of the data can be shown properly.
+
+\subsection{Dataset statistics}
+
+\begin{table}[H]
+ \centering
+ \caption{Stats}
+ \label{tab:statistics}
+ \begin{tabular}{| l || l | l | l | l |}
+ \hline
+  Name & # of Nodes & # of Edges & Avg. Degree & $\pi(z)$\\
+  \hline
+  \hline
+  Karate & $34$ & $78$ & 4.5882 &  0.33964\\
+  \hline
+    books & $105$ & $441$ & 8.4 &  0.43429\\
+  \hline
+    beefban & $799$ & $6026$ & 15.0839 &  0.30326\\
+  \hline
+  polblogs & $1490$ & $16718$ & 22.4403 &  0.30983\\
+  \hline
+  GermanWings & $2111$ & $7329$ & 6.9436 &  0.44479\\
+  \hline
+  ClintonTrump & $2832$ & $18551$ & 13.1010 &  0.07582\\
+  \hline
+  SXSW & $4558$ & $91356$ & 40.0860 &  0.05581\\
+  \hline
+ \end{tabular}
 
  \clearpage
 
 \subsection{Heuristics in the Karate dataset}
+
 
 \begin{figure}[!htbp]
 	\centering
@@ -41,6 +78,8 @@ In this section we consider datasets that are separated in two opposing communit
 	\label{fig:karate_pol}
 \end{figure}
 
+\clearpage
+
 
 \begin{figure}[!htbp]
 	\centering
@@ -48,6 +87,17 @@ In this section we consider datasets that are separated in two opposing communit
 	\caption{Heuristic comparison of time in Karate}
 	\label{fig:karate_time}
 \end{figure}
+
+
+\subsection{Visualisation of edge addition in  the Karate dataset}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/top-10_karate_greedy}
+	\caption{the top-10 edges proposed by the greedy algorithn}
+	\label{fig:top-10-karate}
+\end{figure}
+
 
 \clearpage
 
@@ -244,23 +294,8 @@ In this section we consider datasets that are separated in two opposing communit
 	\label{fig:sxsw_time}
 \end{figure}
 
+
 \clearpage
-
-\subsection{Remarks about the experiments}
-
-All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE.
-\\
-\\
- We can only experiment with the karate and the books dataset on all the heuristics. The rest of the datasets would need much more time as they contain thousands of nodes. In more detail, the greedy algorithm needs to consider the changes in the network structure so it is impossible to compute the polarization so many times.
-\\
-\\ 
-This holds not only for the change of the structure but also in all the heuristics that need to compute $\pi(z)$. The same applies for the missing edges algorithms. The set of edges that is required to be explored increases dramatically as the number of nodes gets bigger. 
-\\
-\\
-Only the Distance heuristic can run in a sensible time but provide us with a small decrease in polarization. This decrease can be greater if we consider a bigger number of edge additions that are proportional with the number of edges added on the smaller datasets. 
-\\
-\\
-Experiments that had similar results in terms of polarization or time, in the karate and books dataset, were grouped together in a way that the graphs are readable. The time results of the greedy algorithm after the first additions are omitted so the rest of the data can be shown properly.
 
 \section{Polarization in a complete graph}
 \label{sec:fullgraph}

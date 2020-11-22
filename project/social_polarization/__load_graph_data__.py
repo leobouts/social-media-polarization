@@ -19,9 +19,11 @@ def load_graph(gml_file):
     :return: networkx graph
     """
 
+    name = gml_file.split("/")[2].split(".")[0]
+
     graph = nx.read_gml(gml_file, label='id')
 
-    graph = nx.Graph(graph)
+    graph = nx.Graph(graph, name=name)
 
     conservative_liberal_convert = ['../datasets/books.gml',
                                     '../datasets/ClintonTrump.gml']
