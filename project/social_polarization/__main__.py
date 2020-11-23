@@ -30,7 +30,7 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    name = 'karate'
+    name = 'books'
     graph = load_graph(f'../datasets/{name}.gml')
 
     # --------------------------------------- #
@@ -93,6 +93,8 @@ def main():
     # --------------------------------------- #
 
     #ds_stats = dataset_statistics_driver(datasets, 1)
+
+    graph_embeddings(graph, name)
 
 
 if __name__ == "__main__":
