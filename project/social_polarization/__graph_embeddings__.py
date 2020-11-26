@@ -74,7 +74,6 @@ def find_unconnected_pairs_from_adj_matrix(G, node_list_1, node_list_2):
 
 
 def create_data_from_unconnected(unconnected_pairs):
-
     node_1_unlinked = [i[0] for i in unconnected_pairs]
     node_2_unlinked = [i[1] for i in unconnected_pairs]
 
@@ -88,7 +87,6 @@ def create_data_from_unconnected(unconnected_pairs):
 
 
 def find_non_existing_links_and_drop(data, df, G):
-
     temp_df = df.copy()
 
     initial_node_count = len(G.nodes)
@@ -132,7 +130,6 @@ def node_2_vec_features(G_data):
 
 
 def train_and_get_predictions(x, data):
-
     xtrain, xtest, ytrain, ytest = train_test_split(np.array(x), data['link'],
                                                     test_size=0.3,
                                                     random_state=35)
@@ -141,9 +138,17 @@ def train_and_get_predictions(x, data):
 
     lr.fit(xtrain, ytrain)
 
+    # print(len(xtrain))
+    # print(len(ytrain))
+    #
+    # print(len(xtest))
+    # print(len(ytest))
+    #
+    # print(len(data))
+
     predictions = lr.predict_proba(xtest)
 
-    return predictions
+    return predictions, ytest
 
 
 def graph_embeddings(name, verbose):
@@ -168,7 +173,13 @@ def graph_embeddings(name, verbose):
 
     x = [(n2w_model[str(i)] + n2w_model[str(j)]) for i, j in zip(data['node_1'], data['node_2'])]
 
-    predictions = train_and_get_predictions(x, data)
+    predictions, ytest = train_and_get_predictions(x, data)
 
-    print(predictions)
-    print(len(predictions))
+    # print(predictions)
+    # print(len(predictions))
+
+    labels = list(ytest)
+    indexes = list(ytest.index)
+
+    for i in range(len(ytest)):
+        print(f'{indexes[i]}: {predictions[i]} -> {labels[i]}')
