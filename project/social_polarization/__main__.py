@@ -1,4 +1,5 @@
 from __drivers__ import *
+from __graph_embeddings__ import graph_embeddings
 from __helpers__ import format_edge_list_from_tuples, get_nodes_and_values_from_nx_to_txt
 
 
@@ -101,6 +102,12 @@ def main():
     # --------------------------------------- #
 
     # ds_stats = dataset_statistics_driver(datasets, 1)
+
+    # --------------------------------------- #
+    #             Graph Embeddings            #
+    # --------------------------------------- #
+
+    graph_embeddings("karate", 0)
 
 
 if __name__ == "__main__":

@@ -2,12 +2,19 @@
   <dictionary name="leonidas">
     <words>
       <w>beefban</w>
+      <w>dataframe</w>
       <w>datasets</w>
       <w>multigraph</w>
       <w>networkx</w>
+      <w>omissible</w>
       <w>polblogs</w>
+      <w>spliting</w>
       <w>splitted</w>
       <w>sxsw</w>
+      <w>xtest</w>
+      <w>xtrain</w>
+      <w>ytest</w>
+      <w>ytrain</w>
     </words>
   </dictionary>
 </component>
