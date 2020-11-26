@@ -180,16 +180,4 @@ def expressed(k, graph_in, mode):
     return k_items, polarization
 
 
-def graph_embeddings(g, name):
-
-    n2v_obj = Node2Vec(g, dimensions=10, walk_length=5, num_walks=10, p=1, q=1, workers=1)
-    model = n2v_obj.fit(min_count=2, window=3)
-
-    # Save embeddings for later use
-    model.wv.save_word2vec_format(f'../node2vec_models/titles_{name}.emb')
-
-    # Look for most similar nodes
-    #model.wv.most_similar('2')  # Output node names are always strings
-
-
 

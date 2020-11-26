@@ -1,5 +1,5 @@
 from __drivers__ import *
-from __helpers__ import format_edge_list_from_tuples
+from __helpers__ import format_edge_list_from_tuples, get_nodes_and_values_from_nx_to_txt
 
 
 def main():
@@ -8,6 +8,14 @@ def main():
     # --------------------------------------- #
 
     # convert_datasets_driver()
+
+    # --------------------------------------- #
+    #   creates files needed for embeddings   #
+    #   from the networkx graphs.             #
+    #   An edge list and a node list.         #
+    # --------------------------------------- #
+
+    #convert_networkx_to_txt_for_embeddings_driver()
 
     # --------------------------------------- #
     # function that supports Lemma 3.1        #
@@ -92,9 +100,7 @@ def main():
     #              verbose = 1 prints them    #
     # --------------------------------------- #
 
-    #ds_stats = dataset_statistics_driver(datasets, 1)
-
-    graph_embeddings(graph, name)
+    # ds_stats = dataset_statistics_driver(datasets, 1)
 
 
 if __name__ == "__main__":

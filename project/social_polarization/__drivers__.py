@@ -4,7 +4,8 @@ import time
 from __algorithms__ import *
 from connect_opposing import brute_force_all_edges_removal
 from __load_graph_data__ import load_graph
-from __helpers__ import convert_dataset_to_gml, format_edge_list, check_for_same_results, get_dataset_statistics
+from __helpers__ import convert_dataset_to_gml, format_edge_list, check_for_same_results, get_dataset_statistics, \
+    get_nodes_and_values_from_nx_to_txt
 from __graph_properties__ import edges_centralities
 from __visualize__ import *
 
@@ -108,6 +109,15 @@ def convert_datasets_driver():
         val = base_data_dir + communities_values[i]
         ed = base_data_dir + communities_connections[i]
         convert_dataset_to_gml(val, ed, names_to_save[i])
+
+
+def convert_networkx_to_txt_for_embeddings_driver():
+
+    datasets = ['karate']
+
+    for ds_name in datasets:
+        graph = load_graph(f'../datasets/{ds_name}.gml')
+        get_nodes_and_values_from_nx_to_txt(graph, ds_name)
 
 
 def edge_removals_driver(graph, name):

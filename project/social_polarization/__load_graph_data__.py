@@ -31,6 +31,7 @@ def load_graph(gml_file):
     zero_value_convert = ["../datasets/GermanWings.gml",
                           "../datasets/beefban.gml",
                           "../datasets/sxsw.gml",
+                          "../datasets/karate.gml"
                           ]
 
     if gml_file in conservative_liberal_convert:
