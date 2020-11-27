@@ -8,9 +8,21 @@ import matplotlib.pyplot as plt
 from node2vec import Node2Vec
 
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, roc_auc_score
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.neural_network import MLPClassifier
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.metrics import f1_score, auc, roc_curve, roc_auc_score
+from zipfile import ZipFile
+from warnings import simplefilter
+from sklearn.exceptions import ConvergenceWarning
+
+simplefilter("ignore", category=ConvergenceWarning)
 
 
 def load_embeddings(name):
@@ -129,28 +141,6 @@ def node_2_vec_features(G_data):
     return n2w_model
 
 
-def train_and_get_predictions(x, data):
-    xtrain, xtest, ytrain, ytest = train_test_split(np.array(x), data['link'],
-                                                    test_size=0.3,
-                                                    random_state=35)
-
-    lr = LogisticRegression(class_weight="balanced")
-
-    lr.fit(xtrain, ytrain)
-
-    # print(len(xtrain))
-    # print(len(ytrain))
-    #
-    # print(len(xtest))
-    # print(len(ytest))
-    #
-    # print(len(data))
-
-    predictions = lr.predict_proba(xtest)
-
-    return predictions, ytest
-
-
 def graph_embeddings(name, verbose):
     df, node_list_1, node_list_2 = load_embeddings(name)
 
@@ -173,13 +163,29 @@ def graph_embeddings(name, verbose):
 
     x = [(n2w_model[str(i)] + n2w_model[str(j)]) for i, j in zip(data['node_1'], data['node_2'])]
 
-    predictions, ytest = train_and_get_predictions(x, data)
+    xtrain, xtest, ytrain, ytest = train_test_split(np.array(x), data['link'],
+                                                    test_size=0.3,
+                                                    random_state=35)
 
-    # print(predictions)
-    # print(len(predictions))
+    lr = LogisticRegression(class_weight="balanced")
 
-    labels = list(ytest)
-    indexes = list(ytest.index)
+    lr.fit(xtrain, ytrain)
 
-    for i in range(len(ytest)):
-        print(f'{indexes[i]}: {predictions[i]} -> {labels[i]}')
+    # print(len(xtrain))
+    # print(len(ytrain))
+    #
+    # print(len(xtest))
+    # print(len(ytest))
+    #
+    # print(len(data))
+
+    predictions = lr.predict_proba(xtest)
+
+    for i in range(len(data)):
+        try:
+            index_in_x_train = np.where(xtrain == x[i])[0][1]
+            predict_proba = lr.predict_proba(xtrain[index_in_x_train].reshape(1, -1))[:, 1]
+            print(
+                f'Probability of nodes {data.iloc[i, 0]} and {data.iloc[i, 1]} to form a link is : {float(predict_proba) * 100 : .2f}%')
+        except:
+            continue
