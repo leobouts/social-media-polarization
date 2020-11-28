@@ -197,7 +197,19 @@ Instead the $\pi(z)$ a function of distance can be used as condition to continue
 
 \clearpage
 
-\section{Graph Embeddings}
+
+\section{Link Prediction}
+\label{sec:linkpred}
+
+Link prediction is the problem of predicting the existence of a link between two entities in a network in the future. In our setting, social media networks, the entity represents a person. For example the "People you may know" section on Facebook.
+\\
+\\
+Link prediction algorithms are based on how similar two different nodes are, what features they have in common, how are they connected to the rest of the network or how many other nodes are connected to a single node. 
+\\
+\\
+Link prediction is also used in recommendation systems and  information retrieval. We will use the similarity measures mentioned in \ref{sec:simMeasures} as features for our machine learning model.
+
+\subsection{Graph Embeddings}
 \label{sec:embeddings}
 
 A graph embedding is the transformation of the properties of the graphs to a vector or a set of vectors. The embedding will capture the topology of the graph and will consider the relationship between nodes. The embedding will be used to make predictions on the graph.
@@ -207,7 +219,7 @@ A graph embedding is the transformation of the properties of the graphs to a vec
 
 \subsection{Word2Vec}
 
-For a certain task a simple neural network with a single hidden layer is created. The trained neural network is not actually used for the task that we trained it on. The goals is to learn the weights of the hidden layer. These weights represent the "word vectors".
+At first we have to define Word2Vec. Suppose we have a sentence of words. For a certain task a simple neural network with a single hidden layer is created. The trained neural network is not actually used for the task that we trained it on. The goals is to learn the weights of the hidden layer. These weights represent the "word vectors".
 \\
 \\
 After giving the neural network a word in the middle of a sentence, it is trained to look for nearby words and pick a random one. The network is going to give the probability for every word in our vocabulary of being inside a window size we set.
@@ -227,7 +239,7 @@ If two different words have very similar context then our model needs to output 
 
 \subsection{DeepWalk}
 
-DeepWalk uses random walks to produce embeddings. The random walk starts in a selected node and then moves to a random neighbour from a current node with certain number of steps. The method consists of three steps.
+After defining Word2Vec we can use its logic in graphs. DeepWalk uses random walks to produce embeddings. The random walk starts in a selected node and then moves to a random neighbour from a current node with certain number of steps. The method consists of three steps.
 
  \begin{itemize}
   \item Sampling: A graph is sampled with random walks. Authors show that it is sufficient to perform from 32 to 64 random walks from each node. 
@@ -247,6 +259,20 @@ Node2vec is a modification of DeepWalk with a small difference in  the implement
 \\
 \\
 Parameter $Q$ defines how probable is that the random walk will explore the undiscovered part of the graph, while parameter $P$ defines how probable is that the random walk will return to the previous node and retain a locality.
+
+\subsection{Methodology}
+\label{sec:methodology}
+
+Our objective is to predict whether there would be a link between 2 unconnected nodes. At first we will extract the pairs of nodes that don't have a link between them.
+\\
+\\
+The next step is to hide some edges from the given graph. This is needed for preparing a training dataset. As a social network grows new edges are introduced. The machine learning model needs how the graph evolved.The graph with the hidden edges is the graph $G$ at time $t$ and our current dataset is the graph $G$ at time $t+n$.
+\\
+\\
+While removing links or edges, we should avoid removing any edge that may produce non connected nodes or networks. The next step is to create features for all the unconnected node pairs including the ones for which we have hid. The removed edges will be labeled as $1$ (positive samples) and the unconnected node pairs as $0$ (negative samples).
+\\
+\\
+After the labelling we will use the node2vec algorithm to extract node features from the graph. For computing the features of an edge we can add up the features of the nodes of that pair. These features will be trained with a logistic regression model.
 
 \clearpage
 

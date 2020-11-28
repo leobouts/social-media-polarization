@@ -22,6 +22,8 @@ from zipfile import ZipFile
 from warnings import simplefilter
 from sklearn.exceptions import ConvergenceWarning
 
+from __helpers__ import get_positive_and_negative_values
+
 simplefilter("ignore", category=ConvergenceWarning)
 
 
@@ -34,15 +36,32 @@ def load_embeddings(name):
     with open(f"../datasets/formatted_for_embeddings/karate/{name}.edges") as f:
         links = f.read().splitlines()
 
+    nodeDict = {}
+    count = 0
+    for i in tqdm(nodes):
+
+        if count == 0:
+            count = 1
+            continue
+
+        splitted_vals = i.split(",")
+        nodeDict[splitted_vals[0]] = {'value': splitted_vals[1]}
+
     # capture nodes in 2 separate lists
     node_list_1 = []
     node_list_2 = []
+    distance = []
 
     for i in tqdm(links):
         node_list_1.append(i.split(',')[0])
         node_list_2.append(i.split(',')[1])
 
-    df = pd.DataFrame({'node_1': node_list_1, 'node_2': node_list_2})
+        node_1_value = nodeDict[i.split(',')[0]]['value']
+        node_2_value = nodeDict[i.split(',')[1]]['value']
+
+        distance.append(abs(int(node_1_value) - int(node_2_value)))
+
+    df = pd.DataFrame({'node_1': node_list_1, 'node_2': node_list_2, 'distance': distance})
 
     # print(df.head())
 
@@ -100,11 +119,17 @@ def create_data_from_unconnected(unconnected_pairs):
 
 def find_non_existing_links_and_drop(data, df, G):
     temp_df = df.copy()
-
+    nodeDict = dict(G.nodes(data=True))
     initial_node_count = len(G.nodes)
 
     # empty list to store removable links
     omissible_links_index = []
+
+    df = df.sort_values(by=['distance'])
+
+    # print(df.head())
+
+    # TODO define how the edges will be dropped, not all that can but all i want, ok that sounded like a song
 
     for i in tqdm(df.index.values):
 
@@ -115,6 +140,9 @@ def find_non_existing_links_and_drop(data, df, G):
         if (nx.number_connected_components(G_temp) == 1) and (len(G_temp.nodes) == initial_node_count):
             omissible_links_index.append(i)
             temp_df = temp_df.drop(index=i)
+
+    print(len(df))
+    print(len(temp_df))
 
     # create dataframe of removable edges
 
@@ -180,6 +208,7 @@ def graph_embeddings(name, verbose):
     # print(len(data))
 
     predictions = lr.predict_proba(xtest)
+    print(roc_auc_score(ytest, predictions[:, 1]))
 
     for i in range(len(data)):
         try:

@@ -61,27 +61,33 @@ Real world events such as Brexit and the 2016 U.S. presidential elections gives 
 \\
 \\
 
-\section{Incorporating probabilities}
-\label{sec:probs}
+\subsection{Incorporating probabilities into the probel}
+\label{sec:probabilityProbDef}
 
-Problem 1 and 2 are trying to find edges that will minimize the polarization index. We must no take for granted that these edges will be accepted. For example a social media user could reject a new follow/friend request. This leads us to consider additions with the expectation of being accepted. Let $E[\pi(z)] = P(u, v) * z_u$ the expected polarization score that an edge $(u, v)$ is accepted as a recommendation from $u$.
+Problem 1 and 2 are trying to find edges that will minimize the polarization index. We must no take for granted that these edges will be accepted. For example a social media user could reject a new follow/friend request. This leads us to consider additions with the expectation of being accepted. Let $E[\pi(z)]$ the expected polarization probability score that an edge $(u, v)$ is accepted as a recommendation from $u$.
 \\
 \\
 \textbf{Problem 3} [K-Addition-Expected]. Given a graph $G=(V,E)$ and an integer $k$, we want to find a set of $k$ edges $E′ \subseteq V×V \ E$ that when added to $G$ create a new graph $G' = (V,E \cap E')$ so that the expected polarization score $E[\pi(z)]$ is minimized.
 \\
 \\
-The definition of $P(u, v)$ can be done with various measures of similarity but also considering the expressed opinion of a node. For example if two users have a large intersection the possibility that they will be friends is higher than two other users without mutual friends. Overlapping social circles increase the acceptance probability of a recommendation. Let $\Gamma(x)$ denote the number of neighbours of a node.
+
+\subsection{Simmilarity measures}
+\label{sec:simMeasures}
+
+The computation of$E[\pi(z)]$ will be done with Graph Embeddings~\ref{sec:embeddings}. Various measures of similarity but also  the expressed opinion of a node will be used to compute the graph embeddings features. For example if two users have a large intersection the possibility that they will be friends is higher than two other users without mutual friends. Overlapping social circles increase the acceptance probability of a recommendation. Let $\Gamma(x)$ denote the number of neighbours of a node.
 \\
+\\
+\noindent The following similarity measures will be used in Graph Embeddings~\ref{sec:embeddings}.
 
  \begin{itemize}
-  \item Common neighbours. $P(u,v):= \lvert\Gamma(u) \cap \Gamma(v)\rvert$
+  \item Common neighbours. $ \lvert\Gamma(u) \cap \Gamma(v)\rvert$
   
+  \item Jaccard coefficient. $ \lvert\frac{\Gamma(u) \cap \Gamma(v)}{\Gamma(u) \cup \Gamma(v)}\rvert$
   
+  \item Adamic/Adar index. $\sum_{u \in N(x) \cap N(y)} \frac{1}{\log |N(u)|}$\\
+A measure that uses the amount of shared links between two nodes where $N(u)$ is the set of nodes adjacent to $u$.
   
-  \item Jaccard coefficient. $P(u,v):= \lvert\frac{\Gamma(u) \cap \Gamma(v)}{\Gamma(u) \cup \Gamma(v)}\rvert$
 \end{itemize}
-
-\noindent These will be used in combination with Graph Embeddings~\ref{sec:embeddings}
 
 
 \clearpage
