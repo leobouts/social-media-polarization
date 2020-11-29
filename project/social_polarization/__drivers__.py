@@ -2,6 +2,7 @@ import pprint
 import time
 
 from __algorithms__ import *
+from __graph_embeddings__ import graph_embeddings
 from connect_opposing import brute_force_all_edges_removal
 from __load_graph_data__ import load_graph
 from __helpers__ import convert_dataset_to_gml, format_edge_list, check_for_same_results, get_dataset_statistics, \
@@ -10,7 +11,7 @@ from __graph_properties__ import edges_centralities
 from __visualize__ import *
 
 
-def heuristic_driver(k, datasets, algorithms):
+def algorithms_driver(k, datasets, algorithms):
     """
     :param k: list that contains all the different top-k additions we want to add to the graph
     :param datasets: a list containing the string names of the datasets we want to examine
@@ -19,7 +20,7 @@ def heuristic_driver(k, datasets, algorithms):
      the this key to store informattion ---> info[{algorithm}_{dataset}_{edges}] = {...}
     """
     info = {}
-    print("===============================================")
+    print("====================================================")
     for ds in datasets:
         graph = load_graph(f'../datasets/{ds}.gml')
         total_decreases = []
@@ -50,6 +51,8 @@ def heuristic_driver(k, datasets, algorithms):
                     results, polarization = expressed(k_edges, graph, 1)
                 elif algorithm == 'MME':
                     results, polarization = expressed(k_edges, graph, 1)
+                else:
+                    results, polarization = graph_embeddings(k_edges, ds, graph, 0)
 
                 decrease_list.append(polarization)
                 end = time.time()
@@ -113,7 +116,7 @@ def convert_datasets_driver():
 
 def convert_networkx_to_txt_for_embeddings_driver():
 
-    datasets = ['karate']
+    datasets = ['karate', 'polblogs']
 
     for ds_name in datasets:
         graph = load_graph(f'../datasets/{ds_name}.gml')

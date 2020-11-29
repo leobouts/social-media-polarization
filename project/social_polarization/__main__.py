@@ -1,28 +1,8 @@
 from __drivers__ import *
-from __graph_embeddings__ import graph_embeddings
 from __helpers__ import format_edge_list_from_tuples, get_nodes_and_values_from_nx_to_txt
 
 
 def main():
-    # --------------------------------------- #
-    #     convert datasets to gml             #
-    # --------------------------------------- #
-
-    # convert_datasets_driver()
-
-    # --------------------------------------- #
-    #   creates files needed for embeddings   #
-    #   from the networkx graphs.             #
-    #   An edge list and a node list.         #
-    # --------------------------------------- #
-
-    #convert_networkx_to_txt_for_embeddings_driver()
-
-    # --------------------------------------- #
-    # function that supports Lemma 3.1        #
-    # --------------------------------------- #
-
-    # find_increase_in_graphs_with_addition()
 
     # --------------------------------------- #
     #      Test Graph Init                    #
@@ -39,11 +19,31 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    name = 'books'
+    name = 'polblogs'
     graph = load_graph(f'../datasets/{name}.gml')
 
     # --------------------------------------- #
-    #     Heuristics experiment               #
+    #     convert datasets to gml             #
+    # --------------------------------------- #
+
+    # convert_datasets_driver()
+
+    # --------------------------------------- #
+    #   creates files needed for embeddings   #
+    #   from the networkx graphs.             #
+    #   An edge list and a node list.         #
+    # --------------------------------------- #
+
+    # convert_networkx_to_txt_for_embeddings_driver(graph, name)
+
+    # --------------------------------------- #
+    # function that supports Lemma 3.1        #
+    # --------------------------------------- #
+
+    # find_increase_in_graphs_with_addition()
+
+    # --------------------------------------- #
+    #     Algorithms experiment               #
     # --------------------------------------- #
     # --------------------------------------- #
     #     Available Algorithms:               #
@@ -54,15 +54,18 @@ def main():
     #     4) Distance                         #
     #     5) DME                              #
     #     6) MME                              #
+    #     7) embeddings                       #
     # --------------------------------------- #
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
 
     k = [5, 10, 15, 20]
-    algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME"]
+    algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME", "Embeddings"]
+    algorithms1 = ["Distance", "Embeddings"]
+
     datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    # info = heuristic_driver(k, datasets, ["Greedy"])
+    info = algorithms_driver(k, ['polblogs'], algorithms1)
 
     ######################################################################
     # to Access information returned by edge additions                   #
@@ -102,12 +105,6 @@ def main():
     # --------------------------------------- #
 
     # ds_stats = dataset_statistics_driver(datasets, 1)
-
-    # --------------------------------------- #
-    #             Graph Embeddings            #
-    # --------------------------------------- #
-
-    graph_embeddings("karate", 0)
 
 
 if __name__ == "__main__":
