@@ -149,7 +149,7 @@ def node_2_vec_features(G_data):
     return n2w_model
 
 
-def graph_embeddings(name, graph_in, verbose):
+def graph_embeddings(name, verbose):
 
     df, node_list_1, node_list_2, nodeDict = load_embeddings(name)
 
@@ -164,6 +164,7 @@ def graph_embeddings(name, graph_in, verbose):
     data = create_data_from_unconnected(G)
 
     data, df_partial = find_non_existing_links_and_drop(data, df, G, nodeDict)
+    print(len(data))
 
     # build graph
     G_data = nx.from_pandas_edgelist(df_partial, "node_1", "node_2", create_using=nx.Graph())
@@ -176,27 +177,17 @@ def graph_embeddings(name, graph_in, verbose):
                                                     test_size=0.2,
                                                     random_state=35)
 
-    lr = LogisticRegression(class_weight="balanced")
+    lr = LogisticRegression(class_weight="balanced", n_jobs=-1, solver='sag')
 
-    # classifier
-    #clf1 = RandomForestClassifier()
-
-    # parameters
-    #param = {'n_estimators': [10, 50, 100], 'max_depth': [5, 10, 15]}
-    #grid_clf_acc1 = GridSearchCV(clf1, param_grid=param)
-
-    # train the model
-    #grid_clf_acc1.fit(xtrain, ytrain)
-
-
-    # predictions = lr.predict_proba(xtest)
-
-    # print(roc_auc_score(ytest, predictions[:, 1]))
+    lr.fit(xtrain, ytrain)
 
     edges_list = []
     probabilities_list = []
 
-    for i in range(len(data)):
+
+    data.drop(data.loc[data['link'] == 1].index, inplace=True)
+
+    for i in tqdm(range(len(data))):
         try:
             index_in_x_train = np.where(xtrain == x[i])[0][1]
             predict_proba = lr.predict_proba(xtrain[index_in_x_train].reshape(1, -1))[:, 1]

@@ -34,38 +34,40 @@ def algorithms_driver(k, datasets, algorithms):
 
             # append initial polarization for the graph output
             decrease_list.append(get_polarization(graph))
-            for k_edges in k:
-                polarization = 0
-                results = []
+            if algorithm != 'Embeddings':
+                for k_edges in k:
+                    polarization = 0
+                    results = []
+
+                    start = time.time()
+                    if algorithm == 'Greedy':
+                        results, polarization = greedy(k_edges, graph)
+                    elif algorithm == 'GBatch':
+                        results, polarization = greedy_batch(k_edges, graph)
+                    elif algorithm == 'Skip':
+                        results, polarization = skip(k_edges, graph)
+                    elif algorithm == 'Distance':
+                        results, polarization = distance(k_edges, graph)
+                    elif algorithm == 'DME':
+                        results, polarization = expressed(k_edges, graph, 1)
+                    elif algorithm == 'MME':
+                        results, polarization = expressed(k_edges, graph, 1)
+
+                    decrease_list.append(polarization)
+                    end = time.time()
+                    elapsed = end - start
+                    time_list.append(elapsed)
+                    index = f'{algorithm}_{ds}_{k_edges}'
+                    info[index] = {'result_dictionary': results,
+                                   'time': elapsed,
+                                   'polarization': polarization}
+
+            else:
+
+                # to train it only one time
 
                 start = time.time()
-                if algorithm == 'Greedy':
-                    results, polarization = greedy(k_edges, graph)
-                elif algorithm == 'GBatch':
-                    results, polarization = greedy_batch(k_edges, graph)
-                elif algorithm == 'Skip':
-                    results, polarization = skip(k_edges, graph)
-                elif algorithm == 'Distance':
-                    results, polarization = distance(k_edges, graph)
-                elif algorithm == 'DME':
-                    results, polarization = expressed(k_edges, graph, 1)
-                elif algorithm == 'MME':
-                    results, polarization = expressed(k_edges, graph, 1)
-
-                decrease_list.append(polarization)
-                end = time.time()
-                elapsed = end - start
-                time_list.append(elapsed)
-                index = f'{algorithm}_{ds}_{k_edges}'
-                info[index] = {'result_dictionary': results,
-                               'time': elapsed,
-                               'polarization': polarization}
-
-            # train the model only one time
-            if 'embeddings' in algorithms:
-
-                start = time.time()
-                edges = graph_embeddings(ds, graph, 0)
+                edges = graph_embeddings(ds, 0)
 
                 for k_edges in k:
 
