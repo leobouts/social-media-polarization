@@ -73,37 +73,15 @@ def plot_initial_graph(G):
     plt.show()
 
 
-def find_unconnected_pairs_from_adj_matrix(G, node_list_1, node_list_2, nodeDict):
-    # combine all nodes in a list
-    node_list = node_list_1 + node_list_2
+def create_data_from_unconnected(G):
 
-    # remove duplicate items from the list
-    node_list = list(dict.fromkeys(node_list))
+    unconnected_pairs = nx.non_edges(G)
+    node_1_unlinked = []
+    node_2_unlinked = []
 
-    # build adjacency matrix
-    adj_G = nx.to_numpy_matrix(G, nodelist=node_list)
-
-    # print(adj_G)
-
-    all_unconnected_pairs = []
-
-    # traverse adjacency matrix
-    offset = 0
-    for i in range(adj_G.shape[0]):
-        for j in range(offset, adj_G.shape[1]):
-            if i != j and adj_G[i, j] == 0:
-                # consider only link addition between different opinions
-                if int(nodeDict[node_list[i]]['value']) * int(nodeDict[node_list[j]]['value']) < 0:
-                    all_unconnected_pairs.append([node_list[i], node_list[j]])
-
-        offset = offset + 1
-
-    return all_unconnected_pairs
-
-
-def create_data_from_unconnected(unconnected_pairs):
-    node_1_unlinked = [i[0] for i in unconnected_pairs]
-    node_2_unlinked = [i[1] for i in unconnected_pairs]
+    for i in unconnected_pairs:
+        node_1_unlinked.append(i[0])
+        node_2_unlinked.append(i[1])
 
     data = pd.DataFrame({'node_1': node_1_unlinked,
                          'node_2': node_2_unlinked})
@@ -142,9 +120,9 @@ def find_non_existing_links_and_drop(data, df, G, nodeDict):
                 temp_df = temp_df.drop(index=i)
                 count += 1
 
-        # # break when we have dropped the first % of the nodes that could be dropped
-        # if count >= len(df.index.values) * 0.7:
-        #     break
+        # break when we have dropped the first % of the nodes that could be dropped
+        if count >= len(df.index.values) * 0.2:
+            break
 
     # create dataframe of removable edges
     ghost_links = df.loc[omissible_links_index]
@@ -171,7 +149,7 @@ def node_2_vec_features(G_data):
     return n2w_model
 
 
-def graph_embeddings(k, name, graph_in, verbose):
+def graph_embeddings(name, graph_in, verbose):
 
     df, node_list_1, node_list_2, nodeDict = load_embeddings(name)
 
@@ -181,9 +159,9 @@ def graph_embeddings(k, name, graph_in, verbose):
     if verbose:
         plot_initial_graph(G)
 
-    unconnected_pairs = find_unconnected_pairs_from_adj_matrix(G, node_list_1, node_list_2, nodeDict)
+    #unconnected_pairs = find_unconnected_pairs_from_adj_matrix(G, node_list_1, node_list_2, nodeDict)
 
-    data = create_data_from_unconnected(unconnected_pairs)
+    data = create_data_from_unconnected(G)
 
     data, df_partial = find_non_existing_links_and_drop(data, df, G, nodeDict)
 
@@ -236,7 +214,4 @@ def graph_embeddings(k, name, graph_in, verbose):
     keydict = dict(zip(edges_list, probabilities_list))
     edges_list.sort(key=keydict.get)
 
-    k_items = edges_list[:k]
-    polarization = add_edges_and_count_polarization(k_items, graph_in)
-
-    return k_items, polarization
+    return edges_list

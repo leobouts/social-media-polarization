@@ -51,8 +51,6 @@ def algorithms_driver(k, datasets, algorithms):
                     results, polarization = expressed(k_edges, graph, 1)
                 elif algorithm == 'MME':
                     results, polarization = expressed(k_edges, graph, 1)
-                else:
-                    results, polarization = graph_embeddings(k_edges, ds, graph, 0)
 
                 decrease_list.append(polarization)
                 end = time.time()
@@ -62,6 +60,26 @@ def algorithms_driver(k, datasets, algorithms):
                 info[index] = {'result_dictionary': results,
                                'time': elapsed,
                                'polarization': polarization}
+
+            # train the model only one time
+            if 'embeddings' in algorithms:
+
+                start = time.time()
+                edges = graph_embeddings(ds, graph, 0)
+
+                for k_edges in k:
+
+                    results = edges[:k_edges]
+                    polarization = add_edges_and_count_polarization(results, graph)
+
+                    decrease_list.append(polarization)
+                    end = time.time()
+                    elapsed = end - start
+                    time_list.append(elapsed)
+                    index = f'{algorithm}_{ds}_{k_edges}'
+                    info[index] = {'result_dictionary': results,
+                                   'time': elapsed,
+                                   'polarization': polarization}
 
             total_decreases.append(decrease_list)
             total_times.append(time_list)
