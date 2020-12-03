@@ -47,7 +47,6 @@ def load_embeddings(name):
     distance = []
 
     for i in links:
-
         node_1_value = nodeDict[i.split(',')[0]]['value']
         node_2_value = nodeDict[i.split(',')[1]]['value']
 
@@ -73,18 +72,17 @@ def plot_initial_graph(G):
     plt.show()
 
 
-def create_data_from_unconnected(G):
-
+def create_data_from_unconnected(G, nodeDict):
     unconnected_pairs = nx.non_edges(G)
     node_1_unlinked = []
     node_2_unlinked = []
 
     for i in unconnected_pairs:
-        node_1_unlinked.append(i[0])
-        node_2_unlinked.append(i[1])
+        if int(nodeDict[i[0]]['value']) * int(nodeDict[i[1]]['value']) < 0:
+            node_1_unlinked.append(i[0])
+            node_2_unlinked.append(i[1])
 
-    data = pd.DataFrame({'node_1': node_1_unlinked,
-                         'node_2': node_2_unlinked})
+    data = pd.DataFrame({'node_1': node_1_unlinked, 'node_2': node_2_unlinked})
 
     # add target variable 'link'
     data['link'] = 0
@@ -121,8 +119,8 @@ def find_non_existing_links_and_drop(data, df, G, nodeDict):
                 count += 1
 
         # break when we have dropped the first % of the nodes that could be dropped
-        if count >= len(df.index.values) * 0.2:
-            break
+        #if count >= len(df.index.values) * 0.2:
+        #    break
 
     # create dataframe of removable edges
     ghost_links = df.loc[omissible_links_index]
@@ -135,11 +133,10 @@ def find_non_existing_links_and_drop(data, df, G, nodeDict):
     # drop removable edges
     df_partial = df.drop(index=ghost_links.index.values)
 
-    return data, df_partial
+    return data, df_partial, ghost_links
 
 
 def node_2_vec_features(G_data):
-
     # Generate walks
     node2vec = Node2Vec(G_data, dimensions=100, walk_length=16, num_walks=50, quiet=False)
 
@@ -150,7 +147,6 @@ def node_2_vec_features(G_data):
 
 
 def graph_embeddings(name, verbose):
-
     df, node_list_1, node_list_2, nodeDict = load_embeddings(name)
 
     # create graph
@@ -159,12 +155,9 @@ def graph_embeddings(name, verbose):
     if verbose:
         plot_initial_graph(G)
 
-    #unconnected_pairs = find_unconnected_pairs_from_adj_matrix(G, node_list_1, node_list_2, nodeDict)
+    data = create_data_from_unconnected(G, nodeDict)
 
-    data = create_data_from_unconnected(G)
-
-    data, df_partial = find_non_existing_links_and_drop(data, df, G, nodeDict)
-    print(len(data))
+    data, df_partial, ghost_links = find_non_existing_links_and_drop(data, df, G, nodeDict)
 
     # build graph
     G_data = nx.from_pandas_edgelist(df_partial, "node_1", "node_2", create_using=nx.Graph())
@@ -184,21 +177,39 @@ def graph_embeddings(name, verbose):
     edges_list = []
     probabilities_list = []
 
-
+    # drop all edges that were in the graph, we need edges that were not present.
     data.drop(data.loc[data['link'] == 1].index, inplace=True)
+
+    predictions = lr.predict_proba(x)
+
+    #print(predictions)
 
     for i in tqdm(range(len(data))):
         try:
-            index_in_x_train = np.where(xtrain == x[i])[0][1]
-            predict_proba = lr.predict_proba(xtrain[index_in_x_train].reshape(1, -1))[:, 1]
+
+            # # data correspond to x
+            # # we need to find where the x[i] exists in the train set
+            # index_in_x_train = np.where(xtrain == x[i])[0][1]
+            #
+            # # reshaping just adds the list of features inside an empty list so : [list of features]
+            # # needed to be passed in the predict_proba.
+            # # [:, 1] advanced indexing for numpy, : gets all rows. ",1" gets only the items of the first column
+            # # e.g. [:, [1,2]] would bring all rows but only with columns 1 and 2.
+            #
+            # # The first column is the probability  of predict_proba says that the entry has the 0 label and the second
+            # # column is the probability that the entry has the 1 label.
+            #
+            # predict_proba = lr.predict_proba(xtrain[index_in_x_train].reshape(1, -1))[:, 1]
             pair = (int(data.iloc[i, 0]), int(data.iloc[i, 1]))
 
             edges_list.append(pair)
-            probabilities_list.append(float(predict_proba) * 100)
+            # probabilities_list.append(float(predict_proba) * 100)
+
+            probabilities_list.append(float(predictions[i][1])*100)
 
             if verbose:
                 print(
-                    f'Probability of nodes {data.iloc[i, 0]} and {data.iloc[i, 1]} to form a link is : {float(predict_proba) * 100 : .2f}%')
+                    f'Probability of nodes {data.iloc[i, 0]} and {data.iloc[i, 1]} to form a link is : {float(predictions[i][1]) * 100 : .2f}%')
         except:
             continue
 

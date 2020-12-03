@@ -59,7 +59,7 @@ def main():
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
 
-    k = [5, 10, 15, 20]
+    k = [1000, 1200, 1400, 1600]
     algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME", "Embeddings"]
     algorithms1 = ["Distance", "Embeddings"]
 
