@@ -65,7 +65,7 @@ def main():
 
     datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['polblogs'], algorithms1)
+    info = algorithms_driver(k, ['karate'], algorithms)
 
     ######################################################################
     # to Access information returned by edge additions                   #
