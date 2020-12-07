@@ -27,7 +27,7 @@ def get_polarization(g):
     Inverse = inv(sparse.csc_matrix(L_plus_I))
 
     # computing (L+I)^-1 * S
-    solutions = Inverse @ values
+    solutions = Inverse.dot(np.array(values))
 
     # squaring and summing the opinion vector
     squared = np.square(solutions)
@@ -36,4 +36,3 @@ def get_polarization(g):
 
     # result is normalized according to network size
     return summed / no_of_nodes
-

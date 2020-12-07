@@ -21,7 +21,7 @@ def main():
 
     name = 'karate'
     graph = load_graph(f'../datasets/{name}.gml')
-    #print(get_polarization(graph))
+    print(get_polarization(graph))
 
 
     # --------------------------------------- #
@@ -67,7 +67,7 @@ def main():
 
     #datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['polblogs'], algorithms)
+    info = algorithms_driver(k, ['beefban'], algorithms)
 
     ######################################################################
     # to Access information returned by edge additions                   #

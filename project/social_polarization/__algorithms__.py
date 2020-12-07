@@ -27,10 +27,10 @@ def greedy_batch(k, graph_in):
     original_polarization = get_polarization(graph)
     addition_info = {}
 
-    positive_dictionary, negative_dictionary = get_positive_and_negative_values(nodeDict)
-    
-    for node_pos in tqdm(positive_dictionary):
-        for node_neg in tqdm(negative_dictionary):
+    positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
+
+    for node_pos in positive_nodes:
+        for node_neg in tqdm(negative_nodes):
 
             edge_to_add = (node_pos[0], node_neg[0])
 
@@ -38,7 +38,7 @@ def greedy_batch(k, graph_in):
                 continue
 
             g_copy = graph.copy()
-            g_copy.add_edges_from([edge_to_add])
+            graph.add_edges_from([edge_to_add])
             polarization_after_addition = get_polarization(g_copy)
             decrease = original_polarization - polarization_after_addition
             addition_info[edge_to_add] = decrease
