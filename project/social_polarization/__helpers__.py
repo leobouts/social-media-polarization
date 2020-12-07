@@ -1,3 +1,5 @@
+from tqdm import tqdm
+
 from __compute_polarization__ import get_polarization
 from numpy import linalg as linear_algebra
 import networkx as nx

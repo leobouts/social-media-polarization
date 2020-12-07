@@ -27,21 +27,21 @@ def greedy_batch(k, graph_in):
     original_polarization = get_polarization(graph)
     addition_info = {}
 
-    for edge in tqdm(list(nx.non_edges(graph))):
+    positive_dictionary, negative_dictionary = get_positive_and_negative_values(nodeDict)
+    
+    for node_pos in tqdm(positive_dictionary):
+        for node_neg in tqdm(negative_dictionary):
 
-        node_1 = nodeDict[edge[0]]['value']
-        node_2 = nodeDict[edge[1]]['value']
+            edge_to_add = (node_pos[0], node_neg[0])
 
-        if node_1 * node_2 > 0:
-            continue
+            if graph.has_edge(*edge_to_add):
+                continue
 
-        edge_to_add = (edge[0], edge[1])
-
-        g_copy = graph.copy()
-        g_copy.add_edges_from([edge_to_add])
-        polarization_after_addition = get_polarization(g_copy)
-        decrease = original_polarization - polarization_after_addition
-        addition_info[edge_to_add] = decrease
+            g_copy = graph.copy()
+            g_copy.add_edges_from([edge_to_add])
+            polarization_after_addition = get_polarization(g_copy)
+            decrease = original_polarization - polarization_after_addition
+            addition_info[edge_to_add] = decrease
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
