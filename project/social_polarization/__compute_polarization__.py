@@ -24,10 +24,11 @@ def get_polarization(g):
     Laplace = nx.laplacian_matrix(g)
     Identity = identity(no_of_nodes)
     L_plus_I = Laplace + Identity
-    Inverse = inv(sparse.csc_matrix(L_plus_I))
+
+    Inverse = np.linalg.inv(L_plus_I.todense())
 
     # computing (L+I)^-1 * S
-    solutions = Inverse.dot(np.array(values))
+    solutions = Inverse.dot(values)
 
     # squaring and summing the opinion vector
     squared = np.square(solutions)
