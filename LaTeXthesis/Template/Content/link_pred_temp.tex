@@ -1,0 +1,77 @@
+\section{Link Prediction}
+\label{sec:linkpred}
+
+Link prediction is the problem of predicting the existence of a link between two entities in a network in the future. In our setting, social media networks, the entity represents a person. For example the "People you may know" section on Facebook.
+\\
+\\
+Link prediction algorithms are based on how similar two different nodes are, what features they have in common, how are they connected to the rest of the network or how many other nodes are connected to a single node. 
+\\
+\\
+Link prediction is also used in recommendation systems and  information retrieval. We will use the similarity measures mentioned in \ref{sec:simMeasures} as features for our machine learning model.
+
+\subsection{Graph Embeddings}
+\label{sec:embeddings}
+
+A graph embedding is the transformation of the properties of the graphs to a vector or a set of vectors. The embedding will capture the topology of the graph and will consider the relationship between nodes. The embedding will be used to make predictions on the graph.
+\\
+\\
+\noindent Machine learning on graphs is limited while vector spaces have a much bigger toolset available. In essence embeddings are compressed representations in a vector that has a smaller dimension.
+
+\subsection{Word2Vec}
+
+At first we have to define Word2Vec. Suppose we have a sentence of words. For a certain task a simple neural network with a single hidden layer is created. The trained neural network is not actually used for the task that we trained it on. The goals is to learn the weights of the hidden layer. These weights represent the "word vectors".
+\\
+\\
+After giving the neural network a word in the middle of a sentence, it is trained to look for nearby words and pick a random one. The network is going to give the probability for every word in our vocabulary of being inside a window size we set.
+\\
+\\
+The output probabilities are going to relate to how likely it is to find each vocabulary word nearby our input word. The neural network is trained by feeding it word pairs found in training examples.
+\\
+\\
+The hidden layer of this model is operating as a lookup table. The output of the hidden layer is just the “word vector” for the input word.
+\\
+\\
+The word vector will then get fed to the output layer. The output layer is a softmax regression classifier. Each output neuron will produce an output between 0 and 1, and the sum of all these output values will add up to 1.
+\\
+\\
+If two different words have very similar context then our model needs to output very similar results for these two words.
+
+
+\subsection{DeepWalk}
+
+After defining Word2Vec we can use its logic in graphs. DeepWalk uses random walks to produce embeddings. The random walk starts in a selected node and then moves to a random neighbour from a current node with certain number of steps. The method consists of three steps.
+
+ \begin{itemize}
+  \item Sampling: A graph is sampled with random walks. Authors show that it is sufficient to perform from 32 to 64 random walks from each node. 
+  
+    
+  \item Training skip-gram: Random walks are comparable to sentences in word2vec approach. The skip-gram network accepts a node from the random walk a vector as an input and maximizes the probability for predicting neighbour nodes. 
+  
+  \item Computing embeddings: Embedding is the output of a hidden layer of the network. The DeepWalk computes embedding for each node in the graph.
+   
+  \end{itemize}
+
+\noindent  DeepWalk method performs the walks randomly and that means that embeddings do not preserve the local neighbourhood. Node2vec approach fixes that.
+
+\subsection{Node2Vec}
+
+Node2vec is a modification of DeepWalk with a small difference in  the implementation of random walks. There are two parameters introduced, $P$ and $Q$. 
+\\
+\\
+Parameter $Q$ defines how probable is that the random walk will explore the undiscovered part of the graph, while parameter $P$ defines how probable is that the random walk will return to the previous node and retain a locality.
+
+\subsection{Methodology}
+\label{sec:methodology}
+
+Our objective is to predict whether there would be a link between 2 unconnected nodes. At first we will extract the pairs of nodes that don't have a link between them.
+\\
+\\
+The next step is to hide some edges from the given graph. This is needed for preparing a training dataset. As a social network grows new edges are introduced. The machine learning model needs how the graph evolved.The graph with the hidden edges is the graph $G$ at time $t$ and our current dataset is the graph $G$ at time $t+n$.
+\\
+\\
+While removing links or edges, we should avoid removing any edge that may produce non connected nodes or networks. The next step is to create features for all the unconnected node pairs including the ones for which we have hid. The removed edges will be labeled as $1$ (positive samples) and the unconnected node pairs as $0$ (negative samples).
+\\
+\\
+After the labelling we will use the node2vec algorithm to extract node features from the graph. For computing the features of an edge we can add up the features of the nodes of that pair. These features will be trained with a logistic regression model.
+
+\clearpage

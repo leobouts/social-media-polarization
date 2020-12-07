@@ -73,7 +73,7 @@ def visualize_edge(g, edge_list, title, img_name, mode):
                      node_size=[10000 * v for v in pr.values()],
                      width=edge_weights)
     plt.title(f'{title}')
-    plt.savefig(f'../figures_generated/{img_name}.png', dpi=800)
+    plt.savefig(f'../figures_generated/{img_name}.pdf', dpi=100)
     plt.show()
 
 
@@ -104,5 +104,5 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.grid(True)
-    plt.savefig(f'../figures_generated/{title}.png', format='png', dpi=1200, bbox_inches='tight')
+    plt.savefig(f'../figures_generated/{title}.pdf', dpi=100, bbox_inches='tight')
     plt.show()

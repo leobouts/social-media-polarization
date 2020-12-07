@@ -19,8 +19,10 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    name = 'polblogs'
+    name = 'karate'
     graph = load_graph(f'../datasets/{name}.gml')
+    #print(get_polarization(graph))
+
 
     # --------------------------------------- #
     #     convert datasets to gml             #
@@ -59,13 +61,13 @@ def main():
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
 
-    k = [1000, 1200, 1400, 1600]
-    algorithms = ["Greedy", "GBatch", "Skip", "Distance", "DME", "MME", "Embeddings"]
-    algorithms1 = ["Distance", "Embeddings"]
+    k = [5, 10, 15, 20]
+    algorithms = ["GBatch"]
+    #algorithms1 = ["Distance", "Embeddings"]
 
-    datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
+    #datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['karate'], algorithms)
+    info = algorithms_driver(k, ['polblogs'], algorithms)
 
     ######################################################################
     # to Access information returned by edge additions                   #

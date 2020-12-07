@@ -1,7 +1,9 @@
+import networkx as nx
+from tqdm import tqdm
+
 from __compute_polarization__ import get_polarization
 from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
-from node2vec import Node2Vec
-from sklearn.linear_model import LogisticRegression
+
 
 def greedy(k, graph_in):
     graph = graph_in.copy()
@@ -25,21 +27,21 @@ def greedy_batch(k, graph_in):
     original_polarization = get_polarization(graph)
     addition_info = {}
 
-    positive_dictionary, negative_dictionary = get_positive_and_negative_values(nodeDict)
+    for edge in tqdm(list(nx.non_edges(graph))):
 
-    for i, node_pos in enumerate(positive_dictionary):
-        for j, node_neg in enumerate(negative_dictionary):
+        node_1 = nodeDict[edge[0]]['value']
+        node_2 = nodeDict[edge[1]]['value']
 
-            edge_to_add = (node_pos[0], node_neg[0])
+        if node_1 * node_2 > 0:
+            continue
 
-            if graph.has_edge(*edge_to_add):
-                continue
+        edge_to_add = (edge[0], edge[1])
 
-            g_copy = graph.copy()
-            g_copy.add_edges_from([edge_to_add])
-            polarization_after_addition = get_polarization(g_copy)
-            decrease = original_polarization - polarization_after_addition
-            addition_info[edge_to_add] = decrease
+        g_copy = graph.copy()
+        g_copy.add_edges_from([edge_to_add])
+        polarization_after_addition = get_polarization(g_copy)
+        decrease = original_polarization - polarization_after_addition
+        addition_info[edge_to_add] = decrease
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 

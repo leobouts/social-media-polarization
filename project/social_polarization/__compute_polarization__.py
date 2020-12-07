@@ -1,5 +1,9 @@
+import time
 import numpy as np
 import networkx as nx
+from scipy import sparse
+from scipy.sparse import identity
+from scipy.sparse.linalg import inv
 
 
 def get_polarization(g):
@@ -13,46 +17,17 @@ def get_polarization(g):
     :return: Value of the polarization index
     """
 
-    equations = []
-
-    nodes = list(g.nodes)
-    nodes = sorted(nodes)
-
-    # check if the networkx graph has nodes named '1'
-    # if so remove 1 so we can accept both naming conventions
-    # and dont have a problem with linalg.solve
-
-    if nodes[0] == 1:
-
-        mapping = {}
-        for i in nodes:
-            mapping[i] = i - 1
-
-        g = nx.relabel_nodes(g, mapping)
-
-        nodes = list(g.nodes)
-        nodes = sorted(nodes)
-
-    # print(list(g.nodes(data=True)))
+    no_of_nodes = len(g.nodes)
 
     values = list(nx.get_node_attributes(g, 'value').values())
 
-    for node in nodes:
-        neighbors = [n for n in g.neighbors(node)]
-        neighbors = sorted(neighbors)
+    Laplace = nx.laplacian_matrix(g)
+    Identity = identity(no_of_nodes)
+    L_plus_I = Laplace + Identity
+    Inverse = inv(sparse.csc_matrix(L_plus_I))
 
-        # create the matrix according to adjacent nodes
-        f = [-1 if a in neighbors else 0 for a in nodes]
-
-        # +1 for the identity matrix
-        f[node] = len(neighbors) + 1
-        equations.append(f)
-
-    a = np.array(equations)
-    b = np.array(values)
-
-    # solving (L+I)^-1 * S
-    solutions = np.linalg.solve(a, b)
+    # computing (L+I)^-1 * S
+    solutions = Inverse @ values
 
     # squaring and summing the opinion vector
     squared = np.square(solutions)
@@ -60,5 +35,5 @@ def get_polarization(g):
     summed = np.sum(squared)
 
     # result is normalized according to network size
-    return summed / len(list(g.nodes))
+    return summed / no_of_nodes
 
