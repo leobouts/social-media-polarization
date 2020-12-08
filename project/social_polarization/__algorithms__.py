@@ -4,7 +4,6 @@ from __helpers__ import add_edges_and_count_polarization, get_positive_and_negat
 
 
 def greedy(k, graph_in, first_k_flag):
-
     """
     :param k:
     :param graph_in:
@@ -68,9 +67,10 @@ def expressed(k, graph_in, mode):
     """
     :param k:
     :param graph_in:
-    :param mode: 1 for distance, 2 for multiplication
+    :param mode: True for absolute distance, False for multiplication
     :return:
     """
+
     graph = graph_in.copy()
     nodeDict = dict(graph.nodes(data=True))
     addition_info = {}
@@ -98,12 +98,7 @@ def expressed(k, graph_in, mode):
 
             addition_info[edge_to_add] = val
 
-            if mode == 1:
-                flag = True
-            else:
-                flag = False
-
-    sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=flag)
+    sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=mode)
 
     k_items = sorted_edges[:k]
 
