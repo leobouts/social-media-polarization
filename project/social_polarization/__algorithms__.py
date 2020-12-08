@@ -1,10 +1,10 @@
-from tqdm import tqdm
 from __compute_polarization__ import get_polarization
 from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
 
 
-def greedy(k, graph_in, first_k_flag):
+def greedy(k, graph_in, batch_flag, first_k_flag,):
     """
+    :param batch_flag:
     :param k:
     :param graph_in:
     :param first_k_flag:
@@ -18,8 +18,12 @@ def greedy(k, graph_in, first_k_flag):
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
     if first_k_flag:
-        positive_nodes = positive_nodes[:100]
-        negative_nodes = negative_nodes[:100]
+        positive_nodes = positive_nodes[:k]
+        negative_nodes = negative_nodes[:k]
+
+    if batch_flag:
+        k_items, polarization = greedy_batch(k, graph_in, positive_nodes, negative_nodes)
+        return k_items, polarization
 
     for i in range(k):
         edges, polarization = greedy_batch(k, graph, positive_nodes, negative_nodes)
@@ -34,21 +38,29 @@ def greedy(k, graph_in, first_k_flag):
 
 
 def greedy_batch(k, graph_in, positive_nodes, negative_nodes):
-    graph = graph_in.copy()
-    original_polarization = get_polarization(graph)
+    """
+    :param k:
+    :param graph_in:
+    :param positive_nodes:
+    :param negative_nodes:
+    :return:
+    """
+    original_polarization = get_polarization(graph_in)
     addition_info = {}
 
     for node_pos in positive_nodes:
-        for node_neg in tqdm(negative_nodes):
+        for node_neg in negative_nodes:
 
             edge_to_add = (node_pos[0], node_neg[0])
 
             # skip edge if the edge exists in the original graph
-            if graph.has_edge(*edge_to_add):
+            if graph_in.has_edge(*edge_to_add):
                 continue
 
-            g_copy = graph.copy()
-            graph.add_edges_from([edge_to_add])
+            # check how much the polarization was reduced in comparison with the original graph
+            g_copy = graph_in.copy()
+            g_copy.add_edges_from([edge_to_add])
+
             polarization_after_addition = get_polarization(g_copy)
             decrease = original_polarization - polarization_after_addition
             addition_info[edge_to_add] = decrease
@@ -58,7 +70,7 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes):
     k_items = sorted_edges[:k]
 
     edges_to_add_list = [edge[0] for edge in k_items]
-    polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
+    polarization = add_edges_and_count_polarization(edges_to_add_list, graph_in.copy())
 
     return k_items, polarization
 
@@ -71,8 +83,7 @@ def expressed(k, graph_in, mode):
     :return:
     """
 
-    graph = graph_in.copy()
-    nodeDict = dict(graph.nodes(data=True))
+    nodeDict = dict(graph_in.nodes(data=True))
     addition_info = {}
 
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
@@ -83,11 +94,9 @@ def expressed(k, graph_in, mode):
             edge_to_add = (node_pos[0], node_neg[0])
 
             # skip edge if the edge exists in the original graph
-            if graph.has_edge(*edge_to_add):
+            if graph_in.has_edge(*edge_to_add):
                 continue
 
-            g_copy = graph.copy()
-            g_copy.add_edges_from([edge_to_add])
             node_1 = nodeDict[node_pos[0]]['value']
             node_2 = nodeDict[node_neg[0]]['value']
 
@@ -103,6 +112,8 @@ def expressed(k, graph_in, mode):
     k_items = sorted_edges[:k]
 
     edges_to_add_list = [edge[0] for edge in k_items]
-    polarization = add_edges_and_count_polarization(edges_to_add_list, graph)
+
+    # pass a graph copy so the addition will not alter the graph outside
+    polarization = add_edges_and_count_polarization(edges_to_add_list, graph_in.copy())
 
     return k_items, polarization

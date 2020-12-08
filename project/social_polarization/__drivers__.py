@@ -1,6 +1,8 @@
 import pprint
 import time
 
+from tqdm import tqdm
+
 from __algorithms__ import *
 from __graph_embeddings__ import graph_embeddings
 from connect_opposing import brute_force_all_edges_removal
@@ -27,7 +29,7 @@ def algorithms_driver(k, datasets, algorithms):
         total_times = []
 
         for algorithm in algorithms:
-            print(f'\r Now in --> Dataset: {ds}, algorithm: {algorithm}', end='', flush=True)
+            print(f'\r Now in --> Dataset: {ds}, algorithm: {algorithm}')
 
             decrease_list = []
             time_list = []
@@ -35,23 +37,21 @@ def algorithms_driver(k, datasets, algorithms):
             # append initial polarization for the graph output
             decrease_list.append(get_polarization(graph))
             if algorithm != 'Embeddings':
-                for k_edges in k:
+                for k_edges in tqdm(k):
                     polarization = 0
                     results = []
 
                     start = time.time()
                     if algorithm == 'Greedy':
-                        results, polarization = greedy(k_edges, graph)
+                        results, polarization = greedy(k_edges, graph, False, False)
                     elif algorithm == 'GBatch':
-                        results, polarization = greedy_batch(k_edges, graph)
-                    elif algorithm == 'Skip':
-                        results, polarization = skip(k_edges, graph)
-                    elif algorithm == 'Distance':
-                        results, polarization = distance(k_edges, graph)
-                    elif algorithm == 'DME':
-                        results, polarization = expressed(k_edges, graph, 1)
-                    elif algorithm == 'MME':
-                        results, polarization = expressed(k_edges, graph, 1)
+                        results, polarization = greedy(k_edges, graph, True, False)
+                    elif algorithm == 'FKGreedy':
+                        results, polarization = greedy(k_edges, graph, False, True)
+                    elif algorithm == 'Expressed Distance':
+                        results, polarization = expressed(k_edges, graph, True)
+                    elif algorithm == 'Expressed Multiplication':
+                        results, polarization = expressed(k_edges, graph, False)
 
                     decrease_list.append(polarization)
                     end = time.time()
@@ -85,6 +85,9 @@ def algorithms_driver(k, datasets, algorithms):
 
             total_decreases.append(decrease_list)
             total_times.append(time_list)
+
+            # remove all stdout
+            print('', end='\r')
 
         decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms, 1)
 
