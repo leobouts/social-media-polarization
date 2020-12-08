@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="944d20ec-e3dd-4137-8dcf-919e7e1a83ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__compute_polarization__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__compute_polarization__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_polarization/__algorithms__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithms__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
       <workItem from="1605134312708" duration="671000" />
       <workItem from="1605170882210" duration="86328000" />
       <workItem from="1606937092349" duration="14898000" />
-      <workItem from="1607272572898" duration="13010000" />
+      <workItem from="1607272572898" duration="14810000" />
     </task>
     <servers />
   </component>
