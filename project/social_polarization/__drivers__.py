@@ -1,3 +1,4 @@
+import pickle
 import pprint
 import time
 
@@ -86,10 +87,15 @@ def algorithms_driver(k, datasets, algorithms):
             total_decreases.append(decrease_list)
             total_times.append(time_list)
 
-            # remove all stdout
-            print('', end='\r')
-
         decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms, 1)
+
+        # store data (serialize) into pickle file
+        with open(f"../pickles/{ds}/{ds}_decreases_checked_pol", 'wb') as handle:
+            pickle.dump(decreases_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+        # store data (serialize) into pickle file
+        with open(f"../pickles/{ds}/{ds}_labels_checked_pol", 'wb') as handle:
+            pickle.dump(labels_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
         k_copy = k.copy()
         k_copy.insert(0, 0)
@@ -103,6 +109,14 @@ def algorithms_driver(k, datasets, algorithms):
                               0)
 
         times_checked, time_labels_checked = check_for_same_results(total_times, algorithms, 0)
+
+        # store data (serialize) into pickle file
+        with open(f"../pickles/{ds}/{ds}_times_checked", 'wb') as handle:
+            pickle.dump(times_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+        # store data (serialize) into pickle file
+        with open(f"../pickles/{ds}/{ds}_labels_checked_time", 'wb') as handle:
+            pickle.dump(time_labels_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
         vis_graphs_heuristics(k,
                               times_checked,

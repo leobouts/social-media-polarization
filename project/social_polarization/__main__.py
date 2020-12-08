@@ -1,9 +1,9 @@
 from __drivers__ import *
-from __helpers__ import format_edge_list_from_tuples, get_nodes_and_values_from_nx_to_txt
+from __helpers__ import format_edge_list_from_tuples, get_nodes_and_values_from_nx_to_txt, \
+    open_pickles_for_adjusting_visualization_manually
 
 
 def main():
-
     # --------------------------------------- #
     #      Test Graph Init                    #
     # --------------------------------------- #
@@ -19,9 +19,9 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    #name = 'karate'
-    #graph = load_graph(f'../datasets/{name}.gml')
-    #print(get_polarization(graph))
+    # name = 'karate'
+    # graph = load_graph(f'../datasets/{name}.gml')
+    # print(get_polarization(graph))
 
     # --------------------------------------- #
     #     convert datasets to gml             #
@@ -59,11 +59,11 @@ def main():
     # --------------------------------------- #
 
     k = [5, 10, 15, 20]
-    algorithms = ['GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
+    algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['karate'], ['GBatch'])
+    # info = algorithms_driver(k, ['karate'], algorithms)
 
     ######################################################################
     # to Access information returned by edge additions                   #
@@ -82,7 +82,17 @@ def main():
     # ------------------------------------------------------- #
 
     # visualize_edge(graph, edge_list, "top-10 edge addition in books from Greedy",
-    #               "top-10_karate_greedy", 1)
+    #               "Greedy_karate_10", "karate", 1)
+
+    # ---------------------------------------- #
+    #     re-draw graph from pickles data for  #
+    #     manually adjusting it (if needed)    #
+    # ---------------------------------------- #
+    #  First arg: the k list                   #
+    #  Second arg: the dataset name            #
+    # ---------------------------------------- #
+
+    # open_pickles_for_adjusting_visualization_manually(k, 'karate')
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #

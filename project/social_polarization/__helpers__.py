@@ -6,6 +6,8 @@ import networkx as nx
 import pickle
 import pprint
 
+from __visualize__ import vis_graphs_heuristics
+
 
 def add_edges_and_count_polarization(edges_list, graph):
     """
@@ -37,15 +39,40 @@ def make_graph_fully_connected(g):
     return g
 
 
-def open_pickles(pickle_name):
-    """
-    :param pickle_name: name of the pickle file that is gonna be oppened
-    :return: nothing, prints the state of the pickle file.
-    """
+def open_pickles_for_adjusting_visualization_manually(k, dataset_name):
 
-    with open(pickle_name, 'rb') as fp:
-        edge_dictionary = pickle.load(fp)
-        pprint.pprint(sorted(edge_dictionary))
+    with open(f"../pickles/{dataset_name}/{dataset_name}_decreases_checked_pol", 'rb') as fp:
+        decreases_checked = pickle.load(fp)
+
+    with open(f"../pickles/{dataset_name}/{dataset_name}_labels_checked_pol", 'rb') as fp:
+        labels_checked = pickle.load(fp)
+
+    with open(f"../pickles/{dataset_name}/{dataset_name}_times_checked", 'rb') as fp:
+        times_checked = pickle.load(fp)
+
+    with open(f"../pickles/{dataset_name}/{dataset_name}_labels_checked_time", 'rb') as fp:
+        time_labels_checked = pickle.load(fp)
+
+    k_copy = k.copy()
+    k_copy.insert(0, 0)
+
+    vis_graphs_heuristics(k_copy,
+                          decreases_checked,
+                          labels_checked,
+                          f"{dataset_name} Polarization Decrease",
+                          "Number of Edges Added",
+                          "π(z)",
+                          0)
+
+    vis_graphs_heuristics(k,
+                          times_checked,
+                          time_labels_checked,
+                          f"{dataset_name} Time Elapsed",
+                          "Number of Edges Added",
+                          "Seconds",
+                          1)
+
+
 
 
 def format_edge_list_from_tuples(edge_list):
