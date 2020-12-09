@@ -57,7 +57,7 @@ def algorithms_driver(k, datasets, algorithms):
                     index = f'{algorithm}_{ds}_{k_edges}'
                     info[index] = {'result_dictionary': results[:k_edges],
                                    'time': time_list[i],
-                                   'polarization': polarizations[i+1]}
+                                   'polarization': decrease_list[i+1]}
 
             else:
 
