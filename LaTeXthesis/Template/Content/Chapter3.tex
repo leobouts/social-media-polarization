@@ -74,11 +74,9 @@ Problem 1 and 2 are trying to find edges that will minimize the polarization ind
 \subsection{Simmilarity measures}
 \label{sec:simMeasures}
 
-The computation of$E[\pi(z)]$ will be done with Graph Embeddings~\ref{sec:embeddings}. Various measures of similarity but also  the expressed opinion of a node will be used to compute the graph embeddings features. For example if two users have a large intersection the possibility that they will be friends is higher than two other users without mutual friends. Overlapping social circles increase the acceptance probability of a recommendation. Let $\Gamma(x)$ denote the number of neighbours of a node.
+$E[\pi(z)]$ will be computed with the help of measures of similarity in combination of the expressed opinion. For example if two users have a large intersection the possibility that they will be friends is higher than two other users without mutual friends. Overlapping social circles increase the acceptance probability of a recommendation. Let $\Gamma(x)$ denote the number of neighbours of a node.
 \\
 \\
-\noindent The following similarity measures will be used in Graph Embeddings~\ref{sec:embeddings}.
-
  \begin{itemize}
   \item Common neighbours. $ \lvert\Gamma(u) \cap \Gamma(v)\rvert$
   
