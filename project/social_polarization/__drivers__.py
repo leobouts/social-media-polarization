@@ -28,46 +28,40 @@ def algorithms_driver(k, datasets, algorithms):
         graph = load_graph(f'../datasets/{ds}.gml')
         total_decreases = []
         total_times = []
+        polarizations = []
+        results = []
+        time_list = []
 
         for algorithm in algorithms:
             print(f'\r Now in --> Dataset: {ds}, algorithm: {algorithm}')
             time.sleep(1)
-
-            decrease_list = []
-            time_list = []
-
+            decrease_list = [get_polarization(graph)]
             # append initial polarization for the graph output
-            decrease_list.append(get_polarization(graph))
             if algorithm != 'Embeddings':
-                for k_edges in tqdm(k):
-                    polarization = 0
-                    results = []
 
-                    start = time.time()
-                    if algorithm == 'Greedy':
-                        results, polarization = greedy(k_edges, graph, False, False)
-                    elif algorithm == 'GBatch':
-                        results, polarization = greedy(k_edges, graph, True, False)
-                    elif algorithm == 'FKGreedy':
-                        results, polarization = greedy(k_edges, graph, False, True)
-                    elif algorithm == 'Expressed Distance':
-                        results, polarization = expressed(k_edges, graph, True)
-                    elif algorithm == 'Expressed Multiplication':
-                        results, polarization = expressed(k_edges, graph, False)
+                if algorithm == 'Greedy':
+                    results, polarizations, time_list = greedy(k, graph, False, False)
+                elif algorithm == 'GBatch':
+                    results, polarizations, time_list = greedy(k, graph, True, False)
+                elif algorithm == 'FKGreedy':
+                    results, polarizations, time_list = greedy(k, graph, False, True)
+                elif algorithm == 'Expressed Distance':
+                    results, polarizations, time_list = expressed(k, graph, True)
+                elif algorithm == 'Expressed Multiplication':
+                    results, polarizations, time_list = expressed(k, graph, False)
 
-                    decrease_list.append(polarization)
-                    end = time.time()
-                    elapsed = end - start
-                    time_list.append(elapsed)
+                decrease_list = decrease_list + polarizations
+
+                for i, k_edges in enumerate(k):
+
                     index = f'{algorithm}_{ds}_{k_edges}'
-                    info[index] = {'result_dictionary': results,
-                                   'time': elapsed,
-                                   'polarization': polarization}
+                    info[index] = {'result_dictionary': results[:k_edges],
+                                   'time': time_list[i],
+                                   'polarization': polarizations[i+1]}
 
             else:
 
                 # to train it only one time
-
                 start = time.time()
                 edges = graph_embeddings(ds, 0)
 
@@ -91,10 +85,12 @@ def algorithms_driver(k, datasets, algorithms):
         decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms, 1)
 
         # store data (serialize) into pickle file
+        with open(f"../pickles/{ds}/{ds}_info", 'wb') as handle:
+            pickle.dump(info, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
         with open(f"../pickles/{ds}/{ds}_decreases_checked_pol", 'wb') as handle:
             pickle.dump(decreases_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-        # store data (serialize) into pickle file
         with open(f"../pickles/{ds}/{ds}_labels_checked_pol", 'wb') as handle:
             pickle.dump(labels_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
 

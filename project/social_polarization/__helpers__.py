@@ -4,7 +4,6 @@ from __compute_polarization__ import get_polarization
 from numpy import linalg as linear_algebra
 import networkx as nx
 import pickle
-import pprint
 
 from __visualize__ import vis_graphs_heuristics
 
