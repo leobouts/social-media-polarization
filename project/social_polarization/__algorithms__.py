@@ -1,10 +1,10 @@
 import time
-
+from tqdm import tqdm
 from __compute_polarization__ import get_polarization
 from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
 
 
-def greedy(k, graph_in, batch_flag, first_k_flag,):
+def greedy(k, graph_in, batch_flag, first_k_flag, ):
     """
     :param batch_flag:
     :param k:
@@ -22,12 +22,12 @@ def greedy(k, graph_in, batch_flag, first_k_flag,):
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
     if batch_flag:
-        k_items, polarizations, elapsed = greedy_batch(k, graph_in, positive_nodes, negative_nodes)
+        k_items, polarizations, elapsed = greedy_batch(k, graph_in, positive_nodes, negative_nodes, False)
         times = [elapsed for i in range(len(k))]
 
         return k_items, polarizations, times
 
-    for k_edge in k:
+    for k_edge in tqdm(k, ascii="~~~~~~~~~~~~~~~#"):
         k_items = []
 
         if first_k_flag:
@@ -38,7 +38,7 @@ def greedy(k, graph_in, batch_flag, first_k_flag,):
 
         start = time.time()
         for i in range(k_edge):
-            edges, polarization, elapsed = greedy_batch(k, graph, positive_nodes, negative_nodes)
+            edges, polarization, elapsed = greedy_batch(k, graph, positive_nodes, negative_nodes, True)
 
             edge_1 = edges[0][0][0]
             edge_2 = edges[0][0][1]
@@ -53,8 +53,9 @@ def greedy(k, graph_in, batch_flag, first_k_flag,):
     return k_items, polarizations, times
 
 
-def greedy_batch(k, graph_in, positive_nodes, negative_nodes):
+def greedy_batch(k, graph_in, positive_nodes, negative_nodes, verbose):
     """
+    :param verbose:
     :param k:
     :param graph_in:
     :param positive_nodes:
@@ -66,7 +67,7 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes):
     addition_info = {}
 
     start = time.time()
-    for node_pos in positive_nodes:
+    for node_pos in tqdm(positive_nodes, ascii="~~~~~~~~~~~~~~~#", disable=verbose):
         for node_neg in negative_nodes:
 
             edge_to_add = (node_pos[0], node_neg[0])
@@ -83,7 +84,7 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes):
             decrease = original_polarization - polarization_after_addition
             addition_info[edge_to_add] = decrease
     end = time.time()
-    elapsed = end-start
+    elapsed = end - start
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
@@ -111,7 +112,7 @@ def expressed(k, graph_in, mode):
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
     start = time.time()
-    for node_pos in positive_nodes:
+    for node_pos in tqdm(positive_nodes,ascii="~~~~~~~~~~~~~~~#"):
         for node_neg in negative_nodes:
 
             edge_to_add = (node_pos[0], node_neg[0])
@@ -134,12 +135,12 @@ def expressed(k, graph_in, mode):
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=mode)
 
     for k_edge in k:
-        #just create an array with the same time for every edge. (time here is constant)
-        times.append(end-start)
+        # just create an array with the same time for every edge. (time here is constant)
+        times.append(end - start)
 
         edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
 
-        #pass a graph in the helper that copies it
+        # pass a graph in the helper that copies it
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
 
     return sorted_edges, polarizations, times
