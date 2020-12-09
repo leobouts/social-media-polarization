@@ -316,7 +316,7 @@ def get_positive_and_negative_values(nodeDict):
             negative_dictionary[node] = node_value
 
     positive_dictionary = sorted(positive_dictionary.items(), key=lambda x: x[1], reverse=True)
-    negative_dictionary = sorted(negative_dictionary.items(), key=lambda x: x[1], reverse=True)
+    negative_dictionary = sorted(negative_dictionary.items(), key=lambda x: x[1], reverse=False)
 
     return positive_dictionary, negative_dictionary
 

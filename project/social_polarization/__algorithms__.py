@@ -21,10 +21,6 @@ def greedy(k, graph_in, batch_flag, first_k_flag,):
 
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
-    if first_k_flag:
-        positive_nodes = positive_nodes[:max(k)]
-        negative_nodes = negative_nodes[:max(k)]
-
     if batch_flag:
         k_items, polarizations, elapsed = greedy_batch(k, graph_in, positive_nodes, negative_nodes)
         times = [elapsed for i in range(len(k))]
@@ -33,6 +29,12 @@ def greedy(k, graph_in, batch_flag, first_k_flag,):
 
     for k_edge in k:
         k_items = []
+
+        if first_k_flag:
+            positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
+
+            positive_nodes = positive_nodes[:k_edge]
+            negative_nodes = negative_nodes[:k_edge]
 
         start = time.time()
         for i in range(k_edge):
