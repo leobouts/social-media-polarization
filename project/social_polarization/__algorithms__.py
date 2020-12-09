@@ -27,7 +27,7 @@ def greedy(k, graph_in, batch_flag, first_k_flag,):
 
     if batch_flag:
         k_items, polarizations, elapsed = greedy_batch(k, graph_in, positive_nodes, negative_nodes)
-        times = [elapsed for i in range(k)]
+        times = [elapsed for i in range(len(k))]
 
         return k_items, polarizations, times
 
