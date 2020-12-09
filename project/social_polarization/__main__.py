@@ -59,11 +59,11 @@ def main():
     # --------------------------------------- #
 
     k = [5, 10, 15, 20]
-    algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
+    algorithms = ['GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    # info = algorithms_driver(k, ['karate'], algorithms)
+    info = algorithms_driver(k, ['beefban', 'polblogs'], algorithms)
 
     ######################################################################
     # to Access information returned by edge additions                   #

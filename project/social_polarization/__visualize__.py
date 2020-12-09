@@ -4,6 +4,7 @@ import networkx as nx
 
 def visualize_edge(g, edge_list, title, img_name, dataset, mode):
     """
+    :param dataset:
     :param g: networkx graph
     :param edge_list: edges that are removed or added
     :param title: title we want the graph to have

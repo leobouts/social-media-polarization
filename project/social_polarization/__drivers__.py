@@ -31,6 +31,7 @@ def algorithms_driver(k, datasets, algorithms):
 
         for algorithm in algorithms:
             print(f'\r Now in --> Dataset: {ds}, algorithm: {algorithm}')
+            time.sleep(1)
 
             decrease_list = []
             time_list = []
@@ -190,9 +191,9 @@ def edge_removals_driver(graph, name):
     increase_list_for_vis = format_edge_list(top_increase)
 
     visualize_edge(graph, decrease_list_for_vis, "Edges that had the biggest decrease with removal",
-                   "decrease_removal", 0)
+                   "decrease_removal", name, 0)
     visualize_edge(graph, increase_list_for_vis, "Edges that had the biggest increase with removal",
-                   "increase_removal", 0)
+                   "increase_removal", name, 0)
 
 
 def dataset_statistics_driver(datasets, verbose):

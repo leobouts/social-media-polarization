@@ -1,9 +1,6 @@
-import time
 import numpy as np
 import networkx as nx
-from scipy import sparse
 from scipy.sparse import identity
-from scipy.sparse.linalg import inv
 
 
 def get_polarization(g):
