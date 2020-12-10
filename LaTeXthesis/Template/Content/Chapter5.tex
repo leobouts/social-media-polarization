@@ -28,16 +28,16 @@ In this section we consider datasets that are separated in two opposing communit
 \section{Experiments with heuristics}
 \label{sec:experimHeuristics}
 
-All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE. We can only experiment with the karate and the books dataset on all the heuristics. The rest of the datasets would need much more time as they contain thousands of nodes. In more detail, the greedy algorithm needs to consider the changes in the network structure so it is impossible to compute the polarization so many times.
+All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE. We can only experiment with the $Karate$ and the $Books$ dataset on all the heuristics. The $Greedy$ algorithm cannot run on the rest of the datasets because they contain thousands of nodes. The $Greedy$ algorithm needs to consider changes in the network structure so it is impossible to compute the polarization so many times.
 \\
 \\ 
-This holds not only for the change of the structure but also in all the heuristics that need to compute $\pi(z)$. The same applies for the missing edges algorithms. The set of edges that is required to be explored increases dramatically as the number of nodes gets bigger. 
+The same applies for the $GBatch$ algorithm. Although the $GBatch$ algorithm can run on the $beefban$ dataset that contains $799$ nodes it would take approximately $45$ hours, with our implementation, for the $polblogs$ dataset that has $1490$ nodes.
 \\
 \\
-Only the Distance heuristic can run in a sensible time but provide us with a small decrease in polarization. This decrease can be greater if we consider a bigger number of edge additions that are proportional with the number of edges added on the smaller datasets. 
+Only the $FKGreedy$ and the $Expressed opinion$ heuristics can run in all datasets but provide us with a small decrease in polarization. This decrease would be greater if we consider a bigger number of edge additions that are proportional to the size of the dataset. Greater number of edges would make $FKGreedy$ nonrunnable.
 \\
 \\
-Experiments that had similar results in terms of polarization or time, in the karate and books dataset, were grouped together in a way that the graphs are readable. The time results of the greedy algorithm after the first additions are omitted so the rest of the data can be shown properly.
+\clearpage
 
 \subsection{Dataset statistics}
 
@@ -95,7 +95,7 @@ Experiments that had similar results in terms of polarization or time, in the ka
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figures/top-10_karate_greedy}
-	\caption{the top-10 edges proposed by the greedy algorithn}
+	\caption{the top-10 edges proposed by the greedy algorithm}
 	\label{fig:top-10-karate}
 \end{figure}
 
@@ -104,9 +104,20 @@ Experiments that had similar results in terms of polarization or time, in the ka
 
 \subsection{Heuristics in the Books dataset}
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/books Polarization Decrease}
+	\caption{Heuristic comparison of time in Books}
+	\label{fig:books_pol}
+\end{figure}
 
 
-\subsection{Heuristics in the Polblogs dataset}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/books Time Elapsed}
+	\caption{Heuristic comparison of time in Books}
+	\label{fig:books_time}
+\end{figure}
 
 
 \clearpage
@@ -114,19 +125,76 @@ Experiments that had similar results in terms of polarization or time, in the ka
 
 \subsection{Heuristics in the Beefban dataset}
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/beefban Polarization Decrease}
+	\caption{Heuristic comparison of time in Beefban}
+	\label{fig:beefban_pol}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/Beefban Time Elapsed}
+	\caption{Heuristic comparison of time in Beefban}
+	\label{fig:beefban_time}
+\end{figure}
 
 \clearpage
 
+\subsection{Heuristics in the Polblogs dataset}
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/polblogs Polarization Decrease}
+	\caption{Heuristic comparison of time in Polblogs}
+	\label{fig:polblogs_pol}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/Polblogs Time Elapsed}
+	\caption{Heuristic comparison of time in Polblogs}
+	\label{fig:polblogs_time}
+\end{figure}
+
+\clearpage
 
 \subsection{Heuristics in the GermanWings dataset}
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/GermanWings Polarization Decrease}
+	\caption{Heuristic comparison of time in GermanWings}
+	\label{fig:GermanWings_pol}
+\end{figure}
 
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/GermanWings Time Elapsed}
+	\caption{Heuristic comparison of time in GermanWings}
+	\label{fig:GermanWings_time}
+\end{figure}
 \clearpage
 
 
 \subsection{Heuristics in the ClintonTrump dataset}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/ClintonTrump Polarization Decrease}
+	\caption{Heuristic comparison of time in ClintonTrump}
+	\label{fig:ClintonTrump_pol}
+\end{figure}
 
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figures/ClintonTrump Time Elapsed}
+	\caption{Heuristic comparison of time in ClintonTrump}
+	\label{fig:ClintonTrump_time}
+\end{figure}
 \clearpage
 
 

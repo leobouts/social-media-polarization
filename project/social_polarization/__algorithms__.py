@@ -4,7 +4,7 @@ from __compute_polarization__ import get_polarization
 from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
 
 
-def greedy(k, graph_in, batch_flag, first_k_flag, ):
+def greedy(k, graph_in, batch_flag, first_k_flag):
     """
     :param batch_flag:
     :param k:
