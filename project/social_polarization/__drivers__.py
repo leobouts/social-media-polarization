@@ -40,15 +40,15 @@ def algorithms_driver(k, datasets, algorithms):
             if algorithm != 'Embeddings':
 
                 if algorithm == 'Greedy':
-                    results, polarizations, time_list = greedy(k, graph, False, False)
+                    results, polarizations, time_list = greedy(k, graph, False, 'Ignore', False)
                 elif algorithm == 'GBatch':
-                    results, polarizations, time_list = greedy(k, graph, True, False)
+                    results, polarizations, time_list = greedy(k, graph, True, 'Ignore', False)
                 elif algorithm == 'FKGreedy':
-                    results, polarizations, time_list = greedy(k, graph, False, True)
+                    results, polarizations, time_list = greedy(k, graph, False, 'Ignore', True)
                 elif algorithm == 'Expressed Distance':
-                    results, polarizations, time_list = expressed(k, graph, True)
+                    results, polarizations, time_list = expressed(k, graph, 'Distance')
                 elif algorithm == 'Expressed Multiplication':
-                    results, polarizations, time_list = expressed(k, graph, False)
+                    results, polarizations, time_list = expressed(k, graph, 'Multiplication')
 
                 decrease_list = decrease_list + polarizations
 

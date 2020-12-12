@@ -1,18 +1,28 @@
-import time
-
-import networkx as nx
-from tqdm import tqdm
-from __compute_polarization__ import get_polarization
 from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
+from __compute_polarization__ import get_polarization
+from tqdm import tqdm
+import networkx as nx
+import time
 
 
 def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
     """
-    :param batch_flag:
-    :param k:
-    :param graph_in:
-    :param first_k_flag:
+    :param k: List that contains all the top-k edge additions we want to examine, e.g
+    [5, 10, 15, 20]
+    :param graph_in: Networkx graph that we want to examine
+    :param first_k_flag: if True performs a greedy search on the first KxK nodes according to z value.
+    :param batch_flag: if True runs only the GBatch algorithm
+    :param expected_p_z_mode: Expected problem function definition. Available modes:
+    'common_neighbors'
     :return:
+    1) k_items, a list of all the edges proposed sorted by their decrease or
+    expected decrease. They already sorted from the greedy_batch function so they don't need to be sorted
+    here
+
+    2) polarizations, a list contain the polarization after the addition of the top-k edges that were proposed
+     each time. top-k edges are given as an input in the parameter k above.
+
+    3) times, elapsed times of the algorithm for each k.
     """
 
     graph = graph_in.copy()
@@ -23,15 +33,23 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
 
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
+    # GBatch algorithm runs here and returns
     if batch_flag:
-        k_items, polarizations, elapsed = greedy_batch(k, graph_in, positive_nodes, negative_nodes, False)
-        times = [elapsed for i in range(len(k))]
+        k_items, polarizations, elapsed = greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
+                                                       False)
+        # create a list with the same running time, used for the visualizations
+        times = [elapsed] * len(k)
 
         return k_items, polarizations, times
+
+    # Greedy and FKGreedy runs here,
+    # they use GBatch K times.
 
     for k_edge in tqdm(k, ascii="~~~~~~~~~~~~~~~#"):
         k_items = []
 
+        # The FKGreedy algorithm reduces the space by running
+        # the Greedy algorithm using only the first KxK nodes
         if first_k_flag:
             positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
@@ -40,7 +58,8 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
 
         start = time.time()
         for i in range(k_edge):
-            edges, polarization, elapsed = greedy_batch(k, graph, positive_nodes, negative_nodes, True)
+            edges, polarization, elapsed = greedy_batch(k, graph, positive_nodes, negative_nodes, expected_p_z_mode,
+                                                        True)
 
             edge_1 = edges[0][0][0]
             edge_2 = edges[0][0][1]
@@ -56,9 +75,8 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
 
 
 def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode, verbose):
-
     """
-    Greedy batch finds the best edge to add according to the polarization decrease ammong all
+    Greedy batch finds the best edge to add according to the polarization decrease among all
     different opinions. It is also used with an expected mode to consider the addition of edges
     considering additional information e.g. common neighbors
 
@@ -67,8 +85,9 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
     :param graph_in: Networkx graph that we want to examine
     :param positive_nodes: Nodes that have a z value of (0,1]
     :param negative_nodes: Nodes that have a z value od [-1,0)
-    :param expected_p_z_mode: Expected problem function defintion. Available modes:
-    'common_neighbors'
+    :param expected_p_z_mode: Expected problem function definition. Available modes:
+    'common_neighbors',
+    to not consider it the flag 'Ignore' can be passed.
     :param verbose: disabling or enabling the tqdm progress bar output to the console.
     do not change. GBatch is also used on greedy so it is used to disable the inner progress
     bar when we run the greedy algorithm.
@@ -111,7 +130,7 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
             if expected_p_z_mode == 'common_neighbors':
 
                 common_neighbors = nx.common_neighbors(graph_in, node_pos[0], node_neg[0])
-                addition_info[edge_to_add] = decrease*common_neighbors
+                addition_info[edge_to_add] = decrease * common_neighbors
 
             else:
                 # considering the initial problem of just the polarization decrease
@@ -124,7 +143,6 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
 
     # compute all the polarization decreases for every K we have given as input.
     for k_edge in k:
-
         # GBatch computes all the edges at once so we can check the first k
         # at once with sorted_edges[:k_edge].
         edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
@@ -135,12 +153,23 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
     return sorted_edges, polarizations, elapsed
 
 
-def expressed(k, graph_in, mode):
+def expressed(k, graph_in, mode, expected_p_z_mode):
     """
-    :param k:
-    :param graph_in:
-    :param mode: True for absolute distance, False for multiplication
+    :param k: List that contains all the top-k edge additions we want to examine, e.g
+    [5, 10, 15, 20]
+    :param graph_in: Networkx graph that we want to examine
+    :param mode: 'Distance' for absolute distance, 'Multiplication' for multiplication
+    :param expected_p_z_mode: Expected problem function definition. Available modes:
+    'common_neighbors',
+    to not consider it the flag 'Ignore' can be passed.
     :return:
+    1) sorted_edges, a list of all the edges proposed sorted by their decrease or
+    expected decrease.
+
+    2) polarizations, a list contain the polarization after the addition of the top-k edges that were proposed
+     each time. top-k edges are given as an input in the parameter k above.
+
+    3) elapsed time of the algorithms.
     """
 
     nodeDict = dict(graph_in.nodes(data=True))
@@ -162,16 +191,27 @@ def expressed(k, graph_in, mode):
             node_1 = nodeDict[node_pos[0]]['value']
             node_2 = nodeDict[node_neg[0]]['value']
 
-            if mode == 1:
+            if mode == "Distance":
                 val = abs(node_1 - node_2)
             else:
                 val = node_1 * node_2
 
+            # addition_info is computed differently if we considering
+            # the expected addition problem, bellow we consider the following
+            # cases
+
+            if expected_p_z_mode == 'common_neighbors':
+
+                common_neighbors = nx.common_neighbors(graph_in, node_pos[0], node_neg[0])
+                val = val * common_neighbors
+
             addition_info[edge_to_add] = val
+
     end = time.time()
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=mode)
 
+    # compute all the polarization decreases for every K we have given as input.
     for k_edge in k:
         # just create an array with the same time for every edge. (time here is constant)
         times.append(end - start)
