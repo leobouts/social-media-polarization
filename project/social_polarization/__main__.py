@@ -58,12 +58,12 @@ def main():
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
 
-    k = [5, 10, 15, 20]
+    k = [400, 800]
     algorithms = ['FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    #info = algorithms_driver(k, ['sxsw'], ['FKGreedy'])
+    info = algorithms_driver(k, ['beebfan'], ['FKGreedy'])
 
     ######################################################################
     # to Access information returned by edge additions                   #

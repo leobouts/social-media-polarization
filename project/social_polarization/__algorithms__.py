@@ -1,10 +1,12 @@
 import time
+
+import networkx as nx
 from tqdm import tqdm
 from __compute_polarization__ import get_polarization
 from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
 
 
-def greedy(k, graph_in, batch_flag, first_k_flag):
+def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
     """
     :param batch_flag:
     :param k:
@@ -53,15 +55,34 @@ def greedy(k, graph_in, batch_flag, first_k_flag):
     return k_items, polarizations, times
 
 
-def greedy_batch(k, graph_in, positive_nodes, negative_nodes, verbose):
+def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode, verbose):
+
     """
-    :param verbose:
-    :param k:
-    :param graph_in:
-    :param positive_nodes:
-    :param negative_nodes:
+    Greedy batch finds the best edge to add according to the polarization decrease ammong all
+    different opinions. It is also used with an expected mode to consider the addition of edges
+    considering additional information e.g. common neighbors
+
+    :param k: List that contains all the top-k edge additions we want to examine, e.g
+    [5, 10, 15, 20]
+    :param graph_in: Networkx graph that we want to examine
+    :param positive_nodes: Nodes that have a z value of (0,1]
+    :param negative_nodes: Nodes that have a z value od [-1,0)
+    :param expected_p_z_mode: Expected problem function defintion. Available modes:
+    'common_neighbors'
+    :param verbose: disabling or enabling the tqdm progress bar output to the console.
+    do not change. GBatch is also used on greedy so it is used to disable the inner progress
+    bar when we run the greedy algorithm.
     :return:
+
+    1) sorted_edges, a list of all the edges proposed sorted by their decrease or
+    expected decrease.
+
+    2) polarizations, a list contain the polarization after the addition of the top-k edges that were proposed
+     each time. top-k edges are given as an input in the parameter k above.
+
+    3) elapsed time of the algorithm.
     """
+
     original_polarization = get_polarization(graph_in)
     polarizations = []
     addition_info = {}
@@ -82,16 +103,33 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, verbose):
 
             polarization_after_addition = get_polarization(g_copy)
             decrease = original_polarization - polarization_after_addition
-            addition_info[edge_to_add] = decrease
+
+            # addition_info is computed differently if we considering
+            # the expected addition problem, bellow we consider the following
+            # cases
+
+            if expected_p_z_mode == 'common_neighbors':
+
+                common_neighbors = nx.common_neighbors(graph_in, node_pos[0], node_neg[0])
+                addition_info[edge_to_add] = decrease*common_neighbors
+
+            else:
+                # considering the initial problem of just the polarization decrease
+                addition_info[edge_to_add] = decrease
+
     end = time.time()
     elapsed = end - start
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
+    # compute all the polarization decreases for every K we have given as input.
     for k_edge in k:
+
+        # GBatch computes all the edges at once so we can check the first k
+        # at once with sorted_edges[:k_edge].
         edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
 
-        # pass a graph in the helper that copies it
+        # pass a graph in the helper method (copies it)
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
 
     return sorted_edges, polarizations, elapsed
