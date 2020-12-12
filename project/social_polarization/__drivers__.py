@@ -1,17 +1,16 @@
+from __helpers__ import convert_dataset_to_gml, \
+    format_edge_list, \
+    check_for_same_results, \
+    get_dataset_statistics, \
+    get_nodes_and_values_from_nx_to_txt
+from connect_opposing import brute_force_all_edges_removal
+from __graph_properties__ import edges_centralities
+from __graph_embeddings__ import graph_embeddings
+from __load_graph_data__ import load_graph
+from __algorithms__ import *
+from __visualize__ import *
 import pickle
 import pprint
-import time
-
-from tqdm import tqdm
-
-from __algorithms__ import *
-from __graph_embeddings__ import graph_embeddings
-from connect_opposing import brute_force_all_edges_removal
-from __load_graph_data__ import load_graph
-from __helpers__ import convert_dataset_to_gml, format_edge_list, check_for_same_results, get_dataset_statistics, \
-    get_nodes_and_values_from_nx_to_txt
-from __graph_properties__ import edges_centralities
-from __visualize__ import *
 
 
 def algorithms_driver(k, datasets, algorithms):
@@ -46,9 +45,9 @@ def algorithms_driver(k, datasets, algorithms):
                 elif algorithm == 'FKGreedy':
                     results, polarizations, time_list = greedy(k, graph, False, 'Ignore', True)
                 elif algorithm == 'Expressed Distance':
-                    results, polarizations, time_list = expressed(k, graph, 'Distance')
+                    results, polarizations, time_list = expressed(k, graph, 'Distance', 'Ignore')
                 elif algorithm == 'Expressed Multiplication':
-                    results, polarizations, time_list = expressed(k, graph, 'Multiplication')
+                    results, polarizations, time_list = expressed(k, graph, 'Multiplication', 'Ignore')
 
                 decrease_list = decrease_list + polarizations
 

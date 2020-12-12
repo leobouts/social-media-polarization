@@ -1,11 +1,8 @@
-from tqdm import tqdm
-
 from __compute_polarization__ import get_polarization
+from __visualize__ import vis_graphs_heuristics
 from numpy import linalg as linear_algebra
 import networkx as nx
 import pickle
-
-from __visualize__ import vis_graphs_heuristics
 
 
 def add_edges_and_count_polarization(edges_list, graph):
@@ -70,8 +67,6 @@ def open_pickles_for_adjusting_visualization_manually(k, dataset_name):
                           "Number of Edges Added",
                           "Seconds",
                           1)
-
-
 
 
 def format_edge_list_from_tuples(edge_list):

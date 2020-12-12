@@ -1,6 +1,6 @@
-import numpy as np
-import networkx as nx
 from scipy.sparse import identity
+import networkx as nx
+import numpy as np
 
 
 def get_polarization(g):

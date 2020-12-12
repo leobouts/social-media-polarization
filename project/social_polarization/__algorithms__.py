@@ -86,7 +86,7 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
     :param positive_nodes: Nodes that have a z value of (0,1]
     :param negative_nodes: Nodes that have a z value od [-1,0)
     :param expected_p_z_mode: Expected problem function definition. Available modes:
-    'common_neighbors',
+    'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index'
     to not consider it the flag 'Ignore' can be passed.
     :param verbose: disabling or enabling the tqdm progress bar output to the console.
     do not change. GBatch is also used on greedy so it is used to disable the inner progress
@@ -130,7 +130,15 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
             if expected_p_z_mode == 'common_neighbors':
 
                 common_neighbors = nx.common_neighbors(graph_in, node_pos[0], node_neg[0])
-                addition_info[edge_to_add] = decrease * common_neighbors
+                addition_info[edge_to_add] = decrease * len(common_neighbors)
+
+            elif expected_p_z_mode == 'Jaccard_coefficient':
+                Jaccard = list(nx.jaccard_coefficient(graph_in, [(node_pos[0], node_neg[0])]))
+                addition_info[edge_to_add] = decrease * Jaccard[0]
+
+            elif expected_p_z_mode == 'Adamic_addar_index':
+                Adamic = list(nx.adamic_adar_index(graph_in, [(node_pos[0], node_neg[0])]))
+                addition_info[edge_to_add] = decrease * Adamic[0]
 
             else:
                 # considering the initial problem of just the polarization decrease
@@ -160,7 +168,7 @@ def expressed(k, graph_in, mode, expected_p_z_mode):
     :param graph_in: Networkx graph that we want to examine
     :param mode: 'Distance' for absolute distance, 'Multiplication' for multiplication
     :param expected_p_z_mode: Expected problem function definition. Available modes:
-    'common_neighbors',
+    'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index'
     to not consider it the flag 'Ignore' can be passed.
     :return:
     1) sorted_edges, a list of all the edges proposed sorted by their decrease or
@@ -204,6 +212,14 @@ def expressed(k, graph_in, mode, expected_p_z_mode):
 
                 common_neighbors = nx.common_neighbors(graph_in, node_pos[0], node_neg[0])
                 val = val * common_neighbors
+
+            elif expected_p_z_mode == 'Jaccard_coefficient':
+                Jaccard = nx.jaccard_coefficient(graph_in, node_pos[0], node_neg[0])
+                val = val * Jaccard[0]
+
+            elif expected_p_z_mode == 'Adamic_addar_index':
+                Adamic = nx.adamic_adar_index(graph_in, node_pos[0], node_neg[0])
+                val = val * Adamic[0]
 
             addition_info[edge_to_add] = val
 
