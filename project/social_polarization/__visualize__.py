@@ -83,11 +83,11 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
         if list_of_labels[i] == 'Greedy':
             color = '#173f5f'
         elif list_of_labels[i] == 'GBatch':
-            color = '20639b'
+            color = '#20639b'
         elif list_of_labels[i] == 'FKGreedy':
-            color = 'f6d55c'
+            color = '#f6d55c'
         else:
-            color = 'ed55eb'
+            color = '#ed55eb'
 
         plt.plot(x_axis, y_xis, label=list_of_labels[i], linestyle=ls, color=color)
 

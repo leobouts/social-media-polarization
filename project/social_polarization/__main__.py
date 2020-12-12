@@ -63,7 +63,7 @@ def main():
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['sxsw'], ['FKGreedy'])
+    #info = algorithms_driver(k, ['sxsw'], ['FKGreedy'])
 
     ######################################################################
     # to Access information returned by edge additions                   #
@@ -92,7 +92,7 @@ def main():
     #  Second arg: the dataset name            #
     # ---------------------------------------- #
 
-    # open_pickles_for_adjusting_visualization_manually(k, 'karate')
+    #open_pickles_for_adjusting_visualization_manually(k, 'sxsw')
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #
