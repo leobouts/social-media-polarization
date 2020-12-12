@@ -112,7 +112,7 @@ def expressed(k, graph_in, mode):
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
     start = time.time()
-    for node_pos in tqdm(positive_nodes,ascii="~~~~~~~~~~~~~~~#"):
+    for node_pos in tqdm(positive_nodes, ascii="~~~~~~~~~~~~~~~#"):
         for node_neg in negative_nodes:
 
             edge_to_add = (node_pos[0], node_neg[0])
