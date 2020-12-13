@@ -57,13 +57,21 @@ def main():
     # --------------------------------------- #
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
+    #    Last argument :                      #
+    #    Expected mode, available:            #
+    #    1) common_neighbors                  #
+    #    2) Jaccard_coefficient               #
+    #    3) Adamic_addar_index                #
+    #    4) Embeddings                        #
+    #    5) Ignore , to not consider          #
+    # --------------------------------------- #
 
     k = [1, 5, 10, 15, 20]
     algorithms = ['FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['karate'], ['Embeddings'])
+    info = algorithms_driver(k, ['karate'], algorithms, 'Embeddings')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

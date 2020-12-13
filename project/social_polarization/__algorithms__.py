@@ -5,15 +5,16 @@ import networkx as nx
 import time
 
 
-def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
+def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode, probabilities_dictionary):
     """
+    :param probabilities_dictionary:
     :param k: List that contains all the top-k edge additions we want to examine, e.g
     [5, 10, 15, 20]
     :param graph_in: Networkx graph that we want to examine
     :param first_k_flag: if True performs a greedy search on the first KxK nodes according to z value.
     :param batch_flag: if True runs only the GBatch algorithm
     :param expected_p_z_mode: Expected problem function definition. Available modes:
-    'common_neighbors'
+    'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index', 'Embeddings'
     :return:
     1) k_items, a list of all the edges proposed sorted by their decrease or
     expected decrease. They already sorted from the greedy_batch function so they don't need to be sorted
@@ -24,7 +25,6 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
 
     3) times, elapsed times of the algorithm for each k.
     """
-
     graph = graph_in.copy()
     nodeDict = dict(graph.nodes(data=True))
     polarizations = []
@@ -36,7 +36,7 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
     # GBatch algorithm runs here and returns
     if batch_flag:
         k_items, polarizations, elapsed = greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
-                                                       False)
+                                                       False, probabilities_dictionary)
         # create a list with the same running time, used for the visualizations
         times = [elapsed] * len(k)
 
@@ -59,7 +59,7 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
         start = time.time()
         for i in range(k_edge):
             edges, polarization, elapsed = greedy_batch(k, graph, positive_nodes, negative_nodes, expected_p_z_mode,
-                                                        True)
+                                                        True, probabilities_dictionary)
 
             edge_1 = edges[0][0][0]
             edge_2 = edges[0][0][1]
@@ -74,19 +74,20 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode):
     return k_items, polarizations, times
 
 
-def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode, verbose):
+def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode, verbose, probabilities_dictionary):
     """
     Greedy batch finds the best edge to add according to the polarization decrease among all
     different opinions. It is also used with an expected mode to consider the addition of edges
     considering additional information e.g. common neighbors
 
+    :param probabilities_dictionary:
     :param k: List that contains all the top-k edge additions we want to examine, e.g
     [5, 10, 15, 20]
     :param graph_in: Networkx graph that we want to examine
     :param positive_nodes: Nodes that have a z value of (0,1]
     :param negative_nodes: Nodes that have a z value od [-1,0)
     :param expected_p_z_mode: Expected problem function definition. Available modes:
-    'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index'
+    'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index', 'Embeddings'
     to not consider it the flag 'Ignore' can be passed.
     :param verbose: disabling or enabling the tqdm progress bar output to the console.
     do not change. GBatch is also used on greedy so it is used to disable the inner progress
@@ -111,7 +112,6 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
         for node_neg in negative_nodes:
 
             edge_to_add = (node_pos[0], node_neg[0])
-
             # skip edge if the edge exists in the original graph
             if graph_in.has_edge(*edge_to_add):
                 continue
@@ -128,17 +128,20 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
             # cases
 
             if expected_p_z_mode == 'common_neighbors':
-
-                common_neighbors = nx.common_neighbors(graph_in, node_pos[0], node_neg[0])
+                common_neighbors = list(nx.common_neighbors(graph_in, node_pos[0], node_neg[0]))
                 addition_info[edge_to_add] = decrease * len(common_neighbors)
 
             elif expected_p_z_mode == 'Jaccard_coefficient':
                 Jaccard = list(nx.jaccard_coefficient(graph_in, [(node_pos[0], node_neg[0])]))
-                addition_info[edge_to_add] = decrease * Jaccard[0]
+                addition_info[edge_to_add] = decrease * Jaccard[0][2]
 
             elif expected_p_z_mode == 'Adamic_addar_index':
                 Adamic = list(nx.adamic_adar_index(graph_in, [(node_pos[0], node_neg[0])]))
-                addition_info[edge_to_add] = decrease * Adamic[0]
+                addition_info[edge_to_add] = decrease * Adamic[0][2]
+
+            elif expected_p_z_mode == 'Embeddings':
+                probability = probabilities_dictionary[edge_to_add]
+                addition_info[edge_to_add] = decrease * probability
 
             else:
                 # considering the initial problem of just the polarization decrease
@@ -161,14 +164,15 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
     return sorted_edges, polarizations, elapsed
 
 
-def expressed(k, graph_in, mode, expected_p_z_mode):
+def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     """
+    :param probabilities_dictionary:
     :param k: List that contains all the top-k edge additions we want to examine, e.g
     [5, 10, 15, 20]
     :param graph_in: Networkx graph that we want to examine
     :param mode: 'Distance' for absolute distance, 'Multiplication' for multiplication
     :param expected_p_z_mode: Expected problem function definition. Available modes:
-    'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index'
+    'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index', 'Embeddings'
     to not consider it the flag 'Ignore' can be passed.
     :return:
     1) sorted_edges, a list of all the edges proposed sorted by their decrease or
@@ -201,8 +205,10 @@ def expressed(k, graph_in, mode, expected_p_z_mode):
 
             if mode == "Distance":
                 val = abs(node_1 - node_2)
+                mode_flag = 1
             else:
                 val = node_1 * node_2
+                mode_flag = 0
 
             # addition_info is computed differently if we considering
             # the expected addition problem, bellow we consider the following
@@ -210,22 +216,26 @@ def expressed(k, graph_in, mode, expected_p_z_mode):
 
             if expected_p_z_mode == 'common_neighbors':
 
-                common_neighbors = nx.common_neighbors(graph_in, node_pos[0], node_neg[0])
-                val = val * common_neighbors
+                common_neighbors = list(nx.common_neighbors(graph_in, node_pos[0], node_neg[0]))
+                val = val * len(common_neighbors)
 
             elif expected_p_z_mode == 'Jaccard_coefficient':
-                Jaccard = nx.jaccard_coefficient(graph_in, node_pos[0], node_neg[0])
-                val = val * Jaccard[0]
+                Jaccard = list(nx.jaccard_coefficient(graph_in, [(node_pos[0], node_neg[0])]))
+                val = val * Jaccard[0][2]
 
             elif expected_p_z_mode == 'Adamic_addar_index':
-                Adamic = nx.adamic_adar_index(graph_in, node_pos[0], node_neg[0])
-                val = val * Adamic[0]
+                Adamic = list(nx.adamic_adar_index(graph_in, [(node_pos[0], node_neg[0])]))
+                val = val * Adamic[0][2]
+
+            elif expected_p_z_mode == 'Embeddings':
+                probability = probabilities_dictionary[edge_to_add]
+                val = val * probability
 
             addition_info[edge_to_add] = val
 
     end = time.time()
 
-    sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=mode)
+    sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=mode_flag)
 
     # compute all the polarization decreases for every K we have given as input.
     for k_edge in k:
