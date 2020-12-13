@@ -27,9 +27,9 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
 
     for polarization_value in node_values.values():
         if polarization_value > 0:
-            node_colors.append('#00c08a')
+            node_colors.append('#f6d55c')
         else:
-            node_colors.append('#ffb74b')
+            node_colors.append('#20639b')
 
     # create edges as a tuple
     for i in range(len(edge_list)):
@@ -39,8 +39,6 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
     tuples = [tuple(sorted(tup)) for tup in tuples]
     g.add_edges_from(tuples)
 
-    print(g.edges)
-    print(tuples)
     # keep same layout
     # pos = nx.spring_layout(g_top, scale=15)
     pos = nx.nx_agraph.graphviz_layout(g, prog='twopi')
@@ -48,9 +46,9 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
     for edge in g.edges:
         if edge in tuples:
             if mode:
-                edge_colors.append('#00c08a')
+                edge_colors.append('#339E66FF')
             else:
-                edge_colors.append('#ff5255')
+                edge_colors.append('#D01C1FFF')
             edge_weights.append(2.5)
         else:
             edge_colors.append('black')

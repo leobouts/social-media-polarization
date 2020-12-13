@@ -140,9 +140,10 @@ def node_2_vec_features(G_data):
     # Generate walks
     node2vec = Node2Vec(G_data, dimensions=100, walk_length=16, num_walks=50, quiet=False)
 
+
     # train node2vec model
     n2w_model = node2vec.fit(window=7, min_count=1)
-
+    print(n2w_model.wv.most_similar('2'))
     return n2w_model
 
 
@@ -165,7 +166,6 @@ def graph_embeddings(name, verbose):
     n2w_model = node_2_vec_features(G_data)
 
     x = [(n2w_model[str(i)] + n2w_model[str(j)]) for i, j in zip(data['node_1'], data['node_2'])]
-
     xtrain, xtest, ytrain, ytest = train_test_split(np.array(x), data['link'],
                                                     test_size=0.2,
                                                     random_state=35)

@@ -19,8 +19,8 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    # name = 'karate'
-    # graph = load_graph(f'../datasets/{name}.gml')
+    name = 'karate'
+    graph = load_graph(f'../datasets/{name}.gml')
     # print(get_polarization(graph))
 
     # --------------------------------------- #
@@ -58,12 +58,12 @@ def main():
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
 
-    k = [400, 800]
+    k = [1, 5, 10, 15, 20]
     algorithms = ['FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['beebfan'], ['FKGreedy'])
+    info = algorithms_driver(k, ['karate'], ['Greedy'])
 
     ######################################################################
     # to Access information returned by edge additions                   #
@@ -71,18 +71,18 @@ def main():
     # where x can be 'result_dictionary', 'time', 'polarization'         #
     ######################################################################
 
-    # edge_list = (info['Greedy_karate_10']['result_dictionary'])
+    edge_list = (info['Greedy_karate_10']['result_dictionary'])
 
-    # convert the tuple list into the format that visualize_edge takes
+    #convert the tuple list into the format that visualize_edge takes
 
-    # edge_list = format_edge_list_from_tuples(edge_list)
+    edge_list = format_edge_list_from_tuples(edge_list)
 
     # ------------------------------------------------------- #
     # visualize graph edges, mode = 1 addition, = 0 removal   #
     # ------------------------------------------------------- #
 
-    # visualize_edge(graph, edge_list, "top-10 edge addition in books from Greedy",
-    #               "Greedy_karate_10", "karate", 1)
+    visualize_edge(graph, edge_list, "top-10 edge addition in Karate from Greedy",
+                   "Greedy_karate_10", "karate", 1)
 
     # ---------------------------------------- #
     #     re-draw graph from pickles data for  #
