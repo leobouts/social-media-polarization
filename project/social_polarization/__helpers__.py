@@ -2,6 +2,7 @@ from __compute_polarization__ import get_polarization
 from __visualize__ import vis_graphs_heuristics
 from numpy import linalg as linear_algebra
 import networkx as nx
+import pandas as pd
 import pickle
 
 
@@ -36,7 +37,6 @@ def make_graph_fully_connected(g):
 
 
 def open_pickles_for_adjusting_visualization_manually(k, dataset_name):
-
     with open(f"../pickles/{dataset_name}/{dataset_name}_decreases_checked_pol", 'rb') as fp:
         decreases_checked = pickle.load(fp)
 
@@ -67,6 +67,13 @@ def open_pickles_for_adjusting_visualization_manually(k, dataset_name):
                           "Number of Edges Added",
                           "Seconds",
                           1)
+
+
+def open_info_pickle(dataset_name):
+    with open(f"../pickles/{dataset_name}/{dataset_name}_info", 'rb') as fp:
+        info = pickle.load(fp)
+
+    return info
 
 
 def format_edge_list_from_tuples(edge_list):
@@ -305,7 +312,7 @@ def get_positive_and_negative_values(nodeDict):
 
     for node in nodeDict:
         node_value = nodeDict[node]['value']
-        if node_value > 0:
+        if int(node_value) > 0:
             positive_dictionary[node] = node_value
         else:
             negative_dictionary[node] = node_value
@@ -330,3 +337,47 @@ def get_nodes_and_values_from_nx_to_txt(graph, name):
             the_file.write(f'{node_data[0]},{node_data[1]["value"]}\n')
 
     # TODO do for .edges files too
+
+
+def load_embeddings(name):
+    # load nodes details
+    with open(f"../datasets/formatted_for_embeddings/{name}/{name}.nodes") as f:
+        nodes = f.read().splitlines()
+
+    # load edges (or links)
+    with open(f"../datasets/formatted_for_embeddings/{name}/{name}.edges") as f:
+        links = f.read().splitlines()
+
+    nodeDict = {}
+    count = 0
+    for i in nodes:
+
+        if count == 0:
+            count = 1
+            continue
+
+        splitted_vals = i.split(",")
+        nodeDict[splitted_vals[0]] = {'value': splitted_vals[1]}
+
+    # capture nodes in 2 separate lists
+    node_list_1 = []
+    node_list_2 = []
+    distance = []
+    multiplication = []
+
+    for i in links:
+        node_1_value = nodeDict[i.split(',')[0]]['value']
+        node_2_value = nodeDict[i.split(',')[1]]['value']
+
+        node_list_1.append(i.split(',')[0])
+        node_list_2.append(i.split(',')[1])
+        distance_abs = abs(int(node_1_value) - int(node_2_value))
+        mult = int(node_1_value) * int(node_2_value)
+
+        distance.append(distance_abs)
+        multiplication.append(mult)
+
+    df = pd.DataFrame(
+        {'node_1': node_list_1, 'node_2': node_list_2, 'distance': distance, 'multiplication': multiplication})
+
+    return df, nodeDict

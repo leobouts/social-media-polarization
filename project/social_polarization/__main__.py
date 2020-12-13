@@ -1,6 +1,6 @@
 from __drivers__ import *
 from __helpers__ import format_edge_list_from_tuples, get_nodes_and_values_from_nx_to_txt, \
-    open_pickles_for_adjusting_visualization_manually
+    open_pickles_for_adjusting_visualization_manually, open_info_pickle
 
 
 def main():
@@ -63,7 +63,13 @@ def main():
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['karate'], ['Greedy'])
+    info = algorithms_driver(k, ['karate'], ['Embeddings'])
+
+    # ------------------------------------------------------- #
+    # open information from previous experiments              #
+    # ------------------------------------------------------- #
+
+    #info = open_info_pickle('karate')
 
     ######################################################################
     # to Access information returned by edge additions                   #

@@ -121,6 +121,11 @@ def algorithms_driver(k, datasets, algorithms):
                               "Number of Edges Added",
                               "Seconds",
                               1)
+
+        # store info into pickle file
+        with open(f"../pickles/{ds}/{ds}_info", 'wb') as handle:
+            pickle.dump(info, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
     print("\r Finished.")
 
     return info
