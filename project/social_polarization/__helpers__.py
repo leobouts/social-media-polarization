@@ -328,7 +328,6 @@ def get_dataset_statistics(g):
 
 
 def get_nodes_and_values_from_nx_to_txt(graph, name):
-    # TODO check if it works for all the datasets
 
     with open(f'../datasets/formatted_for_embeddings/{name}/{name}.nodes', 'w') as the_file:
         the_file.write('id,value\n')
@@ -336,7 +335,10 @@ def get_nodes_and_values_from_nx_to_txt(graph, name):
         for node_data in graph.nodes.data():
             the_file.write(f'{node_data[0]},{node_data[1]["value"]}\n')
 
-    # TODO do for .edges files too
+    with open(f'../datasets/formatted_for_embeddings/{name}/{name}.edges', 'w') as the_file:
+
+        for edge in graph.edges:
+            the_file.write(f'{edge[0]},{edge[1]}\n')
 
 
 def load_embeddings(name):

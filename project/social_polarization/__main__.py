@@ -35,7 +35,7 @@ def main():
     #   An edge list and a node list.         #
     # --------------------------------------- #
 
-    # convert_networkx_to_txt_for_embeddings_driver(graph, name)
+    #convert_networkx_to_txt_for_embeddings_driver()
 
     # --------------------------------------- #
     # function that supports Lemma 3.1        #
@@ -66,12 +66,12 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [1, 5, 10, 15, 20]
-    algorithms = ['FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
+    #k = [1, 5, 10, 15, 20]
+    algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['karate'], algorithms, 'Embeddings')
+    #info = algorithms_driver(k, ['polblogs'], ['Expressed Distance', 'Expressed Multiplication'], 'Embeddings')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
@@ -85,18 +85,18 @@ def main():
     # where x can be 'result_dictionary', 'time', 'polarization'         #
     ######################################################################
 
-    edge_list = (info['Greedy_karate_10']['result_dictionary'])
+    #edge_list = (info['Greedy_karate_10']['result_dictionary'])
 
     #convert the tuple list into the format that visualize_edge takes
 
-    edge_list = format_edge_list_from_tuples(edge_list)
+    #edge_list = format_edge_list_from_tuples(edge_list)
 
     # ------------------------------------------------------- #
     # visualize graph edges, mode = 1 addition, = 0 removal   #
     # ------------------------------------------------------- #
 
-    visualize_edge(graph, edge_list, "top-10 edge addition in Karate from Greedy",
-                   "Greedy_karate_10", "karate", 1)
+    #visualize_edge(graph, edge_list, "top-10 edge addition in Karate from Greedy",
+    #               "Greedy_karate_10", "karate", 1)
 
     # ---------------------------------------- #
     #     re-draw graph from pickles data for  #

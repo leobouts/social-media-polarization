@@ -49,7 +49,7 @@ def graph_embeddings(name, verbose):
     # concatenate these two into a single dataframe
     result = pd.concat([data, new_data])
     # Generate walks
-    node2vec = Node2Vec(G_data, dimensions=100, walk_length=16, num_walks=50, quiet=True)
+    node2vec = Node2Vec(G_data, dimensions=100, walk_length=16, num_walks=50, quiet=False)
 
     # get the embeddings model using gensim's Word2V
     # from fitting node2vec.fit
@@ -83,6 +83,7 @@ def graph_embeddings(name, verbose):
 
     # predict the probabilities for each label, first column for 0 label, second for 1
     predictions = lr.predict_proba(x_2)
+
     # find where the pairs are located and their result
     for i in range(len(result.index)):
 

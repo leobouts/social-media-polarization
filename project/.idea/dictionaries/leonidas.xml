@@ -1,9 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="leonidas">
     <words>
+      <w>adamic</w>
+      <w>addar</w>
       <w>beefban</w>
       <w>dataframe</w>
       <w>datasets</w>
+      <w>jaccard</w>
+      <w>keydict</w>
       <w>multigraph</w>
       <w>networkx</w>
       <w>omissible</w>
@@ -12,6 +16,7 @@
       <w>spliting</w>
       <w>splitted</w>
       <w>sxsw</w>
+      <w>tqdm</w>
       <w>xtest</w>
       <w>xtrain</w>
       <w>ytest</w>

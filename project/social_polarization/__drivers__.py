@@ -66,7 +66,6 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
                 results, polarizations, time_list = expressed(k, graph, 'Multiplication', expected_mode,
                                                               probabilities_dictionary)
 
-
             decrease_list = decrease_list + polarizations
 
             for i, k_edges in enumerate(k):
@@ -150,7 +149,8 @@ def convert_datasets_driver():
 
 
 def convert_networkx_to_txt_for_embeddings_driver():
-    datasets = ['karate', 'polblogs']
+
+    datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
     for ds_name in datasets:
         graph = load_graph(f'../datasets/{ds_name}.gml')
