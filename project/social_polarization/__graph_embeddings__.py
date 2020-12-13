@@ -20,10 +20,8 @@ def create_data_from_unconnected(G, nodeDict):
 
     for p in pos_nodes:
         for n in neg_nodes:
-
-            if int(nodeDict[p[0]]['value']) * int(nodeDict[n[0]]['value']) < 0:
-                node_1_unlinked.append(p[0])
-                node_2_unlinked.append(n[0])
+            node_1_unlinked.append(p[0])
+            node_2_unlinked.append(n[0])
 
     data = pd.DataFrame({'node_1': node_1_unlinked, 'node_2': node_2_unlinked})
 
@@ -48,6 +46,8 @@ def graph_embeddings(name, verbose):
 
     # concatenate these two into a single dataframe
     result = pd.concat([data, new_data])
+    result.reset_index(inplace=True, drop=True)
+
     # Generate walks
     node2vec = Node2Vec(G_data, dimensions=100, walk_length=16, num_walks=50, quiet=False)
 
@@ -78,7 +78,7 @@ def graph_embeddings(name, verbose):
     probabilities_list = []
 
     # drop all edges that exist, we need edges that were not present.
-    result.drop(result.loc[result['link'] == 1].index, inplace=False)
+    result = result.drop(result.loc[result['link'] == 1].index, inplace=False)
     x_2 = [(n2w_model[str(i[0])] + n2w_model[str(j[0])]) for i, j in zip(result['node_1'], result['node_2'])]
 
     # predict the probabilities for each label, first column for 0 label, second for 1
@@ -99,5 +99,7 @@ def graph_embeddings(name, verbose):
 
     keydict = dict(zip(edges_list, probabilities_list))
     edges_list.sort(key=keydict.get)
+
+    pos_nodes, neg_nodes = get_positive_and_negative_values(nodeDict)
 
     return edges_list, probabilities_list
