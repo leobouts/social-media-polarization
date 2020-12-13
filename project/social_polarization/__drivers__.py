@@ -62,7 +62,7 @@ def algorithms_driver(k, datasets, algorithms):
 
                 # to train it only one time
                 start = time.time()
-                edges = graph_embeddings(ds, 0)
+                edges, probabilities = graph_embeddings(ds, 0)
 
                 for k_edges in k:
 

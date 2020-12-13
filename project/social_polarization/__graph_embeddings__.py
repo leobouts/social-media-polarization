@@ -1,22 +1,13 @@
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.exceptions import ConvergenceWarning
+from __helpers__ import load_embeddings
+from warnings import simplefilter
+from node2vec import Node2Vec
+import networkx as nx
 import pandas as pd
 import numpy as np
-import random
-import networkx as nx
-import matplotlib.pyplot as plt
-from node2vec import Node2Vec
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import GridSearchCV
-from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.ensemble import RandomForestClassifier
-
-from sklearn.metrics import f1_score, auc, roc_curve, roc_auc_score
-from warnings import simplefilter
-from sklearn.exceptions import ConvergenceWarning
-from tqdm import tqdm
-
-from __helpers__ import add_edges_and_count_polarization, load_embeddings, get_positive_and_negative_values
 
 simplefilter("ignore", category=ConvergenceWarning)
 
@@ -62,7 +53,16 @@ def graph_embeddings(name, verbose):
     # from fitting node2vec.fit
     n2w_model = node2vec.fit(window=7, min_count=1)
 
+    # zip creates a list of all the edges from the result df
+    # n2w_model with an input of a string(the name of the node, e.g. node '1'), will give us the
+    # features returned from the embeddings.
+    # for this case we add the features of the the nodes together so we can pass a single
+    # feature list in the logistic regression
     x = [(n2w_model[str(i)] + n2w_model[str(j)]) for i, j in zip(result['node_1'], result['node_2'])]
+
+    # For the training of the classifier we use as train test the 80% of the network’s edges for
+    # positive examples and equal amount of edges that don’t exist for negative example. We use the rest 20% of
+    # positive edges and equal amount of negative edges as test set.
 
     xtrain, xtest, ytrain, ytest = train_test_split(np.array(x), result['link'],
                                                     test_size=0.2,
@@ -100,4 +100,4 @@ def graph_embeddings(name, verbose):
     keydict = dict(zip(edges_list, probabilities_list))
     edges_list.sort(key=keydict.get)
 
-    return edges_list
+    return edges_list, probabilities_list
