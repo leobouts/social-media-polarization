@@ -205,10 +205,10 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 
             if mode == "Distance":
                 val = abs(node_1 - node_2)
-                mode_flag = 1
+                mode_flag = True
             else:
                 val = node_1 * node_2
-                mode_flag = 0
+                mode_flag = False
 
             # addition_info is computed differently if we considering
             # the expected addition problem, bellow we consider the following

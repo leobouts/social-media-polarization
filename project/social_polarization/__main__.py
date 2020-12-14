@@ -66,12 +66,12 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [1, 5, 10, 15, 20]
+    k = [5, 10, 15, 20]
     algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
     # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['books'], ['GBatch', 'Expressed Distance', 'Expressed Multiplication'], 'Ignore')
+    info = algorithms_driver(k, ['sxsw'], 'Expressed Distance', 'Embeddings')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

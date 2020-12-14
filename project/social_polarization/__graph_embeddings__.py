@@ -100,6 +100,4 @@ def graph_embeddings(name, verbose):
     keydict = dict(zip(edges_list, probabilities_list))
     edges_list.sort(key=keydict.get)
 
-    pos_nodes, neg_nodes = get_positive_and_negative_values(nodeDict)
-
     return edges_list, probabilities_list
