@@ -76,18 +76,18 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
 def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
 
     for i, y_xis in enumerate(list_of_axes):
-        ls = ['-', '--', '-.', ':'][i % 4]
+        #ls = ['-', '--', '-.', ':'][i % 4]
 
         if list_of_labels[i] == 'Greedy':
-            color = '#173f5f'
+            color = '#d02324'
         elif list_of_labels[i] == 'GBatch':
-            color = '#20639b'
+            color = '#289628'
         elif list_of_labels[i] == 'FKGreedy':
-            color = '#f6d55c'
+            color = '#ff7410'
         else:
-            color = '#ed55eb'
+            color = '#895cb5'
 
-        plt.plot(x_axis, y_xis, label=list_of_labels[i], linestyle=ls, color=color)
+        plt.plot(x_axis, y_xis, label=list_of_labels[i], color=color)
 
     # Add legend
     # Put a legend below current axis

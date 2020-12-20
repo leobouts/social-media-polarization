@@ -2,6 +2,8 @@ from __helpers__ import add_edges_and_count_polarization, get_positive_and_negat
 from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 import networkx as nx
+import itertools
+import random
 import time
 
 
@@ -35,7 +37,7 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode, probabiliti
 
     # GBatch algorithm runs here and returns
     if batch_flag:
-        k_items, polarizations, elapsed = greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
+        k_items, polarizations, elapsed = greedy_batch(k, graph, positive_nodes, negative_nodes, expected_p_z_mode,
                                                        False, probabilities_dictionary)
         # create a list with the same running time, used for the visualizations
         times = [elapsed] * len(k)
@@ -47,6 +49,8 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode, probabiliti
 
     for k_edge in tqdm(k, ascii="~~~~~~~~~~~~~~~#"):
         k_items = []
+
+        graph = graph_in.copy()
 
         # The FKGreedy algorithm reduces the space by running
         # the Greedy algorithm using only the first KxK nodes
@@ -67,7 +71,7 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode, probabiliti
             graph.add_edge(edge_1, edge_2)
             k_items.append((edge_1, edge_2))
 
-        polarizations.append(add_edges_and_count_polarization(k_items, graph_in))
+        polarizations.append(add_edges_and_count_polarization(k_items, graph))
         end = time.time()
         times.append(end - start)
 
@@ -248,3 +252,37 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
 
     return sorted_edges, polarizations, times
+
+
+def random_edge_addition(k, graph_in):
+
+    nodeDict = dict(graph_in.nodes(data=True))
+    addition_info = {}
+    polarizations = []
+    times = []
+
+    start = time.time()
+
+    positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
+    graph_edges = list(graph_in.edges())
+
+    positive_nodes = [node_pos[0] for node_pos in positive_nodes]
+    negative_nodes = [node_neg[0] for node_neg in negative_nodes]
+
+    different_opinions = list(itertools.product(positive_nodes, negative_nodes))
+
+    # remove existing graph edges
+    different_opinions = [x for x in different_opinions if x not in graph_edges]
+
+    end = time.time()
+
+    for k_edge in k:
+        # just create an array with the same time for every edge. (time here is constant)
+        times.append(end - start)
+
+        edges_to_add_list = random.choices(different_opinions, k=k_edge)
+
+        # pass a graph in the helper that copies it
+        polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
+
+    return different_opinions, polarizations, times

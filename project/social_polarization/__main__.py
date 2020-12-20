@@ -23,6 +23,7 @@ def main():
     graph = load_graph(f'../datasets/{name}.gml')
     # print(get_polarization(graph))
 
+    random_edge_addition([5, 10, 15, 20], graph)
     # --------------------------------------- #
     #     convert datasets to gml             #
     # --------------------------------------- #
@@ -54,6 +55,7 @@ def main():
     #     3) FKGreedy                         #
     #     4) Expressed Distance               #
     #     5) Expressed Multiplication         #
+    #     6) Random                           #
     # --------------------------------------- #
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
@@ -66,12 +68,14 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [5, 10, 15, 20]
-    algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
+    #k = [5, 10, 15, 20]
+    #algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
-    # datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
+    algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
 
-    info = algorithms_driver(k, ['sxsw'], 'Expressed Distance', 'Embeddings')
+    #datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
+
+    info = algorithms_driver([5, 10, 20, 30], ['karate'], algorithms1, 'Ignore')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

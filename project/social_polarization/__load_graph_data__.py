@@ -41,11 +41,11 @@ def load_graph(gml_file):
     if gml_file in zero_value_convert:
         graph = zero_value_conversion(graph)
 
-    value_dictionary = nx.get_node_attributes(graph, 'value')
-
-    list_of_graph_values = list(value_dictionary.values())
-
-    graph = attach_values_from_list_to_graph(graph, list_of_graph_values)
+    # value_dictionary = nx.get_node_attributes(graph, 'value')
+    #
+    # list_of_graph_values = list(value_dictionary.values())
+    #
+    # graph = attach_values_from_list_to_graph(graph, list_of_graph_values)
 
     # print(list(graph.nodes(data=True)))
     # print(nx.info(graph))

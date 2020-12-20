@@ -65,6 +65,8 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
             elif algorithm == 'Expressed Multiplication':
                 results, polarizations, time_list = expressed(k, graph, 'Multiplication', expected_mode,
                                                               probabilities_dictionary)
+            elif algorithm == 'Random':
+                results, polarizations, time_list = random_edge_addition(k, graph)
 
             decrease_list = decrease_list + polarizations
 
