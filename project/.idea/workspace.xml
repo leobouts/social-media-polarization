@@ -22,36 +22,49 @@
     <list default="true" id="944d20ec-e3dd-4137-8dcf-919e7e1a83ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/ClintonTrump/ClintonTrump Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/ClintonTrump/ClintonTrump Polarization Decrease.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/ClintonTrump/ClintonTrump Time Elapsed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/ClintonTrump/ClintonTrump Time Elapsed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/GermanWings/GermanWings Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/GermanWings/GermanWings Polarization Decrease.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/GermanWings/GermanWings Time Elapsed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/GermanWings/GermanWings Time Elapsed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/beefban/beefban Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/beefban/beefban Polarization Decrease.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/beefban/beefban Time Elapsed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/beefban/beefban Time Elapsed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/books/books Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/books/books Polarization Decrease.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/books/books Time Elapsed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/books/books Time Elapsed.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/ClintonTrump/ClintonTrump Polarization Decrease.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/ClintonTrump/ClintonTrump Time Elapsed.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/GermanWings/GermanWings Polarization Decrease.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/GermanWings/GermanWings Time Elapsed.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/beefban/beefban Polarization Decrease.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/beefban/beefban Time Elapsed.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/figures_generated/karate/karate Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/karate/karate Polarization Decrease.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures_generated/karate/karate Time Elapsed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/karate/karate Time Elapsed.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Polarization Decrease.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Time Elapsed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Time Elapsed.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Polarization Decrease.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Time Elapsed.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/figures_generated/sxsw/sxsw Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/sxsw/sxsw Polarization Decrease.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures_generated/sxsw/sxsw Time Elapsed.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/sxsw/sxsw Time Elapsed.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_decreases_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_decreases_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_info" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_labels_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_labels_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_labels_checked_time" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_labels_checked_time" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_times_checked" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/ClintonTrump/ClintonTrump_times_checked" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_decreases_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_decreases_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_info" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_labels_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_labels_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_labels_checked_time" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_labels_checked_time" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_times_checked" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/GermanWings/GermanWings_times_checked" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pickles/beefban/beefban_decreases_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/beefban/beefban_decreases_checked_pol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pickles/beefban/beefban_info" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/beefban/beefban_info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pickles/beefban/beefban_labels_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/beefban/beefban_labels_checked_pol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pickles/beefban/beefban_labels_checked_time" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/beefban/beefban_labels_checked_time" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pickles/beefban/beefban_times_checked" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/beefban/beefban_times_checked" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/books_decreases_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/books/books_decreases_checked_pol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/books_info" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/books/books_info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/books_labels_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/books/books_labels_checked_pol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/books_labels_checked_time" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/books/books_labels_checked_time" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/books_times_checked" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/books/books_times_checked" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pickles/karate/karate_decreases_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/karate/karate_decreases_checked_pol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pickles/karate/karate_info" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/karate/karate_info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/karate_labels_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/karate/karate_labels_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/karate_labels_checked_time" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/karate/karate_labels_checked_time" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pickles/karate/karate_times_checked" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/karate/karate_times_checked" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/polblogs_decreases_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/polblogs/polblogs_decreases_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/polblogs_info" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/polblogs/polblogs_info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/polblogs_labels_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/polblogs/polblogs_labels_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/polblogs_labels_checked_time" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/polblogs/polblogs_labels_checked_time" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/polblogs_times_checked" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/polblogs/polblogs_times_checked" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/sxsw/sxsw_decreases_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/sxsw/sxsw_decreases_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/sxsw/sxsw_info" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/sxsw/sxsw_info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/sxsw/sxsw_labels_checked_pol" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/sxsw/sxsw_labels_checked_pol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/sxsw/sxsw_labels_checked_time" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/sxsw/sxsw_labels_checked_time" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/sxsw/sxsw_times_checked" beforeDir="false" afterPath="$PROJECT_DIR$/pickles/sxsw/sxsw_times_checked" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/social_polarization/__algorithms__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithms__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__drivers__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__drivers__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__load_graph_data__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__load_graph_data__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/social_polarization/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__main__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/social_polarization/__visualize__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__visualize__.py" afterDir="false" />
     </list>
@@ -161,7 +174,7 @@
       <workItem from="1607272572898" duration="22874000" />
       <workItem from="1607539757070" duration="19192000" />
       <workItem from="1607673762890" duration="32081000" />
-      <workItem from="1608424040367" duration="3450000" />
+      <workItem from="1608424040367" duration="6015000" />
     </task>
     <servers />
   </component>
@@ -198,7 +211,7 @@
       <screen x="0" y="23" width="2560" height="1352" />
     </state>
     <state width="534" height="466" key="DebuggerActiveHint/0.23.2560.1352@0.23.2560.1352" timestamp="1607547594946" />
-    <state width="2389" height="251" key="GridCell.Tab.0.bottom" timestamp="1608500062518">
+    <state width="1512" height="217" key="GridCell.Tab.0.bottom" timestamp="1608503436371">
       <screen x="0" y="23" width="2560" height="1352" />
     </state>
     <state width="845" height="329" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1607467651733" />
@@ -210,13 +223,13 @@
     <state width="1388" height="206" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1607984919374" />
     <state width="1388" height="102" key="GridCell.Tab.0.bottom/0.23.1440.815@0.23.1440.815" timestamp="1607980435136" />
     <state width="1377" height="226" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1605100997929" />
-    <state width="2389" height="251" key="GridCell.Tab.0.bottom/0.23.2560.1352@0.23.2560.1352" timestamp="1608500062518" />
+    <state width="1512" height="217" key="GridCell.Tab.0.bottom/0.23.2560.1352@0.23.2560.1352" timestamp="1608503436371" />
     <state width="1228" height="154" key="GridCell.Tab.0.bottom/1280.23.1366.680/0.23.1280.777@0.23.1280.777" timestamp="1605735963338" />
     <state width="1309" height="215" key="GridCell.Tab.0.bottom/1280.23.1366.680/0.23.1280.777@1280.23.1366.680" timestamp="1605828671335" />
     <state width="1323" height="457" key="GridCell.Tab.0.bottom/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1605047085235" />
     <state width="1228" height="128" key="GridCell.Tab.0.bottom/1280.23.1366.745/0.23.1280.712@1280.23.1366.745" timestamp="1605737845331" />
     <state width="1323" height="244" key="GridCell.Tab.0.bottom/1280.23.1366.745/0.23.1280.721@1280.23.1366.745" timestamp="1605077607222" />
-    <state width="2389" height="251" key="GridCell.Tab.0.center" timestamp="1608500062517">
+    <state width="1512" height="217" key="GridCell.Tab.0.center" timestamp="1608503436370">
       <screen x="0" y="23" width="2560" height="1352" />
     </state>
     <state width="845" height="329" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1607467651732" />
@@ -228,13 +241,13 @@
     <state width="1388" height="206" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1607984919372" />
     <state width="1388" height="102" key="GridCell.Tab.0.center/0.23.1440.815@0.23.1440.815" timestamp="1607980435136" />
     <state width="1377" height="226" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1605100997928" />
-    <state width="2389" height="251" key="GridCell.Tab.0.center/0.23.2560.1352@0.23.2560.1352" timestamp="1608500062517" />
+    <state width="1512" height="217" key="GridCell.Tab.0.center/0.23.2560.1352@0.23.2560.1352" timestamp="1608503436370" />
     <state width="1228" height="154" key="GridCell.Tab.0.center/1280.23.1366.680/0.23.1280.777@0.23.1280.777" timestamp="1605735963337" />
     <state width="1309" height="215" key="GridCell.Tab.0.center/1280.23.1366.680/0.23.1280.777@1280.23.1366.680" timestamp="1605828671334" />
     <state width="1323" height="457" key="GridCell.Tab.0.center/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1605047085234" />
     <state width="1228" height="128" key="GridCell.Tab.0.center/1280.23.1366.745/0.23.1280.712@1280.23.1366.745" timestamp="1605737845330" />
     <state width="1323" height="244" key="GridCell.Tab.0.center/1280.23.1366.745/0.23.1280.721@1280.23.1366.745" timestamp="1605077607221" />
-    <state width="2389" height="251" key="GridCell.Tab.0.left" timestamp="1608500062516">
+    <state width="1512" height="217" key="GridCell.Tab.0.left" timestamp="1608503436369">
       <screen x="0" y="23" width="2560" height="1352" />
     </state>
     <state width="845" height="329" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1607467651731" />
@@ -246,13 +259,13 @@
     <state width="1388" height="206" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1607984919371" />
     <state width="1388" height="102" key="GridCell.Tab.0.left/0.23.1440.815@0.23.1440.815" timestamp="1607980435135" />
     <state width="1377" height="226" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1605100997927" />
-    <state width="2389" height="251" key="GridCell.Tab.0.left/0.23.2560.1352@0.23.2560.1352" timestamp="1608500062516" />
+    <state width="1512" height="217" key="GridCell.Tab.0.left/0.23.2560.1352@0.23.2560.1352" timestamp="1608503436369" />
     <state width="1228" height="154" key="GridCell.Tab.0.left/1280.23.1366.680/0.23.1280.777@0.23.1280.777" timestamp="1605735963335" />
     <state width="1309" height="215" key="GridCell.Tab.0.left/1280.23.1366.680/0.23.1280.777@1280.23.1366.680" timestamp="1605828671333" />
     <state width="1323" height="457" key="GridCell.Tab.0.left/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1605047085234" />
     <state width="1228" height="128" key="GridCell.Tab.0.left/1280.23.1366.745/0.23.1280.712@1280.23.1366.745" timestamp="1605737845330" />
     <state width="1323" height="244" key="GridCell.Tab.0.left/1280.23.1366.745/0.23.1280.721@1280.23.1366.745" timestamp="1605077607221" />
-    <state width="2389" height="251" key="GridCell.Tab.0.right" timestamp="1608500062518">
+    <state width="1512" height="217" key="GridCell.Tab.0.right" timestamp="1608503436370">
       <screen x="0" y="23" width="2560" height="1352" />
     </state>
     <state width="845" height="329" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1607467651733" />
@@ -264,7 +277,7 @@
     <state width="1388" height="206" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1607984919373" />
     <state width="1388" height="102" key="GridCell.Tab.0.right/0.23.1440.815@0.23.1440.815" timestamp="1607980435136" />
     <state width="1377" height="226" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1605100997928" />
-    <state width="2389" height="251" key="GridCell.Tab.0.right/0.23.2560.1352@0.23.2560.1352" timestamp="1608500062518" />
+    <state width="1512" height="217" key="GridCell.Tab.0.right/0.23.2560.1352@0.23.2560.1352" timestamp="1608503436370" />
     <state width="1228" height="154" key="GridCell.Tab.0.right/1280.23.1366.680/0.23.1280.777@0.23.1280.777" timestamp="1605735963338" />
     <state width="1309" height="215" key="GridCell.Tab.0.right/1280.23.1366.680/0.23.1280.777@1280.23.1366.680" timestamp="1605828671334" />
     <state width="1323" height="457" key="GridCell.Tab.0.right/1280.23.1366.689/0.23.1280.777@1280.23.1366.689" timestamp="1605047085235" />
@@ -345,7 +358,7 @@
     <state x="1628" y="37" width="670" height="731" key="search.everywhere.popup/1280.23.1366.745/0.23.1280.721@1280.23.1366.745" timestamp="1605077539220" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/project$main.coverage" NAME="main Coverage Results" MODIFIED="1608500062498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
+    <SUITE FILE_PATH="coverage/project$main.coverage" NAME="main Coverage Results" MODIFIED="1608503436359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
     <SUITE FILE_PATH="coverage/code$main.coverage" NAME="main Coverage Results" MODIFIED="1605133360825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
   </component>
 </project>

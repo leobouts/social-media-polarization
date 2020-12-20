@@ -247,7 +247,7 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
         times.append(end - start)
 
         edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
-
+        print(edges_to_add_list)
         # pass a graph in the helper that copies it
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
 
@@ -257,22 +257,22 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 def random_edge_addition(k, graph_in):
 
     nodeDict = dict(graph_in.nodes(data=True))
-    addition_info = {}
+    different_opinions = []
     polarizations = []
     times = []
 
-    start = time.time()
-
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
-    graph_edges = list(graph_in.edges())
 
-    positive_nodes = [node_pos[0] for node_pos in positive_nodes]
-    negative_nodes = [node_neg[0] for node_neg in negative_nodes]
+    start = time.time()
+    for node_pos in tqdm(positive_nodes, ascii="~~~~~~~~~~~~~~~#"):
+        for node_neg in negative_nodes:
 
-    different_opinions = list(itertools.product(positive_nodes, negative_nodes))
+            edge_to_add = (node_pos[0], node_neg[0])
 
-    # remove existing graph edges
-    different_opinions = [x for x in different_opinions if x not in graph_edges]
+            # skip edge if the edge exists in the original graph
+            if graph_in.has_edge(*edge_to_add):
+                continue
+            different_opinions.append(edge_to_add)
 
     end = time.time()
 

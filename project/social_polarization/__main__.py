@@ -68,14 +68,14 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    #k = [5, 10, 15, 20]
+    k = [5, 10, 15, 20]
     #algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
-    algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
+    algorithms1 = ['Expressed Distance', 'Expressed Multiplication']
 
     #datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver([5, 10, 20, 30], ['karate'], algorithms1, 'Ignore')
+    info = algorithms_driver(k, ['karate'], algorithms1, 'Embeddings')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
@@ -110,7 +110,7 @@ def main():
     #  Second arg: the dataset name            #
     # ---------------------------------------- #
 
-    #open_pickles_for_adjusting_visualization_manually(k, 'sxsw')
+    open_pickles_for_adjusting_visualization_manually([5, 10, 20, 30], 'karate')
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #

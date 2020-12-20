@@ -75,8 +75,7 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
 
 def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
 
-    for i, y_xis in enumerate(list_of_axes):
-        #ls = ['-', '--', '-.', ':'][i % 4]
+    for i, y_axis in enumerate(list_of_axes):
 
         if list_of_labels[i] == 'Greedy':
             color = '#d02324'
@@ -84,10 +83,12 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
             color = '#289628'
         elif list_of_labels[i] == 'FKGreedy':
             color = '#ff7410'
+        elif list_of_labels[i] == 'Random':
+            color = '#ffe100'
         else:
             color = '#895cb5'
 
-        plt.plot(x_axis, y_xis, label=list_of_labels[i], color=color)
+        plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color)
 
     # Add legend
     # Put a legend below current axis
@@ -97,16 +98,7 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     # Add title and x, y labels
     plt.title(title, fontsize=16, fontweight='bold')
 
-    maximum_of_values = max([sublist[-1] for sublist in list_of_axes])
     plt.xticks(x_axis)
-    maximum_of_greedy = max(list_of_axes[0])
-    minimum_of_greedy = min(list_of_axes[0])
-
-    # adjust values here according to dataset
-    #if mode == 1:
-        # math.ceil(minimum_of_greedy/2)
-        #plt.yticks(np.arange(0, maximum_of_greedy+1, 4))
-        #plt.ylim(0, round(minimum_of_greedy+25))
 
     plt.xlabel(x_label)
     plt.ylabel(y_label)
