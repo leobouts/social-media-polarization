@@ -4,10 +4,9 @@ from scipy.sparse import identity
 import networkx as nx
 import numpy as np
 from numpy.linalg import norm
-from tqdm import trange
 
 
-def get_polarization(g):
+def get_polarization_with_inverse(g):
     """"
     Creates the L+I matrix that is holded in variable f where L is the laplacian matrix of the graph.
     solves the (L+I)^-1 * S system and computes the polarization index value from the second norm of this
@@ -17,8 +16,6 @@ def get_polarization(g):
     :param g: networkx graph with value attributes
     :return: Value of the polarization index
     """
-
-    start = time.time()
 
     no_of_nodes = len(g.nodes)
 
@@ -37,17 +34,13 @@ def get_polarization(g):
     squared = np.square(solutions)
 
     summed = np.sum(squared)
-    end = time.time()
-
-    print("time:", end - start)
 
     # result is normalized according to network size
     return summed / no_of_nodes
 
 
-def friedkinJohnsen(g):
+def get_polarization(g):
 
-    start = time.time()
     N = len(g.nodes)
 
     s = list(nx.get_node_attributes(g, 'value').values())
@@ -77,8 +70,6 @@ def friedkinJohnsen(g):
             break
 
         convergence = summed / N
-    end = time.time()
 
-    print("time:", end - start)
     # result is normalized according to network size
-    return summed / N
+    return summed / N, new_opinions

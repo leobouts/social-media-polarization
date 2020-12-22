@@ -2,7 +2,6 @@ from __helpers__ import add_edges_and_count_polarization, get_positive_and_negat
 from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 import networkx as nx
-import itertools
 import random
 import time
 
@@ -107,7 +106,7 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
     3) elapsed time of the algorithm.
     """
 
-    original_polarization = get_polarization(graph_in)
+    original_polarization, converged_opinions = get_polarization(graph_in)
     polarizations = []
     addition_info = {}
 
@@ -124,7 +123,7 @@ def greedy_batch(k, graph_in, positive_nodes, negative_nodes, expected_p_z_mode,
             g_copy = graph_in.copy()
             g_copy.add_edges_from([edge_to_add])
 
-            polarization_after_addition = get_polarization(g_copy)
+            polarization_after_addition, converged_opinions = get_polarization(g_copy)
             decrease = original_polarization - polarization_after_addition
 
             # addition_info is computed differently if we considering

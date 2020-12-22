@@ -15,8 +15,8 @@ def add_edges_and_count_polarization(edges_list, graph):
 
     g_copy = graph.copy()
     g_copy.add_edges_from(edges_list)
-
-    return get_polarization(g_copy)
+    pol, converged_opinions = get_polarization(g_copy)
+    return pol
 
 
 def make_graph_fully_connected(g):

@@ -49,7 +49,6 @@ def load_graph(gml_file):
 
     # print(list(graph.nodes(data=True)))
     # print(nx.info(graph))
-    # print(get_polarization(graph))
 
     return graph
 

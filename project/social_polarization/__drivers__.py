@@ -48,7 +48,8 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
             time.sleep(1)
 
             # append initial polarization for the graph output
-            decrease_list = [get_polarization(graph)]
+            pol, converged_opinions = get_polarization(g)
+            decrease_list = [pol]
 
             if algorithm == 'Greedy':
                 results, polarizations, time_list = greedy(k, graph, False, False, expected_mode,
@@ -199,7 +200,7 @@ def dataset_statistics_driver(datasets, verbose):
 
     for ds in datasets:
         graph = load_graph(f'../datasets/{ds}.gml')
-        polarization = get_polarization(graph)
+        polarization, converged_opinions = get_polarization(graph)
         stats = get_dataset_statistics(graph)
 
         if verbose:

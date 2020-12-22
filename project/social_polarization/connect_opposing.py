@@ -32,7 +32,7 @@ def brute_force_opposing_views(graph, pickle_name, verbose):
     # clean duplicate edges if exist, [a,b]==[b,a]
     all_pairs = list({tuple(sorted(item)) for item in all_pairs})
 
-    initial_polarization = get_polarization(graph)
+    initial_polarization, converged_opinions = get_polarization(graph)
 
     # holds values of decrease for each addition
     difference = {}
@@ -45,7 +45,7 @@ def brute_force_opposing_views(graph, pickle_name, verbose):
         g_copy.add_edge(all_pairs[i][0], all_pairs[i][1])
 
         # get the new polarization after addition
-        new_pol = get_polarization(g_copy)
+        new_pol, converged_opinions = get_polarization(g_copy)
 
         # compute and store decrease
 
@@ -76,7 +76,7 @@ def brute_force_all_edges_removal(graph, pickle_name, verbose):
         :return: dictionary that holds information about the decrease after adding an edge
         """
     graph_edges = graph.edges()
-    graph_polarization = get_polarization(graph)
+    graph_polarization, converged_opinions = get_polarization(graph)
     nodeDict = dict(graph.nodes(data=True))
     difference = {}
 
@@ -86,7 +86,7 @@ def brute_force_all_edges_removal(graph, pickle_name, verbose):
         # unpacks e from an edge tuple
         g_copy.remove_edge(*edge)
         # get new polarization after deleting an edge
-        new_polarization = get_polarization(g_copy)
+        new_polarization, converged_opinions = get_polarization(g_copy)
 
         # get data from the nodes attached to this edge
         node_a_polarization = nodeDict[edge[0]]['value']

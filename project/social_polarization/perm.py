@@ -32,7 +32,7 @@ def check_graph_permutations(number_of_vertices, graph):
 
     for perm in value_permutations:
 
-        initial_polarization = get_polarization(graph)
+        initial_polarization, converged_opinions = get_polarization(graph)
 
         for edge_additions in possible_combs:
 
@@ -56,7 +56,7 @@ def check_graph_permutations(number_of_vertices, graph):
                 for edge_perm in edge_additions:
                     g.add_edge(edge_perm[0], edge_perm[1])
 
-                new_pol = get_polarization(g)
+                new_pol, converged_opinions = get_polarization(g)
 
                 decrease[abs(initial_polarization - new_pol)] = {'graph': graph.name, 'values': perm,
                                                                  'edge_additions': edge_additions}
@@ -119,7 +119,7 @@ def example_increase_that_confirms_intuition():
         graph = attach_values_from_list_to_graph(graph, opinions)
 
         edges_to_add = nx.non_edges(graph)
-        original_polarization = get_polarization(graph)
+        original_polarization, converged_opinions = get_polarization(graph)
 
         for edge in edges_to_add:
 
@@ -132,7 +132,7 @@ def example_increase_that_confirms_intuition():
 
             if 1.2 >= diff >= 0.8 and mul < 0:
                 g_copy.add_edges_from([edge])
-                polarization_after_addition = get_polarization(g_copy)
+                polarization_after_addition, converged_opinions = get_polarization(g_copy)
 
                 if polarization_after_addition > original_polarization:
                     print("found one:")
@@ -145,7 +145,7 @@ def example_increase_that_confirms_intuition():
 def force_example(graph):
     nodeDict = dict(graph.nodes(data=True))
     edges_to_add = nx.non_edges(graph)
-    original_polarization = get_polarization(graph)
+    original_polarization, converged_opinions = get_polarization(graph)
 
     for edge in edges_to_add:
 
@@ -158,7 +158,7 @@ def force_example(graph):
 
         if 1.5 >= diff >= 0.8 and mul < 0:
             g_copy.add_edges_from([edge])
-            polarization_after_addition = get_polarization(g_copy)
+            polarization_after_addition, converged_opinions = get_polarization(g_copy)
 
             if polarization_after_addition > original_polarization:
                 print("found one:")
