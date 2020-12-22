@@ -56,8 +56,16 @@ def greedy(k, graph_in, batch_flag, first_k_flag, expected_p_z_mode, probabiliti
         if first_k_flag:
             positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
-            positive_nodes = positive_nodes[:k_edge]
-            negative_nodes = negative_nodes[:k_edge]
+            pol, converged_opinions = get_polarization(graph_in)
+            index_list = [i for i in range(len(converged_opinions))]
+
+            converged_opinions, index_list = zip(*sorted(zip(converged_opinions, index_list)))
+
+            positive_indexes = [i for i in index_list if i in positive_nodes]
+            negative_indexes = [i for i in index_list if i in negative_nodes]
+
+            positive_nodes = positive_indexes[:k_edge]
+            negative_nodes = negative_indexes[:k_edge]
 
         start = time.time()
         for i in range(k_edge):
@@ -191,7 +199,9 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     addition_info = {}
     polarizations = []
     times = []
+
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
+    initial_polarization, converged_opinions = get_polarization(graph_in)
 
     start = time.time()
     for node_pos in tqdm(positive_nodes, ascii="~~~~~~~~~~~~~~~#"):
@@ -203,8 +213,8 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
             if graph_in.has_edge(*edge_to_add):
                 continue
 
-            node_1 = nodeDict[node_pos[0]]['value']
-            node_2 = nodeDict[node_neg[0]]['value']
+            node_1 = converged_opinions[node_pos[0]]
+            node_2 = converged_opinions[node_neg[0]]
 
             if mode == "Distance":
                 val = abs(node_1 - node_2)
