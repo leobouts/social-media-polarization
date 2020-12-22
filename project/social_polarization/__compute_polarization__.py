@@ -54,12 +54,17 @@ def get_polarization(g):
         for i in range(len(new_opinions)):
 
             sum_z = new_opinions[i]
-            neighbors = list(g.neighbors(i + 1))
+
+            #TODO watch out karate needs and books i think need +1
+            #re-value the node ids in those two in the gmls so u can be ok
+
+            neighbors = list(g.neighbors(i+1))
 
             for neighbor in neighbors:
                 sum_z += new_opinions[neighbor - 1]
 
-            new_opinions[i] = (s[i] + sum_z) / (1 + len(neighbors) + 1)
+            # derived from the friedkin johnson formula, assuming weights are 1 and neighbors includes self.
+            new_opinions[i] = (int(s[i]) + sum_z) / (1 + len(neighbors) + 1)
 
         # squaring and summing the opinion vector
         squared = np.square(new_opinions)

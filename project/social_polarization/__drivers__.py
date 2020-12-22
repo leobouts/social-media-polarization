@@ -48,7 +48,7 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
             time.sleep(1)
 
             # append initial polarization for the graph output
-            pol, converged_opinions = get_polarization(g)
+            pol, converged_opinions = get_polarization(graph)
             decrease_list = [pol]
 
             if algorithm == 'Greedy':

@@ -25,30 +25,14 @@ def load_graph(gml_file):
 
     graph = nx.Graph(graph, name=name)
 
-    conservative_liberal_convert = ['../datasets/books.gml',
-                                    '../datasets/ClintonTrump.gml']
+    conservative_liberal_convert = ['books', 'ClintonTrump']
+    zero_value_convert = ['GermanWings', 'beefban', 'sxsw', 'karate', 'polblogs']
 
-    zero_value_convert = ["../datasets/GermanWings.gml",
-                          "../datasets/beefban.gml",
-                          "../datasets/sxsw.gml",
-                          "../datasets/karate.gml",
-                          "../datasets/polblogs.gml"
-                          ]
-
-    if gml_file in conservative_liberal_convert:
+    if name in conservative_liberal_convert:
         graph = conservative_liberal_conversion(graph)
+        print(nx.get_node_attributes(graph, 'value').values())
 
-    if gml_file in zero_value_convert:
+    if name in zero_value_convert:
         graph = zero_value_conversion(graph)
 
-    # value_dictionary = nx.get_node_attributes(graph, 'value')
-    #
-    # list_of_graph_values = list(value_dictionary.values())
-    #
-    # graph = attach_values_from_list_to_graph(graph, list_of_graph_values)
-
-    # print(list(graph.nodes(data=True)))
-    # print(nx.info(graph))
-
     return graph
-
