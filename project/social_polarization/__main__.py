@@ -20,12 +20,12 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    name = 'sxsw'
+    name = 'ClintonTrump'
     graph = load_graph(f'../datasets/{name}.gml')
 
-    pol, converged_opinions = get_polarization(graph)
-    print(pol)
-    print(get_polarization_with_inverse(graph))
+    # pol, converged_opinions = get_polarization(graph)
+    # print(pol)
+    # print(get_polarization_with_inverse(graph))
 
     # --------------------------------------- #
     #     convert datasets to gml             #
@@ -74,11 +74,11 @@ def main():
     k = [5, 10, 15, 20]
     #algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
-    #algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
+    algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
 
     #datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    #info = algorithms_driver(k, ['ClintonTrump'], algorithms1, 'Embeddings')
+    info = algorithms_driver(k, ['beefban'], algorithms1, 'Ignore')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

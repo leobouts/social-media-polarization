@@ -5,7 +5,6 @@ from tqdm import tqdm
 import itertools
 
 
-
 def check_graph_permutations(number_of_vertices, graph):
     # make a list of nodes e.g. for 3 nodes returns [1,2,3]
     lst_nodes = [node for node in range(number_of_vertices)]

@@ -1,7 +1,8 @@
+from __helpers__ import get_positive_and_negative_values
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.exceptions import ConvergenceWarning
-from __helpers__ import load_embeddings, get_positive_and_negative_values
+from __load_graph_data__ import load_embeddings
 from warnings import simplefilter
 from node2vec import Node2Vec
 import networkx as nx
