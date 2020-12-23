@@ -1,8 +1,7 @@
-from __helpers__ import convert_dataset_to_gml, \
-    format_edge_list, \
+from __format_datasets__ import get_nodes_and_values_from_nx_to_txt, convert_dataset_to_gml
+from __helpers__ import format_edge_list, \
     check_for_same_results, \
-    get_dataset_statistics, \
-    get_nodes_and_values_from_nx_to_txt
+    get_dataset_statistics
 from connect_opposing import brute_force_all_edges_removal
 from __graph_properties__ import edges_centralities
 from __graph_embeddings__ import graph_embeddings
@@ -15,6 +14,7 @@ import pprint
 
 def algorithms_driver(k, datasets, algorithms, expected_mode):
     """
+    :param expected_mode:
     :param k: list that contains all the different top-k additions we want to add to the graph
     :param datasets: a list containing the string names of the datasets we want to examine
     :param algorithms: a list containing the string names of the algorithms we wan to run on the datasets

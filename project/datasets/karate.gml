@@ -2,562 +2,596 @@ graph
 [
   node
   [
+    id 0
+    label "1"
+    value -1
+  ]
+  node
+  [
     id 1
-    value 0
+    label "2"
+    value -1
   ]
   node
   [
     id 2
-	value 0
+    label "3"
+    value -1
   ]
   node
   [
     id 3
-	value 0
+    label "4"
+    value -1
   ]
   node
   [
     id 4
-	value 0
+    label "5"
+    value -1
   ]
   node
   [
     id 5
-	value 0
+    label "6"
+    value -1
   ]
   node
   [
     id 6
-	value 0
+    label "7"
+    value -1
   ]
   node
   [
     id 7
-	value 0
+    label "8"
+    value -1
   ]
   node
   [
     id 8
-	value 0
+    label "9"
+    value -1
   ]
   node
   [
     id 9
-	value 0
+    label "10"
+    value 1
   ]
   node
   [
     id 10
-	value 1
+    label "11"
+    value -1
   ]
   node
   [
     id 11
-	value 0
+    label "12"
+    value -1
   ]
   node
   [
     id 12
-	value 0
+    label "13"
+    value -1
   ]
   node
   [
     id 13
-	value 0
+    label "14"
+    value -1
   ]
   node
   [
     id 14
-	value 0
+    label "15"
+    value 1
   ]
   node
   [
     id 15
-	value 1
+    label "16"
+    value 1
   ]
   node
   [
     id 16
-	value 1
+    label "17"
+    value -1
   ]
   node
   [
     id 17
-	value 0
+    label "18"
+    value -1
   ]
   node
   [
     id 18
-	value 0
+    label "19"
+    value 1
   ]
   node
   [
     id 19
-	value 1
+    label "20"
+    value -1
   ]
   node
   [
     id 20
-	value 0
+    label "21"
+    value 1
   ]
   node
   [
     id 21
-	value 1
+    label "22"
+    value -1
   ]
   node
   [
     id 22
-	value 0
+    label "23"
+    value 1
   ]
   node
   [
     id 23
-	value 1
+    label "24"
+    value 1
   ]
   node
   [
     id 24
-	value 1
+    label "25"
+    value 1
   ]
   node
   [
     id 25
-	value 1
+    label "26"
+    value 1
   ]
   node
   [
     id 26
-	value 1
+    label "27"
+    value 1
   ]
   node
   [
     id 27
-	value 1
+    label "28"
+    value 1
   ]
   node
   [
     id 28
-	value 1
+    label "29"
+    value 1
   ]
   node
   [
     id 29
-	value 1
+    label "30"
+    value 1
   ]
   node
   [
     id 30
-	value 1
+    label "31"
+    value 1
   ]
   node
   [
     id 31
-	value 1
+    label "32"
+    value 1
   ]
   node
   [
     id 32
-	value 1
+    label "33"
+    value 1
   ]
   node
   [
     id 33
-	value 1
-  ]
-  node
-  [
-    id 34
-	value 1
+    label "34"
+    value 1
   ]
   edge
   [
-    source 2
+    source 0
     target 1
   ]
   edge
   [
-    source 3
-    target 1
-  ]
-  edge
-  [
-    source 3
+    source 0
     target 2
   ]
   edge
   [
-    source 4
-    target 1
-  ]
-  edge
-  [
-    source 4
-    target 2
-  ]
-  edge
-  [
-    source 4
+    source 0
     target 3
   ]
   edge
   [
-    source 5
-    target 1
+    source 0
+    target 4
   ]
   edge
   [
-    source 6
-    target 1
-  ]
-  edge
-  [
-    source 7
-    target 1
-  ]
-  edge
-  [
-    source 7
+    source 0
     target 5
   ]
   edge
   [
-    source 7
+    source 0
     target 6
   ]
   edge
   [
-    source 8
-    target 1
-  ]
-  edge
-  [
-    source 8
-    target 2
-  ]
-  edge
-  [
-    source 8
-    target 3
-  ]
-  edge
-  [
-    source 8
-    target 4
-  ]
-  edge
-  [
-    source 9
-    target 1
-  ]
-  edge
-  [
-    source 9
-    target 3
-  ]
-  edge
-  [
-    source 10
-    target 3
-  ]
-  edge
-  [
-    source 11
-    target 1
-  ]
-  edge
-  [
-    source 11
-    target 5
-  ]
-  edge
-  [
-    source 11
-    target 6
-  ]
-  edge
-  [
-    source 12
-    target 1
-  ]
-  edge
-  [
-    source 13
-    target 1
-  ]
-  edge
-  [
-    source 13
-    target 4
-  ]
-  edge
-  [
-    source 14
-    target 1
-  ]
-  edge
-  [
-    source 14
-    target 2
-  ]
-  edge
-  [
-    source 14
-    target 3
-  ]
-  edge
-  [
-    source 14
-    target 4
-  ]
-  edge
-  [
-    source 17
-    target 6
-  ]
-  edge
-  [
-    source 17
+    source 0
     target 7
   ]
   edge
   [
-    source 18
-    target 1
+    source 0
+    target 8
   ]
   edge
   [
-    source 18
-    target 2
-  ]
-  edge
-  [
-    source 20
-    target 1
-  ]
-  edge
-  [
-    source 20
-    target 2
-  ]
-  edge
-  [
-    source 22
-    target 1
-  ]
-  edge
-  [
-    source 22
-    target 2
-  ]
-  edge
-  [
-    source 26
-    target 24
-  ]
-  edge
-  [
-    source 26
-    target 25
-  ]
-  edge
-  [
-    source 28
-    target 3
-  ]
-  edge
-  [
-    source 28
-    target 24
-  ]
-  edge
-  [
-    source 28
-    target 25
-  ]
-  edge
-  [
-    source 29
-    target 3
-  ]
-  edge
-  [
-    source 30
-    target 24
-  ]
-  edge
-  [
-    source 30
-    target 27
-  ]
-  edge
-  [
-    source 31
-    target 2
-  ]
-  edge
-  [
-    source 31
-    target 9
-  ]
-  edge
-  [
-    source 32
-    target 1
-  ]
-  edge
-  [
-    source 32
-    target 25
-  ]
-  edge
-  [
-    source 32
-    target 26
-  ]
-  edge
-  [
-    source 32
-    target 29
-  ]
-  edge
-  [
-    source 33
-    target 3
-  ]
-  edge
-  [
-    source 33
-    target 9
-  ]
-  edge
-  [
-    source 33
-    target 15
-  ]
-  edge
-  [
-    source 33
-    target 16
-  ]
-  edge
-  [
-    source 33
-    target 19
-  ]
-  edge
-  [
-    source 33
-    target 21
-  ]
-  edge
-  [
-    source 33
-    target 23
-  ]
-  edge
-  [
-    source 33
-    target 24
-  ]
-  edge
-  [
-    source 33
-    target 30
-  ]
-  edge
-  [
-    source 33
-    target 31
-  ]
-  edge
-  [
-    source 33
-    target 32
-  ]
-  edge
-  [
-    source 34
-    target 9
-  ]
-  edge
-  [
-    source 34
+    source 0
     target 10
   ]
   edge
   [
-    source 34
-    target 14
+    source 0
+    target 11
   ]
   edge
   [
-    source 34
-    target 15
+    source 0
+    target 12
   ]
   edge
   [
-    source 34
-    target 16
+    source 0
+    target 13
   ]
   edge
   [
-    source 34
+    source 0
+    target 17
+  ]
+  edge
+  [
+    source 0
     target 19
   ]
   edge
   [
-    source 34
-    target 20
-  ]
-  edge
-  [
-    source 34
+    source 0
     target 21
   ]
   edge
   [
-    source 34
-    target 23
-  ]
-  edge
-  [
-    source 34
-    target 24
-  ]
-  edge
-  [
-    source 34
-    target 27
-  ]
-  edge
-  [
-    source 34
-    target 28
-  ]
-  edge
-  [
-    source 34
-    target 29
-  ]
-  edge
-  [
-    source 34
-    target 30
-  ]
-  edge
-  [
-    source 34
+    source 0
     target 31
   ]
   edge
   [
-    source 34
+    source 1
+    target 2
+  ]
+  edge
+  [
+    source 1
+    target 3
+  ]
+  edge
+  [
+    source 1
+    target 7
+  ]
+  edge
+  [
+    source 1
+    target 13
+  ]
+  edge
+  [
+    source 1
+    target 17
+  ]
+  edge
+  [
+    source 1
+    target 19
+  ]
+  edge
+  [
+    source 1
+    target 21
+  ]
+  edge
+  [
+    source 1
+    target 30
+  ]
+  edge
+  [
+    source 2
+    target 3
+  ]
+  edge
+  [
+    source 2
+    target 7
+  ]
+  edge
+  [
+    source 2
+    target 8
+  ]
+  edge
+  [
+    source 2
+    target 9
+  ]
+  edge
+  [
+    source 2
+    target 13
+  ]
+  edge
+  [
+    source 2
+    target 27
+  ]
+  edge
+  [
+    source 2
+    target 28
+  ]
+  edge
+  [
+    source 2
     target 32
   ]
   edge
   [
-    source 34
+    source 3
+    target 7
+  ]
+  edge
+  [
+    source 3
+    target 12
+  ]
+  edge
+  [
+    source 3
+    target 13
+  ]
+  edge
+  [
+    source 4
+    target 6
+  ]
+  edge
+  [
+    source 4
+    target 10
+  ]
+  edge
+  [
+    source 5
+    target 6
+  ]
+  edge
+  [
+    source 5
+    target 10
+  ]
+  edge
+  [
+    source 5
+    target 16
+  ]
+  edge
+  [
+    source 6
+    target 16
+  ]
+  edge
+  [
+    source 8
+    target 30
+  ]
+  edge
+  [
+    source 8
+    target 32
+  ]
+  edge
+  [
+    source 8
+    target 33
+  ]
+  edge
+  [
+    source 9
+    target 33
+  ]
+  edge
+  [
+    source 13
+    target 33
+  ]
+  edge
+  [
+    source 14
+    target 32
+  ]
+  edge
+  [
+    source 14
+    target 33
+  ]
+  edge
+  [
+    source 15
+    target 32
+  ]
+  edge
+  [
+    source 15
+    target 33
+  ]
+  edge
+  [
+    source 18
+    target 32
+  ]
+  edge
+  [
+    source 18
+    target 33
+  ]
+  edge
+  [
+    source 19
+    target 33
+  ]
+  edge
+  [
+    source 20
+    target 32
+  ]
+  edge
+  [
+    source 20
+    target 33
+  ]
+  edge
+  [
+    source 22
+    target 32
+  ]
+  edge
+  [
+    source 22
+    target 33
+  ]
+  edge
+  [
+    source 23
+    target 25
+  ]
+  edge
+  [
+    source 23
+    target 27
+  ]
+  edge
+  [
+    source 23
+    target 29
+  ]
+  edge
+  [
+    source 23
+    target 32
+  ]
+  edge
+  [
+    source 23
+    target 33
+  ]
+  edge
+  [
+    source 24
+    target 25
+  ]
+  edge
+  [
+    source 24
+    target 27
+  ]
+  edge
+  [
+    source 24
+    target 31
+  ]
+  edge
+  [
+    source 25
+    target 31
+  ]
+  edge
+  [
+    source 26
+    target 29
+  ]
+  edge
+  [
+    source 26
+    target 33
+  ]
+  edge
+  [
+    source 27
+    target 33
+  ]
+  edge
+  [
+    source 28
+    target 31
+  ]
+  edge
+  [
+    source 28
+    target 33
+  ]
+  edge
+  [
+    source 29
+    target 32
+  ]
+  edge
+  [
+    source 29
+    target 33
+  ]
+  edge
+  [
+    source 30
+    target 32
+  ]
+  edge
+  [
+    source 30
+    target 33
+  ]
+  edge
+  [
+    source 31
+    target 32
+  ]
+  edge
+  [
+    source 31
+    target 33
+  ]
+  edge
+  [
+    source 32
     target 33
   ]
 ]

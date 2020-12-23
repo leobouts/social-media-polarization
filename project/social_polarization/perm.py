@@ -1,9 +1,9 @@
+from __helpers__ import attach_values_from_list_to_graph
+from __compute_polarization__ import get_polarization
+from __graph_topologies__ import *
+from tqdm import tqdm
 import itertools
 
-from tqdm import tqdm
-
-from __load_graph_data__ import get_polarization, attach_values_from_list_to_graph
-from __graph_topologies__ import *
 
 
 def check_graph_permutations(number_of_vertices, graph):
@@ -98,7 +98,6 @@ def find_increase_in_graphs_with_addition():
 def example_increase_that_confirms_intuition():
     graph, size = get_graph_type('intuition_graph')
     nodeDict = dict(graph.nodes(data=True))
-    opinion_list = []
 
     list_negative = [comb for comb in
                      itertools.combinations([-0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.8, -0.9, -1], 4)]

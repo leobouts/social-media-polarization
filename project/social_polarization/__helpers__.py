@@ -2,7 +2,6 @@ from __compute_polarization__ import get_polarization
 from __visualize__ import vis_graphs_heuristics
 from numpy import linalg as linear_algebra
 import networkx as nx
-import pandas as pd
 import pickle
 
 
@@ -98,108 +97,6 @@ def format_edge_list(dict_to_format):
         edge_list.append(edge)
 
     return edge_list
-
-
-def convert_dataset_to_gml(node_values_path, edges_path, name_to_save):
-    f = open(node_values_path, "r")
-    label_list = []
-    value_list = []
-    tuples_list = []
-
-    for x in f:
-        splitted = x.rstrip().split(",")
-        label_list.append(splitted[0])
-        value_list.append(splitted[1])
-
-    f = open(edges_path, "r")
-
-    if "ClintonTrump" not in name_to_save:
-        for x in f:
-            splitted = x.rstrip().split(",")
-            edge_1 = splitted[0]
-            edge_2 = splitted[1]
-            tuples_list.append((edge_1, edge_2))
-    else:
-        for x in f:
-            splitted = x.rstrip().split(" ")
-            edge_1 = splitted[0]
-            edge_2 = splitted[1]
-            tuples_list.append((edge_1, edge_2))
-
-    with open(f'../datasets/{name_to_save}', 'w') as the_file:
-
-        the_file.write('graph\n')
-        the_file.write('[\n')
-
-        if "ClintonTrump" in name_to_save:
-            the_file.write('  directed 0\n')
-
-        for i, node in enumerate(label_list):
-
-            the_file.write('  node\n')
-            the_file.write('  [\n')
-            the_file.write(f'    id {i}\n')
-            the_file.write(f'    label "{node}"\n')
-            if "ClintonTrump" in name_to_save:
-                the_file.write(f'    value "{value_list[i]}"\n')
-            else:
-                the_file.write(f'    value {value_list[i]}\n')
-            the_file.write('  ]\n')
-
-        for edge in tuples_list:
-            the_file.write('  edge\n')
-            the_file.write('  [\n')
-            the_file.write(f'    source {label_list.index(edge[0])}\n')
-            the_file.write(f'    target {label_list.index(edge[1])}\n')
-            the_file.write('  ]\n')
-        the_file.write(']\n')
-
-
-def conservative_liberal_conversion(g):
-    value_dictionary = nx.get_node_attributes(g, 'value')
-
-    # empty dictionary
-    attrs = {}
-
-    for key, value in value_dictionary.items():
-        # c = conservative, l=liberal, n=neutral
-
-        if value_dictionary[key] == "c":
-            value_dictionary[key] = 1
-
-        elif value_dictionary[key] == "l":
-            value_dictionary[key] = -1
-
-        else:
-            value_dictionary[key] = 0
-
-        d = {key: {'value': value_dictionary[key]}}
-        attrs.update(d)
-
-    nx.set_node_attributes(g, attrs)
-
-    return g
-
-
-def zero_value_conversion(g):
-    # get the values of the new graph in a dictionary
-    value_dictionary = nx.get_node_attributes(g, 'value')
-
-    # opinions vary from 0 to 1, find all zero occurences
-    zero_indices = [k for (k, v) in value_dictionary.items() if v == 0]
-
-    # empty dictionary
-    attrs = {}
-
-    # create the dictionary that will update 0 nodes to -1
-    for obj in zero_indices:
-        d = {obj: {'value': -1}}
-        attrs.update(d)
-
-    # se the new opinion values
-    nx.set_node_attributes(g, attrs)
-
-    return g
 
 
 def attach_values_from_list_to_graph(g, values):
@@ -325,61 +222,3 @@ def get_positive_and_negative_values(nodeDict):
 
 def get_dataset_statistics(g):
     return nx.info(g)
-
-
-def get_nodes_and_values_from_nx_to_txt(graph, name):
-
-    with open(f'../datasets/formatted_for_embeddings/{name}/{name}.nodes', 'w') as the_file:
-        the_file.write('id,value\n')
-
-        for node_data in graph.nodes.data():
-            the_file.write(f'{node_data[0]},{node_data[1]["value"]}\n')
-
-    with open(f'../datasets/formatted_for_embeddings/{name}/{name}.edges', 'w') as the_file:
-
-        for edge in graph.edges:
-            the_file.write(f'{edge[0]},{edge[1]}\n')
-
-
-def load_embeddings(name):
-    # load nodes details
-    with open(f"../datasets/formatted_for_embeddings/{name}/{name}.nodes") as f:
-        nodes = f.read().splitlines()
-
-    # load edges (or links)
-    with open(f"../datasets/formatted_for_embeddings/{name}/{name}.edges") as f:
-        links = f.read().splitlines()
-
-    nodeDict = {}
-    count = 0
-    for i in nodes:
-
-        if count == 0:
-            count = 1
-            continue
-
-        splitted_vals = i.split(",")
-        nodeDict[splitted_vals[0]] = {'value': splitted_vals[1]}
-
-    # capture nodes in 2 separate lists
-    node_list_1 = []
-    node_list_2 = []
-    distance = []
-    multiplication = []
-
-    for i in links:
-        node_1_value = nodeDict[i.split(',')[0]]['value']
-        node_2_value = nodeDict[i.split(',')[1]]['value']
-
-        node_list_1.append(i.split(',')[0])
-        node_list_2.append(i.split(',')[1])
-        distance_abs = abs(int(node_1_value) - int(node_2_value))
-        mult = int(node_1_value) * int(node_2_value)
-
-        distance.append(distance_abs)
-        multiplication.append(mult)
-
-    df = pd.DataFrame(
-        {'node_1': node_list_1, 'node_2': node_list_2, 'distance': distance, 'multiplication': multiplication})
-
-    return df, nodeDict

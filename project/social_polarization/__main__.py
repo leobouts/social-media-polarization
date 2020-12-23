@@ -1,5 +1,6 @@
+from __compute_polarization__ import get_polarization_with_inverse
 from __drivers__ import *
-from __helpers__ import format_edge_list_from_tuples, get_nodes_and_values_from_nx_to_txt, \
+from __helpers__ import format_edge_list_from_tuples, \
     open_pickles_for_adjusting_visualization_manually, open_info_pickle
 
 
@@ -19,11 +20,12 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    name = 'karate'
+    name = 'sxsw'
     graph = load_graph(f'../datasets/{name}.gml')
+
     pol, converged_opinions = get_polarization(graph)
     print(pol)
-    #random_edge_addition([5, 10, 15, 20], graph)
+    print(get_polarization_with_inverse(graph))
 
     # --------------------------------------- #
     #     convert datasets to gml             #
@@ -69,14 +71,14 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    #k = [5, 10, 15, 20]
+    k = [5, 10, 15, 20]
     #algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
     #algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
 
     #datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    #info = algorithms_driver(k, ['ClintonTrump'], algorithms1, 'Ignore')
+    #info = algorithms_driver(k, ['ClintonTrump'], algorithms1, 'Embeddings')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

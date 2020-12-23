@@ -1,5 +1,3 @@
-import time
-
 from scipy.sparse import identity
 import networkx as nx
 import numpy as np
@@ -40,6 +38,11 @@ def get_polarization_with_inverse(g):
 
 
 def get_polarization(g):
+    '''
+
+    :param g:
+    :return:
+    '''
 
     N = len(g.nodes)
 
@@ -55,13 +58,10 @@ def get_polarization(g):
 
             sum_z = new_opinions[i]
 
-            #TODO watch out karate needs and books i think need +1
-            #re-value the node ids in those two in the gmls so u can be ok
-
-            neighbors = list(g.neighbors(i+1))
+            neighbors = list(g.neighbors(i))
 
             for neighbor in neighbors:
-                sum_z += new_opinions[neighbor - 1]
+                sum_z += new_opinions[neighbor]
 
             # derived from the friedkin johnson formula, assuming weights are 1 and neighbors includes self.
             new_opinions[i] = (int(s[i]) + sum_z) / (1 + len(neighbors) + 1)
@@ -71,7 +71,8 @@ def get_polarization(g):
 
         summed = np.sum(squared)
 
-        if abs(convergence - (summed / N)) < 0.001:
+        # adjust here the accuracy
+        if abs(convergence - (summed / N)) < 0.0001:
             break
 
         convergence = summed / N

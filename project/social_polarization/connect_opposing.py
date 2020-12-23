@@ -38,7 +38,6 @@ def brute_force_opposing_views(graph, pickle_name, verbose):
     difference = {}
 
     for i in tqdm(range(len(all_pairs))):
-
         g_copy = graph.copy()
 
         # add a new addition every time
@@ -81,7 +80,6 @@ def brute_force_all_edges_removal(graph, pickle_name, verbose):
     difference = {}
 
     for edge in tqdm(graph_edges):
-
         g_copy = graph.copy()
         # unpacks e from an edge tuple
         g_copy.remove_edge(*edge)
@@ -96,8 +94,8 @@ def brute_force_all_edges_removal(graph, pickle_name, verbose):
         add = node_a_polarization + node_b_polarization
 
         difference[graph_polarization - new_polarization] = {'edge_removal': edge,
-                                                                  'multiplication': mul,
-                                                                  'addition': add}
+                                                             'multiplication': mul,
+                                                             'addition': add}
 
     # store data (serialize) into pickle file
     with open(f"../pickles/{pickle_name}", 'wb') as handle:
