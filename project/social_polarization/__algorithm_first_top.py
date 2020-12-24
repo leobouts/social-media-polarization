@@ -27,6 +27,7 @@ def first_top_k_batch(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
     original_polarization, converged_opinions = get_polarization(graph_in)
 
+    addition_info = {}
     polarizations = []
     times = []
     k_items = []
@@ -48,17 +49,17 @@ def first_top_k_batch(k, graph_in, expected_p_z_mode, probabilities_dictionary):
                                                             probabilities_dictionary,
                                                             True)
 
-            sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
+        sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
-            edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
+        edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
 
-            # pass a graph in the helper method (copies it)
-            polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
+        # pass a graph in the helper method (copies it)
+        polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
 
-            end = time.time()
+        end = time.time()
 
-            elapsed = end - start
+        elapsed = end - start
 
-            times.append(elapsed)
+        times.append(elapsed)
 
     return k_items, polarizations, times
