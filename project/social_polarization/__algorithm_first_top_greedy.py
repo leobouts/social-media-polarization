@@ -1,5 +1,5 @@
-from __algorithm_helpers import get_first_top_k_positive_and_negative_opinions, iterate_over_different_opinions
-from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
+from __algorithm_helpers import iterate_over_different_opinions
+from __helpers__ import get_positive_and_negative_values
 from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 import time
@@ -55,7 +55,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
             sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
-            graph.add_edges_from(sorted_edges[0])
+            graph.add_edges_from([sorted_edges[0]])
 
         polarization, converged_opinions = get_polarization(graph)
 
