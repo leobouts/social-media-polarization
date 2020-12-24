@@ -74,7 +74,7 @@ def main():
 
     k = [5, 10, 15, 20]
 
-    algorithms = ['Greedy', 'GBatch', 'FTGreedyBatch', 'Random', 'Expressed Distance',
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Random', 'Expressed Distance',
                   'Expressed Multiplication']
 
     #algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']

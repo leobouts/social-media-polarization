@@ -12,6 +12,7 @@ def iterate_over_different_opinions(graph_in, positive_nodes, negative_nodes, or
         for node_neg in negative_nodes:
 
             edge_to_add = (node_pos[0], node_neg[0])
+
             # skip edge if the edge exists in the original graph
             if graph_in.has_edge(*edge_to_add):
                 continue

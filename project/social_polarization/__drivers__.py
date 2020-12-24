@@ -69,7 +69,6 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
             elif algorithm == 'FTGreedyBatch':
                 results, polarizations, time_list = first_top_greedy_batch(k, graph, expected_mode,
                                                                            probabilities_dictionary)
-                print(polarizations)
             elif algorithm == 'Expressed Distance':
                 results, polarizations, time_list = expressed(k, graph, 'Distance', expected_mode,
                                                               probabilities_dictionary)
