@@ -5,12 +5,14 @@ import numpy as np
 
 
 def get_polarization_with_inverse(g):
-    """"
-    Creates the L+I matrix that is holded in variable f where L is the laplacian matrix of the graph.
-    solves the (L+I)^-1 * S system and computes the polarization index value from the second norm of this
-    array squared and normalized.
 
-    --------------------------------------------------------------------------------------------------
+    """"
+    Creates the L+I matrix where L is the laplacian matrix of
+    the graph. Solves the (L+I)^-1 * S system and computes t-
+    he polarization index value from the second norm of this
+    array squared up and normalized by the network size.
+
+    ----------------------------------------------------------
     :param g: networkx graph with value attributes
     :return: Value of the polarization index
     """
@@ -38,11 +40,21 @@ def get_polarization_with_inverse(g):
 
 
 def get_polarization(g):
-    '''
 
-    :param g:
-    :return:
-    '''
+    """"
+    Computes the polarization index value by using the Friedkin
+    and Johnsen formula directly until it converges. We can ad-
+    just this convergence according to the accuracy we want. By
+    using less accuracy we can achieve faster computation of t-
+    he polarization index. For example this method is two times
+    faster than computing the (L+I)^-1 * S in an accuracy of
+    10^-4 and five times faster in an accuracy of 10^-3. Final-
+    ly we normalize by the network size
+
+    ------------------------------------------------------------
+    :param g: networkx graph with value attributes
+    :return: Value of the polarization index
+    """
 
     N = len(g.nodes)
 
