@@ -1,3 +1,5 @@
+from __algorithm_expressed import expressed
+from __algorithm_random import random_edge_addition
 from __format_datasets__ import get_nodes_and_values_from_nx_to_txt, convert_dataset_to_gml
 from __helpers__ import format_edge_list, \
     check_for_same_results, \
@@ -6,7 +8,7 @@ from connect_opposing import brute_force_all_edges_removal
 from __graph_properties__ import edges_centralities
 from __graph_embeddings__ import graph_embeddings
 from __load_graph_data__ import load_graph
-from __algorithms__ import *
+from __algorithm_greedy import *
 from __visualize__ import *
 import pickle
 import pprint
@@ -52,14 +54,11 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
             decrease_list = [pol]
 
             if algorithm == 'Greedy':
-                results, polarizations, time_list = greedy(k, graph, False, False, expected_mode,
-                                                           probabilities_dictionary)
+                results, polarizations, time_list = greedy(k, graph, False, expected_mode, probabilities_dictionary)
             elif algorithm == 'GBatch':
-                results, polarizations, time_list = greedy(k, graph, True, False, expected_mode,
-                                                           probabilities_dictionary)
+                results, polarizations, time_list = greedy_batch(k, graph, expected_mode, False, probabilities_dictionary)
             elif algorithm == 'FKGreedy':
-                results, polarizations, time_list = greedy(k, graph, False, True, expected_mode,
-                                                           probabilities_dictionary)
+                results, polarizations, time_list = greedy(k, graph, True, expected_mode, probabilities_dictionary)
             elif algorithm == 'Expressed Distance':
                 results, polarizations, time_list = expressed(k, graph, 'Distance', expected_mode,
                                                               probabilities_dictionary)
@@ -152,7 +151,6 @@ def convert_datasets_driver():
 
 
 def convert_networkx_to_txt_for_embeddings_driver():
-
     datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
     for ds_name in datasets:

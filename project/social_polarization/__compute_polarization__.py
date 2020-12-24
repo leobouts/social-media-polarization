@@ -1,7 +1,7 @@
 from scipy.sparse import identity
+from numpy.linalg import norm
 import networkx as nx
 import numpy as np
-from numpy.linalg import norm
 
 
 def get_polarization_with_inverse(g):
