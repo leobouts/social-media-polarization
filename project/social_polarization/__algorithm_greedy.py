@@ -49,7 +49,7 @@ def greedy(k, graph_in, first_k_flag, expected_p_z_mode, probabilities_dictionar
 
         start = time.time()
         for i in range(k_edge):
-            edges, polarization, elapsed = greedy_batch(k, graph, positive_nodes, negative_nodes, expected_p_z_mode,
+            edges, polarization, elapsed = greedy_batch(k, graph, first_k_flag, expected_p_z_mode,
                                                         True, probabilities_dictionary)
 
             edge_1 = edges[0][0][0]

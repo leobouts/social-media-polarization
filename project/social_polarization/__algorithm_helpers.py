@@ -52,6 +52,7 @@ def iterate_over_different_opinions(graph_in, positive_nodes, negative_nodes, or
 
 
 def get_first_top_k_positive_and_negative_opinions(graph_in, k_edge):
+
     nodeDict = dict(graph_in.nodes(data=True))
 
     positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
