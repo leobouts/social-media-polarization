@@ -65,9 +65,7 @@ def get_polarization(g):
     convergence = 1
 
     while 1:
-
         for i in range(len(new_opinions)):
-
             sum_z = new_opinions[i]
 
             neighbors = list(g.neighbors(i))
@@ -84,7 +82,7 @@ def get_polarization(g):
         summed = np.sum(squared)
 
         # adjust here the accuracy
-        if abs(convergence - (summed / N)) < 0.0001:
+        if abs(convergence - (summed / N)) < 0.001:
             break
 
         convergence = summed / N

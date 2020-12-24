@@ -46,26 +46,45 @@ def iterate_over_different_opinions(graph_in, positive_nodes, negative_nodes, or
             else:
                 # considering the initial problem of just the polarization decrease
                 addition_info[edge_to_add] = decrease
-
     return addition_info
 
 
 def get_first_top_k_positive_and_negative_opinions(graph_in, k_edge):
 
-    nodeDict = dict(graph_in.nodes(data=True))
-
-    positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
-
+    # get the Z values
     pol, converged_opinions = get_polarization(graph_in)
 
+    # just a list of length of nodes
     index_list = [i for i in range(len(converged_opinions))]
 
+    # sort together the list of indexes with the list of z opinions
     converged_opinions, index_list = zip(*sorted(zip(converged_opinions, index_list)))
 
-    positive_indexes = [i for i in index_list if i in positive_nodes]
-    negative_indexes = [i for i in index_list if i in negative_nodes]
+    index_pos = []
+    converged_pos = []
+    index_neg = []
+    converged_neg = []
 
-    positive_nodes = positive_indexes[:k_edge]
-    negative_nodes = negative_indexes[:k_edge]
+    # separate them according to opinion (-,+)
+    for i in converged_opinions:
+
+        if i > 0:
+            converged_pos.append(i)
+            index_pos.append(index_list[converged_opinions.index(i)])
+        else:
+            converged_neg.append(i)
+            index_neg.append(index_list[converged_opinions.index(i)])
+
+    # sort together the list of indexes with the list of z opinions now for each different opinion (-,+)
+    converged_neg, index_neg = zip(*sorted(zip(converged_neg, index_neg)))
+    converged_pos, index_pos = zip(*sorted(zip(converged_pos, index_pos)))
+
+    # get the nodes we want from each opinions
+    positive_nodes = index_pos[:k_edge]
+    negative_nodes = index_neg[:k_edge]
+
+    # add dummy tuple value so they can be used in the iterate_over_different_opinions method
+    positive_nodes = [(node, 0) for node in positive_nodes]
+    negative_nodes = [(node, 0) for node in negative_nodes]
 
     return positive_nodes, negative_nodes

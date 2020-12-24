@@ -36,7 +36,6 @@ def first_top_greedy_batch(k, graph_in, expected_p_z_mode, probabilities_diction
     start = time.time()
 
     for k_edge in k:
-
         positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(graph_in, k_edge)
 
         addition_info = iterate_over_different_opinions(graph_in,
@@ -46,15 +45,13 @@ def first_top_greedy_batch(k, graph_in, expected_p_z_mode, probabilities_diction
                                                         expected_p_z_mode,
                                                         probabilities_dictionary,
                                                         True)
-
         sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
         edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
+
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
 
     end = time.time()
     elapsed = end - start
 
     return sorted_edges, polarizations, [elapsed] * len(k)
-
-

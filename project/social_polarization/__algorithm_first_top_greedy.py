@@ -1,4 +1,4 @@
-from __algorithm_helpers import iterate_over_different_opinions
+from __algorithm_helpers import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
 from __helpers__ import get_positive_and_negative_values
 from __compute_polarization__ import get_polarization
 from tqdm import tqdm
@@ -24,11 +24,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
     3) times, elapsed times of the algorithm for each k.
     """
-
     original_polarization, converged_opinions = get_polarization(graph_in)
-    nodeDict = dict(graph_in.nodes(data=True))
-
-    addition_info = {}
     polarizations = []
     times = []
     k_items = []
@@ -37,7 +33,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
         k_items = []
 
-        positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
+        positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(graph_in, k_edge)
 
         # copy the graph so we won't alter it
         graph = graph_in.copy()
