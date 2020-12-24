@@ -42,8 +42,7 @@ def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
         for i in range(k_edge):
 
-            edges, polarization, elapsed = greedy_batch(k, graph, expected_p_z_mode,
-                                                        True, probabilities_dictionary)
+            edges, polarization, elapsed = greedy_batch(k, graph, expected_p_z_mode, True, probabilities_dictionary)
 
             edge_1 = edges[0][0][0]
             edge_2 = edges[0][0][1]

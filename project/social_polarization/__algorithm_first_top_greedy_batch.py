@@ -1,7 +1,5 @@
-import networkx as nx
-
 from __algorithm_helpers import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
-from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
+from __helpers__ import add_edges_and_count_polarization
 from __compute_polarization__ import get_polarization
 import time
 

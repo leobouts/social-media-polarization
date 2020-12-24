@@ -39,10 +39,13 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
         positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
 
+        # copy the graph so we won't alter it
+        graph = graph_in.copy()
+
         start = time.time()
         for i in range(k_edge):
 
-            addition_info = iterate_over_different_opinions(graph_in,
+            addition_info = iterate_over_different_opinions(graph,
                                                             positive_nodes,
                                                             negative_nodes,
                                                             original_polarization,
@@ -50,12 +53,13 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
                                                             probabilities_dictionary,
                                                             True)
 
-        sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
+            sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
-        edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
+            graph.add_edges_from(sorted_edges[0])
 
-        # pass a graph in the helper method (copies it)
-        polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
+        polarization, converged_opinions = get_polarization(graph)
+
+        polarizations.append(polarization)
 
         end = time.time()
 
