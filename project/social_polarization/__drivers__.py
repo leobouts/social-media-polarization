@@ -1,5 +1,5 @@
 from __algorithm_expressed import expressed
-from __algorithm_first_top import first_top_k_batch
+from __algorithm_first_top import first_top_greedy
 from __algorithm_first_top_greedy_batch import first_top_greedy_batch
 from __algorithm_random import random_edge_addition
 from __compute_polarization__ import get_polarization
@@ -64,7 +64,7 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
                                                                  probabilities_dictionary)
 
             elif algorithm == 'FTGreedy':
-                results, polarizations, time_list = first_top_k_batch(k, graph, expected_mode, probabilities_dictionary)
+                results, polarizations, time_list = first_top_greedy(k, graph, expected_mode, probabilities_dictionary)
 
             elif algorithm == 'FTGreedyBatch':
                 results, polarizations, time_list = first_top_greedy_batch(k, graph, expected_mode,
