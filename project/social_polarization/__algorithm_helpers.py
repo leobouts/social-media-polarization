@@ -1,8 +1,7 @@
+from __helpers__ import get_positive_and_negative_values
+from __compute_polarization__ import get_polarization
 import networkx as nx
 from tqdm import tqdm
-
-from __compute_polarization__ import get_polarization
-from __helpers__ import get_positive_and_negative_values
 
 
 def iterate_over_different_opinions(graph_in, positive_nodes, negative_nodes, original_polarization, expected_p_z_mode,

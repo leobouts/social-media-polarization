@@ -1,21 +1,17 @@
+from __helpers__ import add_edges_and_count_polarization
 from __algorithm_greedy_batch import greedy_batch
-from __algorithm_helpers import get_first_top_k_positive_and_negative_opinions
-from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
-from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 import time
 
 
-def greedy(k, graph_in, first_k_flag, expected_p_z_mode, probabilities_dictionary):
+def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     """
-    :param probabilities_dictionary:
     :param k: List that contains all the top-k edge additions we want to examine, e.g
     [5, 10, 15, 20]
     :param graph_in: Networkx graph that we want to examine
-    :param first_k_flag: if True performs a greedy search on the first KxK nodes according to z value.
-    :param batch_flag: if True runs only the GBatch algorithm
     :param expected_p_z_mode: Expected problem function definition. Available modes:
     'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index', 'Embeddings'
+    :param probabilities_dictionary:
     :return:
     1) k_items, a list of all the edges proposed sorted by their decrease or
     expected decrease. They already sorted from the greedy_batch function so they don't need to be sorted
@@ -26,30 +22,27 @@ def greedy(k, graph_in, first_k_flag, expected_p_z_mode, probabilities_dictionar
 
     3) times, elapsed times of the algorithm for each k.
     """
-    graph = graph_in.copy()
-    nodeDict = dict(graph.nodes(data=True))
+
     polarizations = []
     times = []
     k_items = []
 
-    positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
-
-    # Greedy and FKGreedy runs here,
-    # they use GBatch K times.
+    # Even though we could just run greedy one time with the max number of
+    # edges we want, we have to run him for every first-top edges to get his
+    # running times.
 
     for k_edge in tqdm(k, ascii="~~~~~~~~~~~~~~~#"):
 
         k_items = []
+
+        # copy the graph so we won't alter it
         graph = graph_in.copy()
 
-        if first_k_flag:
-            # The FKGreedy algorithm reduces the space by running
-            # the Greedy algorithm using only the first KxK nodes
-            positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(graph_in, k_edge)
-
         start = time.time()
+
         for i in range(k_edge):
-            edges, polarization, elapsed = greedy_batch(k, graph, first_k_flag, expected_p_z_mode,
+
+            edges, polarization, elapsed = greedy_batch(k, graph, expected_p_z_mode,
                                                         True, probabilities_dictionary)
 
             edge_1 = edges[0][0][0]
@@ -60,6 +53,7 @@ def greedy(k, graph_in, first_k_flag, expected_p_z_mode, probabilities_dictionar
 
         polarizations.append(add_edges_and_count_polarization(k_items, graph))
         end = time.time()
+
         times.append(end - start)
 
     return k_items, polarizations, times

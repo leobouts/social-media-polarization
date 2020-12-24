@@ -55,10 +55,11 @@ def main():
     # --------------------------------------- #
     #     1) Greedy                           #
     #     2) GBatch                           #
-    #     3) FKGreedy                         #
-    #     4) Expressed Distance               #
-    #     5) Expressed Multiplication         #
-    #     6) Random                           #
+    #     3) FTGreedy                         #
+    #     4) FTGreedyBatch                    #
+    #     5) Expressed Distance               #
+    #     6) Expressed Multiplication         #
+    #     7) Random                           #
     # --------------------------------------- #
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
@@ -72,13 +73,14 @@ def main():
     # --------------------------------------- #
 
     k = [5, 10, 15, 20]
-    #algorithms = ['Greedy', 'GBatch', 'FKGreedy', 'Expressed Distance', 'Expressed Multiplication']
 
-    algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Random' 'Expressed Distance', 'Expressed Multiplication']
+
+    #algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
 
     #datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['beefban'], algorithms1, 'Ignore')
+    info = algorithms_driver(k, ['karate'], algorithms, 'Ignore')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

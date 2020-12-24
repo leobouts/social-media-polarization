@@ -1,5 +1,8 @@
 from __algorithm_expressed import expressed
+from __algorithm_first_top import first_top_k_batch
+from __algorithm_first_top_greedy_batch import first_top_greedy_batch
 from __algorithm_random import random_edge_addition
+from __compute_polarization__ import get_polarization
 from __format_datasets__ import get_nodes_and_values_from_nx_to_txt, convert_dataset_to_gml
 from __helpers__ import format_edge_list, \
     check_for_same_results, \
@@ -54,11 +57,19 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
             decrease_list = [pol]
 
             if algorithm == 'Greedy':
-                results, polarizations, time_list = greedy(k, graph, False, expected_mode, probabilities_dictionary)
+                results, polarizations, time_list = greedy(k, graph, expected_mode, probabilities_dictionary)
+
             elif algorithm == 'GBatch':
-                results, polarizations, time_list = greedy_batch(k, graph, expected_mode, False, probabilities_dictionary)
-            elif algorithm == 'FKGreedy':
-                results, polarizations, time_list = greedy(k, graph, True, expected_mode, probabilities_dictionary)
+                results, polarizations, time_list = greedy_batch(k, graph, expected_mode, False,
+                                                                 probabilities_dictionary)
+
+            elif algorithm == 'FTGreedy':
+                results, polarizations, time_list = first_top_k_batch(k, graph, expected_mode, probabilities_dictionary)
+
+            elif algorithm == 'FTGreedyBatch':
+                results, polarizations, time_list = first_top_greedy_batch(k, graph, expected_mode,
+                                                                           probabilities_dictionary)
+
             elif algorithm == 'Expressed Distance':
                 results, polarizations, time_list = expressed(k, graph, 'Distance', expected_mode,
                                                               probabilities_dictionary)
