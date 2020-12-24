@@ -78,21 +78,21 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     for i, y_axis in enumerate(list_of_axes):
 
         if list_of_labels[i] == 'Greedy':
-            color = '#005b8e'
+            color = '#FFA400'
         elif list_of_labels[i] == 'GBatch':
-            color = '#633d68'
+            color = '#BB29BB'
         elif list_of_labels[i] == 'FTGreedy':
-            color = '#5a940e'
+            color = '#3CCBDA'
         elif list_of_labels[i] == 'Random':
-            color = '#f5871c'
+            color = '#00205B'
         elif list_of_labels[i] == 'FTGreedyBatch':
-            color = '#cb3b3b'
+            color = '#006747'
         elif list_of_labels[i] == 'Expressed Distance':
-            color = '#00a6a6'
+            color = '#E10600'
         elif list_of_labels[i] == 'Expressed Multiplication':
-            color = '#5bb3ea'
+            color = '#FCE300'
         else:
-            color = '#f9cf52'
+            color = '#594A25'
 
         plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color)
 
