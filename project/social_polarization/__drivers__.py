@@ -6,8 +6,7 @@ from __algorithm_random_different_opinions import random_edge_addition_different
 from __compute_polarization__ import get_polarization
 from __format_datasets__ import get_nodes_and_values_from_nx_to_txt, convert_dataset_to_gml
 from __helpers__ import format_edge_list, \
-    check_for_same_results, \
-    get_dataset_statistics
+    check_for_same_results
 from connect_opposing import brute_force_all_edges_removal
 from __graph_properties__ import edges_centralities
 from __graph_embeddings__ import graph_embeddings
