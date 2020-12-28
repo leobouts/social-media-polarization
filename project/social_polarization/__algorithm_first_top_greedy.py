@@ -1,5 +1,4 @@
 from __algorithm_helpers import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
-from __helpers__ import get_positive_and_negative_values
 from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 import time
@@ -13,7 +12,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     :param graph_in: Networkx graph that we want to examine
     :param expected_p_z_mode: Expected problem function definition. Available modes:
     'common_neighbors', 'Jaccard_coefficient', 'Adamic_addar_index', 'Embeddings'
-    :param probabilities_dictionary:
+    :param probabilities_dictionary: probabilities coming from embeddings
     :return:
     1) k_items, a list of all the edges proposed sorted by their decrease or
     expected decrease. They already sorted from the greedy_batch function so they don't need to be sorted
@@ -33,7 +32,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
         k_items = []
 
-        positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(graph_in, k_edge)
+        positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(k_edge, converged_opinions)
 
         # copy the graph so we won't alter it
         graph = graph_in.copy()
@@ -45,6 +44,8 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
                                                             positive_nodes,
                                                             negative_nodes,
                                                             original_polarization,
+                                                            converged_opinions,
+                                                            'Not expressed',
                                                             expected_p_z_mode,
                                                             probabilities_dictionary,
                                                             True)

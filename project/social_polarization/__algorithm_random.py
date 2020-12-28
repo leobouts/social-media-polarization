@@ -1,4 +1,4 @@
-from __helpers__ import add_edges_and_count_polarization
+from __compute_polarization__ import get_polarization
 import networkx as nx
 import random
 import time
@@ -6,6 +6,7 @@ import time
 
 def random_edge_addition(k, graph_in):
 
+    edges_to_add_list = []
     polarizations = []
     start = time.time()
 
@@ -13,10 +14,12 @@ def random_edge_addition(k, graph_in):
 
     for k_edge in k:
 
-        edges_to_add_list = random.choices(edges_list, k=k_edge)
+        edges_to_add_list = random.sample(edges_list, k_edge)
 
-        # pass a graph in the helper that copies it
-        polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
+        g_copy = graph_in.copy()
+        g_copy.add_edges_from(edges_to_add_list)
+
+        polarizations.append(get_polarization(g_copy)[0])
 
     end = time.time()
     elapsed = end - start

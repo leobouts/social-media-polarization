@@ -1,10 +1,11 @@
-from __algorithm_helpers import iterate_over_different_opinions
-from __helpers__ import add_edges_and_count_polarization, get_positive_and_negative_values
+from __algorithm_helpers import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
+from __helpers__ import add_edges_and_count_polarization
 from __compute_polarization__ import get_polarization
 import time
 
 
 def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictionary):
+
     """
     Greedy batch finds the best edge to add according to the polarization decrease among all
     different opinions. It is also used with an expected mode to consider the addition of edges
@@ -19,7 +20,7 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
     :param verbose: disabling or enabling the tqdm progress bar output to the console.
     do not change. GBatch is also used on greedy so it is used to disable the inner progress
     bar when we run the greedy algorithm.
-    :param probabilities_dictionary:
+    :param probabilities_dictionary: probabilities coming from embeddings
 
     :return:
 
@@ -35,8 +36,10 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
     original_polarization, converged_opinions = get_polarization(graph_in)
     polarizations = []
 
-    nodeDict = dict(graph_in.nodes(data=True))
-    positive_nodes, negative_nodes = get_positive_and_negative_values(nodeDict)
+    # when we want all positive and negative nodes we pass the len(converge)
+
+    positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(len(converged_opinions),
+                                                                                    converged_opinions)
 
     start = time.time()
 
@@ -44,6 +47,8 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
                                                     positive_nodes,
                                                     negative_nodes,
                                                     original_polarization,
+                                                    converged_opinions,
+                                                    'Not expressed',
                                                     expected_p_z_mode,
                                                     probabilities_dictionary,
                                                     verbose)

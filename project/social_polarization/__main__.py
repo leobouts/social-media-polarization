@@ -5,12 +5,15 @@ from __helpers__ import format_edge_list_from_tuples, \
 
 
 def main():
+
     # --------------------------------------- #
     #      Test Graph Init                    #
     # --------------------------------------- #
     # --------------------------------------- #
     #      Available Datasets:                #
     # --------------------------------------- #
+    #      0)test                             #
+    #        (example from thesis increase)   #
     #      1)karate                           #
     #      2)polblogs                         #
     #      3)books                            #
@@ -20,12 +23,14 @@ def main():
     #      7)beefban                          #
     # --------------------------------------- #
 
-    name = 'ClintonTrump'
-    graph = load_graph(f'../datasets/{name}.gml')
-
+    # name = 'test'
+    # graph = load_graph(f'../datasets/{name}.gml')
+    #
     # pol, converged_opinions = get_polarization(graph)
     # print(pol)
-    # print(get_polarization_with_inverse(graph))
+    # print(converged_opinions)
+    # print(pol)
+    # print(get_polarization_with_inverse(graph)[1])
 
     # --------------------------------------- #
     #     convert datasets to gml             #
@@ -60,6 +65,7 @@ def main():
     #     5) Expressed Distance               #
     #     6) Expressed Multiplication         #
     #     7) Random                           #
+    #     8) Random different                 #
     # --------------------------------------- #
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
@@ -72,14 +78,19 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [5, 10, 15, 20]
+    k = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
 
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Random', 'Expressed Distance',
+    algorithms = ['Random', 'Random different', 'Expressed Distance',
                   'Expressed Multiplication']
 
-    #algorithms1 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
+    #algorithms1 = ['Random', 'Expressed Distance']
 
-    #datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
+    #randoms = ['Random', 'Random different']
+
+    #algorithms2 = ['FTGreedy', 'FTGreedyBatch', 'Random', 'Expressed Distance',
+    #               'Expressed Multiplication']
+
+    #datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
     info = algorithms_driver(k, ['karate'], algorithms, 'Ignore')
 
@@ -87,7 +98,7 @@ def main():
     # open information from previous experiments              #
     # ------------------------------------------------------- #
 
-    #info = open_info_pickle('karate')
+    # info = open_info_pickle('karate')
 
     ######################################################################
     # to Access information returned by edge additions                   #
@@ -95,17 +106,17 @@ def main():
     # where x can be 'result_dictionary', 'time', 'polarization'         #
     ######################################################################
 
-    #edge_list = (info['Greedy_karate_10']['result_dictionary'])
+    # edge_list = (info['Greedy_karate_10']['result_dictionary'])
 
-    #convert the tuple list into the format that visualize_edge takes
+    # convert the tuple list into the format that visualize_edge takes
 
-    #edge_list = format_edge_list_from_tuples(edge_list)
+    # edge_list = format_edge_list_from_tuples(edge_list)
 
     # ------------------------------------------------------- #
     # visualize graph edges, mode = 1 addition, = 0 removal   #
     # ------------------------------------------------------- #
 
-    #visualize_edge(graph, edge_list, "top-10 edge addition in Karate from Greedy",
+    # visualize_edge(graph, edge_list, "top-10 edge addition in Karate from Greedy",
     #               "Greedy_karate_10", "karate", 1)
 
     # ---------------------------------------- #
@@ -116,14 +127,14 @@ def main():
     #  Second arg: the dataset name            #
     # ---------------------------------------- #
 
-    #open_pickles_for_adjusting_visualization_manually([5, 10, 20, 30], 'karate')
+    # open_pickles_for_adjusting_visualization_manually([5, 10, 20, 30], 'karate')
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #
     # --------------------------------------- #
 
     # fully_connected_graph = make_graph_fully_connected(graph)
-    #pol, converged_opinions = get_polarization(fully_connected_graph)
+    # pol, converged_opinions = get_polarization(fully_connected_graph)
 
     # --------------------------------------- #
     #              edge removals              #

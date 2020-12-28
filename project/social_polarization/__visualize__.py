@@ -78,23 +78,38 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     for i, y_axis in enumerate(list_of_axes):
 
         if list_of_labels[i] == 'Greedy':
-            color = '#FFA400'
-        elif list_of_labels[i] == 'GBatch':
-            color = '#BB29BB'
-        elif list_of_labels[i] == 'FTGreedy':
-            color = '#3CCBDA'
-        elif list_of_labels[i] == 'Random':
-            color = '#00205B'
-        elif list_of_labels[i] == 'FTGreedyBatch':
-            color = '#006747'
-        elif list_of_labels[i] == 'Expressed Distance':
-            color = '#E10600'
-        elif list_of_labels[i] == 'Expressed Multiplication':
-            color = '#FCE300'
-        else:
-            color = '#594A25'
+            color = '#d02324'
+            ls = None
 
-        plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color)
+        elif list_of_labels[i] == 'GBatch':
+            color = '#289628'
+            ls = None
+
+        elif list_of_labels[i] == 'FTGreedy':
+            color = '#ff7410'
+            ls = None
+
+        elif list_of_labels[i] == 'Random':
+            color = '#895cb5'
+            ls = None
+
+        elif list_of_labels[i] == 'FTGreedyBatch':
+            color = '#d02324'
+            ls = '-'
+
+        elif list_of_labels[i] == 'Expressed Distance':
+            color = '#289628'
+            ls = '--'
+
+        elif list_of_labels[i] == 'Expressed Multiplication':
+            color = '#ff7410'
+            ls = '-.'
+
+        else:
+            color = '#895cb5'
+            ls = ':'
+
+        plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color, linestyle=ls)
 
     # Add legend
     # Put a legend below current axis

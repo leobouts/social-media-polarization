@@ -2,6 +2,7 @@ from __algorithm_expressed import expressed
 from __algorithm_first_top_greedy import first_top_greedy
 from __algorithm_first_top_greedy_batch import first_top_greedy_batch
 from __algorithm_random import random_edge_addition
+from __algorithm_random_different_opinions import random_edge_addition_different
 from __compute_polarization__ import get_polarization
 from __format_datasets__ import get_nodes_and_values_from_nx_to_txt, convert_dataset_to_gml
 from __helpers__ import format_edge_list, \
@@ -79,6 +80,9 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
 
             elif algorithm == 'Random':
                 results, polarizations, time_list = random_edge_addition(k, graph)
+
+            elif algorithm == 'Random different':
+                results, polarizations, time_list = random_edge_addition_different(k, graph)
 
             decrease_list = decrease_list + polarizations
 
@@ -211,7 +215,7 @@ def dataset_statistics_driver(datasets, verbose):
     for ds in datasets:
         graph = load_graph(f'../datasets/{ds}.gml')
         polarization, converged_opinions = get_polarization(graph)
-        stats = get_dataset_statistics(graph)
+        stats = nx.info(graph)
 
         if verbose:
             print(stats)

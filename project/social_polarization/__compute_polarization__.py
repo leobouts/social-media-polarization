@@ -36,7 +36,7 @@ def get_polarization_with_inverse(g):
     summed = np.sum(squared)
 
     # result is normalized according to network size
-    return summed / no_of_nodes
+    return summed / no_of_nodes, np.squeeze(np.asarray(solutions)).tolist()
 
 
 def get_polarization(g):
@@ -74,7 +74,7 @@ def get_polarization(g):
                 sum_z += new_opinions[neighbor]
 
             # derived from the friedkin johnson formula, assuming weights are 1 and neighbors includes self.
-            new_opinions[i] = (int(s[i]) + sum_z) / (1 + len(neighbors) + 1)
+            new_opinions[i] = float((float(s[i]) + sum_z)) / (1 + len(neighbors) + 1)
 
         # squaring and summing the opinion vector
         squared = np.square(new_opinions)
@@ -82,7 +82,7 @@ def get_polarization(g):
         summed = np.sum(squared)
 
         # adjust here the accuracy
-        if abs(convergence - (summed / N)) < 0.001:
+        if abs(convergence - (summed / N)) < 0.0000001:
             break
 
         convergence = summed / N
