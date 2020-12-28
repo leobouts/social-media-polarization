@@ -75,6 +75,9 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
 
 def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
 
+    # make them strings so matplot will plot them with equal space between
+    x_axis = [str(x) for x in x_axis]
+
     for i, y_axis in enumerate(list_of_axes):
 
         if list_of_labels[i] == 'Greedy':
@@ -111,8 +114,10 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
 
         plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color, linestyle=ls)
 
+
     # Add legend
     # Put a legend below current axis
+
     plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.15),
                fancybox=True, shadow=True, ncol=5)
 

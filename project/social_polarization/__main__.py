@@ -76,7 +76,7 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
+    k = [10, 20, 30, 40, 80, 300, 2000]
 
     algorithms = ['Random', 'Random different', 'Expressed Distance',
                   'Expressed Multiplication']
@@ -90,7 +90,7 @@ def main():
 
     #datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['karate'], algorithms, 'Ignore')
+    info = algorithms_driver(k, ['sxsw'], algorithms, 'Ignore')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
