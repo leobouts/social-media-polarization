@@ -129,5 +129,5 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.grid(True)
-    plt.savefig(f'../figures_generated/{title.split(" ")[0]}/{title}.pdf', dpi=100, bbox_inches='tight')
+    #plt.savefig(f'../figures_generated/{title.split(" ")[0]}/{title}.pdf', dpi=100, bbox_inches='tight')
     plt.show()

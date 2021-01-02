@@ -2,8 +2,8 @@ from __compute_polarization__ import get_polarization_with_inverse
 from __drivers__ import *
 from __helpers__ import format_edge_list_from_tuples
 
-def main():
 
+def main():
     # --------------------------------------- #
     #      Test Graph Init                    #
     # --------------------------------------- #
@@ -76,21 +76,18 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [10, 20, 30, 40, 80, 300, 2000]
+    k = [5, 10, 20, 30, 40]
 
-    algorithms = ['Random', 'Random different', 'Expressed Distance',
-                  'Expressed Multiplication']
+    algorithms = ['Random', 'Random different', 'Expressed Distance']
 
-    #algorithms1 = ['Random', 'Expressed Distance']
+    # algorithms1 = ['Random', 'Expressed Distance']
 
-    #randoms = ['Random', 'Random different']
-
-    #algorithms2 = ['FTGreedy', 'FTGreedyBatch', 'Random', 'Expressed Distance',
+    # algorithms2 = ['FTGreedy', 'FTGreedyBatch', 'Random', 'Expressed Distance',
     #               'Expressed Multiplication']
 
-    #datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
+    # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 
-    info = algorithms_driver(k, ['sxsw'], algorithms, 'Ignore')
+    info = algorithms_driver(k, ['karate'], algorithms, 'Ignore')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

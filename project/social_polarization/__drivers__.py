@@ -1,4 +1,5 @@
 from __algorithm_expressed import expressed
+from __algorithm_expressed_2 import expressed_2
 from __algorithm_first_top_greedy import first_top_greedy
 from __algorithm_first_top_greedy_batch import first_top_greedy_batch
 from __algorithm_random import random_edge_addition
@@ -69,6 +70,7 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
             elif algorithm == 'FTGreedyBatch':
                 results, polarizations, time_list = first_top_greedy_batch(k, graph, expected_mode,
                                                                            probabilities_dictionary)
+
             elif algorithm == 'Expressed Distance':
                 results, polarizations, time_list = expressed(k, graph, 'Distance', expected_mode,
                                                               probabilities_dictionary)
