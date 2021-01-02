@@ -4,6 +4,7 @@ from __helpers__ import format_edge_list_from_tuples
 
 
 def main():
+
     # --------------------------------------- #
     #      Test Graph Init                    #
     # --------------------------------------- #
