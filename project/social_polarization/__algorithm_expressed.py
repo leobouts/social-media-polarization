@@ -41,12 +41,15 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 
         start = time.time()
 
+        g_copy = graph_in.copy()
+
         for i in tqdm(range(k_edge)):
-            initial_polarization, converged_opinions = get_polarization(graph_in)
+
+            initial_polarization, converged_opinions = get_polarization(g_copy)
 
             positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(len(converged_opinions),
                                                                                             converged_opinions)
-            addition_info = iterate_over_different_opinions(graph_in,
+            addition_info = iterate_over_different_opinions(g_copy,
                                                             positive_nodes,
                                                             negative_nodes,
                                                             initial_polarization,
@@ -58,7 +61,12 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 
             sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=reverse_flag)
 
-            edges_to_add_list.append(sorted_edges[0][0])
+            for edge in sorted_edges:
+
+                if edge[0] not in edges_to_add_list:
+                    edges_to_add_list.append(edge[0])
+                    g_copy.add_edges_from([edge[0]])
+                    break
 
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
         end = time.time()
