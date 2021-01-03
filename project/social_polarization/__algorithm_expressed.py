@@ -39,7 +39,7 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 
     g_copy = graph_in.copy()
 
-    for i in tqdm(range(max(k))):
+    for i in tqdm(range(max(k)), ascii="~~~~~~~~~~~~~~~#"):
 
         initial_polarization, converged_opinions = get_polarization(g_copy)
 
