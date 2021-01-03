@@ -50,7 +50,7 @@ def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
     for k_edge in k:
 
-        polarizations.append(add_edges_and_count_polarization(k_items[:k_edge], graph))
+        polarizations.append(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
         times.append(end - start)
 
     return k_items, polarizations, times

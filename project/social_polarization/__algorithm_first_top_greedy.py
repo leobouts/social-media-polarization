@@ -36,7 +36,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
     start = time.time()
 
-    for i in tqdm(range(k), ascii="~~~~~~~~~~~~~~~#"):
+    for i in tqdm(range(max(k)), ascii="~~~~~~~~~~~~~~~#"):
 
         addition_info = iterate_over_different_opinions(graph,
                                                         positive_nodes,
@@ -60,7 +60,9 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
     for k_edge in k:
 
-        polarizations.append(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
+        edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
+
+        polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
 
         times.append(elapsed)
 

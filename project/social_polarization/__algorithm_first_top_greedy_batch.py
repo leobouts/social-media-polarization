@@ -35,7 +35,7 @@ def first_top_greedy_batch(k, graph_in, expected_p_z_mode, probabilities_diction
 
     start = time.time()
 
-    positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(graph_in, max(k))
+    positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(max(k), converged_opinions)
 
     addition_info = iterate_over_different_opinions(graph_in,
                                                     positive_nodes,
