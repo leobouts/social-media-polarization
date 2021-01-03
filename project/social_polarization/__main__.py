@@ -77,7 +77,7 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [5, 10, 20, 30, 40]
+    k = [100, 200, 300, 600]
 
     algorithms = ['Random', 'Random different', 'Expressed Distance']
 

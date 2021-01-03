@@ -6,7 +6,6 @@ import time
 
 
 def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
-
     """
     :param k: List that contains all the top-k edge additions we want to examine, e.g
     [5, 10, 15, 20]
@@ -35,42 +34,42 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     else:
         reverse_flag = False
 
+    edges_to_add_list = []
+
+    start = time.time()
+
+    g_copy = graph_in.copy()
+
+    for i in tqdm(range(max(k))):
+
+        initial_polarization, converged_opinions = get_polarization(g_copy)
+
+        positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(len(converged_opinions),
+                                                                                        converged_opinions)
+        addition_info = iterate_over_different_opinions(g_copy,
+                                                        positive_nodes,
+                                                        negative_nodes,
+                                                        initial_polarization,
+                                                        converged_opinions,
+                                                        mode,
+                                                        expected_p_z_mode,
+                                                        probabilities_dictionary,
+                                                        True)
+
+        sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=reverse_flag)
+
+        for edge in sorted_edges:
+
+            if edge[0] not in edges_to_add_list:
+                edges_to_add_list.append(edge[0])
+                g_copy.add_edges_from([edge[0]])
+                break
+
+    end = time.time()
+
     for k_edge in k:
+        polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
 
-        edges_to_add_list = []
-
-        start = time.time()
-
-        g_copy = graph_in.copy()
-
-        for i in tqdm(range(k_edge)):
-
-            initial_polarization, converged_opinions = get_polarization(g_copy)
-
-            positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(len(converged_opinions),
-                                                                                            converged_opinions)
-            addition_info = iterate_over_different_opinions(g_copy,
-                                                            positive_nodes,
-                                                            negative_nodes,
-                                                            initial_polarization,
-                                                            converged_opinions,
-                                                            mode,
-                                                            expected_p_z_mode,
-                                                            probabilities_dictionary,
-                                                            True)
-
-            sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=reverse_flag)
-
-            for edge in sorted_edges:
-
-                if edge[0] not in edges_to_add_list:
-                    edges_to_add_list.append(edge[0])
-                    g_copy.add_edges_from([edge[0]])
-                    break
-
-        polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
-        end = time.time()
-
-        times.append(end - start)
+    times.append(end - start)
 
     return edges_to_add_list, polarizations, times
