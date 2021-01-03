@@ -133,15 +133,15 @@ def check_for_same_results(total_decreases, algorithms, mode):
 
             check = 0
 
-            if mode == 1:
-                if total_decreases[i] == total_decreases[j]:
-                    check = 1
-            else:
-                sum_1 = sum(total_decreases[i])
-                sum_2 = sum(total_decreases[j])
-                equal_range = 2
-                if sum_1 + equal_range > sum_2 > sum_1 - equal_range:
-                    check = 1
+            sum_1 = sum(total_decreases[i])
+            sum_2 = sum(total_decreases[j])
+            equal_range = 0.02
+
+            #print(sum_1)
+            #print(sum_2)
+
+            if abs(sum_2 - sum_1) <= equal_range:
+                check = 1
 
             if check:
                 last_flag = False

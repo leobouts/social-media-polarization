@@ -118,24 +118,6 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
                               "π(z)",
                               0)
 
-        times_checked, time_labels_checked = check_for_same_results(total_times, algorithms, 0)
-
-        # store data (serialize) into pickle file
-        with open(f"../pickles/{ds}/{ds}_times_checked", 'wb') as handle:
-            pickle.dump(times_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-        # store data (serialize) into pickle file
-        with open(f"../pickles/{ds}/{ds}_labels_checked_time", 'wb') as handle:
-            pickle.dump(time_labels_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-        vis_graphs_heuristics(k,
-                              times_checked,
-                              time_labels_checked,
-                              f"{ds} Time Elapsed",
-                              "Number of Edges Added",
-                              "Seconds",
-                              1)
-
         # store info into pickle file
         with open(f"../pickles/{ds}/{ds}_info", 'wb') as handle:
             pickle.dump(info, handle, protocol=pickle.HIGHEST_PROTOCOL)

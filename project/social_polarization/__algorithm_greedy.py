@@ -31,28 +31,26 @@ def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     # edges we want, we have to run him for every first-top edges to get his
     # running times.
 
-    for k_edge in tqdm(k, ascii="~~~~~~~~~~~~~~~#"):
+    # copy the graph so we won't alter it
+    graph = graph_in.copy()
 
-        k_items = []
+    start = time.time()
 
-        # copy the graph so we won't alter it
-        graph = graph_in.copy()
+    for i in tqdm(range(max(k)), ascii="~~~~~~~~~~~~~~~#"):
 
-        start = time.time()
+        edges, polarization, elapsed = greedy_batch(k, graph, expected_p_z_mode, True, probabilities_dictionary)
 
-        for i in range(k_edge):
+        edge_1 = edges[0][0][0]
+        edge_2 = edges[0][0][1]
 
-            edges, polarization, elapsed = greedy_batch(k, graph, expected_p_z_mode, True, probabilities_dictionary)
+        graph.add_edge(edge_1, edge_2)
+        k_items.append((edge_1, edge_2))
 
-            edge_1 = edges[0][0][0]
-            edge_2 = edges[0][0][1]
+    end = time.time()
 
-            graph.add_edge(edge_1, edge_2)
-            k_items.append((edge_1, edge_2))
+    for k_edge in k:
 
-        polarizations.append(add_edges_and_count_polarization(k_items, graph))
-        end = time.time()
-
+        polarizations.append(add_edges_and_count_polarization(k_items[:k_edge], graph))
         times.append(end - start)
 
     return k_items, polarizations, times

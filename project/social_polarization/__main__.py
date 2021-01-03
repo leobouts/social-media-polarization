@@ -4,7 +4,6 @@ from __helpers__ import format_edge_list_from_tuples
 
 
 def main():
-
     # --------------------------------------- #
     #      Test Graph Init                    #
     # --------------------------------------- #
@@ -77,14 +76,12 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [100, 200, 300, 600]
+    k = [25, 50, 75, 100]
 
-    algorithms = ['Random', 'Random different', 'Expressed Distance']
+    # algorithms = ['Random', 'Random different', 'Expressed Distance']
 
-    # algorithms1 = ['Random', 'Expressed Distance']
-
-    # algorithms2 = ['FTGreedy', 'FTGreedyBatch', 'Random', 'Expressed Distance',
-    #               'Expressed Multiplication']
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+                  'Expressed Multiplication']
 
     # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
 

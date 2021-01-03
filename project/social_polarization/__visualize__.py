@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-
+import numpy as np
 
 def visualize_edge(g, edge_list, title, img_name, dataset, mode):
     """
@@ -97,10 +97,10 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
             ls = None
 
         elif list_of_labels[i] == 'FTGreedyBatch':
-            color = '#d02324'
+            color = '#3d88ad'
             ls = '-'
 
-        elif list_of_labels[i] == 'Expressed Distance':
+        elif list_of_labels[i] == 'GBatch and FTGreedyBatch':
             color = '#289628'
             ls = '--'
 
@@ -124,10 +124,13 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     # Add title and x, y labels
     plt.title(title, fontsize=16, fontweight='bold')
 
+    tick1 = np.arange(0, list_of_axes[0][0], 0.02)
+
     plt.xticks(x_axis)
+    plt.yticks(tick1)
 
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.grid(True)
-    #plt.savefig(f'../figures_generated/{title.split(" ")[0]}/{title}.pdf', dpi=100, bbox_inches='tight')
+    plt.savefig(f'../figures_generated/{title.split(" ")[0]}/{title}.pdf', dpi=100, bbox_inches='tight')
     plt.show()

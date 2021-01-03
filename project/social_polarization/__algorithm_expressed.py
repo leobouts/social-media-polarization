@@ -27,7 +27,6 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     """
 
     polarizations = []
-    times = []
 
     if mode == "Distance":
         reverse_flag = True
@@ -70,6 +69,4 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     for k_edge in k:
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
 
-    times.append(end - start)
-
-    return edges_to_add_list, polarizations, times
+    return edges_to_add_list, polarizations, [end-start] * len(k)

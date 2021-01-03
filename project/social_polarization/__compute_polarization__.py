@@ -82,7 +82,7 @@ def get_polarization(g):
         summed = np.sum(squared)
 
         # adjust here the accuracy
-        if abs(convergence - (summed / N)) < 0.0000001:
+        if abs(convergence - (summed / N)) < 0.0001:
             break
 
         convergence = summed / N
