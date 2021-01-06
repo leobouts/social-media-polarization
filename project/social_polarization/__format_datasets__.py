@@ -49,14 +49,14 @@ def zero_value_conversion(g):
 
 
 def adjust_gml_ids_and_values(g, name_to_save):
-    '''
+    """
     If the  values are in the [0,1] the function can change them to [-1,1] by turning the zeros into negatives.
     If the values are ["c", "l', "n'], conservative, liberal or neutral the function changes them into -1, 0, 1
     accordingly with the conservative_liberal_conversion() method
 
     If we wan to add a new dataset that has [0,1] or ["c", "l', "n'] values we need to specify that it
     will be changed in the lists bellow.
-    '''
+    """
 
     tuples_list = list(g.edges())
 

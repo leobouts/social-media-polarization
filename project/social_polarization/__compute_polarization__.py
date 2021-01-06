@@ -1,11 +1,9 @@
 from scipy.sparse import identity
-from numpy.linalg import norm
 import networkx as nx
 import numpy as np
 
 
 def get_polarization_with_inverse(g):
-
     """"
     Creates the L+I matrix where L is the laplacian matrix of
     the graph. Solves the (L+I)^-1 * S system and computes t-
@@ -40,7 +38,6 @@ def get_polarization_with_inverse(g):
 
 
 def get_polarization(g):
-
     """"
     Computes the polarization index value by using the Friedkin
     and Johnsen formula directly until it converges. We can ad-

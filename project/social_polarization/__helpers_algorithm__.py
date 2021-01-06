@@ -70,7 +70,6 @@ def iterate_over_different_opinions(graph_in,
 
 
 def get_first_top_k_positive_and_negative_opinions(k_edge, converged_opinions):
-
     index_pos = []
     index_neg = []
 

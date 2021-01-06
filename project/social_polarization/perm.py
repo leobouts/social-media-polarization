@@ -1,4 +1,4 @@
-from __helpers__ import attach_values_from_list_to_graph
+from __helpers_general__ import attach_values_from_list_to_graph
 from __compute_polarization__ import get_polarization
 from __graph_topologies__ import *
 from tqdm import tqdm

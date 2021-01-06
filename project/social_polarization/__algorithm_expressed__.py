@@ -1,5 +1,5 @@
-from __algorithm_helpers import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
-from __helpers__ import add_edges_and_count_polarization
+from __helpers_algorithm__ import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
+from __helpers_general__ import add_edges_and_count_polarization
 from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 import time
@@ -69,4 +69,4 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     for k_edge in k:
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
 
-    return edges_to_add_list, polarizations, [end-start] * len(k)
+    return edges_to_add_list, polarizations, [end - start] * len(k)

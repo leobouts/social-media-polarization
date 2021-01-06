@@ -1,20 +1,15 @@
-from __algorithm_expressed import expressed
-from __algorithm_first_top_greedy import first_top_greedy
-from __algorithm_first_top_greedy_batch import first_top_greedy_batch
-from __algorithm_random import random_edge_addition
-from __algorithm_random_different_opinions import random_edge_addition_different
+from __algorithm_random_different_opinions__ import random_edge_addition_different
+from __algorithm_first_top_greedy_batch__ import first_top_greedy_batch
+from __algorithm_first_top_greedy__ import first_top_greedy
+from __algorithm_random__ import random_edge_addition
 from __compute_polarization__ import get_polarization
-from __format_datasets__ import get_nodes_and_values_from_nx_to_txt, convert_dataset_to_gml
-from __helpers__ import format_edge_list, \
-    check_for_same_results
-from connect_opposing import brute_force_all_edges_removal
-from __graph_properties__ import edges_centralities
+from __helpers_pickles__ import save_data_to_pickle
 from __graph_embeddings__ import graph_embeddings
+from __helpers_general__ import check_for_same_results
+from __algorithm_expressed__ import expressed
 from __load_graph_data__ import load_graph
-from __algorithm_greedy import *
+from __algorithm_greedy__ import *
 from __visualize__ import *
-import pickle
-import pprint
 
 
 def algorithms_driver(k, datasets, algorithms, expected_mode):
@@ -97,15 +92,8 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
 
         decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms, 1)
 
-        # store data (serialize) into pickle file
-        with open(f"../pickles/{ds}/{ds}_info", 'wb') as handle:
-            pickle.dump(info, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-        with open(f"../pickles/{ds}/{ds}_decreases_checked_pol", 'wb') as handle:
-            pickle.dump(decreases_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-        with open(f"../pickles/{ds}/{ds}_labels_checked_pol", 'wb') as handle:
-            pickle.dump(labels_checked, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        save_data_to_pickle([total_decreases, algorithms, decreases_checked, labels_checked, info],
+                            ['decreases_pol', 'labels_pol', 'decreases_checked_pol', 'labels_checked_pol', 'info'], ds)
 
         k_copy = k.copy()
         k_copy.insert(0, 0)
@@ -118,77 +106,7 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
                               "π(z)",
                               0)
 
-        # store info into pickle file
-        with open(f"../pickles/{ds}/{ds}_info", 'wb') as handle:
-            pickle.dump(info, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-    print("\r Finished.")
-
     return info
-
-
-def convert_datasets_driver():
-    base_data_dir = "/Users/leonidas/desktop/February 21/thesis/Data/"
-
-    communities_values = ["Germanwings/communities_germanwings",
-                          "Beefban/communities_beefban",
-                          "sxsw/communities_sxsw",
-                          "Elections/ClintonTrumpCommunities3000"]
-
-    communities_connections = ["Germanwings/germanwings_followers_network_part_largest_CC",
-                               "Beefban/beefban_followers_network_part_largest_CC",
-                               "sxsw/sxsw_followers_network_part_largest_CC",
-                               "Elections/ClintonTrumpEdges3000"]
-
-    names_to_save = ["GermanWings.gml", "beefban.gml", "sxsw.gml", "ClintonTrump.gml"]
-
-    for i in range(len(communities_values)):
-        val = base_data_dir + communities_values[i]
-        ed = base_data_dir + communities_connections[i]
-        convert_dataset_to_gml(val, ed, names_to_save[i])
-
-
-def convert_networkx_to_txt_for_embeddings_driver():
-    datasets = ['karate', 'polblogs', 'books', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
-
-    for ds_name in datasets:
-        graph = load_graph(f'../datasets/{ds_name}.gml')
-        get_nodes_and_values_from_nx_to_txt(graph, ds_name)
-
-
-def edge_removals_driver(graph, name):
-    edge_dict = brute_force_all_edges_removal(graph, f'{name}_edges.pickle', 0)
-    decrease_dict = {}
-    increase_dict = {}
-
-    for decrease in edge_dict.keys():
-
-        if decrease > 0:
-            decrease_dict[decrease] = edge_dict[decrease]
-
-        elif decrease < 0:
-            increase_dict[decrease] = edge_dict[decrease]
-
-        else:
-            print("edge(s) that has not effect on polarization")
-            print(edge_dict[decrease])
-
-    top_decrease = edges_centralities(graph, edge_dict, 5, True)
-    top_increase = edges_centralities(graph, edge_dict, 5, False)
-
-    print("=================")
-    pprint.pprint(top_decrease)
-    print("-----------------")
-    pprint.pprint(top_increase)
-    print("=================")
-
-    decrease_list_for_vis = format_edge_list(top_decrease)
-    increase_list_for_vis = format_edge_list(top_increase)
-
-    visualize_edge(graph, decrease_list_for_vis, "Edges that had the biggest decrease with removal",
-                   "decrease_removal", name, 0)
-    visualize_edge(graph, increase_list_for_vis, "Edges that had the biggest increase with removal",
-                   "increase_removal", name, 0)
 
 
 def dataset_statistics_driver(datasets, verbose):

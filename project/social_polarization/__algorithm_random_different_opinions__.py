@@ -1,12 +1,11 @@
-from __algorithm_helpers import get_first_top_k_positive_and_negative_opinions
 from __compute_polarization__ import get_polarization_with_inverse, get_polarization
+from __helpers_algorithm__ import get_first_top_k_positive_and_negative_opinions
 from tqdm import tqdm
 import random
 import time
 
 
 def random_edge_addition_different(k, graph_in):
-
     edges_to_add_list = []
     polarizations = []
     edges_list = []
@@ -30,7 +29,6 @@ def random_edge_addition_different(k, graph_in):
             edges_list.append(edge_to_add)
 
     for k_edge in k:
-
         edges_to_add_list = random.sample(edges_list, k_edge)
 
         g_copy = graph_in.copy()

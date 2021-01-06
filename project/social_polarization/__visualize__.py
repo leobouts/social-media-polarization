@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-import numpy as np
+
 
 def visualize_edge(g, edge_list, title, img_name, dataset, mode):
     """
@@ -74,13 +74,12 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
 
 
 def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
-
     # make them strings so matplot will plot them with equal space between
     x_axis = [str(x) for x in x_axis]
 
     for i, y_axis in enumerate(list_of_axes):
 
-        if list_of_labels[i] == 'Greedy':
+        if list_of_labels[i] == 'Random different':
             color = '#d02324'
             ls = None
 
@@ -114,7 +113,6 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
 
         plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color, linestyle=ls)
 
-
     # Add legend
     # Put a legend below current axis
 
@@ -124,10 +122,16 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     # Add title and x, y labels
     plt.title(title, fontsize=16, fontweight='bold')
 
-    tick1 = np.arange(0, list_of_axes[0][0], 0.02)
+    # rounding and y ticks
+    # flat_list = [item for sublist in list_of_axes for item in sublist]
+    #
+    # multiplier = 10 ** 3
+    # val = min(flat_list * multiplier) / multiplier
+    #
+    # tick1 = np.arange(val, list_of_axes[0][0]+0.03, 0.02)
+    # plt.yticks(tick1)
 
     plt.xticks(x_axis)
-    plt.yticks(tick1)
 
     plt.xlabel(x_label)
     plt.ylabel(y_label)

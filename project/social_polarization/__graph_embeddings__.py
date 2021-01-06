@@ -1,4 +1,4 @@
-from __helpers__ import get_positive_and_negative_values
+from __helpers_general__ import get_positive_and_negative_values
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.exceptions import ConvergenceWarning

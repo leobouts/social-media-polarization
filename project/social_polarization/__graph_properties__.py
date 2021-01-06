@@ -1,5 +1,5 @@
 import networkx as nx
-from __helpers__ import print_res
+from __helpers_general__ import print_res
 
 
 def centralities(graph, decrease_dictionary, no_of_nodes):
@@ -99,7 +99,6 @@ def edges_centralities(graph, dictionary, no_of_nodes, mode):
         top[value] = {'edge_removed': edge_removed}
 
     for value in top:
-
         edge_to_get_val = top[value]['edge_removed']
         edge_bet_centrality = betweenness_c[edge_to_get_val]
         sign = dictionary[value]['multiplication']

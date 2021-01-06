@@ -1,6 +1,7 @@
 from __compute_polarization__ import get_polarization_with_inverse
-from __drivers__ import *
-from __helpers__ import format_edge_list_from_tuples
+from __drivers__algorithms__ import *
+from __helpers_general__ import format_edge_list_from_tuples
+from __helpers_pickles__ import open_pickles_for_adjusting_visualization_manually
 
 
 def main():
@@ -76,16 +77,17 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [10,20,30,40]
+    k = [5]
 
     # algorithms = ['Random', 'Random different', 'Expressed Distance']
 
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+    algorithms = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
                   'Expressed Multiplication']
 
-    # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw', 'beefban']
+    #datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
 
-    info = algorithms_driver(k, ['karate'], algorithms, 'Ignore')
+    #
+    info = algorithms_driver([5, 10, 15, 20], ['beefban'], algorithms, 'Ignore')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
@@ -118,9 +120,10 @@ def main():
     # ---------------------------------------- #
     #  First arg: the k list                   #
     #  Second arg: the dataset name            #
+    #  Third argument: experiment time (file)  #
     # ---------------------------------------- #
 
-    # open_pickles_for_adjusting_visualization_manually([5, 10, 20, 30], 'karate')
+    #open_pickles_for_adjusting_visualization_manually([5, 10, 15, 20], 'ClintonTrump', "enter experiment time here")
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #

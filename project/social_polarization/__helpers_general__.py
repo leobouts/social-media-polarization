@@ -135,7 +135,7 @@ def check_for_same_results(total_decreases, algorithms, mode):
 
             sum_1 = sum(total_decreases[i])
             sum_2 = sum(total_decreases[j])
-            equal_range = 0.02
+            equal_range = 0.0002
 
             #print(sum_1)
             #print(sum_2)
