@@ -5,7 +5,7 @@
 \section{Intuition}
 \label{sec:intuition}
 
-To solve this problem we have to evaluate all possible edge combinations. Even for greedy heuristics we need to limit the edge candidates. The algorithm considers nodes with a high expressed value. According to our model the smallest decrease is happening when we connect a value near zero and a relatively high value.
+To solve this problem we have to evaluate all possible edge combinations. Even for greedy heuristics we need to limit the edge candidates. The algorithm considers nodes with a high expressed value. According to our model the smallest decrease is happening when we connect different and extreme opinions.
 \\
 \\
 We will now see why this statement holds by examining how the expressed opinion changes with an addition in the Friedkin and Johnsen model. Consider an arbitrary example with two nodes inside a network. Node $a$ has $z_a = -0.02$ and node $b$ has $z_b = 0.5$. Also for this example we assume that $w_{ii}=w_{ij}=w_{ji}=1$. 
@@ -14,13 +14,13 @@ We will now see why this statement holds by examining how the expressed opinion 
 If we connect these two nodes with an edge and re calculate the expressed opinions both of the $z_i$ denominators will be increased by one. This emerges from the fact that both nodes will have an additional neighbour and that all weights equal with one. The numerator of the one node $a$ will be increased by a lot and the numerator of the node $b$ will be decreased by a small value.
 \\
 \\
-The new $z_a$ will not change a lot because the big addition in the numerator will approach the +1 addition of the denominator. On the other hand the new $z_b$ will see a big change as the numerator had a small decrease thus creating a big decrease overall for this node. We can clearly see that only one of the two nodes will amount to a big decrease. 
+The new $z_a$ will not change a lot because the big addition in the numerator will approach the +1 addition of the denominator. On the other hand the new $z_b$ will see a big change as the numerator had a small decrease thus creating a big decrease overall for this node. We can clearly see that only one of the two nodes will have a big decrease. 
 \\
 \\
-Now consider a second example of two nodes node $c$ has $z_c = -0.8$ and node $d$ has $z_d = 0.9$. After the addition node $d$ will see a big decrease because we add two conflicting values that almost neutralise each other on the numerator but the addition of the +1 on the denominator stands still. On the other hand node $c$ will also see a big decrease for the same reason. With this type of connection both of the nodes have a significant decrease. In an optimal setting we would like $Z_c = Z_d$.
+Now consider a second example of two nodes node $c$ has $z_c = -0.8$ and node $d$ has $z_d = 0.9$. After the addition node $d$ will see a big decrease because we add two conflicting values that almost neutralise each other on the numerator but the addition of the +1 on the denominator stands still. On the other hand node $c$ will also see a big decrease for the same reason. With this type of connection both of the nodes have a significant decrease.
 \\
 \\
-Now consider a setting that that $w_{ii} \neq w_{ij} \neq w_{ji}\neq 1$. The same intuition holds but now we want the expressed opinions together with their weights to neutralize each other. As before in an optimal setting we would like $w_{ij} * Z_v = w_{ij} * Z_u$. 
+Now consider a setting that that $w_{ii} \neq w_{ij} \neq w_{ji}\neq 1$. The same intuition holds but now we want the expressed opinions together with their weights to neutralize each other.
 
 \section{Heuristics}
 \label{sec:heuristics}
@@ -91,10 +91,19 @@ The Greedy algorithm computes the decrease in $\pi(z)$ and selects the edge with
 \vspace{10pt}
 \clearpage
 
-\noindent The $KGreedy$ is the third heuristic we consider. This heuristic is taking the first $K \times K$ items of each set of nodes. This will allow us to perform a Greedy search on a small space of edges.
-
+\noindent The $FirstTopGreedy$ is the third heuristic we consider. This heuristic is taking the first $K \times K$ items of each set of nodes.
+\\
+\\
+The $FirstTopGreedy$ algorithm also comes with a version that does not take into consideration the changes of the graph and works in the same fashion as the $GreedyBatch$. The difference is identical with  $FirsTopGreedy$, only the first $K \times K$ items of each set of nodes will be used. 
+\\
+\\
+The algorithm will be denoted as $FirstTopGreedyBatch$.
+\\
+\\
+These two algorithms will allow us to perform a greedy search on a smaller space of edges. 
+\\
 \begin{algorithm}[htbp]
-	\caption{KGreedy}
+	\caption{First Top Greedy}
 	\label{alg:kgreedy}
 	
 	\begin{flushleft}

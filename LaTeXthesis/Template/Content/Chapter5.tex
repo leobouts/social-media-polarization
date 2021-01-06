@@ -20,8 +20,6 @@ In this section we consider datasets that are separated in two opposing communit
   
   \item The GermanWings dataset, a  hashtag that Twitter users used after the crash of Germanwings Flight 9525.
   
-  \item The SXSW dataset, a hashtag that Twitter users used about the SXSW conference.
-
 \end{enumerate}
 
 
@@ -31,10 +29,10 @@ In this section we consider datasets that are separated in two opposing communit
 All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE. We can only experiment with the $Karate$ and the $Books$ dataset on all the heuristics. The $Greedy$ algorithm cannot run on the rest of the datasets because they contain thousands of nodes. The $Greedy$ algorithm needs to consider changes in the network structure so it is impossible to compute the polarization so many times.
 \\
 \\ 
-The same applies for the $GBatch$ algorithm. Although the $GBatch$ algorithm can run on the $beefban$ dataset that contains $799$ nodes it would take approximately $45$ hours, with our implementation, for the $polblogs$ dataset that has $1490$ nodes.
+The same applies for the $GreedyBatch$ algorithm. Although the $GreedyBatch$ algorithm can run on the $beefban$ dataset that contains $799$ nodes it would take a lot of time even for the $polblogs$ dataset that has $1490$ nodes.
 \\
 \\
-Only the $FKGreedy$ and the $Expressed opinion$ heuristics can run in all datasets but provide us with a small decrease in polarization. This decrease would be greater if we consider a bigger number of edge additions that are proportional to the size of the dataset. Greater number of edges would make $FKGreedy$ nonrunnable.
+Only the $FirstTopGreedy$ and the $Expressed Opinion$ heuristics can run in all datasets but provide us with a small decrease in polarization. This decrease would be greater if we consider a bigger number of edge additions that are proportional to the size of the dataset. Greater number of edges would make $FirstTopGreedy$ nonrunnable. The $Expressed Opinion$ performs better in our datasets even in a big number of additions but still needs several hours. 
 \\
 \\
 \clearpage
@@ -62,11 +60,25 @@ Only the $FKGreedy$ and the $Expressed opinion$ heuristics can run in all datase
   \hline
   ClintonTrump & $2832$ & $18551$ & 13.1010 &  0.07582\\
   \hline
-  SXSW & $4558$ & $91356$ & 40.0860 &  0.05581\\
-  \hline
  \end{tabular}
  \end{table}
+ 
+\vspace{20pt}
 
+\subsection{A visualisation of edge additions in  the Karate dataset}
+
+\vspace{20pt}
+
+\begin{figure}[!htbp]
+	\centering
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.65\textwidth]{Figures/top-10_karate_greedy}
+	\vspace{20pt}
+	\caption{the top-10 edges proposed by the greedy algorithm}
+	\label{fig:top-10-karate}
+\end{figure}
+
+\clearpage
 
 
 \subsection{Heuristics in the Karate dataset}
@@ -74,49 +86,20 @@ Only the $FKGreedy$ and the $Expressed opinion$ heuristics can run in all datase
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/Karate Polarization Decrease}
-	\caption{Heuristic comparison of the decrease in Karate}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.90\textwidth]{Figures/Karate Polarization Decrease}
+	\caption{Heuristic comparison of the polarization decrease in Karate}
 	\label{fig:karate_pol}
 \end{figure}
-
-\clearpage
-
-
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/Karate Time Elapsed}
-	\caption{Heuristic comparison of time in Karate}
-	\label{fig:karate_time}
-\end{figure}
-
-
-\subsection{Visualization of edge addition in  the Karate dataset}
-
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/top-10_karate_greedy}
-	\caption{the top-10 edges proposed by the greedy algorithm}
-	\label{fig:top-10-karate}
-\end{figure}
-
-
-\clearpage
 
 \subsection{Heuristics in the Books dataset}
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/books Polarization Decrease}
-	\caption{Heuristic comparison of time in Books}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.90\textwidth]{Figures/books Polarization Decrease}
+	\caption{Heuristic comparison of the polarization decrease in Books}
 	\label{fig:books_pol}
-\end{figure}
-
-
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/books Time Elapsed}
-	\caption{Heuristic comparison of time in Books}
-	\label{fig:books_time}
 \end{figure}
 
 
@@ -125,47 +108,22 @@ Only the $FKGreedy$ and the $Expressed opinion$ heuristics can run in all datase
 
 \subsection{Heuristics in the Beefban dataset}
 
-\begin{figure}[!htpb]
+\begin{figure}[!htbp]
 	\centering
-	\begin{subfigure}{.43\textwidth}
-		\centering
-		\includegraphics[height=0.9\linewidth]{Figures/beefban Polarization Decrease}
-		\caption{}
-		\label{subfig:beefban_pol}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{.43\textwidth}
-		\centering
-		\includegraphics[height=0.9\linewidth]{Figures/beefban Polarization Decrease big}
-		\caption{}
-		\label{subfig:beefban_pol_big}
-	\end{subfigure}
-	\hfill
-	\caption{Heuristic comparison of polarization in Beefban}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.8\textwidth]{Figures/beefban Polarization Decrease}
+	\caption{Heuristic comparison of the polarization decrease in beefban}
 	\label{fig:beefban_pol}
 \end{figure}
 
-\vspace{45pt}
-
-\begin{figure}[!htpb]
+\begin{figure}[!htbp]
 	\centering
-	\begin{subfigure}{.43\textwidth}
-		\centering
-		\includegraphics[height=0.9\linewidth]{Figures/beefban Time Elapsed}
-		\caption{}
-		\label{subfig:beefban_time}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{.43\textwidth}
-		\centering
-		\includegraphics[height=0.9\linewidth]{Figures/beefban Time Elapsed big}
-		\caption{}
-		\label{subfig:beefban_time_big}
-	\end{subfigure}
-	\hfill
-	\caption{Heuristic comparison of time in Beefban}
-	\label{fig:beefban_timel}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.8\textwidth]{Figures/beefban Polarization Decrease big}
+	\caption{Heuristic comparison of the polarization decrease in beefban by adding edges according to the size of the graph }
+	\label{fig:beefban_big_pol}
 \end{figure}
+
 \clearpage
 
 
@@ -173,17 +131,19 @@ Only the $FKGreedy$ and the $Expressed opinion$ heuristics can run in all datase
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/polblogs Polarization Decrease}
-	\caption{Heuristic comparison of time in Polblogs}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.75\textwidth]{Figures/polblogs Polarization Decrease}
+	\caption{Heuristic comparison of the polarization decrease in Polblogs}
 	\label{fig:polblogs_pol}
 \end{figure}
 
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/Polblogs Time Elapsed}
-	\caption{Heuristic comparison of time in Polblogs}
-	\label{fig:polblogs_time}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.8\textwidth]{Figures/polblogs Polarization Decrease big}
+	\caption{Heuristic comparison of the polarization decrease in Polblogs by adding edges according to the size of the graph }
+	\label{fig:polblogs_big_pol}
 \end{figure}
 
 \clearpage
@@ -192,54 +152,41 @@ Only the $FKGreedy$ and the $Expressed opinion$ heuristics can run in all datase
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/GermanWings Polarization Decrease}
-	\caption{Heuristic comparison of time in GermanWings}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.73\textwidth]{Figures/GermanWings Polarization Decrease}
+	\caption{Heuristic comparison of the polarization decrease in GermanWings}
 	\label{fig:GermanWings_pol}
 \end{figure}
 
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/GermanWings Time Elapsed}
-	\caption{Heuristic comparison of time in GermanWings}
-	\label{fig:GermanWings_time}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.78\textwidth]{Figures/GermanWings Polarization Decrease big}
+	\caption{Heuristic comparison of the polarization decrease in GermanWings by adding edges according to the size of the graph}
+	\label{fig:GermanWings_big_pol}
 \end{figure}
+
 \clearpage
 
 
 \subsection{Heuristics in the ClintonTrump dataset}
+
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/ClintonTrump Polarization Decrease}
-	\caption{Heuristic comparison of time in ClintonTrump}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.75\textwidth]{Figures/ClintonTrump Polarization Decrease}
+	\caption{Heuristic comparison of the polarization decrease in ClintonTrump}
 	\label{fig:ClintonTrump_pol}
 \end{figure}
 
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/ClintonTrump Time Elapsed}
-	\caption{Heuristic comparison of time in ClintonTrump}
-	\label{fig:ClintonTrump_time}
-\end{figure}
-\clearpage
-
-
-\subsection{Heuristics in the SXSW dataset}
-
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/sxsw Polarization Decrease}
-	\caption{Heuristic comparison of time in sxsw}
-	\label{fig:sxsw_pol}
-\end{figure}
-
-
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/sxsw Time Elapsed}
-	\caption{Heuristic comparison of time in sxsw}
-	\label{fig:sxsw_time}
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=0.8\textwidth]{Figures/ClintonTrump Polarization Decrease big}
+	\caption{Heuristic comparison of the polarization decrease in ClintonTrump by adding edges according to the size of the graph}
+	\label{fig:ClintonTrump_big_pol}
 \end{figure}
 
 \clearpage
