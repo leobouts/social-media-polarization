@@ -9,7 +9,7 @@ This model uses information about the opinion of the user, internal and external
 to compute an opinion vector. This vector is a metric for the whole social graph and can give us insights about its current situation. The vector values range from [-1,1]. Values closer to the range limits indicate bigger polarization. Polarized graphs create groups of nodes that are strongly connected with each other and feedback to one another the same extreme opinion of a certain topic. These groups can be seen clearly in the illustration of filter bubbles and often associated with politics and controversial issues of our society. Using a certain number of users we can achieve a reduction in the polarization of a network. 
 \clearpage
 
-We can educate a group of users with the opposite view, and in terms of our model that means that we can modify the social graph by adding a connection between  users of different opinions. \\
+\noindent We can educate a group of users with the opposite view, and in terms of our model that means that we can modify the social graph by adding a connection between  users of different opinions. \\
 \\
 Let $G = (V,E)$ be a connected undirected graph representing a network. Let $z$ be the vector of expressed opinions  for the whole network. Each value  of the vector represents a node and can be computed with the opinion-formation model of Friedkin and Johnsen as follows. 
 
@@ -18,7 +18,7 @@ Let $G = (V,E)$ be a connected undirected graph representing a network. Let $z$ 
 \end{equation} 
 \\
 
-Where $s_i$ denotes the internal and $z_i$ the expressed opinion of a user. The internal opinion of a user corresponds to the views that inherently holds for a controversial topic while the expressed refers to the views that the user shares on a social network with his friends. The length of the opinion vector $||z|| ^2$ measures  the polarization of the network. To make the polarization  independent of its network we can  normalize it  by dividing  it with the length of the vector $z$. 
+\noindent Where $s_i$ denotes the internal and $z_i$ the expressed opinion of a user. The internal opinion of a user corresponds to the views that inherently holds for a controversial topic while the expressed refers to the views that the user shares on a social network with his friends. The length of the opinion vector $||z|| ^2$ measures  the polarization of the network. To make the polarization  independent of its network we can  normalize it  by dividing  it with the length of the vector $z$. 
 An equivalent way of obtaining the vector $z$ from a graph is the following: if $L$ is the laplacian matrix of a graph $G=(V,E)$, and $I$ is the identity matrix, then $z=(L+I)^{-1}S$ \cite{bindel}. 
 
 \section{Measuring the polarization}
@@ -68,7 +68,7 @@ Real world events such as Brexit and the 2016 U.S. presidential elections gives 
 Problem 1 and 2 are trying to find edges that will minimize the polarization index. We must no take for granted that these edges will be accepted. For example a social media user could reject a new follow/friend request. This leads us to consider additions with the expectation of being accepted. Let $E[\pi(z)]$ the expected polarization probability score that an edge $(u, v)$ is accepted as a recommendation from $u$.
 \\
 \\
-\textbf{Problem 3} [K-Addition-Expected]. Given a graph $G=(V,E)$ and an integer $k$, we want to find a set of $k$ edges $E′ \subseteq V×V \ E$ that when added to $G$ create a new graph $G' = (V,E \cap E')$ so that the expected polarization score $E[\pi(z)]$ is minimized.
+\textbf{Problem 3} [K-Addition-Expected]. Given a graph $G=(V,E)$ and an integer $k$, we want to find a set of $k$ edges $E′ \subseteq V×V \ E$ that when added to $G$ creates a new graph $G' = (V,E \cap E')$ so that the expected polarization score $E[\pi(z)]$ is minimized.
 \\
 \\
 

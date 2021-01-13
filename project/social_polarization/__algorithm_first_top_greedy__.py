@@ -22,7 +22,6 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
     3) times, elapsed times of the algorithm for each k.
     """
-    polarization, converged_opinions = get_polarization(graph_in)
     polarizations = []
     times = []
     k_items = []
@@ -31,6 +30,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
         k_items = []
 
+        polarization, converged_opinions = get_polarization(graph_in)
         positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(k_edge, converged_opinions)
 
         # copy the graph so we won't alter it

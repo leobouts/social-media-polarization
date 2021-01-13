@@ -1,9 +1,10 @@
 from scipy.sparse import identity
 import networkx as nx
 import numpy as np
-
+import pandas as pd
 
 def get_polarization_with_inverse(g):
+
     """"
     Creates the L+I matrix where L is the laplacian matrix of
     the graph. Solves the (L+I)^-1 * S system and computes t-
@@ -16,17 +17,27 @@ def get_polarization_with_inverse(g):
     """
 
     no_of_nodes = len(g.nodes)
-
     values = list(nx.get_node_attributes(g, 'value').values())
 
     Laplace = nx.laplacian_matrix(g)
     Identity = identity(no_of_nodes)
     L_plus_I = Laplace + Identity
 
+    # sum of columns of L+I should be 1 for each column
+    #print(pd.DataFrame(L_plus_I.todense()).sum(axis=1, skipna=True))
+
     Inverse = np.linalg.inv(L_plus_I.todense())
+
+    # sum of columns of (L+I)^-1 should be 1 for each column
+    #print(pd.DataFrame(Inverse.A).sum(axis=1, skipna=True))
 
     # computing (L+I)^-1 * S
     solutions = Inverse.dot(values)
+
+    #print(pd.DataFrame(Inverse.A))
+    #print(values)
+
+    #print(sum(np.squeeze(np.asarray(solutions)).tolist()))
 
     # squaring and summing the opinion vector
     squared = np.square(solutions)
@@ -79,7 +90,7 @@ def get_polarization(g):
         summed = np.sum(squared)
 
         # adjust here the accuracy
-        if abs(convergence - (summed / N)) < 0.0001:
+        if abs(convergence - (summed / N)) < 0.0000001:
             break
 
         convergence = summed / N

@@ -21,13 +21,27 @@ def main():
     #      6)sxsw                             #
     #      7)beefban                          #
     # --------------------------------------- #
+    print("karate with negative:")
 
-    # name = 'test'
+    name = 'karate_zero'
+    graph = load_graph(f'../datasets/{name}.gml')
+
+    pol, converged_opinions = get_polarization_with_inverse(graph)
+
+    # print("polarization: ",pol)
+    # print("z vector: ", converged_opinions)
+    # print("sum: ", sum(converged_opinions))
+    #
+    # print("--------")
+    # print("karate zero:")
+    #
+    # name = 'karate_zero'
     # graph = load_graph(f'../datasets/{name}.gml')
     #
-    # pol, converged_opinions = get_polarization(graph)
-    # print(pol)
-    # print(converged_opinions)
+    # pol, converged_opinions = get_polarization_with_inverse(graph)
+    # print("polarization: ", pol)
+    # print("z vector: ", converged_opinions)
+    # print("sum: ", sum(converged_opinions))
     # print(pol)
     # print(get_polarization_with_inverse(graph)[1])
 
@@ -84,10 +98,13 @@ def main():
     algorithms = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
                   'Expressed Multiplication']
 
-    #datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
+    # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
 
-    #
-    info = algorithms_driver([5, 10, 15, 20], ['beefban'], algorithms, 'Ignore')
+    info = algorithms_driver(k=[1, 2, 3, 4, 5, 6, 40],
+                             datasets=['karate'],
+                             algorithms=['Expressed Distance'],
+                             expected_mode='Ignore',
+                             experiment_comment=' ')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
@@ -123,7 +140,7 @@ def main():
     #  Third argument: experiment time (file)  #
     # ---------------------------------------- #
 
-    #open_pickles_for_adjusting_visualization_manually([5, 10, 15, 20], 'ClintonTrump', "enter experiment time here")
+    # open_pickles_for_adjusting_visualization_manually([5, 10, 15, 20], 'ClintonTrump', "enter experiment time here")
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #

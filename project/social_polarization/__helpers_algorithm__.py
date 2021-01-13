@@ -84,4 +84,5 @@ def get_first_top_k_positive_and_negative_opinions(k_edge, converged_opinions):
         else:
             index_neg.append(i)
 
+
     return index_pos[:k_edge], index_neg[:k_edge]

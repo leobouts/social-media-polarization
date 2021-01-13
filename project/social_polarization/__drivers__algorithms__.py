@@ -12,7 +12,7 @@ from __algorithm_greedy__ import *
 from __visualize__ import *
 
 
-def algorithms_driver(k, datasets, algorithms, expected_mode):
+def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment):
     """
     :param expected_mode:
     :param k: list that contains all the different top-k additions we want to add to the graph
@@ -92,8 +92,11 @@ def algorithms_driver(k, datasets, algorithms, expected_mode):
 
         decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms, 1)
 
-        save_data_to_pickle([total_decreases, algorithms, decreases_checked, labels_checked, info],
-                            ['decreases_pol', 'labels_pol', 'decreases_checked_pol', 'labels_checked_pol', 'info'], ds)
+        save_data_to_pickle(data_to_write=[total_decreases, algorithms, decreases_checked, labels_checked, info],
+                            atr_list=['decreases_pol', 'labels_pol', 'decreases_checked_pol', 'labels_checked_pol',
+                                      'info'],
+                            ds=ds,
+                            experiment_comment=experiment_comment)
 
         k_copy = k.copy()
         k_copy.insert(0, 0)

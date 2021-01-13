@@ -1,6 +1,6 @@
 from __helpers_algorithm__ import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
 from __helpers_general__ import add_edges_and_count_polarization
-from __compute_polarization__ import get_polarization
+from __compute_polarization__ import get_polarization, get_polarization_with_inverse
 from tqdm import tqdm
 import time
 
@@ -27,7 +27,7 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     """
 
     polarizations = []
-
+    list_of_sums = []
     if mode == "Distance":
         reverse_flag = True
     else:
@@ -41,10 +41,11 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 
     for i in tqdm(range(max(k)), ascii="~~~~~~~~~~~~~~~#"):
 
-        initial_polarization, converged_opinions = get_polarization(g_copy)
+        initial_polarization, converged_opinions = get_polarization_with_inverse(g_copy)
 
         positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(len(converged_opinions),
                                                                                         converged_opinions)
+
         addition_info = iterate_over_different_opinions(g_copy,
                                                         positive_nodes,
                                                         negative_nodes,
