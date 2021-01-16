@@ -90,16 +90,16 @@ def main():
     # --------------------------------------- #
 
     # ! important don't change position of algorithm lables so they correspond correctly!
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-                  'Expressed Multiplication', 'Random']
-    open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
-                           algorithms)
+    # algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+    #               'Expressed Multiplication', 'Random']
+    # open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
+    #                        algorithms)
 
     # k = [5]
 
     # algorithms = ['Random', 'Random different', 'Expressed Distance']
 
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+    algorithms = ['GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
                   'Expressed Multiplication', 'Random']
 
     algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
@@ -107,6 +107,13 @@ def main():
     #
     # # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
     #
+
+    info = algorithms_driver(k=[5, 10, 15, 20],
+                             datasets=['books'],
+                             algorithms=algorithms,
+                             expected_mode='Embeddings',
+                             experiment_comment='karate experiment embeddings')
+
     # info = algorithms_driver(k=[5, 10, 15, 20],
     #                          datasets=['karate'],
     #                          algorithms=algorithms,

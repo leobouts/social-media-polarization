@@ -1,5 +1,6 @@
-from __compute_polarization__ import get_polarization
 import networkx as nx
+
+from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 
 
@@ -13,6 +14,8 @@ def iterate_over_different_opinions(graph_in,
                                     probabilities_dictionary,
                                     verbose):
     addition_info = {}
+
+    print(probabilities_dictionary)
 
     for node_pos in tqdm(positive_nodes, ascii="~~~~~~~~~~~~~~~#", disable=verbose):
         for node_neg in negative_nodes:
@@ -32,33 +35,24 @@ def iterate_over_different_opinions(graph_in,
             else:
 
                 # check how much the polarization was reduced in comparison with the original graph
+
                 g_copy = graph_in.copy()
                 g_copy.add_edges_from([edge_to_add])
                 polarization_after_addition, converged_opinions = get_polarization(g_copy)
                 value = original_polarization - polarization_after_addition
 
             # addition_info is computed differently if we considering
-            # the expected addition problem, bellow we consider the following
-            # cases
+            # the expected addition problem
 
-            if expected_p_z_mode == 'common_neighbors':
+            if expected_p_z_mode == 'Embeddings':
 
-                common_neighbors = list(nx.common_neighbors(graph_in, [edge_to_add]))
-                addition_info[edge_to_add] = value * len(common_neighbors)
+                try:
+                    probability = probabilities_dictionary[edge_to_add]
 
-            elif expected_p_z_mode == 'Jaccard_coefficient':
+                    # some edges were  stored in reverse??
+                except KeyError:
+                    probability = probabilities_dictionary[(edge_to_add[1], edge_to_add[0])]
 
-                Jaccard = list(nx.jaccard_coefficient(graph_in, [edge_to_add]))
-                addition_info[edge_to_add] = value * Jaccard[0][2]
-
-            elif expected_p_z_mode == 'Adamic_addar_index':
-
-                Adamic = list(nx.adamic_adar_index(graph_in, [edge_to_add]))
-                addition_info[edge_to_add] = value * Adamic[0][2]
-
-            elif expected_p_z_mode == 'Embeddings':
-
-                probability = probabilities_dictionary[edge_to_add]
                 addition_info[edge_to_add] = value * probability
 
             else:

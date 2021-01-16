@@ -162,20 +162,3 @@ def check_for_same_results(total_decreases, algorithms, mode):
     else:
         return new_list_decreases, algorithms_new
 
-
-# TODO remove this function and replace in embeddings the correct one
-def get_positive_and_negative_values(nodeDict):
-    positive_dictionary = {}
-    negative_dictionary = {}
-
-    for node in nodeDict:
-        node_value = nodeDict[node]['value']
-        if int(node_value) > 0:
-            positive_dictionary[node] = node_value
-        else:
-            negative_dictionary[node] = node_value
-
-    positive_dictionary = sorted(positive_dictionary.items(), key=lambda x: x[1], reverse=True)
-    negative_dictionary = sorted(negative_dictionary.items(), key=lambda x: x[1], reverse=False)
-
-    return positive_dictionary, negative_dictionary

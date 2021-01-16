@@ -13,6 +13,7 @@ def load_graph(gml_file):
 
 
 def load_embeddings(name):
+
     # load nodes details
     with open(f"../datasets/formatted_for_embeddings/{name}/{name}.nodes") as f:
         nodes = f.read().splitlines()
@@ -51,6 +52,6 @@ def load_embeddings(name):
         multiplication.append(mult)
 
     df = pd.DataFrame(
-        {'node_1': node_list_1, 'node_2': node_list_2, 'distance': distance, 'multiplication': multiplication})
+        {'node_1': node_list_1, 'node_2': node_list_2})
 
     return df, nodeDict

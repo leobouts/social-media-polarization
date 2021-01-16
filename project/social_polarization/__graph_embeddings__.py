@@ -1,8 +1,7 @@
-from __helpers_general__ import get_positive_and_negative_values
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.exceptions import ConvergenceWarning
-from __load_graph_data__ import load_embeddings
+from __load_graph_data__ import load_graph
 from warnings import simplefilter
 from node2vec import Node2Vec
 import networkx as nx
@@ -13,48 +12,48 @@ import numpy as np
 simplefilter("ignore", category=ConvergenceWarning)
 
 
-def create_data_from_unconnected(G, nodeDict):
+def graph_embeddings(name, verbose):
+
+    graph = load_graph(f'../datasets/{name}.gml')
+
+    node_list_1 = []
+    node_list_2 = []
+
+    for edge in graph.edges():
+        node_list_1.append(str(edge[0]))
+        node_list_2.append(str(edge[1]))
+
+    df = pd.DataFrame({'node_1': node_list_1, 'node_2': node_list_2})
+
+    # create graph
+    G_data = nx.from_pandas_edgelist(df, "node_1", "node_2", create_using=nx.Graph())
+
     node_1_unlinked = []
     node_2_unlinked = []
 
-    pos_nodes, neg_nodes = get_positive_and_negative_values(nodeDict)
-
-    for p in pos_nodes:
-        for n in neg_nodes:
-            node_1_unlinked.append(p[0])
-            node_2_unlinked.append(n[0])
+    for e in nx.non_edges(G_data):
+        node_1_unlinked.append(str(e[0]))
+        node_2_unlinked.append(str(e[1]))
 
     data = pd.DataFrame({'node_1': node_1_unlinked, 'node_2': node_2_unlinked})
 
     # add target variable 'link'
     data['link'] = 0
 
-    return data
-
-
-def graph_embeddings(name, verbose):
-    df, nodeDict = load_embeddings(name)
-
-    # create graph
-    G_data = nx.from_pandas_edgelist(df, "node_1", "node_2", create_using=nx.Graph())
-
-    # get all edges that don't exist with a label of 0
-    data = create_data_from_unconnected(G_data, nodeDict)
-
     # create new dataframe form edges that exist with a label of 1
-    new_data = df.drop(['distance', 'multiplication'], 1)
+    new_data = df
     new_data['link'] = 1
 
     # concatenate these two into a single dataframe
     result = pd.concat([data, new_data])
     result.reset_index(inplace=True, drop=True)
 
-    # Generate walks
-    node2vec = Node2Vec(G_data, dimensions=100, walk_length=16, num_walks=50, quiet=False)
+    # Generate walks with default parameters
+    node2vec = Node2Vec(G_data, quiet=False)
 
     # get the embeddings model using gensim's Word2V
     # from fitting node2vec.fit
-    n2w_model = node2vec.fit(window=7, min_count=1)
+    n2w_model = node2vec.fit()
 
     # zip creates a list of all the edges from the result df
     # n2w_model with an input of a string(the name of the node, e.g. node '1'), will give us the

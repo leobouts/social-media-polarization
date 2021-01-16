@@ -35,10 +35,13 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
         polarizations = []
         results = []
         time_list = []
+
+        # holds probability for each edge that does not exist
+        # key-> edge, value-> prob
         probabilities_dictionary = {}
 
         if expected_mode != 'Ignore':
-            results, probabilities = graph_embeddings(ds, 0)
+            results, probabilities = graph_embeddings(ds, 1)
 
             probabilities_dictionary = {results[i]: probabilities[i] for i in range(len(results))}
 
