@@ -70,7 +70,7 @@ def graph_embeddings(name, verbose):
                                                     test_size=0.2,
                                                     random_state=35)
 
-    lr = LogisticRegression(class_weight="balanced", n_jobs=-1, solver='sag')
+    lr = LogisticRegression()
 
     lr.fit(xtrain, ytrain)
 

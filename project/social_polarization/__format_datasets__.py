@@ -166,16 +166,3 @@ def convert_dataset_to_gml(node_values_path, edges_path, name_to_save):
             the_file.write(f'    target {label_list.index(edge[1])}\n')
             the_file.write('  ]\n')
         the_file.write(']\n')
-
-
-def get_nodes_and_values_from_nx_to_txt(graph, name):
-    with open(f'../datasets/formatted_for_embeddings/{name}/{name}.nodes', 'w') as the_file:
-        the_file.write('id,value\n')
-
-        for node_data in graph.nodes.data():
-            the_file.write(f'{node_data[0]},{node_data[1]["value"]}\n')
-
-    with open(f'../datasets/formatted_for_embeddings/{name}/{name}.edges', 'w') as the_file:
-
-        for edge in graph.edges:
-            the_file.write(f'{edge[0]},{edge[1]}\n')

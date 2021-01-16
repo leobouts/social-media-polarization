@@ -1,18 +1,17 @@
-from __compute_polarization__ import get_polarization_with_inverse
-from __drivers__algorithms__ import *
-from __helpers_general__ import format_edge_list_from_tuples
 from __helpers_pickles__ import open_pickles_for_adjusting_visualization_manually, open_pickles_for_final
+from __compute_polarization__ import get_polarization_with_inverse
+from __helpers_general__ import format_edge_list_from_tuples
+from __drivers__algorithms__ import *
 
 
 def main():
+
     # --------------------------------------- #
     #      Test Graph Init                    #
     # --------------------------------------- #
     # --------------------------------------- #
     #      Available Datasets:                #
     # --------------------------------------- #
-    #      0)test                             #
-    #        (example from thesis increase)   #
     #      1)karate                           #
     #      2)polblogs                         #
     #      3)books                            #
@@ -21,41 +20,15 @@ def main():
     #      6)beefban                          #
     # --------------------------------------- #
 
-    name = 'karate_zero'
-    graph = load_graph(f'../datasets/{name}.gml')
-
-    pol, converged_opinions = get_polarization_with_inverse(graph)
-
-    # print("polarization: ",pol)
-    # print("z vector: ", converged_opinions)
-    # print("sum: ", sum(converged_opinions))
-    #
-    # print("--------")
-    # print("karate zero:")
-    #
     # name = 'karate_zero'
     # graph = load_graph(f'../datasets/{name}.gml')
-    #
     # pol, converged_opinions = get_polarization_with_inverse(graph)
-    # print("polarization: ", pol)
-    # print("z vector: ", converged_opinions)
-    # print("sum: ", sum(converged_opinions))
-    # print(pol)
-    # print(get_polarization_with_inverse(graph)[1])
 
     # --------------------------------------- #
     #     convert datasets to gml             #
     # --------------------------------------- #
 
     # convert_datasets_driver()
-
-    # --------------------------------------- #
-    #   creates files needed for embeddings   #
-    #   from the networkx graphs.             #
-    #   An edge list and a node list.         #
-    # --------------------------------------- #
-
-    # convert_networkx_to_txt_for_embeddings_driver()
 
     # --------------------------------------- #
     # function that supports Lemma 3.1        #
@@ -80,22 +53,11 @@ def main():
     # --------------------------------------- #
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
-    #    Last argument :                      #
-    #    Expected mode, available:            #
-    #    1) common_neighbors                  #
-    #    2) Jaccard_coefficient               #
-    #    3) Adamic_addar_index                #
-    #    4) Embeddings                        #
-    #    5) Ignore , to not consider          #
+    #    Last argument:                       #
+    #    Expected mode:                       #
+    #    1) Embeddings                        #
+    #    2) Ignore , to not consider          #
     # --------------------------------------- #
-
-    # ! important don't change position of algorithm lables so they correspond correctly!
-    # algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-    #               'Expressed Multiplication', 'Random']
-    # open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
-    #                        algorithms)
-
-    # k = [5]
 
     # algorithms = ['Random', 'Random different', 'Expressed Distance']
 
@@ -181,6 +143,20 @@ def main():
     # --------------------------------------- #
 
     # ds_stats = dataset_statistics_driver(datasets, 1)
+
+    # --------------------------------------- #
+    #   Prepare final plots                   #
+    # --------------------------------------- #
+
+    ##################
+    # ! important :  #  don't change position of algorithm labels so they correspond correctly to experiments!
+    ##################
+
+    # algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+    #               'Expressed Multiplication', 'Random']
+
+    # open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
+    #                        algorithms)
 
 
 if __name__ == "__main__":
