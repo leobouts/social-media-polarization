@@ -1,5 +1,37 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+import pandas as pd
+
+colourWheel = ['#329932',
+               '#ff6961',
+               'b',
+               '#6a3d9a',
+               '#fb9a99',
+               '#e31a1c',
+               '#fdbf6f',
+               '#ff7f00',
+               '#cab2d6',
+               '#6a3d9a',
+               '#ffff99',
+               '#b15928',
+               '#67001f',
+               '#b2182b',
+               '#d6604d',
+               '#f4a582',
+               '#fddbc7',
+               '#f7f7f7',
+               '#d1e5f0',
+               '#92c5de',
+               '#4393c3',
+               '#2166ac',
+               '#053061']
+
+dashesStyles = [[3, 1],
+                [1000, 1],
+                [2, 1, 10, 1],
+                [4, 1, 1, 1, 1, 1]]
+alphaVal = 0.6
+linethick = 3.5
 
 
 def visualize_edge(g, edge_list, title, img_name, dataset, mode):
@@ -74,44 +106,19 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
 
 
 def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
-    # make them strings so matplot will plot them with equal space between
     x_axis = [str(x) for x in x_axis]
 
     for i, y_axis in enumerate(list_of_axes):
+        plt.plot(x_axis,
+                 y_axis,
+                 color=colourWheel[i % len(colourWheel)],
+                 linestyle='-',
+                 dashes=dashesStyles[i % len(dashesStyles)],
+                 lw=linethick,
+                 label=list_of_labels[i],
+                 alpha=alphaVal)
 
-        if list_of_labels[i] == 'Random different':
-            color = '#d02324'
-            ls = None
-
-        elif list_of_labels[i] == 'GBatch':
-            color = '#289628'
-            ls = None
-
-        elif list_of_labels[i] == 'FTGreedy':
-            color = '#ff7410'
-            ls = None
-
-        elif list_of_labels[i] == 'Random':
-            color = '#895cb5'
-            ls = None
-
-        elif list_of_labels[i] == 'FTGreedyBatch':
-            color = '#3d88ad'
-            ls = '-'
-
-        elif list_of_labels[i] == 'GBatch and FTGreedyBatch':
-            color = '#289628'
-            ls = '--'
-
-        elif list_of_labels[i] == 'Expressed Multiplication':
-            color = '#ff7410'
-            ls = '-.'
-
-        else:
-            color = '#895cb5'
-            ls = ':'
-
-        plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color, linestyle=ls)
+        # plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color, linestyle=ls)
 
     # Add legend
     # Put a legend below current axis
@@ -137,4 +144,47 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     plt.ylabel(y_label)
     plt.grid(True)
     plt.savefig(f'../figures_generated/{title.split(" ")[0]}/{title}.pdf', dpi=100, bbox_inches='tight')
+    plt.show()
+
+
+def final_plot(df, dataset_names, k, labels_checked):
+
+    greedy_c = '#329932'
+    gbatc_c = '#e31a1c'
+    ftgreedy_c = '#BB0099'
+    ftgreedyb_c = '#fdbf6f'
+    expr_dis_c = '#2166ac'
+    expr_mul_c = '#6a3d9a'
+    random_c = '#b2182b'
+
+    fig2, axes = plt.subplots(nrows=2, ncols=3)
+
+    for i, ax in enumerate(axes.flatten()):
+
+        if dataset_names[i] == 'beefban':
+            colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+
+        elif dataset_names[i] == 'karate' or dataset_names[i] == 'books':
+            colors = [greedy_c, gbatc_c, ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+
+        else:
+            colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+
+        df[i].T.plot(color=colors,
+                     linestyle='-',
+                     dashes=[2, 1, 10, 1],
+                     lw=linethick,
+                     title=dataset_names[i],
+                     alpha=alphaVal,
+                     legend=False,
+                     ax=ax)
+
+        ax.set_xticks(k, minor=False)
+
+    fig2.legend(labels_checked, bbox_to_anchor=(1, -0.05), fancybox=True, shadow=True, ncol=4)
+    fig2.text(0.5, 0, 'Number of edges added', ha='center', va='center')
+    fig2.text(0, 0.5, 'π(z)', ha='center', va='center', rotation='vertical')
+    fig2.tight_layout()
+    plt.savefig(f'../figures_generated/final/final.pdf', dpi=300, bbox_inches='tight')
+
     plt.show()

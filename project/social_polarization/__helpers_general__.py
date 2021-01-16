@@ -135,12 +135,14 @@ def check_for_same_results(total_decreases, algorithms, mode):
 
             sum_1 = sum(total_decreases[i])
             sum_2 = sum(total_decreases[j])
-            equal_range = 0.0002
+
+            #make zero so all are seperate
+            equal_range = 0.0000
 
             #print(sum_1)
             #print(sum_2)
 
-            if abs(sum_2 - sum_1) <= equal_range:
+            if abs(sum_2 - sum_1) < equal_range:
                 check = 1
 
             if check:

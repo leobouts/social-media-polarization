@@ -1,7 +1,7 @@
 from __compute_polarization__ import get_polarization_with_inverse
 from __drivers__algorithms__ import *
 from __helpers_general__ import format_edge_list_from_tuples
-from __helpers_pickles__ import open_pickles_for_adjusting_visualization_manually
+from __helpers_pickles__ import open_pickles_for_adjusting_visualization_manually, open_pickles_for_final
 
 
 def main():
@@ -18,10 +18,8 @@ def main():
     #      3)books                            #
     #      4)ClintonTrump                     #
     #      5)GermanWings                      #
-    #      6)sxsw                             #
-    #      7)beefban                          #
+    #      6)beefban                          #
     # --------------------------------------- #
-    print("karate with negative:")
 
     name = 'karate_zero'
     graph = load_graph(f'../datasets/{name}.gml')
@@ -91,20 +89,35 @@ def main():
     #    5) Ignore , to not consider          #
     # --------------------------------------- #
 
-    k = [5]
+    # ! important don't change position of algorithm lables so they correspond correctly!
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+                  'Expressed Multiplication', 'Random']
+    open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
+                           algorithms)
+
+    # k = [5]
 
     # algorithms = ['Random', 'Random different', 'Expressed Distance']
 
-    algorithms = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-                  'Expressed Multiplication']
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+                  'Expressed Multiplication', 'Random']
 
-    # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
+    algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+                   'Expressed Multiplication', 'Random']
+    #
+    # # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
+    #
+    # info = algorithms_driver(k=[5, 10, 15, 20],
+    #                          datasets=['karate'],
+    #                          algorithms=algorithms,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='karate experiment final ver1')
 
-    info = algorithms_driver(k=[1, 2, 3, 4, 5, 6, 40],
-                             datasets=['karate'],
-                             algorithms=['Expressed Distance'],
-                             expected_mode='Ignore',
-                             experiment_comment=' ')
+    # info = algorithms_driver(k=[5, 10, 15, 20],
+    #                          datasets=['beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
+    #                          algorithms=algorithms1,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='experiments for final plots 2')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

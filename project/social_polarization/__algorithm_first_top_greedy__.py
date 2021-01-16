@@ -39,6 +39,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
         start = time.time()
 
         for i in range(k_edge):
+
             addition_info = iterate_over_different_opinions(graph,
                                                             positive_nodes,
                                                             negative_nodes,

@@ -1,3 +1,5 @@
+import networkx as nx
+
 from __helpers_algorithm__ import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
 from __helpers_general__ import add_edges_and_count_polarization
 from __compute_polarization__ import get_polarization, get_polarization_with_inverse
@@ -27,7 +29,7 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     """
 
     polarizations = []
-    list_of_sums = []
+
     if mode == "Distance":
         reverse_flag = True
     else:
@@ -38,13 +40,13 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     start = time.time()
 
     g_copy = graph_in.copy()
+    initial_polarization, converged_opinions = get_polarization_with_inverse(g_copy)
+    positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(len(converged_opinions),
+                                                                                    converged_opinions)
+
+    node_addition_dictionary = {}
 
     for i in tqdm(range(max(k)), ascii="~~~~~~~~~~~~~~~#"):
-
-        initial_polarization, converged_opinions = get_polarization_with_inverse(g_copy)
-
-        positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(len(converged_opinions),
-                                                                                        converged_opinions)
 
         addition_info = iterate_over_different_opinions(g_copy,
                                                         positive_nodes,
@@ -63,6 +65,7 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
             if edge[0] not in edges_to_add_list:
                 edges_to_add_list.append(edge[0])
                 g_copy.add_edges_from([edge[0]])
+
                 break
 
     end = time.time()
