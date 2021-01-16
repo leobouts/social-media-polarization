@@ -1,5 +1,3 @@
-import networkx as nx
-
 from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 
@@ -14,8 +12,6 @@ def iterate_over_different_opinions(graph_in,
                                     probabilities_dictionary,
                                     verbose):
     addition_info = {}
-
-    print(probabilities_dictionary)
 
     for node_pos in tqdm(positive_nodes, ascii="~~~~~~~~~~~~~~~#", disable=verbose):
         for node_neg in negative_nodes:
@@ -64,6 +60,7 @@ def iterate_over_different_opinions(graph_in,
 
 
 def get_first_top_k_positive_and_negative_opinions(k_edge, converged_opinions):
+
     index_pos = []
     index_neg = []
 
