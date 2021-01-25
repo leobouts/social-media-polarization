@@ -40,7 +40,7 @@ def graph_embeddings(name, verbose):
     # add target variable 'link'
     data['link'] = 0
 
-    # create new dataframe form edges that exist with a label of 1
+    # create new dataframe from edges that exist with a label of 1
     new_data = df
     new_data['link'] = 1
 

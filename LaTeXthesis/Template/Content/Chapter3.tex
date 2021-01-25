@@ -51,44 +51,30 @@ We will now present a small example so we can build a basic understanding of the
 \section{Problem Definition}
 \label{sec:problemDef}
 
-Real world events such as Brexit and the 2016 U.S. presidential elections gives us a clear hint about the polarization our society is witnessing. Social media polarization has a strong effect on politics, opinion formation and how people interact with each other in a society. Users of social media are now receiving biased information that amplify their own viewpoints. Enclosed in their filter bubble, they will ignore everyone else and only acknowledge opinions that fit their own reality. In combination with fake news a malicious entity could use social media as a tool to polarize certain groups of people for their own interest. 
+Real world events such as Brexit and the 2016 U.S. presidential elections gives us a clear hint about the polarization our society is witnessing. Social media polarization has a strong effect on politics, opinion formation and how people interact with each other in a society. Users of social media are now receiving biased information that amplify their own viewpoints. 
+\\
+\\
+Enclosed in their filter bubble, they will ignore everyone else and only acknowledge opinions that fit their own reality. In combination with fake news a malicious entity could use social media as a tool to polarize certain groups of people for their own interest. 
 \\
 \\
 \textit{Problem 1} [k-Addition]. Let $C \subseteq	V \times V$ a set of edges that are not in the graph. We want to find a subset of $S \subseteq C$ of $k$ edges whose addition to a graph $G$ leads to the greatest reduction of $\pi(z)$.
 \\
 \\
-\textbf{Problem 2} [K-Removal]. Let $V \times V$ the set of edges of graph $G$. We want to find a subset of edges $S = k, k \in V \times V$   whose removal from the graph $G$ leads to the greatest increase of $\pi(z)$.
-\\
-\\
+
 \clearpage
 
 \subsection{Incorporating probabilities into the problem}
 \label{sec:probabilityProbDef}
 
-Problem 1 and 2 are trying to find edges that will minimize the polarization index. We must no take for granted that these edges will be accepted. For example a social media user could reject a new follow/friend request. This leads us to consider additions with the expectation of being accepted. Let $E[\pi(z)]$ the expected polarization probability score that an edge $(u, v)$ is accepted as a recommendation from $u$.
+Problem 1 is trying to find edges that will minimize the polarization index. We must not take for granted that these edges will be accepted. 
+\\
+\\
+For example a social media user could reject a new follow/friend request. This leads us to consider additions with the expectation of being accepted. Let $E[\pi(z)]$ the expected polarization probability score that an edge $(u, v)$ is accepted as a recommendation from $u$.
 \\
 \\
 \textbf{Problem 3} [K-Addition-Expected]. Given a graph $G=(V,E)$ and an integer $k$, we want to find a set of $k$ edges $E′ \subseteq V×V \ E$ that when added to $G$ creates a new graph $G' = (V,E \cap E')$ so that the expected polarization score $E[\pi(z)]$ is minimized.
 \\
 \\
-
-\subsection{Simmilarity measures}
-\label{sec:simMeasures}
-
-$E[\pi(z)]$ will be computed with the help of measures of similarity in combination with the expressed opinion. For example if two users have a large intersection the possibility that they will be friends is higher than two other users without mutual friends. Overlapping social circles increase the acceptance probability of a recommendation. Let $\Gamma(x)$ denote the number of neighbours of a node.
-\\
-\\
- \begin{itemize}
-  \item Common neighbours. $ \lvert\Gamma(u) \cap \Gamma(v)\rvert$
-  
-  \item Jaccard coefficient. $ \lvert\frac{\Gamma(u) \cap \Gamma(v)}{\Gamma(u) \cup \Gamma(v)}\rvert$
-  
-  \item Adamic/Adar index. $\sum_{u \in N(x) \cap N(y)} \frac{1}{\log |N(u)|}$\\
-  \\
-A measure that uses the amount of shared links between two nodes where $N(u)$ is the set of nodes adjacent to $u$.
-  
-\end{itemize}
-
 
 \clearpage
 

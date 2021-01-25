@@ -5,7 +5,6 @@ from __drivers__algorithms__ import *
 
 
 def main():
-
     # --------------------------------------- #
     #      Test Graph Init                    #
     # --------------------------------------- #
@@ -59,34 +58,51 @@ def main():
     #    2) Ignore , to not consider          #
     # --------------------------------------- #
 
-    # algorithms = ['Random', 'Random different', 'Expressed Distance']
+    algorithms_2 = ['Random', 'Random different', 'Expressed Distance', 'Expressed Multiplication']
 
-    algorithms = ['GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
                   'Expressed Multiplication', 'Random']
 
     algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
                    'Expressed Multiplication', 'Random']
-    #
-    # # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
-    #
 
-    info = algorithms_driver(k=[5, 10, 15, 20],
-                             datasets=['books'],
-                             algorithms=algorithms,
-                             expected_mode='Embeddings',
-                             experiment_comment='karate experiment embeddings')
+    # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
 
-    # info = algorithms_driver(k=[5, 10, 15, 20],
+    # info = algorithms_driver(k=[10, 20, 30, 40],
     #                          datasets=['karate'],
     #                          algorithms=algorithms,
     #                          expected_mode='Ignore',
-    #                          experiment_comment='karate experiment final ver1')
-
-    # info = algorithms_driver(k=[5, 10, 15, 20],
-    #                          datasets=['beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
-    #                          algorithms=algorithms1,
+    #                          experiment_comment='karate experiment big')
+    #
+    # info = algorithms_driver(k=[25, 50, 75, 100],
+    #                          datasets=['books'],
+    #                          algorithms=algorithms,
     #                          expected_mode='Ignore',
-    #                          experiment_comment='experiments for final plots 2')
+    #                          experiment_comment='books experiment big')
+
+    info = algorithms_driver(k=[200, 400, 600, 800],
+                             datasets=['beefban'],
+                             algorithms=algorithms_2,
+                             expected_mode='Ignore',
+                             experiment_comment='beefban experiment big')
+
+    info = algorithms_driver(k=[400, 800, 1200, 1600],
+                             datasets=['polblogs'],
+                             algorithms=algorithms_2,
+                             expected_mode='Ignore',
+                             experiment_comment='polblogs experiment big')
+
+    info = algorithms_driver(k=[500, 1000, 1500, 2000],
+                             datasets=['GermanWings'],
+                             algorithms=algorithms_2,
+                             expected_mode='Ignore',
+                             experiment_comment='GermanWings experiment big')
+
+    info = algorithms_driver(k=[700, 1400, 2100, 2800],
+                             datasets=['ClintonTrump'],
+                             algorithms=algorithms_2,
+                             expected_mode='Ignore',
+                             experiment_comment='ClintonTrump experiment big')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
