@@ -58,7 +58,7 @@ def main():
     #    2) Ignore , to not consider          #
     # --------------------------------------- #
 
-    algorithms_2 = ['Random', 'Random different', 'Expressed Distance', 'Expressed Multiplication']
+    algorithms_2 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
 
     algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
                   'Expressed Multiplication', 'Random']
@@ -79,30 +79,30 @@ def main():
     #                          algorithms=algorithms,
     #                          expected_mode='Ignore',
     #                          experiment_comment='books experiment big')
-
-    info = algorithms_driver(k=[200, 400, 600, 800],
-                             datasets=['beefban'],
-                             algorithms=algorithms_2,
-                             expected_mode='Ignore',
-                             experiment_comment='beefban experiment big')
-
-    info = algorithms_driver(k=[400, 800, 1200, 1600],
-                             datasets=['polblogs'],
-                             algorithms=algorithms_2,
-                             expected_mode='Ignore',
-                             experiment_comment='polblogs experiment big')
-
-    info = algorithms_driver(k=[500, 1000, 1500, 2000],
-                             datasets=['GermanWings'],
-                             algorithms=algorithms_2,
-                             expected_mode='Ignore',
-                             experiment_comment='GermanWings experiment big')
-
-    info = algorithms_driver(k=[700, 1400, 2100, 2800],
-                             datasets=['ClintonTrump'],
-                             algorithms=algorithms_2,
-                             expected_mode='Ignore',
-                             experiment_comment='ClintonTrump experiment big')
+    #
+    # info = algorithms_driver(k=[200, 400, 600, 800],
+    #                          datasets=['beefban'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='beefban experiment big')
+    #
+    # info = algorithms_driver(k=[400, 800, 1200, 1600],
+    #                          datasets=['polblogs'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='polblogs experiment big')
+    #
+    # info = algorithms_driver(k=[500, 1000, 1500, 2000],
+    #                          datasets=['GermanWings'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='GermanWings experiment big')
+    #
+    # info = algorithms_driver(k=[700, 1400, 2100, 2800],
+    #                          datasets=['ClintonTrump'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='ClintonTrump experiment big')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
@@ -168,11 +168,11 @@ def main():
     # ! important :  #  don't change position of algorithm labels so they correspond correctly to experiments!
     ##################
 
-    # algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-    #               'Expressed Multiplication', 'Random']
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+                  'Expressed Multiplication', 'Random']
 
-    # open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
-    #                        algorithms)
+    open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
+                           algorithms)
 
 
 if __name__ == "__main__":

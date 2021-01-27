@@ -148,7 +148,6 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
 
 
 def final_plot(df, dataset_names, k, labels_checked):
-
     greedy_c = '#329932'
     gbatc_c = '#e31a1c'
     ftgreedy_c = '#BB0099'
@@ -157,18 +156,35 @@ def final_plot(df, dataset_names, k, labels_checked):
     expr_mul_c = '#6a3d9a'
     random_c = '#b2182b'
 
+    num_of_edges = [
+        [0, 10, 20, 30, 40],
+        [0, 25, 50, 75, 100],
+        [0, 200, 400, 600, 800],
+        [0, 400, 800, 1200, 1600],
+        [0, 700, 1400, 2100, 2800],
+        [0, 500, 1000, 1500, 2000],
+    ]
+
     fig2, axes = plt.subplots(nrows=2, ncols=3)
 
     for i, ax in enumerate(axes.flatten()):
 
-        if dataset_names[i] == 'beefban':
-            colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+        #attention!!!11111 adjust these also, leave only the appropriate for every dataset for every experiment
 
-        elif dataset_names[i] == 'karate' or dataset_names[i] == 'books':
+        # if dataset_names[i] == 'beefban':
+        #     colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+        #
+        # elif dataset_names[i] == 'karate' or dataset_names[i] == 'books':
+        #     colors = [greedy_c, gbatc_c, ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+        #
+        # else:
+        #     colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+
+        if dataset_names[i] == 'karate' or dataset_names[i] == 'books':
             colors = [greedy_c, gbatc_c, ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
 
         else:
-            colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+            colors = [expr_dis_c, expr_mul_c, random_c]
 
         df[i].T.plot(color=colors,
                      linestyle='-',
@@ -179,7 +195,10 @@ def final_plot(df, dataset_names, k, labels_checked):
                      legend=False,
                      ax=ax)
 
-        ax.set_xticks(k, minor=False)
+        # if u need different edges in the plots just do it by hand, eitherway it doesnt matter so much
+        # for the same use the variable k
+
+        ax.set_xticks(num_of_edges[i], minor=False)
 
     fig2.legend(labels_checked, bbox_to_anchor=(1, -0.05), fancybox=True, shadow=True, ncol=4)
     fig2.text(0.5, 0, 'Number of edges added', ha='center', va='center')
