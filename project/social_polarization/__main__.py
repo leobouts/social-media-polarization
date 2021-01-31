@@ -58,7 +58,7 @@ def main():
     #    2) Ignore , to not consider          #
     # --------------------------------------- #
 
-    algorithms_2 = ['Expressed Distance', 'Expressed Multiplication', 'Random']
+    algorithms_2 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Expressed Multiplication', 'Random']
 
     algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
                   'Expressed Multiplication', 'Random']
@@ -68,41 +68,43 @@ def main():
 
     # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
 
-    # info = algorithms_driver(k=[10, 20, 30, 40],
+    k = [5, 10, 15, 20]
+
+    # info = algorithms_driver(k=k,
     #                          datasets=['karate'],
     #                          algorithms=algorithms,
-    #                          expected_mode='Ignore',
-    #                          experiment_comment='karate experiment big')
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='karate experiment embeddings small')
     #
-    # info = algorithms_driver(k=[25, 50, 75, 100],
+    # info = algorithms_driver(k=k,
     #                          datasets=['books'],
     #                          algorithms=algorithms,
-    #                          expected_mode='Ignore',
-    #                          experiment_comment='books experiment big')
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='books experiment embeddings small')
     #
-    # info = algorithms_driver(k=[200, 400, 600, 800],
+    # info = algorithms_driver(k=k,
     #                          datasets=['beefban'],
     #                          algorithms=algorithms_2,
-    #                          expected_mode='Ignore',
-    #                          experiment_comment='beefban experiment big')
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='beefban experiment embeddings small')
     #
-    # info = algorithms_driver(k=[400, 800, 1200, 1600],
+    # info = algorithms_driver(k=k,
     #                          datasets=['polblogs'],
     #                          algorithms=algorithms_2,
-    #                          expected_mode='Ignore',
-    #                          experiment_comment='polblogs experiment big')
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='polblogs experiment embeddings small')
     #
-    # info = algorithms_driver(k=[500, 1000, 1500, 2000],
+    # info = algorithms_driver(k=k,
     #                          datasets=['GermanWings'],
     #                          algorithms=algorithms_2,
-    #                          expected_mode='Ignore',
-    #                          experiment_comment='GermanWings experiment big')
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='GermanWings experiment embeddings small')
     #
-    # info = algorithms_driver(k=[700, 1400, 2100, 2800],
+    # info = algorithms_driver(k=k,
     #                          datasets=['ClintonTrump'],
     #                          algorithms=algorithms_2,
-    #                          expected_mode='Ignore',
-    #                          experiment_comment='ClintonTrump experiment big')
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='ClintonTrump experiment embeddings small')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

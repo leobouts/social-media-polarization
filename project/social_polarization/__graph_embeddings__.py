@@ -25,13 +25,10 @@ def graph_embeddings(name, verbose):
 
     df = pd.DataFrame({'node_1': node_list_1, 'node_2': node_list_2})
 
-    # create graph
-    G_data = nx.from_pandas_edgelist(df, "node_1", "node_2", create_using=nx.Graph())
-
     node_1_unlinked = []
     node_2_unlinked = []
 
-    for e in nx.non_edges(G_data):
+    for e in nx.non_edges(graph):
         node_1_unlinked.append(str(e[0]))
         node_2_unlinked.append(str(e[1]))
 
@@ -49,18 +46,19 @@ def graph_embeddings(name, verbose):
     result.reset_index(inplace=True, drop=True)
 
     # Generate walks with default parameters
-    node2vec = Node2Vec(G_data, quiet=False)
+    node2vec = Node2Vec(graph, quiet=False)
 
     # get the embeddings model using gensim's Word2V
     # from fitting node2vec.fit
-    n2w_model = node2vec.fit()
+    n2w_model = node2vec.fit(min_count=1)
 
     # zip creates a list of all the edges from the result df
     # n2w_model with an input of a string(the name of the node, e.g. node '1'), will give us the
     # features returned from the embeddings.
     # for this case we add the features of the the nodes together so we can pass a single
     # feature list in the logistic regression
-    x = [(n2w_model[str(i[0])] + n2w_model[str(j[0])]) for i, j in zip(result['node_1'], result['node_2'])]
+
+    x = [(n2w_model[str(i)] + n2w_model[str(j)]) for i, j in zip(result['node_1'], result['node_2'])]
 
     # For the training of the classifier we use as train test the 80% of the network’s edges for
     # positive examples and equal amount of edges that don’t exist for negative example. We use the rest 20% of
@@ -79,7 +77,8 @@ def graph_embeddings(name, verbose):
 
     # drop all edges that exist, we need edges that were not present.
     result = result.drop(result.loc[result['link'] == 1].index, inplace=False)
-    x_2 = [(n2w_model[str(i[0])] + n2w_model[str(j[0])]) for i, j in zip(result['node_1'], result['node_2'])]
+
+    x_2 = [(n2w_model[str(i)] + n2w_model[str(j)]) for i, j in zip(result['node_1'], result['node_2'])]
 
     # predict the probabilities for each label, first column for 0 label, second for 1
     predictions = lr.predict_proba(x_2)

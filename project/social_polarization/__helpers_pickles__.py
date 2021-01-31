@@ -62,14 +62,14 @@ def open_pickles_for_final(k, dataset_names, algos):
     k_copy = k
     k_copy.insert(0, 0)
 
-    num_of_edges = [
-        [0, 10, 20, 30, 40],
-        [0, 25, 50, 75, 100],
-        [0, 200, 400, 600, 800],
-        [0, 400, 800, 1200, 1600],
-        [0, 700, 1400, 2100, 2800],
-        [0, 500, 1000, 1500, 2000]
-    ]
+    # num_of_edges = [
+    #     [0, 10, 20, 30, 40],
+    #     [0, 25, 50, 75, 100],
+    #     [0, 200, 400, 600, 800],
+    #     [0, 400, 800, 1200, 1600],
+    #     [0, 700, 1400, 2100, 2800],
+    #     [0, 500, 1000, 1500, 2000]
+    # ]
 
     for i,dataset_name in enumerate(dataset_names):
 
@@ -81,7 +81,9 @@ def open_pickles_for_final(k, dataset_names, algos):
             labels_checked = pickle.load(fp)
 
         #for same edges in all graphs add k_copy instead in columns
-        df = pd.DataFrame(decreases_checked, columns=num_of_edges[i])
+        #df = pd.DataFrame(decreases_checked, columns=num_of_edges[i])
+
+        df = pd.DataFrame(decreases_checked, columns=k_copy)
         lst_of_df.append(df)
 
     final_plot(lst_of_df, dataset_names, k_copy, algos)

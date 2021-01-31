@@ -156,14 +156,14 @@ def final_plot(df, dataset_names, k, labels_checked):
     expr_mul_c = '#6a3d9a'
     random_c = '#b2182b'
 
-    num_of_edges = [
-        [0, 10, 20, 30, 40],
-        [0, 25, 50, 75, 100],
-        [0, 200, 400, 600, 800],
-        [0, 400, 800, 1200, 1600],
-        [0, 700, 1400, 2100, 2800],
-        [0, 500, 1000, 1500, 2000],
-    ]
+    # num_of_edges = [
+    #     [0, 10, 20, 30, 40],
+    #     [0, 25, 50, 75, 100],
+    #     [0, 200, 400, 600, 800],
+    #     [0, 400, 800, 1200, 1600],
+    #     [0, 700, 1400, 2100, 2800],
+    #     [0, 500, 1000, 1500, 2000],
+    # ]
 
     fig2, axes = plt.subplots(nrows=2, ncols=3)
 
@@ -171,20 +171,20 @@ def final_plot(df, dataset_names, k, labels_checked):
 
         #attention!!!11111 adjust these also, leave only the appropriate for every dataset for every experiment
 
-        # if dataset_names[i] == 'beefban':
-        #     colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
-        #
-        # elif dataset_names[i] == 'karate' or dataset_names[i] == 'books':
-        #     colors = [greedy_c, gbatc_c, ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
-        #
-        # else:
-        #     colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+        if dataset_names[i] == 'beefban':
+            colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
 
-        if dataset_names[i] == 'karate' or dataset_names[i] == 'books':
+        elif dataset_names[i] == 'karate' or dataset_names[i] == 'books':
             colors = [greedy_c, gbatc_c, ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
 
         else:
-            colors = [expr_dis_c, expr_mul_c, random_c]
+            colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+
+        # if dataset_names[i] == 'karate' or dataset_names[i] == 'books':
+        #     colors = [greedy_c, gbatc_c, ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
+        #
+        # else:
+        #     colors = [expr_dis_c, expr_mul_c, random_c]
 
         df[i].T.plot(color=colors,
                      linestyle='-',
@@ -198,11 +198,13 @@ def final_plot(df, dataset_names, k, labels_checked):
         # if u need different edges in the plots just do it by hand, eitherway it doesnt matter so much
         # for the same use the variable k
 
-        ax.set_xticks(num_of_edges[i], minor=False)
+        #ax.set_xticks(num_of_edges[i], minor=False)
+
+        ax.set_xticks(k, minor=False)
 
     fig2.legend(labels_checked, bbox_to_anchor=(1, -0.05), fancybox=True, shadow=True, ncol=4)
     fig2.text(0.5, 0, 'Number of edges added', ha='center', va='center')
-    fig2.text(0, 0.5, 'π(z)', ha='center', va='center', rotation='vertical')
+    fig2.text(0, 0.5, 'E[π(z)]', ha='center', va='center', rotation='vertical')
     fig2.tight_layout()
     plt.savefig(f'../figures_generated/final/final.pdf', dpi=300, bbox_inches='tight')
 
