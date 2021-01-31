@@ -5,23 +5,23 @@
 \section{Intuition}
 \label{sec:intuition}
 
-To solve this problem we have to evaluate all possible edge combinations. Even for greedy heuristics we need to limit the edge candidates. The algorithm considers nodes with a high expressed value. According to our model the smallest decrease is happening when we connect different and extreme opinions.
+To solve this problem we have to evaluate all possible edge combinations. Even for greedy heuristics we need to limit the edge candidates. The algorithm considers nodes that have high expressed value. According to our model the smallest decrease is happening when we connect different and extreme opinions.
 \\
 \\
-We will now see why this statement holds by examining how the expressed opinion changes with an addition in the Friedkin and Johnsen model. Consider an arbitrary example with two nodes inside a network. Node $a$ has $z_a = -0.02$ and node $b$ has $z_b = 0.5$. Also for this example we assume that $w_{ii}=w_{ij}=w_{ji}=1$. 
+We will now see why this statement holds by examining how the expressed opinion of the Friedkin and Johnsen model changes with an edge addition. 
 \\
 \\
-If we connect these two nodes with an edge and re calculate the expressed opinions both of the $z_i$ denominators will be increased by one. This emerges from the fact that both nodes will have an additional neighbour and that all weights equal with one. The numerator of the one node $a$ will be increased by a lot and the numerator of the node $b$ will be decreased by a small value.
+Consider an arbitrary example with two nodes inside a network. Node $a$ has $z_a = -0.02$ and node $b$ has $z_b = 0.5$. Also for this example we assume that $w_{ii}=w_{ij}=w_{ji}=1$. If we connect these two nodes with an edge and recalculate the expressed opinions, both of the $z_i$ denominators will be increased by one. This emerges from the fact that both nodes will have a new neighbour and that all weights equal with one. The numerator of the node $a$ will be increased by a lot and the numerator of the node $b$ will be decreased by a small value.
 \\
 \\
-The new $z_a$ will not change a lot because the big addition in the numerator will approach the +1 addition of the denominator. On the other hand the new $z_b$ will see a big change as the numerator had a small decrease thus creating a big decrease overall for this node. We can clearly see that only one of the two nodes will have a big decrease. 
+The new $z_a$ will not change a lot because the addition of the numerator will approach the +1 addition of the denominator. On the other hand the new $z_b$ will see a big change, the numerator will have a small decrease, the denominator will have the +1 addition, thus creating a big decrease overall for this node. We can clearly see that only one of the two nodes will have a big decrease. 
 \\
 \\
-Now consider a second example of two nodes node $c$ has $z_c = -0.8$ and node $d$ has $z_d = 0.9$. After the addition node $d$ will see a big decrease because we add two conflicting values that almost neutralise each other on the numerator but the addition of the +1 on the denominator stands still. On the other hand node $c$ will also see a big decrease for the same reason. With this type of connection both of the nodes have a significant decrease.
+Now consider a second example with two nodes, node $c$ has $z_c = -0.8$ and node $d$ has $z_d = 0.9$. After the addition node $d$ will see a big decrease because we add two conflicting values that almost neutralise each other on the numerator but the addition of the +1 on the denominator stands still. On the other hand node $c$ will also see a big decrease for the same reason. With this type of connection both of the nodes have a significant decrease.
 \\
 \\
-Now consider a setting that that $w_{ii} \neq w_{ij} \neq w_{ji}\neq 1$. The same intuition holds but now we want the expressed opinions together with their weights to neutralize each other.
-
+In a setting that $w_{ii} \neq w_{ij} \neq w_{ji}\neq 1$ the same intuition holds but the weights must be also considered to create a strategy for neutralising each other.
+ 
 \section{Heuristics}
 \label{sec:heuristics}
 
@@ -44,10 +44,10 @@ We begin with a Greedy algorithm. Greedy algorithms work in stages and during ea
 After finishing, the totality of all these choices produce a globally optimal solution.
 \\
 \\
-If a Greedy algorithm does not lead us to a globally optimal solution we can refer to it as a heuristic or a greedy heuristic. Heuristics provide shortcuts to a solution that are not necessarily optimal.
+If a greedy algorithm does not lead us to a globally optimal solution we can refer to it as a heuristic or a greedy heuristic. Heuristics provide shortcuts to a solution that are not necessarily optimal.
 \\
 \\
-The Greedy algorithm computes the decrease in $\pi(z)$ and selects the edge with the largest decrease every time
+The Greedy algorithm computes the decrease in $\pi(z)$ and selects the edge with the largest decrease every time.
 \\
 \\
 
@@ -87,7 +87,7 @@ The Greedy algorithm computes the decrease in $\pi(z)$ and selects the edge with
 This heuristic is taking the first $K \times K$ items of each set of nodes for each opinion respectively. As mentioned before these two sets are sorted by the external opinion value. 
 \\
 \\
-Then a greedy search is performed in this smaller space. This allows the $FirstTopGreedy$ to reduce the amount of time searching for the best edge to add by considering opinions that lead to greater reduction.
+Then a greedy search is performed in this smaller space. This allows the $FirstTopGreedy$ to reduce the amount of time spend searching for the best edge to add by considering opinions that lead to greater reduction.
 \\
 \\
 
@@ -97,7 +97,7 @@ Then a greedy search is performed in this smaller space. This allows the $FirstT
 	
 	\begin{flushleft}
         		\textbf{INPUTS:} Graph $G(V, E)$; $k$ number of edges to add;\\
-		$X$, $Y $, the sorted set of vertices according to polarization index of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
+		$X$, $Y $, the sorted set of vertices according to each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
 		\vspace{6pt}
         		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
 	\end{flushleft}
@@ -147,7 +147,6 @@ At first we can see a variation of the $Greedy$ algorithm. Its implementation is
 			
 			\begin{flushleft}
         				\textbf{INPUTS:} Graph $G(V, E)$; $k$ number of edges to add;
-				$X$, $Y $, the set of vertices of each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
 				\vspace{6pt}
         				\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
 			\end{flushleft}
@@ -172,7 +171,7 @@ At first we can see a variation of the $Greedy$ algorithm. Its implementation is
 This heuristic does not take into consideration changes in the structure of the graph.
 \\
 \\
-The difference with $GreedyBatch$ is that $FirstTopGreedyBatch$ works exactly like $FirsTopGreedy$, only the first $K \times K$ items of each set of nodes will be used.The heuristic is omitted due to the fact that is similar with the previous.
+$FirsTopGreedy$  works exactly like $GreedyBatch$ with the difference that only the first $K \times K$ items of each set of nodes will be used. The heuristic is omitted due to the fact that is similar with the previous.
 \\
 \\
 Last we consider two heuristics that choose edges based on the value of the expressed opinion of their nodes.
@@ -212,7 +211,7 @@ We can use the absolute distance of these values or their multiplication.
 
 
 
-\section{Incorporating Probabilities in the heuristics}		
+\section{Including Probabilities in the heuristics}		
  \label{sec:linkpred}		
 
 Link prediction is the problem of predicting the existence of a link between two entities in a network in the future. In our setting, social media networks, the entity represents a person. For example the "People you may know" section on Facebook.		
@@ -236,16 +235,16 @@ Link prediction is the problem of predicting the existence of a link between two
 
   \subsection{Word2Vec}		
 
-  At first we have to define Word2Vec. Suppose we have a sentence of words. For a certain task a simple neural network with a single hidden layer is created. 
+ At first we have to define Word2Vec. Suppose we have a sentence of words. For a certain task a simple neural network with a single hidden layer is created. 
  \\
  \\
- The trained neural network is not actually used for the task that we trained it on. The goals is to learn the weights of the hidden layer. These weights represent the "word vectors".		
+ The trained neural network is not actually used for the task that we trained it on. The goal is to learn the weights of the hidden layer. These weights represent the "word vectors".		
 \clearpage
 
-After giving the neural network a word in the middle of a sentence, it is trained to look for nearby words and pick a random one. The network is going to give the probability for every word in our vocabulary of being inside a window size we set.		
+\noindent After giving the neural network a word in the middle of a sentence, it is trained to look for nearby words and pick a random one. The network is going to give the probability for every word in our vocabulary of being inside a window size we set.		
  \\		
  \\		
- The output probabilities are going to relate to how likely it is to find each vocabulary word nearby our input word. The neural network is trained by feeding it word pairs found in training examples.		
+ The output probabilities are going to relate to how likely it is to find each vocabulary word near our input word. The neural network is trained by feeding it word pairs found in training examples.		
  \\		
  \\		
  The hidden layer of this model is operating as a lookup table. The output of the hidden layer is just the “word vector” for the input word.		
@@ -271,14 +270,14 @@ After giving the neural network a word in the middle of a sentence, it is traine
 
     \end{itemize}		
 
-  \noindent  DeepWalk method performs the walks randomly and that means that embeddings do not preserve the local neighbourhood. Node2vec approach fixes that.		
+  \noindent  DeepWalk method performs the walks randomly and that means that embeddings do not preserve the local neighbourhood. Node2vec approach fixes that \cite{bperozzi}.
 
   \subsection{Node2Vec}		
 
   Node2vec is a modification of DeepWalk with a small difference in  the implementation of random walks. There are two parameters introduced, $P$ and $Q$. 		
  \\		
  \\		
- Parameter $Q$ defines how probable is that the random walk will explore the undiscovered part of the graph, while parameter $P$ defines how probable is that the random walk will return to the previous node and retain a locality.		
+ Parameter $Q$ defines how probable is that the random walk will explore the undiscovered part of the graph, while parameter $P$ defines how probable is that the random walk will return to the previous node and retain a locality\cite{Leskovec}.
 
   \subsection{Methodology}		
  \label{sec:methodology}		

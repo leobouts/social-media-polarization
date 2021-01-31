@@ -100,11 +100,12 @@ def main():
     #                          expected_mode='Embeddings',
     #                          experiment_comment='GermanWings experiment embeddings small')
     #
-    # info = algorithms_driver(k=k,
-    #                          datasets=['ClintonTrump'],
-    #                          algorithms=algorithms_2,
-    #                          expected_mode='Embeddings',
-    #                          experiment_comment='ClintonTrump experiment embeddings small')
+
+    info = algorithms_driver(k=k,
+                             datasets=['ClintonTrump'],
+                             algorithms=algorithms_2,
+                             expected_mode='Embeddings',
+                             experiment_comment='ClintonTrump experiment test if correct for final')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
@@ -170,11 +171,11 @@ def main():
     # ! important :  #  don't change position of algorithm labels so they correspond correctly to experiments!
     ##################
 
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-                  'Expressed Multiplication', 'Random']
-
-    open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
-                           algorithms)
+    # algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+    #               'Expressed Multiplication', 'Random']
+    #
+    # open_pickles_for_final([5, 10, 15, 20], ['karate', 'books', 'beefban', 'polblogs', 'ClintonTrump', 'GermanWings'],
+    #                        algorithms)
 
 
 if __name__ == "__main__":

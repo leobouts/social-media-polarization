@@ -372,8 +372,14 @@
     {\Large
         \vfill \vfill   A \csethesisTypeEn
 
-        \vfill         
+        \vfill         submitted to the designated
+        
+        		      by the General Assembly
 
+		      of the Department of Computer Science and Engineering
+		      
+		      Examination Committee
+		      
         \vfill          by
 
         \vfill          {\LARGE \@authorEn}
