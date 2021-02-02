@@ -70,12 +70,12 @@ def main():
 
     k = [5, 10, 15, 20]
 
-    # info = algorithms_driver(k=k,
-    #                          datasets=['karate'],
-    #                          algorithms=algorithms,
-    #                          expected_mode='Embeddings',
-    #                          experiment_comment='karate experiment embeddings small')
-    #
+    info = algorithms_driver(k=k,
+                             datasets=['karate'],
+                             algorithms=algorithms,
+                             expected_mode='Embeddings',
+                             experiment_comment='embeddings karate experiment after equal edges')
+
     # info = algorithms_driver(k=k,
     #                          datasets=['books'],
     #                          algorithms=algorithms,
@@ -101,11 +101,11 @@ def main():
     #                          experiment_comment='GermanWings experiment embeddings small')
     #
 
-    info = algorithms_driver(k=k,
-                             datasets=['ClintonTrump'],
-                             algorithms=algorithms_2,
-                             expected_mode='Embeddings',
-                             experiment_comment='ClintonTrump experiment test if correct for final')
+    # info = algorithms_driver(k=k,
+    #                          datasets=['ClintonTrump'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='ClintonTrump experiment test if correct for final')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

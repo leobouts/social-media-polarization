@@ -41,7 +41,7 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
         probabilities_dictionary = {}
 
         if expected_mode != 'Ignore':
-            results, probabilities = graph_embeddings(ds, 0)
+            results, probabilities = graph_embeddings(ds, 1)
 
             probabilities_dictionary = {results[i]: probabilities[i] for i in range(len(results))}
 
@@ -95,9 +95,10 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
 
         decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms, 1)
 
-        save_data_to_pickle(data_to_write=[total_decreases, algorithms, decreases_checked, labels_checked, info],
+        save_data_to_pickle(data_to_write=[total_decreases, algorithms, decreases_checked, labels_checked, info,
+                                           probabilities_dictionary],
                             atr_list=['decreases_pol', 'labels_pol', 'decreases_checked_pol', 'labels_checked_pol',
-                                      'info'],
+                                      'info', 'probabilities_dictionary'],
                             ds=ds,
                             experiment_comment=experiment_comment)
 

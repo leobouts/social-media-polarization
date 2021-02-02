@@ -34,15 +34,22 @@ def graph_embeddings(name, verbose):
 
     data = pd.DataFrame({'node_1': node_1_unlinked, 'node_2': node_2_unlinked})
 
+
     # add target variable 'link'
     data['link'] = 0
+
+    # get equal number of edges that don't exist so
+    # we don't create a class imbalance
+
+    num_of_existing_edges = len(list(graph.edges()))
+    equal_nonexisting_edges_df = data.sample(n=num_of_existing_edges)
 
     # create new dataframe from edges that exist with a label of 1
     new_data = df
     new_data['link'] = 1
 
     # concatenate these two into a single dataframe
-    result = pd.concat([data, new_data])
+    result = pd.concat([new_data, equal_nonexisting_edges_df])
     result.reset_index(inplace=True, drop=True)
 
     # Generate walks with default parameters
@@ -75,25 +82,22 @@ def graph_embeddings(name, verbose):
     edges_list = []
     probabilities_list = []
 
-    # drop all edges that exist, we need edges that were not present.
-    result = result.drop(result.loc[result['link'] == 1].index, inplace=False)
-
-    x_2 = [(n2w_model[str(i)] + n2w_model[str(j)]) for i, j in zip(result['node_1'], result['node_2'])]
+    x_2 = [(n2w_model[str(i)] + n2w_model[str(j)]) for i, j in zip(data['node_1'], data['node_2'])]
 
     # predict the probabilities for each label, first column for 0 label, second for 1
     predictions = lr.predict_proba(x_2)
 
     # find where the pairs are located and their result
-    for i in range(len(result.index)):
+    for i in range(len(data.index)):
 
-        pair = (int(result.iloc[i, 0]), int(result.iloc[i, 1]))
+        pair = (int(data.iloc[i, 0]), int(data.iloc[i, 1]))
         edges_list.append(pair)
 
         probabilities_list.append(float(predictions[i][1]))
 
         if verbose:
             print(
-                f'Probability of nodes {result.iloc[i, 0]} and {result.iloc[i, 1]} to form a link is : '
+                f'Probability of nodes {data.iloc[i, 0]} and {data.iloc[i, 1]} to form a link is : '
                 f'{float(predictions[i][1]) * 100 : .2f}%')
 
     keydict = dict(zip(edges_list, probabilities_list))
