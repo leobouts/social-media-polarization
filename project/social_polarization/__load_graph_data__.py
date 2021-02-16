@@ -8,7 +8,6 @@ def load_graph(gml_file):
     graph = nx.read_gml(gml_file, label='id')
 
     graph = nx.Graph(graph, name=name)
-
     return graph
 
 

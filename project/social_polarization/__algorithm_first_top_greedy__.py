@@ -3,6 +3,8 @@ from __compute_polarization__ import get_polarization
 from tqdm import tqdm
 import time
 
+from __helpers_general__ import add_edges_and_count_polarization
+
 
 def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     """
@@ -26,42 +28,36 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     times = []
     k_items = []
 
-    for k_edge in tqdm(k, ascii="~~~~~~~~~~~~~~~#"):
+    # copy the graph so we won't alter it
+    graph = graph_in.copy()
 
-        k_items = []
+    start = time.time()
 
-        polarization, converged_opinions = get_polarization(graph_in)
-        positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(k_edge, converged_opinions)
-
-        # copy the graph so we won't alter it
-        graph = graph_in.copy()
-
-        start = time.time()
-
-        for i in range(k_edge):
-
-            addition_info = iterate_over_different_opinions(graph,
-                                                            positive_nodes,
-                                                            negative_nodes,
-                                                            polarization,
-                                                            converged_opinions,
-                                                            'Not expressed',
-                                                            expected_p_z_mode,
-                                                            probabilities_dictionary,
-                                                            True)
-
-            sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
-
-            graph.add_edges_from([sorted_edges[0][0]])
+    for i in tqdm(range(max(k)), ascii="~~~~~~~~~~~~~~~#"):
 
         polarization, converged_opinions = get_polarization(graph)
+        positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(max(k), converged_opinions)
 
-        polarizations.append(polarization)
+        addition_info = iterate_over_different_opinions(graph,
+                                                        positive_nodes,
+                                                        negative_nodes,
+                                                        polarization,
+                                                        converged_opinions,
+                                                        'Not expressed',
+                                                        expected_p_z_mode,
+                                                        probabilities_dictionary,
+                                                        True)
 
-        end = time.time()
+        sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
-        elapsed = end - start
+        graph.add_edges_from([sorted_edges[0][0]])
 
-        times.append(elapsed)
+        k_items.append(sorted_edges[0][0])
+
+    end = time.time()
+
+    for k_edge in k:
+        polarizations.append(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
+        times.append(end - start)
 
     return k_items, polarizations, times

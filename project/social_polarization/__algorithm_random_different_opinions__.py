@@ -1,4 +1,4 @@
-from __compute_polarization__ import get_polarization_with_inverse, get_polarization
+from __compute_polarization__ import get_polarization
 from __helpers_algorithm__ import get_first_top_k_positive_and_negative_opinions
 from tqdm import tqdm
 import random
@@ -12,7 +12,7 @@ def random_edge_addition_different(k, graph_in):
 
     start = time.time()
 
-    initial_polarization, converged_opinions = get_polarization_with_inverse(graph_in)
+    initial_polarization, converged_opinions = get_polarization(graph_in)
 
     positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(len(converged_opinions),
                                                                                     converged_opinions)

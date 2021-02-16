@@ -1,4 +1,4 @@
-from __compute_polarization__ import get_polarization_with_inverse
+from __compute_polarization__ import get_polarization
 from numpy import linalg as linear_algebra
 import networkx as nx
 
@@ -12,7 +12,7 @@ def add_edges_and_count_polarization(edges_list, graph):
 
     g_copy = graph.copy()
     g_copy.add_edges_from(edges_list)
-    pol, converged_opinions = get_polarization_with_inverse(g_copy)
+    pol, converged_opinions = get_polarization(g_copy)
     return pol
 
 

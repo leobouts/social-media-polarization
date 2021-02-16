@@ -19,9 +19,12 @@ def main():
     #      6)beefban                          #
     # --------------------------------------- #
 
-    # name = 'karate_zero'
-    # graph = load_graph(f'../datasets/{name}.gml')
-    # pol, converged_opinions = get_polarization_with_inverse(graph)
+    start = time.time()
+    name = 'polblogs'
+    graph = load_graph(f'../datasets/{name}.gml')
+    pol, converged_opinions = get_polarization(graph)
+    end = time.time()
+    print(end - start)
 
     # --------------------------------------- #
     #     convert datasets to gml             #
@@ -59,53 +62,59 @@ def main():
     # --------------------------------------- #
 
     algorithms_2 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Expressed Multiplication', 'Random']
-
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-                  'Expressed Multiplication', 'Random']
-
-    algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-                   'Expressed Multiplication', 'Random']
+    #
+    # algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+    #               'Expressed Multiplication', 'Random']
+    #
+    # algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+    #                'Expressed Multiplication', 'Random']
 
     # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
 
-    k = [5, 10, 15, 20]
+    k = [5, 10]
 
     info = algorithms_driver(k=k,
-                             datasets=['karate'],
-                             algorithms=algorithms,
-                             expected_mode='Embeddings',
-                             experiment_comment='embeddings karate experiment after equal edges')
+                             datasets=['beefban'],
+                             algorithms=algorithms_2,
+                             expected_mode='Ignore',
+                             experiment_comment='find ftgreedy bug')
 
+    # info = algorithms_driver(k=k,
+    #                          datasets=['karate'],
+    #                          algorithms=algorithms,
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='embeddings karate experiment after equal edges')
+    #
     # info = algorithms_driver(k=k,
     #                          datasets=['books'],
     #                          algorithms=algorithms,
     #                          expected_mode='Embeddings',
-    #                          experiment_comment='books experiment embeddings small')
-    #
-    # info = algorithms_driver(k=k,
-    #                          datasets=['beefban'],
-    #                          algorithms=algorithms_2,
-    #                          expected_mode='Embeddings',
-    #                          experiment_comment='beefban experiment embeddings small')
-    #
-    # info = algorithms_driver(k=k,
-    #                          datasets=['polblogs'],
-    #                          algorithms=algorithms_2,
-    #                          expected_mode='Embeddings',
-    #                          experiment_comment='polblogs experiment embeddings small')
-    #
-    # info = algorithms_driver(k=k,
-    #                          datasets=['GermanWings'],
-    #                          algorithms=algorithms_2,
-    #                          expected_mode='Embeddings',
-    #                          experiment_comment='GermanWings experiment embeddings small')
+    #                          experiment_comment='books experiment embeddings after equal edges')
     #
 
-    # info = algorithms_driver(k=k,
+    # info = algorithms_driver(k=[200, 400, 600, 800],
+    #                          datasets=['beefban'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='beefban experiment for ftgreedy')
+    #
+    # info = algorithms_driver(k=[400, 800, 1200, 1600],
+    #                          datasets=['polblogs'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='polblogs experiment efor ftgreedy')
+    #
+    # info = algorithms_driver(k=[500, 1000, 1500, 2000],
+    #                          datasets=['GermanWings'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='GermanWings experiment for ftgreedy')
+    #
+    # info = algorithms_driver(k=[700, 1400, 2100, 2800],
     #                          datasets=['ClintonTrump'],
     #                          algorithms=algorithms_2,
     #                          expected_mode='Ignore',
-    #                          experiment_comment='ClintonTrump experiment test if correct for final')
+    #                          experiment_comment='ClintonTrump experiment for ftgreedy')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

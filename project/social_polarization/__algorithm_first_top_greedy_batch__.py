@@ -45,7 +45,7 @@ def first_top_greedy_batch(k, graph_in, expected_p_z_mode, probabilities_diction
                                                     'Not expressed',
                                                     expected_p_z_mode,
                                                     probabilities_dictionary,
-                                                    True)
+                                                    False)
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
@@ -53,6 +53,7 @@ def first_top_greedy_batch(k, graph_in, expected_p_z_mode, probabilities_diction
     elapsed = end - start
 
     for k_edge in k:
+
         edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
 
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))

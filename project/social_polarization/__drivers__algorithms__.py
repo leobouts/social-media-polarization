@@ -41,7 +41,7 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
         probabilities_dictionary = {}
 
         if expected_mode != 'Ignore':
-            results, probabilities = graph_embeddings(ds, 1)
+            results, probabilities = graph_embeddings(ds, 0)
 
             probabilities_dictionary = {results[i]: probabilities[i] for i in range(len(results))}
 

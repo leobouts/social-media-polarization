@@ -15,7 +15,6 @@ def get_polarization_with_inverse(g):
     :param g: networkx graph with value attributes
     :return: Value of the polarization index
     """
-
     no_of_nodes = len(g.nodes)
     values = list(nx.get_node_attributes(g, 'value').values())
 
@@ -43,7 +42,6 @@ def get_polarization_with_inverse(g):
     squared = np.square(solutions)
 
     summed = np.sum(squared)
-
     # result is normalized according to network size
     return summed / no_of_nodes, np.squeeze(np.asarray(solutions)).tolist()
 
@@ -90,7 +88,7 @@ def get_polarization(g):
         summed = np.sum(squared)
 
         # adjust here the accuracy
-        if abs(convergence - (summed / N)) < 0.0000001:
+        if abs(convergence - (summed / N)) < 0.001:
             break
 
         convergence = summed / N
