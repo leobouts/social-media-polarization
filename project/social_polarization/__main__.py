@@ -63,27 +63,27 @@ def main():
 
     algorithms_2 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Expressed Multiplication', 'Random']
     #
-    # algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-    #               'Expressed Multiplication', 'Random']
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+                  'Expressed Multiplication', 'Random']
     #
     # algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
     #                'Expressed Multiplication', 'Random']
 
     # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
 
-    k = [5, 10]
-
-    info = algorithms_driver(k=k,
-                             datasets=['beefban'],
-                             algorithms=algorithms_2,
-                             expected_mode='Ignore',
-                             experiment_comment='find ftgreedy bug')
+    k = [5, 10, 15, 20]
 
     # info = algorithms_driver(k=k,
-    #                          datasets=['karate'],
-    #                          algorithms=algorithms,
-    #                          expected_mode='Embeddings',
-    #                          experiment_comment='embeddings karate experiment after equal edges')
+    #                          datasets=['beefban'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='find ftgreedy bug')
+
+    info = algorithms_driver(k=k,
+                             datasets=['karate'],
+                             algorithms=algorithms,
+                             expected_mode='Embeddings',
+                             experiment_comment='small test')
     #
     # info = algorithms_driver(k=k,
     #                          datasets=['books'],
