@@ -5,7 +5,7 @@ from tqdm import tqdm
 import time
 
 
-def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
+def expressed_batch(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     """
     :param k: List that contains all the top-k edge additions we want to examine, e.g
     [5, 10, 15, 20]
@@ -55,17 +55,19 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=reverse_flag)
 
+    # consider only edges that do not already exist
     for edge in sorted_edges:
 
-        if edge[0] not in edges_to_add_list:
-            edges_to_add_list.append(edge[0])
-            g_copy.add_edges_from([edge[0]])
+        if g_copy.has_edge(*edge[0]):
+            continue
 
-            break
+        edges_to_add_list.append(edge[0])
 
     end = time.time()
 
     for k_edge in k:
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
 
-    return edges_to_add_list, polarizations, [end - start] * len(k)
+    max_edges_added = edges_to_add_list[:max(k)]
+
+    return max_edges_added, polarizations, [end - start] * len(k)

@@ -67,4 +67,6 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
         # pass a graph in the helper method (copies it)
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
 
-    return sorted_edges, polarizations, [elapsed] * len(k)
+    max_edges_added = [edge[0] for edge in sorted_edges[:max(k)]]
+
+    return max_edges_added, polarizations, [elapsed] * len(k)

@@ -13,6 +13,8 @@ def add_edges_and_count_polarization(edges_list, graph):
     g_copy = graph.copy()
     g_copy.add_edges_from(edges_list)
     pol, converged_opinions = get_polarization(g_copy)
+    # print(edges_list)
+    # print(pol)
     return pol
 
 

@@ -1,3 +1,4 @@
+from __algorithm_expressed import expressed
 from __algorithm_random_different_opinions__ import random_edge_addition_different
 from __algorithm_first_top_greedy_batch__ import first_top_greedy_batch
 from __algorithm_first_top_greedy__ import first_top_greedy
@@ -6,7 +7,7 @@ from __compute_polarization__ import get_polarization
 from __helpers_pickles__ import save_data_to_pickle
 from __graph_embeddings__ import graph_embeddings
 from __helpers_general__ import check_for_same_results
-from __algorithm_expressed__ import expressed
+from __algorithm_expressed__batch import expressed_batch
 from __load_graph_data__ import load_graph
 from __algorithm_greedy__ import *
 from __visualize__ import *
@@ -14,6 +15,12 @@ from __visualize__ import *
 
 def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment):
     """
+    The result list is the max edges that each algorithm adds, for example if the experiment
+    is conducted with the following list [5,10,15,20] the results will have the 20 edges that
+    have been added. For later use you can just pick the first 5 if you need to check something
+    on the 5 edges addition.
+
+    :param experiment_comment:
     :param expected_mode:
     :param k: list that contains all the different top-k additions we want to add to the graph
     :param datasets: a list containing the string names of the datasets we want to examine
@@ -56,26 +63,28 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
 
             if algorithm == 'Greedy':
                 results, polarizations, time_list = greedy(k, graph, expected_mode, probabilities_dictionary)
-
+                
             elif algorithm == 'GBatch':
                 results, polarizations, time_list = greedy_batch(k, graph, expected_mode, False,
                                                                  probabilities_dictionary)
-
             elif algorithm == 'FTGreedy':
                 results, polarizations, time_list = first_top_greedy(k, graph, expected_mode, probabilities_dictionary)
 
             elif algorithm == 'FTGreedyBatch':
                 results, polarizations, time_list = first_top_greedy_batch(k, graph, expected_mode,
                                                                            probabilities_dictionary)
-
             elif algorithm == 'Expressed Distance':
                 results, polarizations, time_list = expressed(k, graph, 'Distance', expected_mode,
                                                               probabilities_dictionary)
-
             elif algorithm == 'Expressed Multiplication':
                 results, polarizations, time_list = expressed(k, graph, 'Multiplication', expected_mode,
                                                               probabilities_dictionary)
-
+            elif algorithm == 'BExpressed Distance':
+                results, polarizations, time_list = expressed_batch(k, graph, 'Distance', expected_mode,
+                                                                    probabilities_dictionary)
+            elif algorithm == 'BExpressed Multiplication':
+                results, polarizations, time_list = expressed_batch(k, graph, 'Multiplication', expected_mode,
+                                                                    probabilities_dictionary)
             elif algorithm == 'Random':
                 results, polarizations, time_list = random_edge_addition(k, graph)
 
@@ -96,9 +105,9 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
         decreases_checked, labels_checked = check_for_same_results(total_decreases, algorithms, 1)
 
         save_data_to_pickle(data_to_write=[total_decreases, algorithms, decreases_checked, labels_checked, info,
-                                           probabilities_dictionary],
+                                           probabilities_dictionary, k],
                             atr_list=['decreases_pol', 'labels_pol', 'decreases_checked_pol', 'labels_checked_pol',
-                                      'info', 'probabilities_dictionary'],
+                                      'info', 'probabilities_dictionary', 'k_edge_number_addition_list'],
                             ds=ds,
                             experiment_comment=experiment_comment)
 

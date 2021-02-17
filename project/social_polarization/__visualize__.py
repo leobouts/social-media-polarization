@@ -110,8 +110,6 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     #x_axis = [str(x) for x in x_axis]
 
     for i, y_axis in enumerate(list_of_axes):
-        print(x_axis)
-        print(y_axis)
         plt.plot(x_axis,
                  y_axis,
                  color=colourWheel[i % len(colourWheel)],

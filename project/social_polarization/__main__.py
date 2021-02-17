@@ -63,8 +63,13 @@ def main():
 
     algorithms_2 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Expressed Multiplication', 'Random']
     #
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
+
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'BExpressed Distance',
+                  'BExpressed Multiplication', 'Expressed Distance',
                   'Expressed Multiplication', 'Random']
+
+    algorithms_expressed = ['Expressed Distance', 'Expressed Multiplication', 'BExpressed Distance',
+                            'BExpressed Multiplication', 'Random']
     #
     # algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
     #                'Expressed Multiplication', 'Random']
@@ -82,7 +87,7 @@ def main():
     info = algorithms_driver(k=k,
                              datasets=['karate'],
                              algorithms=algorithms,
-                             expected_mode='Embeddings',
+                             expected_mode='Ignore',
                              experiment_comment='small test')
     #
     # info = algorithms_driver(k=k,
