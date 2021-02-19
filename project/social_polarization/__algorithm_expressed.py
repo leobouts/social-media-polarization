@@ -52,6 +52,8 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
     for k_edge in k:
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
 
+        print(edges_to_add_list[:k_edge])
+        print(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
     max_edges_added = edges_to_add_list[:max(k)]
 
     return max_edges_added, polarizations, [end - start] * len(k)

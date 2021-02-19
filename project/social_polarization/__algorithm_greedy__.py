@@ -37,10 +37,11 @@ def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     start = time.time()
 
     for i in tqdm(range(max(k)), ascii="~~~~~~~~~~~~~~~#"):
+
         edges, polarization, elapsed = greedy_batch(k, graph, expected_p_z_mode, True, probabilities_dictionary)
 
-        edge_1 = edges[0][0][0]
-        edge_2 = edges[0][0][1]
+        edge_1 = edges[0][0]
+        edge_2 = edges[0][1]
 
         graph.add_edge(edge_1, edge_2)
         k_items.append((edge_1, edge_2))
@@ -48,7 +49,10 @@ def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     end = time.time()
 
     for k_edge in k:
+
         polarizations.append(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
+        print(k_items[:k_edge])
+        print(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
         times.append(end - start)
 
     return k_items, polarizations, times

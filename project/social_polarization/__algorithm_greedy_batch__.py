@@ -31,9 +31,11 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
 
     3) elapsed time of the algorithm.
     """
+    g_copy = graph_in.copy()
 
-    original_polarization, converged_opinions = get_polarization(graph_in)
+    original_polarization, converged_opinions = get_polarization(g_copy)
     polarizations = []
+    edges_to_add_list = []
 
     # when we want all positive and negative nodes we pass the len(converge)
 
@@ -42,7 +44,7 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
 
     start = time.time()
 
-    addition_info = iterate_over_different_opinions(graph_in,
+    addition_info = iterate_over_different_opinions(g_copy,
                                                     positive_nodes,
                                                     negative_nodes,
                                                     original_polarization,
@@ -56,16 +58,20 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
+    #print(sorted_edges)
+
+    # consider only edges that do not already exist
+    for edge in sorted_edges:
+
+        if not g_copy.has_edge(*edge[0]):
+            edges_to_add_list.append(edge[0])
+
     # compute all the polarization decreases for every K we have given as input.
 
     for k_edge in k:
-        # GBatch computes all the edges at once so we can check the first k
-        # at once with sorted_edges[:k_edge].
-
-        edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
 
         # pass a graph in the helper method (copies it)
-        polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
+        polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
 
     max_edges_added = [edge[0] for edge in sorted_edges[:max(k)]]
 

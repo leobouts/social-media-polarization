@@ -1,7 +1,6 @@
 from __helpers_algorithm__ import iterate_over_different_opinions, get_first_top_k_positive_and_negative_opinions
 from __helpers_general__ import add_edges_and_count_polarization
 from __compute_polarization__ import get_polarization
-from tqdm import tqdm
 import time
 
 
@@ -58,10 +57,8 @@ def expressed_batch(k, graph_in, mode, expected_p_z_mode, probabilities_dictiona
     # consider only edges that do not already exist
     for edge in sorted_edges:
 
-        if g_copy.has_edge(*edge[0]):
-            continue
-
-        edges_to_add_list.append(edge[0])
+        if not g_copy.has_edge(*edge[0]):
+            edges_to_add_list.append(edge[0])
 
     end = time.time()
 

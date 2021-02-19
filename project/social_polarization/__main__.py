@@ -1,5 +1,4 @@
 from __helpers_pickles__ import open_pickles_for_adjusting_visualization_manually, open_pickles_for_final
-from __compute_polarization__ import get_polarization_with_inverse
 from __helpers_general__ import format_edge_list_from_tuples
 from __drivers__algorithms__ import *
 
@@ -61,65 +60,57 @@ def main():
     #    2) Ignore , to not consider          #
     # --------------------------------------- #
 
-    algorithms_2 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Expressed Multiplication', 'Random']
+    algorithms_2 = ['Greedy', 'Expressed Distance', 'Expressed Multiplication', 'Random']
     #
 
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'BExpressed Distance',
-                  'BExpressed Multiplication', 'Expressed Distance',
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
                   'Expressed Multiplication', 'Random']
 
     algorithms_expressed = ['Expressed Distance', 'Expressed Multiplication', 'BExpressed Distance',
-                            'BExpressed Multiplication', 'Random']
+                            'BExpressed Multiplication', 'Random', 'Random different']
     #
     # algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
     #                'Expressed Multiplication', 'Random']
 
     # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
 
-    k = [5, 10, 15, 20]
-
-    # info = algorithms_driver(k=k,
-    #                          datasets=['beefban'],
-    #                          algorithms=algorithms_2,
-    #                          expected_mode='Ignore',
-    #                          experiment_comment='find ftgreedy bug')
+    k = [5, 10, 15]
 
     info = algorithms_driver(k=k,
                              datasets=['karate'],
-                             algorithms=algorithms,
+                             algorithms=algorithms_expressed,
                              expected_mode='Ignore',
-                             experiment_comment='small test')
-    #
+                             experiment_comment='test improved convergence')
+
     # info = algorithms_driver(k=k,
     #                          datasets=['books'],
     #                          algorithms=algorithms,
-    #                          expected_mode='Embeddings',
-    #                          experiment_comment='books experiment embeddings after equal edges')
+    #                          expected_mode='Ignore',
+    #                          experiment_comment='Experiment after fixes')
     #
-
-    # info = algorithms_driver(k=[200, 400, 600, 800],
+    # info = algorithms_driver(k=k,
     #                          datasets=['beefban'],
     #                          algorithms=algorithms_2,
     #                          expected_mode='Ignore',
-    #                          experiment_comment='beefban experiment for ftgreedy')
+    #                          experiment_comment='Experiment after fixes')
     #
-    # info = algorithms_driver(k=[400, 800, 1200, 1600],
+    # info = algorithms_driver(k=k,
     #                          datasets=['polblogs'],
     #                          algorithms=algorithms_2,
     #                          expected_mode='Ignore',
-    #                          experiment_comment='polblogs experiment efor ftgreedy')
+    #                          experiment_comment='Experiment after fixes')
     #
-    # info = algorithms_driver(k=[500, 1000, 1500, 2000],
+    # info = algorithms_driver(k=k,
     #                          datasets=['GermanWings'],
     #                          algorithms=algorithms_2,
     #                          expected_mode='Ignore',
-    #                          experiment_comment='GermanWings experiment for ftgreedy')
+    #                          experiment_comment='Experiment after fixes')
     #
-    # info = algorithms_driver(k=[700, 1400, 2100, 2800],
+    # info = algorithms_driver(k=k,
     #                          datasets=['ClintonTrump'],
     #                          algorithms=algorithms_2,
     #                          expected_mode='Ignore',
-    #                          experiment_comment='ClintonTrump experiment for ftgreedy')
+    #                          experiment_comment='Experiment after fixes')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #

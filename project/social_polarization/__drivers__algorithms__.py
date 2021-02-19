@@ -63,7 +63,7 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
 
             if algorithm == 'Greedy':
                 results, polarizations, time_list = greedy(k, graph, expected_mode, probabilities_dictionary)
-                
+
             elif algorithm == 'GBatch':
                 results, polarizations, time_list = greedy_batch(k, graph, expected_mode, False,
                                                                  probabilities_dictionary)
@@ -114,13 +114,13 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
         k_copy = k.copy()
         k_copy.insert(0, 0)
 
-        vis_graphs_heuristics(k_copy,
-                              decreases_checked,
-                              labels_checked,
-                              f"{ds} Polarization Decrease",
-                              "Number of Edges Added",
-                              "π(z)",
-                              0)
+        vis_graphs_heuristics_bar(k_copy,
+                                  decreases_checked,
+                                  labels_checked,
+                                  f"{ds} Polarization Decrease",
+                                  "Number of Edges Added",
+                                  "π(z)",
+                                  0)
 
     return info
 

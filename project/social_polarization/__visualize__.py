@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
+import numpy as np
 
 colourWheel = ['#329932',
                '#ff6961',
@@ -30,7 +31,7 @@ dashesStyles = [[3, 1],
                 [1000, 1],
                 [2, 1, 10, 1],
                 [4, 1, 1, 1, 1, 1]]
-alphaVal = 0.6
+alphaVal = 0.8
 linethick = 3.5
 
 
@@ -144,6 +145,49 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.grid(True)
+    plt.savefig(f'../figures_generated/{title.split(" ")[0]}/{title}.pdf', dpi=100, bbox_inches='tight')
+    plt.show()
+
+
+def vis_graphs_heuristics_bar(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
+
+    # fig, is the whole thing; ax1 is a subplot in the figure,
+    # so we reference it to plot bars and lines there
+    fig, ax1 = plt.subplots()
+
+    ind = np.arange(len(x_axis))
+    width = 0.10
+
+    xticklabels = x_axis
+
+    #
+    all_groups = list_of_axes
+
+    # plot each group of bars; loop-variable bar_values contains values for bars
+    for i, bar_values in enumerate(all_groups):
+        # compute position for each bar
+        bar_position = width * i
+
+        ax1.bar(ind + bar_position, bar_values, width, alpha=alphaVal, color=colourWheel[i % len(colourWheel)])
+
+    # plot line for each group of bars; loop-variable y_values contains values for lines
+    for i, y_values in enumerate(all_groups):
+        # moves the beginning of a line to the middle of the bar
+        additional_space = (width * i) + (width / 2)
+        # x_values contains list indices plus additional space
+        x_values = [x + additional_space for x, _ in enumerate(y_values)]
+
+        # simply plot the values in y_values
+        ax1.plot(x_values, y_values, alpha=alphaVal, color=colourWheel[i % len(colourWheel)])
+
+    plt.setp([ax1], xticks=ind + width, xticklabels=xticklabels)
+
+    plt.legend(list_of_labels, loc='upper center', bbox_to_anchor=(0.5, -0.15),
+               fancybox=True, shadow=True, ncol=3)
+
+    plt.tight_layout()
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
     plt.savefig(f'../figures_generated/{title.split(" ")[0]}/{title}.pdf', dpi=100, bbox_inches='tight')
     plt.show()
 

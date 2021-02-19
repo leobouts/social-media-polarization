@@ -35,7 +35,12 @@ def iterate_over_different_opinions(graph_in,
                 g_copy = graph_in.copy()
                 g_copy.add_edges_from([edge_to_add])
                 polarization_after_addition, converged_opinions = get_polarization(g_copy)
-                value = original_polarization - polarization_after_addition
+
+                if polarization_after_addition < original_polarization:
+                    value = original_polarization - polarization_after_addition
+                else:
+                    # polarization increased
+                    value = 999999
 
             # addition_info is computed differently if we considering
             # the expected addition problem
@@ -64,15 +69,29 @@ def get_first_top_k_positive_and_negative_opinions(k_edge, converged_opinions):
     index_pos = []
     index_neg = []
 
+    opinion_pos = []
+    opinion_neg = []
+
     # separate them according to opinion (-,+)
     # dont use list.index(), some nodes have the exact z value
     # and will return the same index in the list providing us
     # with wrong edges to add bellow
 
-    for i in range(len(converged_opinions)):
-        if converged_opinions[i] >= 0:
-            index_pos.append(i)
+    sorted_converged = sorted(converged_opinions)
+
+    for opinion in sorted_converged:
+        if opinion > 0:
+            opinion_pos.append(opinion)
         else:
-            index_neg.append(i)
+            opinion_neg.append(opinion)
+
+    sorted_pos = sorted(opinion_pos)
+    sorted_neg = sorted(opinion_neg)
+
+    for pos_opinion in sorted_pos:
+        index_pos.append(converged_opinions.index(pos_opinion))
+
+    for neg_opinion in sorted_neg:
+        index_neg.append(converged_opinions.index(neg_opinion))
 
     return index_pos[:k_edge], index_neg[:k_edge]

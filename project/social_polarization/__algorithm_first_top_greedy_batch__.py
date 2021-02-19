@@ -29,15 +29,17 @@ def first_top_greedy_batch(k, graph_in, expected_p_z_mode, probabilities_diction
     3) elapsed time of the algorithm.
     """
 
-    original_polarization, converged_opinions = get_polarization(graph_in)
+    g_copy = graph_in.copy()
+
+    original_polarization, converged_opinions = get_polarization(g_copy)
     polarizations = []
     times = []
-
+    edges_to_add_list = []
     start = time.time()
 
     positive_nodes, negative_nodes = get_first_top_k_positive_and_negative_opinions(max(k), converged_opinions)
 
-    addition_info = iterate_over_different_opinions(graph_in,
+    addition_info = iterate_over_different_opinions(g_copy,
                                                     positive_nodes,
                                                     negative_nodes,
                                                     original_polarization,
@@ -49,13 +51,17 @@ def first_top_greedy_batch(k, graph_in, expected_p_z_mode, probabilities_diction
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
+    # consider only edges that do not already exist
+    for edge in sorted_edges:
+
+        if not g_copy.has_edge(*edge[0]):
+            edges_to_add_list.append(edge[0])
+
     end = time.time()
     elapsed = end - start
 
     for k_edge in k:
-
-        edges_to_add_list = [edge[0] for edge in sorted_edges[:k_edge]]
-        polarizations.append(add_edges_and_count_polarization(edges_to_add_list, graph_in))
+        polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
         times.append(elapsed)
 
     all_edges_sorted = [edge[0] for edge in sorted_edges]
