@@ -1,9 +1,9 @@
 from scipy.sparse import identity
 import networkx as nx
 import numpy as np
-import pandas as pd
 
-def get_polarization(g):
+
+def get_polarization_with_inverse(g):
 
     """"
     Creates the L+I matrix where L is the laplacian matrix of
@@ -46,7 +46,7 @@ def get_polarization(g):
     return summed / no_of_nodes, np.squeeze(np.asarray(solutions)).tolist()
 
 
-def get_polarization_(g):
+def get_polarization(g):
     """"
     Computes the polarization index value by using the Friedkin
     and Johnsen formula directly until it converges. We can ad-

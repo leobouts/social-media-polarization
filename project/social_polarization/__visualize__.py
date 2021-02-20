@@ -35,6 +35,20 @@ alphaVal = 0.8
 linethick = 3.5
 
 
+def get_color(i):
+    if i == 'Greedy':
+        return '#d11141'
+    elif i == 'GBatch':
+        return '#00b159'
+    elif i == 'FTGreedy':
+        return '#ffc425'
+    elif i == 'FTGreedyBatch':
+        return '#f37735'
+    elif i == 'BExpressed Distance':
+        return '#00aedb'
+    elif i == 'Random different':
+        return '#6a3d9a'
+
 def visualize_edge(g, edge_list, title, img_name, dataset, mode):
     """
     :param dataset:
@@ -107,8 +121,7 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
 
 
 def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
-
-    #x_axis = [str(x) for x in x_axis]
+    # x_axis = [str(x) for x in x_axis]
 
     for i, y_axis in enumerate(list_of_axes):
         plt.plot(x_axis,
@@ -150,7 +163,6 @@ def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, 
 
 
 def vis_graphs_heuristics_bar(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
-
     # fig, is the whole thing; ax1 is a subplot in the figure,
     # so we reference it to plot bars and lines there
     fig, ax1 = plt.subplots()
@@ -160,7 +172,10 @@ def vis_graphs_heuristics_bar(x_axis, list_of_axes, list_of_labels, title, x_lab
 
     xticklabels = x_axis
 
-    #
+    flat_list = [item for sublist in list_of_axes for item in sublist]
+    minimum_value = min(flat_list)
+    maximum_value = max(flat_list)
+
     all_groups = list_of_axes
 
     # plot each group of bars; loop-variable bar_values contains values for bars
@@ -168,7 +183,7 @@ def vis_graphs_heuristics_bar(x_axis, list_of_axes, list_of_labels, title, x_lab
         # compute position for each bar
         bar_position = width * i
 
-        ax1.bar(ind + bar_position, bar_values, width, alpha=alphaVal, color=colourWheel[i % len(colourWheel)])
+        ax1.bar(ind + bar_position, bar_values, width, alpha=alphaVal, color=get_color(list_of_labels[i]))
 
     # plot line for each group of bars; loop-variable y_values contains values for lines
     for i, y_values in enumerate(all_groups):
@@ -178,8 +193,18 @@ def vis_graphs_heuristics_bar(x_axis, list_of_axes, list_of_labels, title, x_lab
         x_values = [x + additional_space for x, _ in enumerate(y_values)]
 
         # simply plot the values in y_values
-        ax1.plot(x_values, y_values, alpha=alphaVal, color=colourWheel[i % len(colourWheel)])
+        ax1.plot(x_values, y_values, alpha=alphaVal, lw=2.1, color=get_color(list_of_labels[i]))
 
+    # sets the minimum value of the bar to the lowest value plus a small number
+    # useful for experiments in big datasets and small edge additions that
+    # don't reduce the polarization a lot
+    # adjust for each dataset by hand
+
+    set_min = minimum_value-0.002
+    set_max = maximum_value + 0.0005
+    ax1.set(ylim=[set_min, set_max])
+
+    plt.title(title, fontsize=16, fontweight='bold')
     plt.setp([ax1], xticks=ind + width, xticklabels=xticklabels)
 
     plt.legend(list_of_labels, loc='upper center', bbox_to_anchor=(0.5, -0.15),
@@ -214,7 +239,7 @@ def final_plot(df, dataset_names, k, labels_checked):
 
     for i, ax in enumerate(axes.flatten()):
 
-        #attention!!!11111 adjust these also, leave only the appropriate for every dataset for every experiment
+        # attention!!!11111 adjust these also, leave only the appropriate for every dataset for every experiment
 
         if dataset_names[i] == 'beefban':
             colors = [ftgreedy_c, ftgreedyb_c, expr_dis_c, expr_mul_c, random_c]
@@ -243,7 +268,7 @@ def final_plot(df, dataset_names, k, labels_checked):
         # if u need different edges in the plots just do it by hand, eitherway it doesnt matter so much
         # for the same use the variable k
 
-        #ax.set_xticks(num_of_edges[i], minor=False)
+        # ax.set_xticks(num_of_edges[i], minor=False)
 
         ax.set_xticks(k, minor=False)
 

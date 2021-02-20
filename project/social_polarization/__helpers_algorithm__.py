@@ -77,15 +77,13 @@ def get_first_top_k_positive_and_negative_opinions(k_edge, converged_opinions):
     # and will return the same index in the list providing us
     # with wrong edges to add bellow
 
-    sorted_converged = sorted(converged_opinions)
-
-    for opinion in sorted_converged:
+    for opinion in converged_opinions:
         if opinion > 0:
             opinion_pos.append(opinion)
         else:
             opinion_neg.append(opinion)
 
-    sorted_pos = sorted(opinion_pos)
+    sorted_pos = sorted(opinion_pos, reverse=True)
     sorted_neg = sorted(opinion_neg)
 
     for pos_opinion in sorted_pos:

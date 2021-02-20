@@ -29,7 +29,7 @@ def random_edge_addition_different(k, graph_in):
             edges_list.append(edge_to_add)
 
     # run 20 times to sample and then average the results of random edge selection
-    for i in range(20):
+    for i in range(40):
         for j, k_edge in enumerate(k):
             edges_to_add_list = random.sample(edges_list, k_edge)
 
@@ -41,6 +41,6 @@ def random_edge_addition_different(k, graph_in):
     end = time.time()
     elapsed = end - start
 
-    averaged_polarizations = [x / 20 for x in polarizations]
+    averaged_polarizations = [x / 40 for x in polarizations]
 
     return edges_to_add_list, averaged_polarizations, [elapsed] * len(k)
