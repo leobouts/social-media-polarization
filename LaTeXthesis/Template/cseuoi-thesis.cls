@@ -136,7 +136,7 @@
 		\newcommand{\cseextabstracttype}{Ph.D.}
 	\else
 		\newcommand{\cseabstracttype}{Μ.Δ.Ε.}
-		\newcommand{\cseextabstracttype}{M.Sc.}
+		\newcommand{\cseextabstracttype}{Diploma}
 	\fi
 	\newcommand{\cseextabstract}{Extended Abstract}
 	\newcommand{\cseextabstractcs}{in Computer Science}
@@ -204,7 +204,7 @@
 		\newcommand{\cseabstracttype}{Ph.D.}
 		\newcommand{\cseextabstracttype}{Δ.Δ.}
 	\else
-		\newcommand{\cseabstracttype}{M.Sc.}
+		\newcommand{\cseabstracttype}{Diploma}
 		\newcommand{\cseextabstracttype}{Μ.Δ.Ε.}
 	\fi
 	\newcommand{\cseextabstract}{Εκτεταμένη Περίληψη}

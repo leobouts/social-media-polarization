@@ -30,12 +30,14 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 
     edges_to_add_list = []
 
+    edges_to_return_with_info = []
     start = time.time()
 
     g_copy = graph_in.copy()
 
     for edge in tqdm(range(max(k))):
-        results, polarizations_from_batch, time_list = expressed_batch(k,
+
+        results, polarizations_from_batch, time_list, edges_with_info = expressed_batch(k,
                                                                        g_copy,
                                                                        mode,
                                                                        expected_p_z_mode,
@@ -46,14 +48,13 @@ def expressed(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
 
         g_copy.add_edge(edge_1, edge_2)
         edges_to_add_list.append((edge_1, edge_2))
+        edges_to_return_with_info.append(edges_with_info[0])
 
     end = time.time()
 
     for k_edge in k:
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
 
-        print(edges_to_add_list[:k_edge])
-        print(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
     max_edges_added = edges_to_add_list[:max(k)]
 
-    return max_edges_added, polarizations, [end - start] * len(k)
+    return max_edges_added, polarizations, [end - start] * len(k), edges_to_return_with_info

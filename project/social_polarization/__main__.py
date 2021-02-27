@@ -17,9 +17,9 @@ def main():
     #      5)GermanWings                      #
     #      6)beefban                          #
     # --------------------------------------- #
-
+    #
     # start = time.time()
-    # name = 'polblogs'
+    # name = 'ClintonTrump'
     # graph = load_graph(f'../datasets/{name}.gml')
     # pol, converged_opinions = get_polarization(graph)
     # end = time.time()
@@ -51,6 +51,11 @@ def main():
     #     6) Expressed Multiplication         #
     #     7) Random                           #
     #     8) Random different                 #
+    #     9) pRedution                        #
+    # --------------------------------------- #
+    # 1 through 8 can be run with embeddings  #
+    #  on, don't run pRedution with           #
+    # embeddings on                           #
     # --------------------------------------- #
     #    k: list with top-k edges to add      #
     # --------------------------------------- #
@@ -60,47 +65,26 @@ def main():
     #    2) Ignore , to not consider          #
     # --------------------------------------- #
 
-    algorithms_2 = ['FTGreedy', 'FTGreedyBatch', 'BExpressed Distance', 'Random different']
+    algorithms_2 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Random', 'Random different']
 
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'BExpressed Distance', 'Random different']
+    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Random', 'Random different']
 
-    algorithms_expressed = ['Expressed Distance', 'Expressed Multiplication', 'hExpressed Distance',
-                            'BExpressed Multiplication', 'Random', 'Random different']
-
-    # algorithms1 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance',
-    #                'Expressed Multiplication', 'Random']
-
-    # datasets = ['polblogs', 'ClintonTrump', 'GermanWings', 'sxsw']
+    # algorithms_expressed = ['Expressed Distance', 'Expressed Multiplication', 'BExpressed Distance',
+    #                         'BExpressed Multiplication', 'Random', 'Random different']
 
     k = [5, 10, 15, 20]
 
-    info = algorithms_driver(k=k,
-                             datasets=['karate, books'],
-                             algorithms=algorithms,
-                             expected_mode='Ignore',
-                             experiment_comment='graphs for finals after correcting FT,expressed batch')
-
-    info = algorithms_driver(k=k,
-                             datasets=['beefban, polblogs, GermanWings, ClintonTrump'],
-                             algorithms=algorithms_2,
-                             expected_mode='Ignore',
-                             experiment_comment='graphs for finals after correcting FT,expressed batch')
-
-    algorithms_2 = ['FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Random different']
-
-    algorithms = ['Greedy', 'GBatch', 'FTGreedy', 'FTGreedyBatch', 'Expressed Distance', 'Random different']
-
-    info = algorithms_driver(k=k,
-                             datasets=['karate, books'],
-                             algorithms=algorithms,
-                             expected_mode='Ignore',
-                             experiment_comment='graphs for finals after correcting FT,expressed re-estimate')
-
-    info = algorithms_driver(k=k,
-                             datasets=['beefban, polblogs, GermanWings, ClintonTrump'],
-                             algorithms=algorithms_2,
-                             expected_mode='Ignore',
-                             experiment_comment='graphs for finals after correcting FT,expressed re-estimate')
+    # info = algorithms_driver(k=k,
+    #                          datasets=['karate', 'books'],
+    #                          algorithms=algorithms,
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='final embeddings with random')
+    #
+    # info = algorithms_driver(k=k,
+    #                          datasets=['beefban', 'polblogs', 'GermanWings', 'ClintonTrump'],
+    #                          algorithms=algorithms_2,
+    #                          expected_mode='Embeddings',
+    #                          experiment_comment='final embeddings with random')
 
     # ------------------------------------------------------- #
     # open information from previous experiments              #
@@ -136,8 +120,8 @@ def main():
     #  Third argument: experiment time (file)  #
     # ---------------------------------------- #
 
-    # open_pickles_for_adjusting_visualization_manually([5, 10, 15, 20], 'ClintonTrump',
-    #                                                   "Sat Feb 20 21.42.50 2021 graphs for finals expressed batch")
+    open_pickles_for_adjusting_visualization_manually([5, 10, 15, 20], 'ClintonTrump',
+                                                    "Sat Feb 27 23.02.26 2021 final embeddings with random")
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #

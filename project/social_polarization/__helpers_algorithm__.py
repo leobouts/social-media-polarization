@@ -28,6 +28,12 @@ def iterate_over_different_opinions(graph_in,
             elif mode == "Multiplication":
                 value = converged_opinions[node_pos] * converged_opinions[node_neg]
 
+            elif mode == "pReduction":
+                try:
+                    value = probabilities_dictionary[edge_to_add]
+                    # some edges were  stored in reverse??
+                except KeyError:
+                    value = probabilities_dictionary[(edge_to_add[1], edge_to_add[0])]
             else:
 
                 # check how much the polarization was reduced in comparison with the original graph
@@ -45,7 +51,7 @@ def iterate_over_different_opinions(graph_in,
             # addition_info is computed differently if we considering
             # the expected addition problem
 
-            if expected_p_z_mode == 'Embeddings':
+            if expected_p_z_mode == 'Embeddings' and mode != 'pReduction':
 
                 try:
                     probability = probabilities_dictionary[edge_to_add]

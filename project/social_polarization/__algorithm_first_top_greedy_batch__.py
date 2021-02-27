@@ -66,4 +66,6 @@ def first_top_greedy_batch(k, graph_in, expected_p_z_mode, probabilities_diction
 
     all_edges_sorted = [edge[0] for edge in sorted_edges]
 
-    return all_edges_sorted, polarizations, times
+    edges_max_to_add = sorted_edges[:max(k)]
+
+    return all_edges_sorted, polarizations, times, edges_max_to_add

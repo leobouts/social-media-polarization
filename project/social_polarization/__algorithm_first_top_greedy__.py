@@ -27,6 +27,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     polarizations = []
     times = []
     k_items = []
+    addition_return_info = []
 
     # copy the graph so we won't alter it
     graph = graph_in.copy()
@@ -53,6 +54,7 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
         graph.add_edges_from([sorted_edges[0][0]])
 
         k_items.append(sorted_edges[0][0])
+        addition_return_info.append(sorted_edges[0])
 
     end = time.time()
 
@@ -60,4 +62,4 @@ def first_top_greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
         polarizations.append(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
         times.append(end - start)
 
-    return k_items, polarizations, times
+    return k_items, polarizations, times, addition_return_info

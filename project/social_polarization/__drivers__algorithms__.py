@@ -1,4 +1,5 @@
 from __algorithm_expressed import expressed
+from __algorithm_probability_reduction_batch import p_reduction
 from __algorithm_random_different_opinions__ import random_edge_addition_different
 from __algorithm_first_top_greedy_batch__ import first_top_greedy_batch
 from __algorithm_first_top_greedy__ import first_top_greedy
@@ -47,7 +48,7 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
         # key-> edge, value-> prob
         probabilities_dictionary = {}
 
-        if expected_mode != 'Ignore':
+        if expected_mode != 'Ignore' or 'pReduction' in algorithms:
             results, probabilities = graph_embeddings(ds, 0)
 
             probabilities_dictionary = {results[i]: probabilities[i] for i in range(len(results))}
@@ -62,29 +63,35 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
             decrease_list = [pol]
 
             if algorithm == 'Greedy':
-                results, polarizations, time_list = greedy(k, graph, expected_mode, probabilities_dictionary)
+                results, polarizations, time_list, addition_info = greedy(k, graph, expected_mode,
+                                                                          probabilities_dictionary)
 
             elif algorithm == 'GBatch':
-                results, polarizations, time_list = greedy_batch(k, graph, expected_mode, False,
-                                                                 probabilities_dictionary)
+                results, polarizations, time_list, addition_info = greedy_batch(k, graph, expected_mode, False,
+                                                                                probabilities_dictionary)
             elif algorithm == 'FTGreedy':
-                results, polarizations, time_list = first_top_greedy(k, graph, expected_mode, probabilities_dictionary)
+                results, polarizations, time_list, addition_info = first_top_greedy(k, graph, expected_mode,
+                                                                                    probabilities_dictionary)
 
             elif algorithm == 'FTGreedyBatch':
-                results, polarizations, time_list = first_top_greedy_batch(k, graph, expected_mode,
-                                                                           probabilities_dictionary)
+                results, polarizations, time_list, addition_info = first_top_greedy_batch(k, graph, expected_mode,
+                                                                                          probabilities_dictionary)
             elif algorithm == 'Expressed Distance':
-                results, polarizations, time_list = expressed(k, graph, 'Distance', expected_mode,
-                                                              probabilities_dictionary)
+                results, polarizations, time_list, addition_info = expressed(k, graph, 'Distance', expected_mode,
+                                                                             probabilities_dictionary)
             elif algorithm == 'Expressed Multiplication':
-                results, polarizations, time_list = expressed(k, graph, 'Multiplication', expected_mode,
-                                                              probabilities_dictionary)
+                results, polarizations, time_list, addition_info = expressed(k, graph, 'Multiplication', expected_mode,
+                                                                             probabilities_dictionary)
             elif algorithm == 'BExpressed Distance':
-                results, polarizations, time_list = expressed_batch(k, graph, 'Distance', expected_mode,
-                                                                    probabilities_dictionary)
+                results, polarizations, time_list, addition_info = expressed_batch(k, graph, 'Distance', expected_mode,
+                                                                                   probabilities_dictionary)
             elif algorithm == 'BExpressed Multiplication':
-                results, polarizations, time_list = expressed_batch(k, graph, 'Multiplication', expected_mode,
-                                                                    probabilities_dictionary)
+                results, polarizations, time_list, addition_info = expressed_batch(k, graph, 'Multiplication',
+                                                                                   expected_mode,
+                                                                                   probabilities_dictionary)
+            elif algorithm == 'pReduction':
+                results, polarizations, time_list = p_reduction(k, graph, 'pReduction', expected_mode,
+                                                                probabilities_dictionary)
             elif algorithm == 'Random':
                 results, polarizations, time_list = random_edge_addition(k, graph)
 
@@ -114,13 +121,13 @@ def algorithms_driver(k, datasets, algorithms, expected_mode, experiment_comment
         k_copy = k.copy()
         k_copy.insert(0, 0)
 
-        vis_graphs_heuristics_bar(k_copy,
-                                  decreases_checked,
-                                  labels_checked,
-                                  f"{ds} Polarization Decrease",
-                                  "Number of Edges Added",
-                                  "π(z)",
-                                  0)
+        vis_graphs_heuristics(k_copy,
+                              decreases_checked,
+                              labels_checked,
+                              f"{ds} Polarization Decrease",
+                              "Number of Edges Added",
+                              "π(z)",
+                              0)
 
     return info
 

@@ -16,7 +16,7 @@ def open_pickles_for_adjusting_visualization_manually(k, dataset_name, experimen
     k_copy = k.copy()
     k_copy.insert(0, 0)
 
-    vis_graphs_heuristics_bar(k_copy,
+    vis_graphs_heuristics(k_copy,
                           decreases_checked,
                           labels_checked,
                           f"{dataset_name} Polarization Decrease",

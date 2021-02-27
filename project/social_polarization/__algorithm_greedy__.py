@@ -26,6 +26,7 @@ def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
     polarizations = []
     times = []
     k_items = []
+    addition_return_info = []
 
     # Even though we could just run greedy one time with the max number of
     # edges we want, we have to run him for every first-top edges to get his
@@ -38,7 +39,7 @@ def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
 
     for i in tqdm(range(max(k)), ascii="~~~~~~~~~~~~~~~#"):
 
-        edges, polarization, elapsed = greedy_batch(k, graph, expected_p_z_mode, True, probabilities_dictionary)
+        edges, polarization, elapsed, addition_info = greedy_batch(k, graph, expected_p_z_mode, True, probabilities_dictionary)
 
         edge_1 = edges[0][0]
         edge_2 = edges[0][1]
@@ -46,13 +47,14 @@ def greedy(k, graph_in, expected_p_z_mode, probabilities_dictionary):
         graph.add_edge(edge_1, edge_2)
         k_items.append((edge_1, edge_2))
 
+        addition_return_info.append(addition_info[0])
     end = time.time()
 
     for k_edge in k:
 
         polarizations.append(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
-        print(k_items[:k_edge])
-        print(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
+        #print(k_items[:k_edge])
+        #print(add_edges_and_count_polarization(k_items[:k_edge], graph_in))
         times.append(end - start)
 
-    return k_items, polarizations, times
+    return k_items, polarizations, times, addition_return_info

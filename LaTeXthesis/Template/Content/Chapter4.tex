@@ -1,31 +1,10 @@
-\chapter{Algorithms}
-\label{ch:algorithms}
+\chapter{Heuristics}
+\label{ch:heuristics}
 
+\section{Introduction}
+\label{sec:heurIntro}
 
-\section{Intuition}
-\label{sec:intuition}
-
-To solve this problem we have to evaluate all possible edge combinations. Even for greedy heuristics we need to limit the edge candidates. The algorithm considers nodes that have high expressed value. According to our model the smallest decrease is happening when we connect different and extreme opinions.
-\\
-\\
-We will now see why this statement holds by examining how the expressed opinion of the Friedkin and Johnsen model changes with an edge addition. 
-\\
-\\
-Consider an arbitrary example with two nodes inside a network. Node $a$ has $z_a = -0.02$ and node $b$ has $z_b = 0.5$. Also for this example we assume that $w_{ii}=w_{ij}=w_{ji}=1$. If we connect these two nodes with an edge and recalculate the expressed opinions, both of the $z_i$ denominators will be increased by one. This emerges from the fact that both nodes will have a new neighbour and that all weights equal with one. The numerator of the node $a$ will be increased by a lot and the numerator of the node $b$ will be decreased by a small value.
-\\
-\\
-The new $z_a$ will not change a lot because the addition of the numerator will approach the +1 addition of the denominator. On the other hand the new $z_b$ will see a big change, the numerator will have a small decrease, the denominator will have the +1 addition, thus creating a big decrease overall for this node. We can clearly see that only one of the two nodes will have a big decrease. 
-\\
-\\
-Now consider a second example with two nodes, node $c$ has $z_c = -0.8$ and node $d$ has $z_d = 0.9$. After the addition node $d$ will see a big decrease because we add two conflicting values that almost neutralise each other on the numerator but the addition of the +1 on the denominator stands still. On the other hand node $c$ will also see a big decrease for the same reason. With this type of connection both of the nodes have a significant decrease.
-\\
-\\
-In a setting that $w_{ii} \neq w_{ij} \neq w_{ji}\neq 1$ the same intuition holds but the weights must be also considered to create a strategy for neutralising each other.
- 
-\section{Heuristics}
-\label{sec:heuristics}
-
-In this section we  consider a greedy algorithm and some heuristics for minimising $\pi(z)$. All the heuristics use the intuition that connecting the most extreme opinions of each community draw both of them into neutrality. The algorithms use two lists. One for each viewpoint sorted according to their opinion value. 
+In this section we  consider a greedy algorithm and some heuristics for minimising $\pi(z)$. All the heuristics use the intuition that connecting the most extreme opinions of each community draw both of them into neutrality. 
 \\
 \\
 We can classify these algorithms based on how they perceive the network when exploring new edge additions. This is derived from the fact that when adding an edge to the network the structure of the graph is changes. 
@@ -34,72 +13,67 @@ We can classify these algorithms based on how they perceive the network when exp
 This leads to a different $Z$ vector. The heuristics can choose to recompute the $Z$ vector or not.
 \\
 \\
+\clearpage
 
-\subsection{Heuristics that consider network changes}
+
+\section{Heuristics that recompute the opinion vector}
 \label{sec:netChanges}
 
 We begin with a Greedy algorithm. Greedy algorithms work in stages and during each stage a choice is made which is locally optimal.
-\\
-\\
-After finishing, the totality of all these choices produce a globally optimal solution.
-\\
-\\
-If a greedy algorithm does not lead us to a globally optimal solution we can refer to it as a heuristic or a greedy heuristic. Heuristics provide shortcuts to a solution that are not necessarily optimal.
-\\
-\\
 The Greedy algorithm computes the decrease in $\pi(z)$ and selects the edge with the largest decrease every time.
 \\
 \\
-
+After finding the best edge, the $Greedy$ algorithm adds this edge to the graph. This result in a change of the network structure.
+Then a recomputation of the $z$ vector is happening and  the procedure is repeated.
+\\
+\\
+To reduce running time, in our implementation, we consider only addition of different opinions. This way the heuristics do not have to traverse all the existing edge combinations
+\\
+\\
     		\begin{algorithm}[H]
 		
-			\caption{Greedy minimization of $\pi(z)$}
+			\caption{Greedy}
 			\label{alg:greedyAlgo}
 			
 			\begin{flushleft}
-        				\textbf{INPUTS:} Graph $G(V, E)$; $k$ number of edges to add;
-				\vspace{6pt}
-        				\textbf{OUTPUT:} Graph $G'$ with $k$ new edges that minimize the polarization index $\pi(z)$
+        				\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add;
+				\vspace{6pt} \\
+        				\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\
+				 index $\pi(z)$
 			\end{flushleft}
 			
 			\begin{algorithmic}[1]
 				\FOR {$i = 1:k \ $}
-					\STATE$Decrease \leftarrow Empty List$;
 					\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-						\STATE Compute the decrease of $\pi(z)$ if edge is added to the graph;
-						\STATE Append the decrease on the $Decrease$ list;
+						\STATE Compute the decrease of $\pi(z)$ if edge is added to $G$;
 					\ENDFOR
-					\STATE Select the edge with the largest decrease from the $Decrease$ list.
-					\STATE Add this edge to the graph.
+					\STATE Select the edge with the largest decrease and add it to $G$.
 				\ENDFOR
+				\STATE Return the set of edges that were selected.
 			\end{algorithmic}
-			
 		\end{algorithm}
 
-\vspace{10pt}
 \clearpage
 
-
-
-\noindent The $FirstTopGreedy$ is a greedy heuristic we consider that takes into account changes in the graph structure. 
+\noindent A second heuristic we consider is the $FirstTopGreedy$. Let $X$ be the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes that their expressed opinions $\epsilon$ (0,1] sorted by decreasing order. 
 \\
 \\
-This heuristic is taking the first $K \times K$ items of each set of nodes for each opinion respectively. As mentioned before these two sets are sorted by the external opinion value. 
+This heuristic is taking the first $K$ nodes of $X$ and $Y$, resulting in $K \times K$ nodes.
 \\
 \\
-Then a greedy search is performed in this smaller space. This allows the $FirstTopGreedy$ to reduce the amount of time spend searching for the best edge to add by considering opinions that lead to greater reduction.
-\\
+A greedy search is performed in this smaller space. This allows the $FirstTopGreedy$ to reduce the amount of time spend searching for the best edge to add.
 \\
 
 \begin{algorithm}[htbp]
-	\caption{First Top Greedy}
+	\caption{FirstTopGreedy}
 	\label{alg:kgreedy}
 	
 	\begin{flushleft}
-        		\textbf{INPUTS:} Graph $G(V, E)$; $k$ number of edges to add;\\
-		$X$, $Y $, the sorted set of vertices according to each viewpoint $\epsilon$ [-1,0] and [0,1] respectively.\\
+        		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add;\\
+		$X$, the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order\\
+		$Y$, set of nodes that their expressed opinions $\epsilon$ (0,1]  sorted by decreasing order\\
 		\vspace{6pt}
-        		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
+        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
 	\end{flushleft}
 	
 	\begin{algorithmic}[1]
@@ -114,27 +88,60 @@ Then a greedy search is performed in this smaller space. This allows the $FirstT
 			\STATE Select the edge with the largest decrease from the $Decrease$ list.
 			\STATE Add this edge to the graph.
 		\ENDFOR
+		\STATE Return the set of edges that were selected.
 	\end{algorithmic}
 	
 \end{algorithm}
 		
 \clearpage
 
+\noindent Last we consider two heuristics that choose edges based on the value of the expressed opinion of their nodes. 
+Let $u$ and $v$ two nodes that we want to connect and $Z_u$ and $V_u$ their expressed opinions respectively. 
+The Distance of their opinions can be defined as $D=|Z_u - V_u|$.
+\\
+\\
+This heuristic computes the distance between every edge candidate and then chooses to add the edge with the maximum distance.
+\\
+\\
+\begin{algorithm}[H]
+	\caption{ExpressedΟpinion}
+	\label{alg:expressedOpinion}
+	
+	\begin{flushleft}
+        		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add\\
+		\vspace{6pt}
+        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization
+		\\ index $\pi(z)$
+	\end{flushleft}
+	
+	\begin{algorithmic}[1]
+		\FOR {$i = 1:k \ $}
+			\STATE $EdgesToAdd \leftarrow Empty List;$
+			\STATE Compute the $z$ values.
+			\FOR { each  edge in $|V| \times |V| \textbackslash E$}
+				\STATE Append to $EddgesToAdd$ the value $D=|Z_u - V_u|$.
+			\ENDFOR
+			\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
+			\STATE Add the first edge of $EdgesToAdd$ to the graph
+		\ENDFOR
+		\STATE Return the set of edges that were selected.
+	\end{algorithmic}
+	
+\end{algorithm}
+\clearpage
 
-\subsection{Heuristics that do not consider network changes}
+
+
+
+\section{Heuristics that do not recompute the opinion vector}
 \label{sec:netChangesConsidered}
 \vspace{10pt}
 
-The running time of a greedy algorithm is determined by the ease of maintaining an ordering of the candidate choices in each round. 
-\\
-\\
-This is accomplished via sorting the candidates. In our case each choice is an edge. 
-\\
-\\
-After an addition the network changes. Computing the $\pi(z)$ is an expensive operation due to the computation of the inverse matrix.
-\\
-\\
 Bellow we explore some heuristics that do not consider the network changes and thus can run more easily in larger datasets.
+Computing the $\pi(z)$ is an expensive operation due to the computation of the inverse matrix. 
+\\
+\\
+We compute the opinion vector only once and we sort the edges according to the decrease. Then we select the top-K edges.
 \\
 \\
 At first we can see a variation of the $Greedy$ algorithm. Its implementation is similar to the $Greedy$ but without recomputing the  $\pi(z)$ at each round.
@@ -142,168 +149,91 @@ At first we can see a variation of the $Greedy$ algorithm. Its implementation is
 \\
 \begin{algorithm}[H]
 		
-			\caption{Greedy Batch}
+			\caption{GreedyBatch}
 			\label{alg:greedyBatch}
 			
 			\begin{flushleft}
-        				\textbf{INPUTS:} Graph $G(V, E)$; $k$ number of edges to add;
-				\vspace{6pt}
-        				\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
+        				\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add;
+				\vspace{6pt}\\
+        				\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
 			\end{flushleft}
 			
 			\begin{algorithmic}[1]
 				\STATE $EdgesToAdd \leftarrow Empty List;$
 				\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-					\STATE Compute $\pi(z)$, the decrease if the edge $(u,v)$ is added;
-					\STATE Append edge $(u,v)$ to EdgesToAdd;
+					\STATE Compute the decrease of $\pi(z)$ if edge is added to $G$ and add it to $edgesToAdd$
 				\ENDFOR
-				\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by the decrease of $\pi(z)$ by decreasing order;
-				\STATE Return top $k$ from $Sorted$
+				\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
+				\STATE Select the $k$ edges with the largest decrease and add it to $G$.
+				\STATE Return the set of edges that were selected.
+
 			\end{algorithmic}
 			
 		\end{algorithm}
 
 \vspace{10pt}
 \clearpage
-\noindent We continue by using a variation of the $FirstTopGreedy$.  The $FirstTopGreedyBatch$ heuristic.
+
+
+\noindent We continue by using a variation of the $FirstTopGreedy$.The $FirstTopGreedyBatch$ heuristic.
 \\
 \\
-This heuristic does not take into consideration changes in the structure of the graph.
+$FirsTopGreedy$  works exactly like $GreedyBatch$ with the difference that the opinion vector is not recomputed. Let $X$ be the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes that their expressed opinions $\epsilon$ (0,1] sorted by decreasing order. 
 \\
 \\
-$FirsTopGreedy$  works exactly like $GreedyBatch$ with the difference that only the first $K \times K$ items of each set of nodes will be used. The heuristic is omitted due to the fact that is similar with the previous.
-\\
-\\
-Last we consider two heuristics that choose edges based on the value of the expressed opinion of their nodes.
-\\
-\\
-We can use the absolute distance of these values or their multiplication.
+This heuristic is taking the first $K$ nodes of $X$ and $Y$, resulting in $K \times K$ nodes.
+
+\vspace{20pt}
+\begin{algorithm}[htbp]
+	\caption{FirstTopGreedyBatch}
+	\label{alg:kgreedy}
+	
+	\begin{flushleft}
+        		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add;\\
+		$X$, the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order\\
+		$Y$, set of nodes that their expressed opinions $\epsilon$ (0,1]  sorted by decreasing order\\
+		\vspace{6pt}
+        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
+	\end{flushleft}
+	
+	\begin{algorithmic}[1]
+		\STATE $A, B \leftarrow $ first $k$ items of $X$ , $Y$
+		\STATE$Decrease \leftarrow Empty List$;
+		\FOR { each  edge in $|A| \times |B| \textbackslash E$}
+			\STATE Compute the decrease of $\pi(z)$ if edge is added to the graph;
+			\STATE Append the decrease on the $Decrease$ list;
+		\ENDFOR
+		\STATE Add the first $k$  edges from the $Decrease$ list and return them.
+	\end{algorithmic}
+	
+\end{algorithm}
+		
+\clearpage
+
+
+\noindent Finally we consider the batch version of the $ExpressedOpinion$ algorithm.\\ 
+The $ExpressedOpinionBatch$, like the previous heuristics, does not recompute the opinion vector.
 \\
 \\
 \begin{algorithm}[H]
-	\caption{Expressed opinion (Distance/Multiplication)}
-	\label{alg:expreDisMiss}
+	\caption{ExpressedOpinionBatch}
+	\label{alg:expressedBatch}
 	
 	\begin{flushleft}
         		\textbf{INPUTS:} Graph $G(V, E)$; $k$ number of edges to add\\
 		\vspace{6pt}
-        		\textbf{OUTPUT:} List of $k$ edges that minimize the polarization index $\pi(z)$
+        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization
 	\end{flushleft}
 	
 	\begin{algorithmic}[1]
 		\STATE $EdgesToAdd \leftarrow Empty List;$
 		\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-			\STATE Append to $EddgesToAdd$ the absolute distance (or multiplication) of $z$ values of the nodes of the edge;
+			\STATE Append to $EddgesToAdd$ the value $D=|Z_u - V_u|$.
 		\ENDFOR
-		
-		\IF {Absolute Distance}
-			\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by increasing order;
-		\ELSE 
-			\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
-		\ENDIF
-
-		\STATE Return top $k$ from $Sorted$
+		\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
+		\STATE Add the first $k$ edges of $EdgesToAdd$ to the graph and return them.
 	\end{algorithmic}
 	
 \end{algorithm}
 
 \clearpage
-
-
-
-\section{Including Probabilities in the heuristics}		
- \label{sec:linkpred}		
-
-Link prediction is the problem of predicting the existence of a link between two entities in a network in the future. In our setting, social media networks, the entity represents a person. For example the "People you may know" section on Facebook.		
- \\		
- \\		
- Link prediction algorithms are based on how similar two different nodes are, what features they have in common, how are they connected to the rest of the network or how many other nodes are connected to a single node. 		
- \\		
- \\		
- Link prediction is also used in recommendation systems and  information retrieval.
- \\
- \\
- By using the acceptance probabilities of a link prediction model we can define the expected decrease of the polarization. For computing these probabilities we will use graph embeddings.
-
-  \subsection{Graph Embeddings}		
- \label{sec:embeddings}		
-
-  A graph embedding is the transformation of the properties of the graphs to a vector or a set of vectors. The embedding will capture the topology of the graph and will consider the relationship between nodes. The embedding will be used to make predictions on the graph.		
- \\		
- \\		
- \noindent Machine learning on graphs is limited while vector spaces have a much bigger toolset available. In essence embeddings are compressed representations in a vector that has a smaller dimension.		
-
-  \subsection{Word2Vec}		
-
- At first we have to define Word2Vec. Suppose we have a sentence of words. For a certain task a simple neural network with a single hidden layer is created. 
- \\
- \\
- The trained neural network is not actually used for the task that we trained it on. The goal is to learn the weights of the hidden layer. These weights represent the "word vectors".		
-\clearpage
-
-\noindent After giving the neural network a word in the middle of a sentence, it is trained to look for nearby words and pick a random one. The network is going to give the probability for every word in our vocabulary of being inside a window size we set.		
- \\		
- \\		
- The output probabilities are going to relate to how likely it is to find each vocabulary word near our input word. The neural network is trained by feeding it word pairs found in training examples.		
- \\		
- \\		
- The hidden layer of this model is operating as a lookup table. The output of the hidden layer is just the “word vector” for the input word.		
- \\		
- \\		
- The word vector will then get fed to the output layer. The output layer is a softmax regression classifier. Each output neuron will produce an output between 0 and 1, and the sum of all these output values will add up to 1.		
- \\		
- \\		
- If two different words have very similar context then our model needs to output very similar results for these two words.		
-
- 
-  \subsection{DeepWalk}		
-
-  After defining Word2Vec we can use its logic in graphs. DeepWal k uses random walks to produce embeddings. The random walk starts in a selected node and then moves to a random neighbour from a current node with certain number of steps. The method consists of three steps.		
-
-   \begin{itemize}		
-   \item Sampling: A graph is sampled with random walks. Authors show that it is sufficient to perform from 32 to 64 random walks from each node. 		
-
- 
-    \item Training skip-gram: Random walks are comparable to sentences in word2vec approach. The skip-gram network accepts a node from the random walk a vector as an input and maximizes the probability for predicting neighbour nodes. 		
-
-    \item Computing embeddings: Embedding is the output of a hidden layer of the network. The DeepWalk computes embedding for each node in the graph.		
-
-    \end{itemize}		
-
-  \noindent  DeepWalk method performs the walks randomly and that means that embeddings do not preserve the local neighbourhood. Node2vec approach fixes that \cite{bperozzi}.
-
-  \subsection{Node2Vec}		
-
-  Node2vec is a modification of DeepWalk with a small difference in  the implementation of random walks. There are two parameters introduced, $P$ and $Q$. 		
- \\		
- \\		
- Parameter $Q$ defines how probable is that the random walk will explore the undiscovered part of the graph, while parameter $P$ defines how probable is that the random walk will return to the previous node and retain a locality\cite{Leskovec}.
-
-  \subsection{Methodology}		
- \label{sec:methodology}		
-
-Our objective is to predict whether there would be a link between 2 unconnected nodes. At first we will find the pairs of nodes that don't have a link between them.		
- \\		
- \\		
- The next step is to label these pairs. This is needed for preparing a training dataset. 
-\\
-\\
-The edges that are present in the graph will be labeled as $1$ (positive samples) and the unconnected node pairs as $0$ (negative samples).		
- \\		
- \\		
- After the labelling we will use the node2vec algorithm to extract node features from the graph. For computing the features of an edge we can add up the features of the nodes of that pair. These features will be trained with a logistic regression model.
- \\
- \\
- After the model is trained we will obtain a dictionary containing the probability of an edge being accepted. The expected decrease can now be defined.
- 
- \begin{equation} 
-	 E[\pi(z)] = P(u,v) * Val
-\end{equation}
-
-\vspace{20pt}
-
-\noindent Where $P(u,v)$ is the probabilty of $u$ and $v$ forming an edge and $Val$ is a value that can be either the polarization decrease, the absolute distance of the expressed opinions of nodes $u$ and $v$ or the multiplication of their values.
- 		
-
-  \clearpage
-

@@ -3,51 +3,26 @@ import networkx as nx
 import pandas as pd
 import numpy as np
 
-colourWheel = ['#329932',
-               '#ff6961',
-               'b',
-               '#6a3d9a',
-               '#fb9a99',
-               '#e31a1c',
-               '#fdbf6f',
-               '#ff7f00',
-               '#cab2d6',
-               '#6a3d9a',
-               '#ffff99',
-               '#b15928',
-               '#67001f',
-               '#b2182b',
-               '#d6604d',
-               '#f4a582',
-               '#fddbc7',
-               '#f7f7f7',
-               '#d1e5f0',
-               '#92c5de',
-               '#4393c3',
-               '#2166ac',
-               '#053061']
-
-dashesStyles = [[3, 1],
-                [1000, 1],
-                [2, 1, 10, 1],
-                [4, 1, 1, 1, 1, 1]]
 alphaVal = 0.8
 linethick = 3.5
 
 
-def get_color(i):
+def get_dash_markers_colors(i):
     if i == 'Greedy':
-        return '#d11141'
+        return [3, 1], 8, 'green'
     elif i == 'GBatch':
-        return '#00b159'
+        return [1000, 1], "^", '#ff6961'
     elif i == 'FTGreedy':
-        return '#ffc425'
+        return [2, 1, 10, 1], 9, 'blue'
     elif i == 'FTGreedyBatch':
-        return '#f37735'
-    elif i == 'BExpressed Distance':
-        return '#00aedb'
+        return [4, 1, 1, 1, 1, 1], 8, 'black'
+    elif i == 'Expressed Distance' or i == 'BExpressed Distance':
+        return [3, 1], 10, 'red'
     elif i == 'Random different':
-        return '#6a3d9a'
+        return [1000, 1], 'None', 'orange'
+    elif i == 'Random':
+        return [1000, 1], 'None', 'pink'
+
 
 def visualize_edge(g, edge_list, title, img_name, dataset, mode):
     """
@@ -121,19 +96,22 @@ def visualize_edge(g, edge_list, title, img_name, dataset, mode):
 
 
 def vis_graphs_heuristics(x_axis, list_of_axes, list_of_labels, title, x_label, y_label, mode):
-    # x_axis = [str(x) for x in x_axis]
 
+    # x_axis = [str(x) for x in x_axis]
+    print(list_of_labels)
     for i, y_axis in enumerate(list_of_axes):
+
+        dash, marker, color = get_dash_markers_colors(list_of_labels[i])
+
         plt.plot(x_axis,
                  y_axis,
-                 color=colourWheel[i % len(colourWheel)],
+                 color=color,
                  linestyle='-',
-                 dashes=dashesStyles[i % len(dashesStyles)],
-                 lw=linethick,
+                 dashes=dash,
+                 marker=marker,
                  label=list_of_labels[i],
-                 alpha=alphaVal)
-
-        # plt.plot(x_axis, y_axis, label=list_of_labels[i], color=color, linestyle=ls)
+                 alpha=alphaVal,
+                 markersize=10)
 
     # Add legend
     # Put a legend below current axis
@@ -200,8 +178,13 @@ def vis_graphs_heuristics_bar(x_axis, list_of_axes, list_of_labels, title, x_lab
     # don't reduce the polarization a lot
     # adjust for each dataset by hand
 
+    #karate books
+    #set_min = minimum_value-0.02
+    #set_max = maximum_value + 0.03
+
     set_min = minimum_value-0.002
-    set_max = maximum_value + 0.0005
+    set_max = maximum_value + 0.003
+
     ax1.set(ylim=[set_min, set_max])
 
     plt.title(title, fontsize=16, fontweight='bold')

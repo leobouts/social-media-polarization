@@ -58,8 +58,6 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
 
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=True)
 
-    #print(sorted_edges)
-
     # consider only edges that do not already exist
     for edge in sorted_edges:
 
@@ -74,5 +72,6 @@ def greedy_batch(k, graph_in, expected_p_z_mode, verbose, probabilities_dictiona
         polarizations.append(add_edges_and_count_polarization(edges_to_add_list[:k_edge], graph_in))
 
     max_edges_added = [edge[0] for edge in sorted_edges[:max(k)]]
+    max_edges_with_info = sorted_edges[:max(k)]
 
-    return max_edges_added, polarizations, [elapsed] * len(k)
+    return max_edges_added, polarizations, [elapsed] * len(k), max_edges_with_info
