@@ -19,8 +19,13 @@ The edges that are present in the graph will be labeled as $1$ (positive samples
 Each algorithm computes a value $Val(u,v)$ for each candidate edge, and selects greedily edges with the best value. We will replace this value in the algorithm by $P(u,v)*Val(u,v)$. The quantity $Val(u,v)$ can be either the polarization decrease or the absolute distance of the expressed opinions of nodes $u$ and $v$. In the case that $Val(u,v)$ is the polarization decrease the product $P(u,v)*Val(u,v)$ corresponds to the expected polarization decrease.
 \\
 \\
-In addition we will measure the median probability of the edges selected by the heuristics and compare it to the ones that were edited to include acceptance probabilities. We expect that the edited heuristics will have a higher median value.
+In addition at ~\ref{sec:median} we measure the median probability of the edges selected by the heuristics and compare it to the ones that were edited to include acceptance probabilities. We expect that the edited heuristics will have a higher median value.
+\\
+\\
+Finally in ~\ref{sec:all} we display the results of the heuristics and edited heuristics together including a new algorithm called $pReduction$ that chooses an edge if it among the edges with the highest acceptance probabilities.
+
 \clearpage
+
 
 \section{Experiments with the edited heuristics}		
 \label{sec:experimentsProbs}
