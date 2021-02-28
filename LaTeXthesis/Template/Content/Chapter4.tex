@@ -1,35 +1,23 @@
-\chapter{Heuristics}
-\label{ch:heuristics}
-
-\section{Introduction}
-\label{sec:heurIntro}
-
-In this section we  consider a greedy algorithm and some heuristics for minimising $\pi(z)$. All the heuristics use the intuition that connecting the most extreme opinions of each community draw both of them into neutrality. 
-\\
-\\
-We can classify these algorithms based on how they perceive the network when exploring new edge additions. This is derived from the fact that when adding an edge to the network the structure of the graph is changes. 
-\\
-\\
-This leads to a different $Z$ vector. The heuristics can choose to recompute the $Z$ vector or not.
-\\
-\\
-\clearpage
+\chapter{Algorithms}
+\label{ch:algorithms}
 
 
-\section{Heuristics that recompute the opinion vector}
-\label{sec:netChanges}
+In this section we  consider a greedy algorithm and some heuristics for reducing $\pi(z)$. All the heuristics use the intuition that connecting the most extreme opinions of each community can result in great reduction. 
+When a new edge is introduced, the graph structure changes. This leads to changes in the opinion vector $z$.
+The recomputation of the $z$ vector is expensive on time due to the computation of the inverse matrix in the $(L+I)^{-1}S$ formula.
+This is why we consider two types of algorithms, those that recompute the $z$ vectors and those that do not.
+
+\section{Algorithms that recompute the opinion vector}
+\label{sec:recomputeAlgos}
 
 We begin with a Greedy algorithm. Greedy algorithms work in stages and during each stage a choice is made which is locally optimal.
 The Greedy algorithm computes the decrease in $\pi(z)$ and selects the edge with the largest decrease every time.
 \\
 \\
 After finding the best edge, the $Greedy$ algorithm adds this edge to the graph. This result in a change of the network structure.
-Then a recomputation of the $z$ vector is happening and  the procedure is repeated.
-\\
-\\
-To reduce running time, in our implementation, we consider only addition of different opinions. This way the heuristics do not have to traverse all the existing edge combinations
-\\
-\\
+Then a recomputation of the $z$ vector is happening and  the procedure is repeated.To reduce running times, we  use repeated averaging instead of computing the inverse matrix and limit the accuracy on the convergence.
+
+\vspace{30pt}
     		\begin{algorithm}[H]
 		
 			\caption{Greedy}
@@ -52,17 +40,12 @@ To reduce running time, in our implementation, we consider only addition of diff
 				\STATE Return the set of edges that were selected.
 			\end{algorithmic}
 		\end{algorithm}
+\vspace{30pt}
 
-\clearpage
-
-\noindent A second heuristic we consider is the $FirstTopGreedy$. Let $X$ be the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes that their expressed opinions $\epsilon$ (0,1] sorted by decreasing order. 
+\noindent A second heuristic we consider is the $FirstTopGreedy$. Let $X$ be the set of nodes of expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes of expressed opinions $\epsilon$ (0,1] sorted by decreasing order. This heuristic use the first $k$ nodes of $X$ and $Y$, resulting in  a $k \times k$ smaller search space. This allows the $FirstTopGreedy$ to reduce the amount of time spend searching for the best edge to add. \noindent 
 \\
 \\
-This heuristic is taking the first $K$ nodes of $X$ and $Y$, resulting in $K \times K$ nodes.
-\\
-\\
-A greedy search is performed in this smaller space. This allows the $FirstTopGreedy$ to reduce the amount of time spend searching for the best edge to add.
-\\
+Last we consider two heuristics that choose edges based on the value of the expressed opinion of their nodes. The Distance of their opinions can be defined as $D=|z_u - z_v|$. This heuristic computes the distance between every edge candidate and then chooses to add the edge with the maximum distance.
 
 \begin{algorithm}[htbp]
 	\caption{FirstTopGreedy}
@@ -95,14 +78,7 @@ A greedy search is performed in this smaller space. This allows the $FirstTopGre
 		
 \clearpage
 
-\noindent Last we consider two heuristics that choose edges based on the value of the expressed opinion of their nodes. 
-Let $u$ and $v$ two nodes that we want to connect and $Z_u$ and $V_u$ their expressed opinions respectively. 
-The Distance of their opinions can be defined as $D=|Z_u - V_u|$.
-\\
-\\
-This heuristic computes the distance between every edge candidate and then chooses to add the edge with the maximum distance.
-\\
-\\
+
 \begin{algorithm}[H]
 	\caption{ExpressedΟpinion}
 	\label{alg:expressedOpinion}
@@ -119,7 +95,7 @@ This heuristic computes the distance between every edge candidate and then choos
 			\STATE $EdgesToAdd \leftarrow Empty List;$
 			\STATE Compute the $z$ values.
 			\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-				\STATE Append to $EddgesToAdd$ the value $D=|Z_u - V_u|$.
+				\STATE Append to $EddgesToAdd$ the value $D=|z_u - z_v|$.
 			\ENDFOR
 			\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
 			\STATE Add the first edge of $EdgesToAdd$ to the graph
@@ -128,25 +104,16 @@ This heuristic computes the distance between every edge candidate and then choos
 	\end{algorithmic}
 	
 \end{algorithm}
-\clearpage
 
-
-
-
-\section{Heuristics that do not recompute the opinion vector}
-\label{sec:netChangesConsidered}
-\vspace{10pt}
+\section{Algorithms that do not recompute the opinion vector}
+\label{sec:norecomputeAlgo}
 
 Bellow we explore some heuristics that do not consider the network changes and thus can run more easily in larger datasets.
-Computing the $\pi(z)$ is an expensive operation due to the computation of the inverse matrix. 
+Computing the $\pi(z)$ is an expensive operation due to the computation of the inverse matrix. We compute the opinion vector only once and we sort the edges according to the decrease. Then we select the top $k$ edges. At first we can see a variation of the $Greedy$ algorithm. Its implementation is similar to the $Greedy$ but without recomputing the  $\pi(z)$ at each round. 
 \\
-\\
-We compute the opinion vector only once and we sort the edges according to the decrease. Then we select the top-K edges.
-\\
-\\
-At first we can see a variation of the $Greedy$ algorithm. Its implementation is similar to the $Greedy$ but without recomputing the  $\pi(z)$ at each round.
-\\
-\\
+\\We continue by using a variation of the $FirstTopGreedy$.The $FirstTopGreedyBatch$ heuristic. $FirsTopGreedy$  works exactly like $GreedyBatch$ with the difference that the opinion vector is not recomputed. Let $X$ be the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes that their expressed opinions $\epsilon$ (0,1] sorted by decreasing order. This heuristic is taking the first $k$ nodes of $X$ and $Y$, resulting in $k \times k$ nodes.
+\clearpage
+
 \begin{algorithm}[H]
 		
 			\caption{GreedyBatch}
@@ -171,20 +138,8 @@ At first we can see a variation of the $Greedy$ algorithm. Its implementation is
 			
 		\end{algorithm}
 
-\vspace{10pt}
-\clearpage
 
-
-\noindent We continue by using a variation of the $FirstTopGreedy$.The $FirstTopGreedyBatch$ heuristic.
-\\
-\\
-$FirsTopGreedy$  works exactly like $GreedyBatch$ with the difference that the opinion vector is not recomputed. Let $X$ be the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes that their expressed opinions $\epsilon$ (0,1] sorted by decreasing order. 
-\\
-\\
-This heuristic is taking the first $K$ nodes of $X$ and $Y$, resulting in $K \times K$ nodes.
-
-\vspace{20pt}
-\begin{algorithm}[htbp]
+\begin{algorithm}[H]
 	\caption{FirstTopGreedyBatch}
 	\label{alg:kgreedy}
 	
@@ -207,33 +162,5 @@ This heuristic is taking the first $K$ nodes of $X$ and $Y$, resulting in $K \ti
 	\end{algorithmic}
 	
 \end{algorithm}
-		
 \clearpage
 
-
-\noindent Finally we consider the batch version of the $ExpressedOpinion$ algorithm.\\ 
-The $ExpressedOpinionBatch$, like the previous heuristics, does not recompute the opinion vector.
-\\
-\\
-\begin{algorithm}[H]
-	\caption{ExpressedOpinionBatch}
-	\label{alg:expressedBatch}
-	
-	\begin{flushleft}
-        		\textbf{INPUTS:} Graph $G(V, E)$; $k$ number of edges to add\\
-		\vspace{6pt}
-        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization
-	\end{flushleft}
-	
-	\begin{algorithmic}[1]
-		\STATE $EdgesToAdd \leftarrow Empty List;$
-		\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-			\STATE Append to $EddgesToAdd$ the value $D=|Z_u - V_u|$.
-		\ENDFOR
-		\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
-		\STATE Add the first $k$ edges of $EdgesToAdd$ to the graph and return them.
-	\end{algorithmic}
-	
-\end{algorithm}
-
-\clearpage

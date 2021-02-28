@@ -6,74 +6,41 @@ We will now present some work that is related to the work in this thesis.
 \section{Opinion models}
 \label{sec:opinionsModels}
 
-How people form their opinions has long been the subject of research in the field of social sciences. Models of opinion formation and dynamics are being used  by computer scientists to explore and quantify polarization, conflict and disagreement on social networks.
-\\
-\\
-Opinion models study these quantities and how they change by manipulating the opinions and by changing the network structure of a set of nodes of the social graph.
-
+How people form their opinions has long been the subject of research in the field of social sciences. Models of opinion formation and dynamics are being used  by computer scientists to explore and quantify polarization, conflict and disagreement on social networks. Opinion models study these quantities and how they change by manipulating the opinions and by changing the network structure of a set of nodes of the social graph. Many of these models are based on the influence that goes with social interaction and the Friedking-Johnsen model is a very popular one.
 \clearpage
-\noindent Many of these models are based on the influence that goes with social interaction and the Friedking-Johnsen model is a very popular one.
 
 \section{Measuring the Polarization of a Network}
 \label{sec:Submission}
 
-In this paper the polarization index is defined. The direct link between the Friedkin-Johnsen model and random walks is also explored. 
+In this paper the polarization index is defined\cite{tsapMatakosTerzi}. The direct link between the Friedkin-Johnsen model and random walks is also explored. Two problems are introduced, the $ModerateInternal$ and the $ModerateExpressed$. When moderating opinions a small set of nodes $T_s$ is being set to zero, in each problem, as their names suggests, internal or external opinions are set to zero. Two algorithms are proposed for the $ModerateInternal problem$. 
 \\
 \\
-Two problems are introduced, the $ModerateInternal$ and the $ModerateExpressed$. When moderating opinions a small set of nodes $T_s$ is being set to zero, in each problem, as their names suggests, internal or external opinions are set to zero. Two algorithms are proposed for the $ModerateInternal problem$. 
-\\
-\\
-A greedy algorithm that finds the set $T_s$ of nodes iteratively according to the biggest decrease it causes and the Binary Orthogonal Matching Pursuit (BOMP) algorithm. 
-\\
-\\
-For the $ModerateExpressed$ problem the same greedy algorithm is used.
-\cite{tsapMatakosTerzi}
+A greedy algorithm that finds the set $T_s$ of nodes iteratively according to the biggest decrease it causes and the Binary Orthogonal Matching Pursuit (BOMP) algorithm. For the $ModerateExpressed$ problem the same greedy algorithm is used.
 
 
 \section{Polarization and Disagreement}
 \label{sec:polarizationDisareement}
 
-Another way of looking at polarization is by combining it with disagreement. The main problem of minimising polarization and disagreement lies in the opinions of each user and how targeted ads and recommendations influence their opinions. 
-\\
-\\
+Another way of looking at polarization is by combining it with disagreement. The main problem of minimising polarization and disagreement lies in the opinions of each user and how targeted ads and recommendations influence their opinions.
 Considering the disagreement in combination with polarization a network can choose how to respond in different situations. Their recommendation system could choose between keeping the disagreement low or exposing users to radically different opinions. 
-\\
-\\
 There are situations that this optimisation can reduce the overall polarization-disagreement in the network by recommending edges in different parts of the network than the ones that agree with the human confirmation bias. 
-
-\clearpage
-
-\noindent In this paper the disagreement of an edge is defined as the squared difference between the opinions of this edge. The total disagreement is defined as the sum of the disagreements and 
-polarization is measured as a deviation from the average with the standard definition of variance.
 \\
 \\
-The polarization-disagreement index is defined as follows $I_{G,s} = P_{G,s} +D_{G,s}$ which is the sum of the total disagreement and polarization. The objective is to minimise this index. This objective is addressed as an optimization problem.
+\noindent In this paper the disagreement of an edge is defined as the squared difference between the opinions of this edge. The total disagreement is defined as the sum of the disagreements and polarization is measured as a deviation from the average with the standard definition of variance. The polarization-disagreement index is defined as follows $I_{G,s} = P_{G,s} +D_{G,s}$ which is the sum of the total disagreement and polarization. The objective is to minimise this index. This objective is addressed as an optimization problem.
 \cite{musco}
 
+\clearpage
 
 \section{Quantifying and Minimizing Risk of Conflict in Social Networks}
 \label{sec:riskOfConflict}
 
-This paper addresses the main problem in the Friedkin-Johnsen model metrics. The external opinion of a user, which by definition is hard to measure, combined with the internal opinion which is impossible to be measured. 
+This paper addresses the main problem in the Friedkin-Johnsen model metrics. The external opinion of a user, which by definition is hard to measure, combined with the internal opinion which is impossible to be measured. Another problem occurs in the editing of the social graph. When the social graph is edited its is done in a way that minimises the conflict of a certain social issue. This can lead to an increased conflict of one or more social issues inside the network. Chen, Lijffijt and De Bie still use the Friedkin-Johnsen model to evaluate the network conflict but the quantifications depend only on the network topology in a way that the conflict can be reduced over all issues. 
 \\
 \\
-Another problem occurs in the editing of the social graph. When the social graph is edited its is done in a way that minimises the conflict of a certain social issue. This can lead to an increased conflict of one or more social issues inside the network.
-\\
-\\
-Chen, Lijffijt and De Bie still use the Friedkin-Johnsen model to evaluate the network conflict but the quantifications depend only on the network topology in a way that the conflict can be reduced over all issues. 
-\\
-\\
-Worst-case(WCR) conflict risk and average-case conflict risk(ACR) are defined to represent two separate problems, how the network can be minimised in the worst case or in the average case scenario by altering the social graph. 
-\\
-\\
- These problems consider the measures of internal conflict, external conflict, and controversy. Internal conflict ($ic$) measures the difference of the internal and the expressed opinion of a user. $ic = \sum_i{(z_i-s_i)^2}.$
- \clearpage
- 
-\noindent These measures are not independent. Reducing one of them results in the increase of another. This leads to the conservation law of conflict.
+Worst-case(WCR) conflict risk and average-case conflict risk(ACR) are defined to represent two separate problems, how the network can be minimised in the worst case or in the average case scenario by altering the social graph. These problems consider the measures of internal conflict, external conflict, and controversy. Internal conflict ($ic$) measures the difference of the internal and the expressed opinion of a user. $ic = \sum_i{(z_i-s_i)^2}.$
  \\
  \\
-There are two methods of minimising the conflict of the network for each of the ACR and WCR problems. One is a gradient method that  considers deleting and adding edges simultaneously and the other is a descent method that suggests deleting or adding a single edge. \cite{chen}
-
+\noindent These measures are not independent. Reducing one of them results in the increase of another. This leads to the conservation law of conflict. There are two methods of minimising the conflict of the network for each of the ACR and WCR problems. One is a gradient method that  considers deleting and adding edges simultaneously and the other is a descent method that suggests deleting or adding a single edge. \cite{chen}
 
 \section{Reducing Controversy by Connecting Opposing Views}
 \label{sec:reducing}
@@ -88,7 +55,12 @@ Garimella et al. rely on a measure of controversy that is shown to work reliably
   \item The last step, is computing the controversy measure through a random-walk, thus creating the controversy score $RWC$. This score is defined as the difference of the probability that a random walk starting on one side of the partition will stay on the same side and the probability that the random walk will cross to the other side. A personalised PageRank is used where the restart probabilities are set to a random vertex of each side.
 \end{enumerate}
 \vspace{4pt}
-Garimella et al. states that real graphs often have a star-like structure. Small number of highly popular vertices have a lot of incoming edges. These nodes can be seen as thought leaders and their followers. It is shown that connecting the high degree vertices minimises the $RWC$ score.
+Garimella et al. states that real graphs often have a star-like structure. Small number of highly popular vertices have a lot of incoming edges. These nodes can be seen as thought leaders and their followers. It is shown that connecting the high degree vertices minimises the $RWC$ score. Probabilities are also incorporated in the sense that a new edge addition may be not accepted by the user. \cite{garimella}
+
+\section{Graph Embeddings and Node2Vec}		
+\label{sec:embeddings}		
+
+A graph embedding \cite{Leskovec} is the transformation of the properties of the graphs to a vector or a set of vectors. The embedding will capture the topology of the graph and will consider the relationship between nodes. The embedding will be used to make predictions on the graph. Machine learning on graphs is limited while vector spaces have a much bigger toolset available. In essence embeddings are compressed representations in a vector that has a smaller dimension.		
 \\
 \\
-Probabilities are also incorporated in the sense that a new edge addition may be not accepted by the user. \cite{garimella}
+Node2vec uses random walks to compute acceptance probabilities. There are two parameters introduced, $P$ and $Q$. Parameter $Q$ defines how probable is that the random walk will explore the undiscovered part of the graph, while parameter $P$ defines how probable is that the random walk will return to the previous node and retain a locality.

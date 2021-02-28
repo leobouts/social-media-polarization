@@ -53,8 +53,37 @@ In this section we consider datasets that are separated in two opposing communit
 \vspace{20pt}
 \clearpage
 
-\section{A Visualisation of Edge Additions}
+\section{Experiments}
+\label{sec:experim}
+
+All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE. We can only experiment with the $Karate$ and the $Books$ dataset on all the heuristics. The $Greedy$ algorithm cannot run on the rest of the datasets because they contain thousands of nodes. The $Greedy$ algorithm needs to consider changes in the network structure so it is impossible to compute the polarization so many times.
+\\
+\\ 
+The $FirstTopGreedy$ and the $Expressed Opinion$ can run in all datasets and us with a fairly good decrease in polarization compared to the batch algorithms. This decrease can be greater if we consider edge additions that are proportional to the size of the dataset. Greater number of edges would make $FirstTopGreedy$ nonrunnable. The $Expressed Opinion$ can run in our larger datasets with big number of additions.
+\clearpage
+
+\begin{figure}[!htbp]
+	\begin{center}
+	\advance\leftskip-1.3cm
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=1.2\textwidth]{Figures/heuristics}
+	\caption{Comparison of the heuristics between datasets}
+	\end{center}
+	\label{heuristics_small}
+\end{figure}
+\clearpage
+
+\noindent We start by applying the heuristics described at~\ref{sec:algorithms} in these 6 datasets. The algorithms perform as expected. The greedy ones have better results but are expensive in time.We can not run the $Greedy$ algorithms in larger datasets due to time limitations.
+
+\begin{itemize}
+  \item The Expressed Opinion heuristic that is based on the distance of the opinions performs very well and close to $Greedy$ and are cheap on time.
+  \item Batch algorithms perform very poorly, even worse than Random. When adding a new edge the Batch algorithms do not recompute the $Z$ vector. In later edge selections they have a false view of the opinions of the network. For example in a batch version of the $ExpressedOpinion$ the nodes that have the most extreme opinions of each side may reused even if their value is changed after an addition and are no longer the ones with the most extreme values.
+ \end{itemize}
+ 
+ \section{A Visualisation of Edge Additions}
 \label{sec:vis}
+In figure ~\ref{fig:top-10-karate} we can see the 10 edges proposed by the $Greedy$ algorithm. Yellow nodes represent expressed opinions $\epsilon [-1,0)$, green nodes represent expressed opinions $\epsilon (0,1]$ and size shows how central a node is. The green edges are the additions proposed by the algorithm.
+\\
 
 \begin{figure}[!htbp]
 	\centering
@@ -64,44 +93,3 @@ In this section we consider datasets that are separated in two opposing communit
 	\label{fig:top-10-karate}
 \end{figure}
 
-\section{Experiments}
-\label{sec:experim}
-
-All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE. We can only experiment with the $Karate$ and the $Books$ dataset on all the heuristics. The $Greedy$ algorithm cannot run on the rest of the datasets because they contain thousands of nodes. The $Greedy$ algorithm needs to consider changes in the network structure so it is impossible to compute the polarization so many times.
-\\
-\\ 
-The same applies for the $GreedyBatch$ algorithm. Although the $GreedyBatch$ algorithm can run on the $beefban$ dataset that contains $799$ nodes it would take a lot of time even for the $polblogs$ dataset that has $1490$ nodes.
-\\
-\\
-The $FirstTopGreedy$ and the $Expressed Opinion$ can run in all datasets and us with a fairly good decrease in polarization compared to the batch algorithms. This decrease can be greater if we consider edge additions that are proportional to the size of the dataset. Greater number of edges would make $FirstTopGreedy$ nonrunnable. The $Expressed Opinion$ can run in our larger datasets with big number of additions.
-\clearpage
-
-
-\subsection{Polarization decrease}
-
-
-\begin{figure}[!htbp]
-	\begin{center}
-	\advance\leftskip-1.3cm
-	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=1.2\textwidth]{Figures/heuristics_small}
-	\caption{Comparison of the heuristics between datasets}
-	\end{center}
-	\label{heuristics_small}
-\end{figure}
-\clearpage
-
-\noindent We start by applying the heuristics described at~\ref{sec:heurIntro} in these 6 datasets. The algorithms perform as expected. The greedy ones have better results but are expensive in time.We can not run the $Greedy$ algorithms in larger datasets due to time limitations.
-
-\begin{itemize}
-  \item The Expressed Opinion heuristic that is based on the distance of the opinions performs very well and close to $Greedy$ and are cheap on time.
-  \item Batch algorithms perform very poorly, even worse than Random. When adding a new edge the Batch algorithms do not recompute the $Z$ vector. In later edge selections they have a false view of the opinions of the network. For example in the $ExpressedOpinionBatch$ the nodes that have the most extreme opinions of each side may reused even if their value is changed after an addition and are no longer the ones with the most extreme values.
- \end{itemize}
-\clearpage
-
-
-\subsection{Expected polarization decrease}
-\label{probexperiment}
-
-
-\clearpage

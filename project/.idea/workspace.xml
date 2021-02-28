@@ -21,120 +21,104 @@
   <component name="ChangeListManager">
     <list default="true" id="944d20ec-e3dd-4137-8dcf-919e7e1a83ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter1.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter2.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter3.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter3.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter4.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter5.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter5.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter6.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter6.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/embeddings_small.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/heuristics_big.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/heuristics_small.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/karate_decrease.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/karate_increase.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/FrontMatter/Abstract.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/FrontMatter/Abstract.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/cseuoi-thesis.cls" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/cseuoi-thesis.cls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/beefban/beefban Polarization Decrease.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/books/books Polarization Decrease.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/karate/karate Polarization Decrease.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Polarization Decrease.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Fri Jan 29 03:27:37 2021 polblogs experiment embeddings small/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Fri Jan 29 03:27:37 2021 polblogs experiment embeddings small/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Fri Jan 29 03:27:37 2021 polblogs experiment embeddings small/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Fri Jan 29 03:27:37 2021 polblogs experiment embeddings small/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Fri Jan 29 03:27:37 2021 polblogs experiment embeddings small/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 00:24:38 2021 graphs for finals expressed re estimate/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 00:24:38 2021 graphs for finals expressed re estimate/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 00:24:38 2021 graphs for finals expressed re estimate/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 00:24:38 2021 graphs for finals expressed re estimate/polblogs_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 00:24:38 2021 graphs for finals expressed re estimate/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 00:24:38 2021 graphs for finals expressed re estimate/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 00:24:38 2021 graphs for finals expressed re estimate/polblogs_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 18.26.21 2021 graphs for finals expressed re estimate/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 18.26.21 2021 graphs for finals expressed re estimate/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 18.26.21 2021 graphs for finals expressed re estimate/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 18.26.21 2021 graphs for finals expressed re estimate/polblogs_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 18.26.21 2021 graphs for finals expressed re estimate/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 18.26.21 2021 graphs for finals expressed re estimate/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 18.26.21 2021 graphs for finals expressed re estimate/polblogs_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 20.35.04 2021 graphs for finals expressed batch/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 20.35.04 2021 graphs for finals expressed batch/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 20.35.04 2021 graphs for finals expressed batch/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 20.35.04 2021 graphs for finals expressed batch/polblogs_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 20.35.04 2021 graphs for finals expressed batch/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 20.35.04 2021 graphs for finals expressed batch/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 20 20.35.04 2021 graphs for finals expressed batch/polblogs_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 09:56:01 2021 experiments for final plots 2/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 09:56:01 2021 experiments for final plots 2/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 09:56:01 2021 experiments for final plots 2/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 09:56:01 2021 experiments for final plots 2/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 09:56:01 2021 experiments for final plots 2/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 23:21:11 2021 polblogs experiment big/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 23:21:11 2021 polblogs experiment big/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 23:21:11 2021 polblogs experiment big/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 23:21:11 2021 polblogs experiment big/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Jan 16 23:21:11 2021 polblogs experiment big/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Feb 21 01:32:09 2021 graphs for finals after correcting FT,expressed re-estimate/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Feb 21 01:32:09 2021 graphs for finals after correcting FT,expressed re-estimate/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Feb 21 01:32:09 2021 graphs for finals after correcting FT,expressed re-estimate/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Feb 21 01:32:09 2021 graphs for finals after correcting FT,expressed re-estimate/polblogs_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Feb 21 01:32:09 2021 graphs for finals after correcting FT,expressed re-estimate/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Feb 21 01:32:09 2021 graphs for finals after correcting FT,expressed re-estimate/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Feb 21 01:32:09 2021 graphs for finals after correcting FT,expressed re-estimate/polblogs_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Jan 17 01:54:52 2021 polblogs experiment big/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Jan 17 01:54:52 2021 polblogs experiment big/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Jan 17 01:54:52 2021 polblogs experiment big/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Jan 17 01:54:52 2021 polblogs experiment big/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sun Jan 17 01:54:52 2021 polblogs experiment big/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Thu Feb 18 00:16:25 2021 Experiment after fixes/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Thu Feb 18 00:16:25 2021 Experiment after fixes/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Thu Feb 18 00:16:25 2021 Experiment after fixes/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Thu Feb 18 00:16:25 2021 Experiment after fixes/polblogs_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Thu Feb 18 00:16:25 2021 Experiment after fixes/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Thu Feb 18 00:16:25 2021 Experiment after fixes/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Thu Feb 18 00:16:25 2021 Experiment after fixes/polblogs_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Tue Feb  2 20:46:26 2021 polblogs experiment embeddings after equal edges/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Tue Feb  2 20:46:26 2021 polblogs experiment embeddings after equal edges/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Tue Feb  2 20:46:26 2021 polblogs experiment embeddings after equal edges/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Tue Feb  2 20:46:26 2021 polblogs experiment embeddings after equal edges/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Tue Feb  2 20:46:26 2021 polblogs experiment embeddings after equal edges/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Tue Feb  2 20:46:26 2021 polblogs experiment embeddings after equal edges/polblogs_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Feb 17 22:34:55 2021 small test/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Feb 17 22:34:55 2021 small test/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Feb 17 22:34:55 2021 small test/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Feb 17 22:34:55 2021 small test/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Feb 17 22:34:55 2021 small test/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Feb 17 22:34:55 2021 small test/polblogs_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:49:02 2021 b_centralities polblogs/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:49:02 2021 b_centralities polblogs/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:49:02 2021 b_centralities polblogs/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:49:02 2021 b_centralities polblogs/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:49:02 2021 b_centralities polblogs/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:53:09 2021 b_centralities polblogs/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:53:09 2021 b_centralities polblogs/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:53:09 2021 b_centralities polblogs/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:53:09 2021 b_centralities polblogs/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:53:09 2021 b_centralities polblogs/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:57:10 2021 b_centralities polblogs/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:57:10 2021 b_centralities polblogs/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:57:10 2021 b_centralities polblogs/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:57:10 2021 b_centralities polblogs/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 13 23:57:10 2021 b_centralities polblogs/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 27 02:32:37 2021 polblogs experiment big/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 27 02:32:37 2021 polblogs experiment big/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 27 02:32:37 2021 polblogs experiment big/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 27 02:32:37 2021 polblogs experiment big/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Wed Jan 27 02:32:37 2021 polblogs experiment big/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/experiment_small_number/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/experiment_small_number/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/experiment_small_number/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/experiment_small_number/polblogs_labels_checked_time" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/experiment_small_number/polblogs_times_checked" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__algorithm_expressed.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithm_expressed.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__algorithm_expressed__batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithm_expressed__batch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__algorithm_first_top_greedy__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithm_first_top_greedy__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__algorithm_first_top_greedy_batch__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithm_first_top_greedy_batch__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__algorithm_greedy__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithm_greedy__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__algorithm_greedy_batch__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithm_greedy_batch__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__drivers__algorithms__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__drivers__algorithms__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__helpers_algorithm__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__helpers_algorithm__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__helpers_pickles__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__helpers_pickles__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__visualize__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__visualize__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_decreases_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_decreases_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_k_edge_number_addition_list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_labels_checked_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_labels_pol" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_probabilities_dictionary" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +237,7 @@
       <workItem from="1611593100647" duration="34488000" />
       <workItem from="1613472741526" duration="63263000" />
       <workItem from="1613929832112" duration="4521000" />
-      <workItem from="1614171260516" duration="16010000" />
+      <workItem from="1614171260516" duration="18768000" />
     </task>
     <servers />
   </component>

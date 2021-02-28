@@ -1,241 +1,35 @@
-\chapter{Including Probabilities in the heuristics}		
+\chapter{Including Probabilities in the experiments}		
  \label{sec:prob}		
 
-\section{Graph Embeddings}		
-\label{sec:embeddings}		
-
-A graph embedding is the transformation of the properties of the graphs to a vector or a set of vectors. The embedding will capture the topology of the graph and will consider the relationship between nodes. The embedding will be used to make predictions on the graph.
-\\
-\\
-Machine learning on graphs is limited while vector spaces have a much bigger toolset available. In essence embeddings are compressed representations in a vector that has a smaller dimension.		
-
-\subsection{Word2Vec}		
-
-At first we have to define Word2Vec. Suppose we have a sentence of words. For a certain task a simple neural network with a single hidden layer is created. 
-\\
-\\
-The trained neural network is not actually used for the task that we trained it on. The goal is to learn the weights of the hidden layer. These weights represent the "word vectors".		
-\\
-\\
-\noindent After giving the neural network a word in the middle of a sentence, it is trained to look for nearby words and pick a random one. The network is going to give the probability for every word in our vocabulary of being inside a window size we set.	
-\\		
-\\		
-The output probabilities are going to relate to how likely it is to find each vocabulary word near our input word. The neural network is trained by feeding it word pairs found in training examples.		
-\\
-\\
-The hidden layer of this model is operating as a lookup table. The output of the hidden layer is just the “word vector” for the input word.The word vector will then get fed to the output layer. The output layer is a softmax regression classifier. Each output neuron will produce an output between 0 and 1, and the sum of all these output values will add up to 1.
- If two different words have very similar context then our model needs to output very similar results for these two words.		
- 
-\subsection{DeepWalk}		
-
- After defining Word2Vec we can use its logic in graphs. DeepWal k uses random walks to produce embeddings. The random walk starts in a selected node and then moves to a random neighbour from a current node with certain number of steps. The method consists of three steps.		
-
-\begin{itemize}		
-\item Sampling: A graph is sampled with random walks. Authors show that it is sufficient to perform from 32 to 64 random walks from each node. 		
- 
-\item Training skip-gram: Random walks are comparable to sentences in word2vec approach. The skip-gram network accepts a node from the random walk a vector as an input and maximizes the probability for predicting neighbour nodes. 		
-
-\item Computing embeddings: Embedding is the output of a hidden layer of the network. The DeepWalk computes embedding for each node in the graph.		
-
-\end{itemize}		
-
-\noindent  DeepWalk method performs the walks randomly and that means that embeddings do not preserve the local neighbourhood. Node2vec approach fixes that \cite{bperozzi}.
-
-\subsection{Node2Vec}		
-
-Node2vec is a modification of DeepWalk with a small difference in  the implementation of random walks. There are two parameters introduced, $P$ and $Q$. 		
- \\		
- \\		
- Parameter $Q$ defines how probable is that the random walk will explore the undiscovered part of the graph, while parameter $P$ defines how probable is that the random walk will return to the previous node and retain a locality\cite{Leskovec}.
-
-\section{Methodology}		
-\label{sec:methodology}		
-
+\section{Computing edge probabilities }		
+\label{sec:computingEdge}		
+\vspace{20pt}
 Our objective is to predict whether there would be a link between 2 unconnected nodes. At first we will find the pairs of nodes that don't have a link between them.	
 The next step is to label these pairs. This is needed for preparing a training dataset. 
 The edges that are present in the graph will be labeled as $1$ (positive samples) and the unconnected node pairs as $0$ (negative samples).		
 \\
 \\
-\noindent After the labelling we will use the node2vec algorithm to extract node features from the graph. For computing the features of an edge we can add up the features of the nodes of that pair. These features will be trained with a logistic regression model.
+\\
+\noindent After the labelling we will use the node2vec algorithm to extract node features from the graph. For computing the features of an edge we can add up the features of the nodes of that pair. These features will be trained with a logistic regression model. After the model is trained we will obtain the probabilities of an edge being accepted for every edge.
+\clearpage
+
+\noindent Computing the actual expected decrease in the polarization, and selecting the $k$ best edges is a difficult problem. Our goal is to incorporate the probabilities in the operation of the algorithms. We will do this as follows. 
 \\
 \\
-\noindent After the model is trained we will obtain a dictionary containing the probability of an edge being accepted. The expected decrease can now be defined.
- \vspace{25pt}
-
- \begin{equation} 
-	 E[\pi(z)] = P(u,v) * Val
-\end{equation}
-
-\vspace{35pt}
-
-\noindent Where $P(u,v)$ is the probabilty of $u$ and $v$ forming an edge and $Val$ is a value that can be either the polarization decrease, the absolute distance of the expressed opinions of nodes $u$ and $v$ or the multiplication of their values.
+Each algorithm computes a value $Val(u,v)$ for each candidate edge, and selects greedily edges with the best value. We will replace this value in the algorithm by $P(u,v)*Val(u,v)$. The quantity $Val(u,v)$ can be either the polarization decrease or the absolute distance of the expressed opinions of nodes $u$ and $v$. In the case that $Val(u,v)$ is the polarization decrease the product $P(u,v)*Val(u,v)$ corresponds to the expected polarization decrease.
  		
-\clearpage
+\section{Results}		
+\label{sec:experimentsProbs}
 
-\section{Expected Heuristics}
-\label{sec:expectedHeur}
-
-The expected heuristics use the acceptance probabilities from the $Node2vec$ algorithm. 
-\\
-\\
-All heuristics are edited to include this probability when computing the polarization decrease, thus computing the expected polarization decrease. Bellow we can see the edited heuristics.
- \vspace{45pt}
-
-\begin{algorithm}[htbp]
-	\caption{pGreedy}
-	\label{alg:pgreedy}
-	
-				\begin{flushleft}
-        				\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add, \\
-				Dictionary $D$ that holds acceptance probabilities for every edge;
-				\vspace{6pt} \\
-        				\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\
-				 index $\pi(z)$
-			\end{flushleft}
-			
-			\begin{algorithmic}[1]
-				\FOR {$i = 1:k \ $}
-					\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-						\STATE Compute the decrease of $\pi(z)*D[(u,v)]$ if edge is added to $G$;
-					\ENDFOR
-					\STATE Select the edge with the largest decrease and add it to $G$.
-				\ENDFOR
-				\STATE Return the set of edges that were selected.
-			\end{algorithmic}
-			
-\end{algorithm}
-
-\begin{algorithm}[htbp]
-	\caption{pFirstTopGreedy}
-	\label{alg:pkgreedy}
-	
-	\begin{flushleft}
-        		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add,\\
-		Dictionary $D$ that holds acceptance probabilities for every edge;
-		$X$, the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order\\
-		$Y$, set of nodes that their expressed opinions $\epsilon$ (0,1]  sorted by decreasing order\\
-		\vspace{6pt}
-        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
-	\end{flushleft}
-	
-	\begin{algorithmic}[1]
-		\STATE $A \leftarrow $ first $k$ items of $X$
-		\STATE $B \leftarrow $ first $k$ items of $Y$
-		\FOR {$i = 1:k \ $}
-			\STATE$Decrease \leftarrow Empty List$;
-			\FOR { each  edge in $|A| \times |B| \textbackslash E$}
-				\STATE Compute the decrease of $\pi(z)*D[(u,v)]$ if edge is added to the graph;
-				\STATE Append the decrease on the $Decrease$ list;
-			\ENDFOR
-			\STATE Select the edge with the largest decrease from the $Decrease$ list.
-			\STATE Add this edge to the graph.
-		\ENDFOR
-		\STATE Return the set of edges that were selected.
-	\end{algorithmic}
-\end{algorithm}
-
-
-\begin{algorithm}[H]
-	\caption{pExpressedΟpinion}
-	\label{alg:pexpressedOpinion}
-	
-	\begin{flushleft}
-        		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add,\\
-		Dictionary $D$ that holds acceptance probabilities for every edge;\\
-		\vspace{6pt}
-        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization
-		\\ index $\pi(z)$
-	\end{flushleft}
-	
-	\begin{algorithmic}[1]
-		\FOR {$i = 1:k \ $}
-			\STATE $EdgesToAdd \leftarrow Empty List;$
-			\STATE Compute the $z$ values.
-			\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-				\STATE Append to $EddgesToAdd$ the value $|Z_u - V_u| * D[(u,v)]$.
-			\ENDFOR
-			\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
-			\STATE Add the first edge of $EdgesToAdd$ to the graph
-		\ENDFOR
-		\STATE Return the set of edges that were selected.
-	\end{algorithmic}
-	
-\end{algorithm}
-
-
-
-\begin{algorithm}[htbp]
-		
-			\caption{pGreedyBatch}
-			\label{alg:pgreedyBatch}
-			
-			\begin{flushleft}
-        				\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add,\\
-				Dictionary $D$ that holds acceptance probabilities for every edge;\\
-				\vspace{6pt}
-        				\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
-			\end{flushleft}
-			
-			\begin{algorithmic}[1]
-				\STATE $EdgesToAdd \leftarrow Empty List;$
-				\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-					\STATE Compute the decrease of $\pi(z) * D[(u,v)] $ if edge is added to $G$ and add it to $edgesToAdd$
-				\ENDFOR
-				\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
-				\STATE Select the $k$ edges with the largest decrease and add it to $G$.
-				\STATE Return the set of edges that were selected.
-
-	\end{algorithmic}
-			
-\end{algorithm}
-
-\clearpage
-
-\begin{algorithm}[H]
-	\caption{pFirstTopGreedyBatch}
-	\label{alg:pftgreedyb}
-	
-	\begin{flushleft}
-        		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add,\\
-		Dictionary $D$ that holds acceptance probabilities for every edge;\\
-		$X$, the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order\\
-		$Y$, set of nodes that their expressed opinions $\epsilon$ (0,1]  sorted by decreasing order\\
-		\vspace{2pt}
-        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
-	\end{flushleft}
-	
-	\begin{algorithmic}[1]
-		\STATE $A, B \leftarrow $ first $k$ items of $X$ , $Y$
-		\STATE$Decrease \leftarrow Empty List$;
-		\FOR { each  edge in $|A| \times |B| \textbackslash E$}
-			\STATE Compute the decrease of $\pi(z)*D[(u,v)] $ if edge is added to the graph;
-			\STATE Append the decrease on the $Decrease$ list;
-		\ENDFOR
-		\STATE Add the first $k$  edges from the $Decrease$ list and return them.
-	\end{algorithmic}
-\end{algorithm}
-
-
-\begin{algorithm}[htbp]
-	\caption{ExpressedOpinionBatch}
-	\label{alg:expressedBatch}
-	
-	\begin{flushleft}
-        		\textbf{INPUTS:} Graph $G(V, E)$; $k$ number of edges to add,\\
-		Dictionary $D$ that holds acceptance probabilities for every edge;\\
-		\vspace{6pt}
-        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization
-	\end{flushleft}
-	
-	\begin{algorithmic}[1]
-		\STATE $EdgesToAdd \leftarrow Empty List;$
-		\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-			\STATE Append to $EddgesToAdd$ the value $|Z_u - V_u| * D[(u,v)] $.
-		\ENDFOR
-		\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
-		\STATE Add the first $k$ edges of $EdgesToAdd$ to the graph and return them.
-	\end{algorithmic}
-\end{algorithm}
+\begin{figure}[H]
+	\begin{center}
+	\advance\leftskip-1.3cm
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=1.2\textwidth]{Figures/probs}
+	\caption{Comparison of the heuristics between datasets}
+	\end{center}
+	\label{heuristics_small}
+\end{figure}
 
 \clearpage
 
