@@ -22,6 +22,9 @@ def get_dash_markers_colors(i):
         return [1000, 1], 'None', 'orange'
     elif i == 'Random':
         return [1000, 1], 'None', 'pink'
+    else:
+        return [1000, 1], 'None', 'pink'
+
 
 
 def visualize_edge(g, edge_list, title, img_name, dataset, mode):

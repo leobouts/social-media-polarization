@@ -20,105 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="944d20ec-e3dd-4137-8dcf-919e7e1a83ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter1.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter1.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter2.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter3.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter3.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter4.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter4.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Bibliography.bib" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Bibliography.bib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter5.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter5.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter6.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/Content/Chapter6.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/embeddings_small.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/heuristics_big.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/heuristics_small.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/karate_decrease.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/Figures/karate_increase.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/FrontMatter/Abstract.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/FrontMatter/Abstract.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../LaTeXthesis/Template/SampleThesis.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 19.21.56 2021 final with random/ClintonTrump_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/ClintonTrump/Sat Feb 27 23.02.26 2021 final embeddings with random/ClintonTrump_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 19.03.03 2021 final with random/GermanWings_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/GermanWings/Sat Feb 27 22.23.02 2021 final embeddings with random/GermanWings_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 18.24.01 2021 final with random/beefban_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/beefban/Sat Feb 27 21.21.55 2021 final embeddings with random/beefban_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 18.10.10 2021 final with random/books_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/books/Sat Feb 27 21.07.19 2021 final embeddings with random/books_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 18.03.42 2021 final with random/karate_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/karate/Sat Feb 27 21.00.25 2021 final embeddings with random/karate_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 18.43.57 2021 final with random/polblogs_probabilities_dictionary" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_decreases_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_decreases_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_k_edge_number_addition_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_labels_checked_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_labels_pol" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pickles/polblogs/Sat Feb 27 21.51.39 2021 final embeddings with random/polblogs_probabilities_dictionary" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/final/mean probs/ClintonTrump.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/final/mean probs/GermanWings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/final/mean probs/beefban.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/final/mean probs/books.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/final/mean probs/karate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/final/mean probs/polblogs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_polarization/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_polarization/__visualize__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__visualize__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_polarization/get_mean_pickles.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/get_mean_pickles.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_polarization/visualize_mean_probs.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/visualize_mean_probs.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +153,7 @@
       <workItem from="1611593100647" duration="34488000" />
       <workItem from="1613472741526" duration="63263000" />
       <workItem from="1613929832112" duration="4521000" />
-      <workItem from="1614171260516" duration="18768000" />
+      <workItem from="1614171260516" duration="21283000" />
     </task>
     <servers />
   </component>
@@ -265,8 +181,8 @@
       <screen x="0" y="25" width="2560" height="1345" />
     </state>
     <state x="120" y="99" width="2352" height="1144" key="DiffContextDialog/0.25.2560.1345@0.25.2560.1345" timestamp="1609156984225" />
-    <state width="2509" height="297" key="GridCell.Tab.0.bottom" timestamp="1614461070618">
-      <screen x="1280" y="-615" width="2560" height="1415" />
+    <state width="1238" height="183" key="GridCell.Tab.0.bottom" timestamp="1614530086928">
+      <screen x="0" y="25" width="1280" height="775" />
     </state>
     <state width="845" height="329" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1607467651733" />
     <state width="1283" height="203" key="GridCell.Tab.0.bottom/0.23.1280.712/-1366.23.1366.745@-1366.23.1366.745" timestamp="1606666319845" />
@@ -293,6 +209,7 @@
     <state width="2518" height="396" key="GridCell.Tab.0.bottom/0.25.1280.722/1280.-615.2560.1415@1280.-615.2560.1415" timestamp="1613842994474" />
     <state width="1398" height="468" key="GridCell.Tab.0.bottom/0.25.1280.775/1280.-1735.1440.2470@1280.-1735.1440.2470" timestamp="1613596840030" />
     <state width="1398" height="241" key="GridCell.Tab.0.bottom/0.25.1280.775/1280.-1735.1440.2473@1280.-1735.1440.2473" timestamp="1613596239039" />
+    <state width="1238" height="183" key="GridCell.Tab.0.bottom/0.25.1280.775/1280.-615.2560.1345@0.25.1280.775" timestamp="1614530086928" />
     <state width="2509" height="387" key="GridCell.Tab.0.bottom/0.25.1280.775/1280.-615.2560.1345@1280.-615.2560.1345" timestamp="1614452391044" />
     <state width="2518" height="286" key="GridCell.Tab.0.bottom/0.25.1280.775/1280.25.2560.1345@1280.25.2560.1345" timestamp="1613510860824" />
     <state width="1396" height="209" key="GridCell.Tab.0.bottom/0.25.1440.805@0.25.1440.805" timestamp="1612368948204" />
@@ -303,8 +220,8 @@
     <state width="1228" height="154" key="GridCell.Tab.0.bottom/1280.23.1366.680/0.23.1280.777@0.23.1280.777" timestamp="1605735963338" />
     <state width="1309" height="215" key="GridCell.Tab.0.bottom/1280.23.1366.680/0.23.1280.777@1280.23.1366.680" timestamp="1605828671335" />
     <state width="1228" height="128" key="GridCell.Tab.0.bottom/1280.23.1366.745/0.23.1280.712@1280.23.1366.745" timestamp="1605737845331" />
-    <state width="2509" height="297" key="GridCell.Tab.0.center" timestamp="1614461070617">
-      <screen x="1280" y="-615" width="2560" height="1415" />
+    <state width="1238" height="183" key="GridCell.Tab.0.center" timestamp="1614530086927">
+      <screen x="0" y="25" width="1280" height="775" />
     </state>
     <state width="845" height="329" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1607467651732" />
     <state width="1283" height="203" key="GridCell.Tab.0.center/0.23.1280.712/-1366.23.1366.745@-1366.23.1366.745" timestamp="1606666319844" />
@@ -331,6 +248,7 @@
     <state width="2518" height="396" key="GridCell.Tab.0.center/0.25.1280.722/1280.-615.2560.1415@1280.-615.2560.1415" timestamp="1613842994473" />
     <state width="1398" height="468" key="GridCell.Tab.0.center/0.25.1280.775/1280.-1735.1440.2470@1280.-1735.1440.2470" timestamp="1613596840029" />
     <state width="1398" height="241" key="GridCell.Tab.0.center/0.25.1280.775/1280.-1735.1440.2473@1280.-1735.1440.2473" timestamp="1613596239038" />
+    <state width="1238" height="183" key="GridCell.Tab.0.center/0.25.1280.775/1280.-615.2560.1345@0.25.1280.775" timestamp="1614530086927" />
     <state width="2509" height="387" key="GridCell.Tab.0.center/0.25.1280.775/1280.-615.2560.1345@1280.-615.2560.1345" timestamp="1614452391043" />
     <state width="2518" height="286" key="GridCell.Tab.0.center/0.25.1280.775/1280.25.2560.1345@1280.25.2560.1345" timestamp="1613510860823" />
     <state width="1396" height="209" key="GridCell.Tab.0.center/0.25.1440.805@0.25.1440.805" timestamp="1612368948203" />
@@ -341,8 +259,8 @@
     <state width="1228" height="154" key="GridCell.Tab.0.center/1280.23.1366.680/0.23.1280.777@0.23.1280.777" timestamp="1605735963337" />
     <state width="1309" height="215" key="GridCell.Tab.0.center/1280.23.1366.680/0.23.1280.777@1280.23.1366.680" timestamp="1605828671334" />
     <state width="1228" height="128" key="GridCell.Tab.0.center/1280.23.1366.745/0.23.1280.712@1280.23.1366.745" timestamp="1605737845330" />
-    <state width="2509" height="297" key="GridCell.Tab.0.left" timestamp="1614461070617">
-      <screen x="1280" y="-615" width="2560" height="1415" />
+    <state width="1238" height="183" key="GridCell.Tab.0.left" timestamp="1614530086927">
+      <screen x="0" y="25" width="1280" height="775" />
     </state>
     <state width="845" height="329" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1607467651731" />
     <state width="1283" height="203" key="GridCell.Tab.0.left/0.23.1280.712/-1366.23.1366.745@-1366.23.1366.745" timestamp="1606666319843" />
@@ -369,6 +287,7 @@
     <state width="2518" height="396" key="GridCell.Tab.0.left/0.25.1280.722/1280.-615.2560.1415@1280.-615.2560.1415" timestamp="1613842994473" />
     <state width="1398" height="468" key="GridCell.Tab.0.left/0.25.1280.775/1280.-1735.1440.2470@1280.-1735.1440.2470" timestamp="1613596840027" />
     <state width="1398" height="241" key="GridCell.Tab.0.left/0.25.1280.775/1280.-1735.1440.2473@1280.-1735.1440.2473" timestamp="1613596239037" />
+    <state width="1238" height="183" key="GridCell.Tab.0.left/0.25.1280.775/1280.-615.2560.1345@0.25.1280.775" timestamp="1614530086927" />
     <state width="2509" height="387" key="GridCell.Tab.0.left/0.25.1280.775/1280.-615.2560.1345@1280.-615.2560.1345" timestamp="1614452391042" />
     <state width="2518" height="286" key="GridCell.Tab.0.left/0.25.1280.775/1280.25.2560.1345@1280.25.2560.1345" timestamp="1613510860822" />
     <state width="1396" height="209" key="GridCell.Tab.0.left/0.25.1440.805@0.25.1440.805" timestamp="1612368948202" />
@@ -379,8 +298,8 @@
     <state width="1228" height="154" key="GridCell.Tab.0.left/1280.23.1366.680/0.23.1280.777@0.23.1280.777" timestamp="1605735963335" />
     <state width="1309" height="215" key="GridCell.Tab.0.left/1280.23.1366.680/0.23.1280.777@1280.23.1366.680" timestamp="1605828671333" />
     <state width="1228" height="128" key="GridCell.Tab.0.left/1280.23.1366.745/0.23.1280.712@1280.23.1366.745" timestamp="1605737845330" />
-    <state width="2509" height="297" key="GridCell.Tab.0.right" timestamp="1614461070618">
-      <screen x="1280" y="-615" width="2560" height="1415" />
+    <state width="1238" height="183" key="GridCell.Tab.0.right" timestamp="1614530086928">
+      <screen x="0" y="25" width="1280" height="775" />
     </state>
     <state width="845" height="329" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1607467651733" />
     <state width="1283" height="203" key="GridCell.Tab.0.right/0.23.1280.712/-1366.23.1366.745@-1366.23.1366.745" timestamp="1606666319844" />
@@ -407,6 +326,7 @@
     <state width="2518" height="396" key="GridCell.Tab.0.right/0.25.1280.722/1280.-615.2560.1415@1280.-615.2560.1415" timestamp="1613842994474" />
     <state width="1398" height="468" key="GridCell.Tab.0.right/0.25.1280.775/1280.-1735.1440.2470@1280.-1735.1440.2470" timestamp="1613596840030" />
     <state width="1398" height="241" key="GridCell.Tab.0.right/0.25.1280.775/1280.-1735.1440.2473@1280.-1735.1440.2473" timestamp="1613596239038" />
+    <state width="1238" height="183" key="GridCell.Tab.0.right/0.25.1280.775/1280.-615.2560.1345@0.25.1280.775" timestamp="1614530086928" />
     <state width="2509" height="387" key="GridCell.Tab.0.right/0.25.1280.775/1280.-615.2560.1345@1280.-615.2560.1345" timestamp="1614452391044" />
     <state width="2518" height="286" key="GridCell.Tab.0.right/0.25.1280.775/1280.25.2560.1345@1280.25.2560.1345" timestamp="1613510860824" />
     <state width="1396" height="209" key="GridCell.Tab.0.right/0.25.1440.805@0.25.1440.805" timestamp="1612368948203" />
@@ -478,8 +398,8 @@
     </state>
     <state x="173" y="123" width="2123" height="1106" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.23.2560.1352@0.23.2560.1352" timestamp="1607380654680" />
     <state x="97" y="85" width="1195" height="659" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.25.1440.805@0.25.1440.805" timestamp="1611871883306" />
-    <state x="2011" y="-421" width="1104" height="974" key="find.popup" timestamp="1613690489144">
-      <screen x="1280" y="-615" width="2560" height="1345" />
+    <state x="366" y="137" width="567" height="562" key="find.popup" timestamp="1614529980290">
+      <screen x="0" y="25" width="1280" height="775" />
     </state>
     <state x="-976" y="130" width="587" height="538" key="find.popup/0.23.1280.712/-1366.23.1366.745@-1366.23.1366.745" timestamp="1606604923283" />
     <state x="-976" y="121" width="587" height="491" key="find.popup/0.23.1280.777/-1366.23.1366.680@-1366.23.1366.680" timestamp="1606587606946" />
@@ -487,6 +407,7 @@
     <state x="731" y="217" width="1101" height="977" key="find.popup/0.23.2560.1352@0.23.2560.1352" timestamp="1608499701418" />
     <state x="1691" y="-1369" width="621" height="1834" key="find.popup/0.25.1280.716/1280.-1735.1440.2535@1280.-1735.1440.2535" timestamp="1613593823613" />
     <state x="2011" y="-411" width="1104" height="1024" key="find.popup/0.25.1280.716/1280.-615.2560.1415@1280.-615.2560.1415" timestamp="1613678539776" />
+    <state x="366" y="137" width="567" height="562" key="find.popup/0.25.1280.775/1280.-615.2560.1345@0.25.1280.775" timestamp="1614529980290" />
     <state x="2011" y="-421" width="1104" height="974" key="find.popup/0.25.1280.775/1280.-615.2560.1345@1280.-615.2560.1345" timestamp="1613690489144" />
     <state x="2011" y="219" width="1103" height="973" key="find.popup/0.25.1280.775/1280.25.2560.1345@1280.25.2560.1345" timestamp="1613510846358" />
     <state x="411" y="141" width="620" height="582" key="find.popup/0.25.1440.805@0.25.1440.805" timestamp="1612368942370" />
@@ -501,7 +422,7 @@
     <state x="652" y="51" width="1256" height="1323" key="search.everywhere.popup/0.25.2560.1345@0.25.2560.1345" timestamp="1612277980574" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/project$main.coverage" NAME="main Coverage Results" MODIFIED="1614461070609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
+    <SUITE FILE_PATH="coverage/project$main.coverage" NAME="main Coverage Results" MODIFIED="1614530086914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
     <SUITE FILE_PATH="coverage/code$main.coverage" NAME="main Coverage Results" MODIFIED="1605133360825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
   </component>
 </project>

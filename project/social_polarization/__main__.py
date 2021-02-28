@@ -51,7 +51,7 @@ def main():
     #     6) Expressed Multiplication         #
     #     7) Random                           #
     #     8) Random different                 #
-    #     9) pRedution                        #
+    #     9) pReduction                        #
     # --------------------------------------- #
     # 1 through 8 can be run with embeddings  #
     #  on, don't run pRedution with           #
@@ -74,11 +74,11 @@ def main():
 
     k = [5, 10, 15, 20]
 
-    # info = algorithms_driver(k=k,
-    #                          datasets=['karate', 'books'],
-    #                          algorithms=algorithms,
-    #                          expected_mode='Embeddings',
-    #                          experiment_comment='final embeddings with random')
+    info = algorithms_driver(k=k,
+                             datasets=['karate', 'books','beefban', 'polblogs', 'GermanWings', 'ClintonTrump'],
+                             algorithms=['pReduction'],
+                             expected_mode='Embeddings',
+                             experiment_comment='pReduction')
     #
     # info = algorithms_driver(k=k,
     #                          datasets=['beefban', 'polblogs', 'GermanWings', 'ClintonTrump'],
@@ -120,8 +120,8 @@ def main():
     #  Third argument: experiment time (file)  #
     # ---------------------------------------- #
 
-    open_pickles_for_adjusting_visualization_manually([5, 10, 15, 20], 'ClintonTrump',
-                                                    "Sat Feb 27 23.02.26 2021 final embeddings with random")
+    # open_pickles_for_adjusting_visualization_manually([5, 10, 15, 20], 'ClintonTrump',
+    #                                                 "Sat Feb 27 23.02.26 2021 final embeddings with random")
 
     # --------------------------------------- #
     #     Fully connected for lemma 5.1       #

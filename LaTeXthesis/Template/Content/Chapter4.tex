@@ -6,6 +6,7 @@ In this section we  consider a greedy algorithm and some heuristics for reducing
 When a new edge is introduced, the graph structure changes. This leads to changes in the opinion vector $z$.
 The recomputation of the $z$ vector is expensive on time due to the computation of the inverse matrix in the $(L+I)^{-1}S$ formula.
 This is why we consider two types of algorithms, those that recompute the $z$ vectors and those that do not.
+All the heuristics run on $\mathcal{O}(n^2)$. This is due to the fact that they need to explore all edge combinations.
 
 \section{Algorithms that recompute the opinion vector}
 \label{sec:recomputeAlgos}

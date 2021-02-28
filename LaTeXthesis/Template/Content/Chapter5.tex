@@ -11,25 +11,86 @@ The edges that are present in the graph will be labeled as $1$ (positive samples
 \\
 \\
 \noindent After the labelling we will use the node2vec algorithm to extract node features from the graph. For computing the features of an edge we can add up the features of the nodes of that pair. These features will be trained with a logistic regression model. After the model is trained we will obtain the probabilities of an edge being accepted for every edge.
-\clearpage
-
-\noindent Computing the actual expected decrease in the polarization, and selecting the $k$ best edges is a difficult problem. Our goal is to incorporate the probabilities in the operation of the algorithms. We will do this as follows. 
+\\
+\\
+\noindent Computing the actual expected decrease in the polarization, and selecting the $k$ best edges is a difficult problem. Our goal is to incorporate the probabilities in the operation of the algorithms. We do not expect that the decrease in the polarization index will improve. We will do this as follows. 
 \\
 \\
 Each algorithm computes a value $Val(u,v)$ for each candidate edge, and selects greedily edges with the best value. We will replace this value in the algorithm by $P(u,v)*Val(u,v)$. The quantity $Val(u,v)$ can be either the polarization decrease or the absolute distance of the expressed opinions of nodes $u$ and $v$. In the case that $Val(u,v)$ is the polarization decrease the product $P(u,v)*Val(u,v)$ corresponds to the expected polarization decrease.
- 		
-\section{Results}		
+\\
+\\
+In addition we will measure the median probability of the edges selected by the heuristics and compare it to the ones that were edited to include acceptance probabilities. We expect that the edited heuristics will have a higher median value.
+\clearpage
+
+\section{Experiments with the edited heuristics}		
 \label{sec:experimentsProbs}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 	\begin{center}
 	\advance\leftskip-1.3cm
 	\captionsetup{justification=centering,margin=2cm}
 	\includegraphics[width=1.2\textwidth]{Figures/probs}
-	\caption{Comparison of the heuristics between datasets}
+	\caption{Comparison of the edited heuristics}
 	\end{center}
-	\label{heuristics_small}
+	\label{probs_heur}
 \end{figure}
 
 \clearpage
+
+\section{Measuring the median probability}		
+\label{sec:median}
+
+\begin{figure}[!htbp]
+	\begin{center}
+	\advance\leftskip-1.3cm
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=1.1\textwidth]{Figures/m1}
+	\caption{Comparison of the median probability}
+	\end{center}
+	\label{m1}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!htbp]
+	\begin{center}
+	\advance\leftskip-1.3cm
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=1.2\textwidth]{Figures/m2}
+	\caption{Comparison of the median probability}
+	\end{center}
+	\label{m2}
+\end{figure}
+\clearpage
+
+\section{Comparing all the heuristics}		
+\label{sec:all}
+
+\begin{figure}[!htbp]
+	\begin{center}
+	\advance\leftskip-1.3cm
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=1\textwidth]{Figures/all1}
+	\caption{Comparison all the heuristics}
+	\end{center}
+	\label{all1}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!htbp]
+	\begin{center}
+	\advance\leftskip-1.3cm
+	\captionsetup{justification=centering,margin=2cm}
+	\includegraphics[width=1.2\textwidth]{Figures/all2}
+	\caption{Comparison all the heuristics}
+	\end{center}
+	\label{all2}
+\end{figure}
+
+
+
+
+
+
 

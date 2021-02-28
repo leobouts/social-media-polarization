@@ -60,6 +60,9 @@ All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm
 \\
 \\ 
 The $FirstTopGreedy$ and the $Expressed Opinion$ can run in all datasets and us with a fairly good decrease in polarization compared to the batch algorithms. This decrease can be greater if we consider edge additions that are proportional to the size of the dataset. Greater number of edges would make $FirstTopGreedy$ nonrunnable. The $Expressed Opinion$ can run in our larger datasets with big number of additions.
+\\
+\\
+In addition to the heuristics we use two random algorithms. The $Random$, that chooses random edges from all possible combinations and the $RandomDifferent$. The second one chooses random edges between different $z$ opinions. More specific edges that the multiplication of their expressed opinions is negative ($z_u*z_v < 0$). 
 \clearpage
 
 \begin{figure}[!htbp]
