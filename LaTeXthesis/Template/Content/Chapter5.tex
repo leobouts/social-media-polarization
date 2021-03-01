@@ -19,10 +19,10 @@ The edges that are present in the graph will be labeled as $1$ (positive samples
 Each algorithm computes a value $Val(u,v)$ for each candidate edge, and selects greedily edges with the best value. We will replace this value in the algorithm by $P(u,v)*Val(u,v)$. The quantity $Val(u,v)$ can be either the polarization decrease or the absolute distance of the expressed opinions of nodes $u$ and $v$. In the case that $Val(u,v)$ is the polarization decrease the product $P(u,v)*Val(u,v)$ corresponds to the expected polarization decrease.
 \\
 \\
-In addition at ~\ref{sec:median} we measure the median probability of the edges selected by the heuristics and compare it to the ones that were edited to include acceptance probabilities. We expect that the edited heuristics will have a higher median value.
+In addition in section ~\ref{sec:median} we measure the median probability of the edges selected by the heuristics and compare it to the ones that were edited to include acceptance probabilities. We expect that the edited heuristics will have a higher median value.
 \\
 \\
-Finally in ~\ref{sec:all} we display the results of the heuristics and edited heuristics together including a new algorithm called $maxProb$ that chooses an edge if it among the edges with the highest acceptance probabilities.
+Finally in section ~\ref{sec:all} we display the results of the heuristics and edited heuristics together including a new algorithm called $maxProb$ that chooses an edge if it is among the edges with the highest acceptance probabilities.
 
 \clearpage
 
@@ -49,7 +49,7 @@ Finally in ~\ref{sec:all} we display the results of the heuristics and edited he
 	\begin{center}
 	\advance\leftskip-1.3cm
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=1.1\textwidth]{Figures/m1}
+	\includegraphics[width=1\textwidth]{Figures/m1}
 	\caption{Comparison of the median probability}
 	\end{center}
 	\label{m1}
@@ -76,7 +76,7 @@ Finally in ~\ref{sec:all} we display the results of the heuristics and edited he
 	\advance\leftskip-1.3cm
 	\captionsetup{justification=centering,margin=2cm}
 	\includegraphics[width=1\textwidth]{Figures/all1}
-	\caption{Comparison all the heuristics}
+	\caption{Comparison of all the heuristics}
 	\end{center}
 	\label{all1}
 \end{figure}
@@ -88,7 +88,7 @@ Finally in ~\ref{sec:all} we display the results of the heuristics and edited he
 	\advance\leftskip-1.3cm
 	\captionsetup{justification=centering,margin=2cm}
 	\includegraphics[width=1.2\textwidth]{Figures/all2}
-	\caption{Comparison all the heuristics}
+	\caption{Comparison of all the heuristics}
 	\end{center}
 	\label{all2}
 \end{figure}

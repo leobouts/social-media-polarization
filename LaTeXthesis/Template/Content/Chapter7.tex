@@ -2,3 +2,11 @@
 \label{ch:conclusions}
 
 
+At first we explored some heuristics to reduce the polarization. The $Greedy$ heuristic cannot run in large datasets. We tried to limit the search space by using the $FirstTopGreedy$ heuristic. Even in a smaller space larger datasets need a lot of time to compute the inverse matrix and can only run for a small $k$. The batch heuristics were used to save time by not recomputing the opinion vector $z$ but perform very poorly and in some cases even worse than the random algorithm.
+\\
+\\
+We continued by adopting acceptance probabilities in our heuristics. We measure the mean probability of the edges selected by the heuristics that do and do not consider the acceptance probabilities. In this case we want to see the probability of the edges we add. This could give some insight on how to increase this probability and how the polarization reduction is affected. We also confirm that the edited heuristics have a higher mean probability when adding an edge. Finally we compare the reduction of the polarization index with both versions of the heuristics. We observe that the ones that consider acceptance probabilities might have smaller reductions in the $\pi(z)$.
+
+
+
+

@@ -16,7 +16,7 @@ The Greedy algorithm computes the decrease in $\pi(z)$ and selects the edge with
 \\
 \\
 After finding the best edge, the $Greedy$ algorithm adds this edge to the graph. This result in a change of the network structure.
-Then a recomputation of the $z$ vector is happening and  the procedure is repeated.To reduce running times, we  use repeated averaging instead of computing the inverse matrix and limit the accuracy on the convergence.
+Then a recomputation of the $z$ vector is happening and  the procedure is repeated.To reduce running times, we  use repeated averaging instead of computing the inverse matrix and limit the accuracy of the convergence.
 
 \vspace{30pt}
     		\begin{algorithm}[H]
@@ -27,18 +27,19 @@ Then a recomputation of the $z$ vector is happening and  the procedure is repeat
 			\begin{flushleft}
         				\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add;
 				\vspace{6pt} \\
-        				\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\
+        				\textbf{OUTPUT:} A set $S$ of $k$ edges to be added to $G$ that minimize the polarization \\
 				 index $\pi(z)$
 			\end{flushleft}
 			
 			\begin{algorithmic}[1]
 				\FOR {$i = 1:k \ $}
+				\STATE Compute the opinion vector $z$
 					\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-						\STATE Compute the decrease of $\pi(z)$ if edge is added to $G$;
+						\STATE Compute the decrease of $\pi(z)$ if edge is added to $G$
 					\ENDFOR
-					\STATE Select the edge with the largest decrease and add it to $G$.
+					\STATE Select the edge with the largest decrease and add it to $G$
 				\ENDFOR
-				\STATE Return the set of edges that were selected.
+				\STATE Return the set of edges that were selected
 			\end{algorithmic}
 		\end{algorithm}
 \vspace{30pt}
@@ -57,22 +58,20 @@ Last we consider two heuristics that choose edges based on the value of the expr
 		$X$, the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order\\
 		$Y$, set of nodes that their expressed opinions $\epsilon$ (0,1]  sorted by decreasing order\\
 		\vspace{6pt}
-        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
+        		\textbf{OUTPUT:} A set $S$ of $k$ edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
 	\end{flushleft}
 	
 	\begin{algorithmic}[1]
 		\STATE $A \leftarrow $ first $k$ items of $X$
 		\STATE $B \leftarrow $ first $k$ items of $Y$
 		\FOR {$i = 1:k \ $}
-			\STATE$Decrease \leftarrow Empty List$;
+			\STATE Compute the opinion vector $z$
 			\FOR { each  edge in $|A| \times |B| \textbackslash E$}
-				\STATE Compute the decrease of $\pi(z)$ if edge is added to the graph;
-				\STATE Append the decrease on the $Decrease$ list;
+				\STATE Compute the decrease of $\pi(z)$ if edge is added to the graph
 			\ENDFOR
-			\STATE Select the edge with the largest decrease from the $Decrease$ list.
-			\STATE Add this edge to the graph.
+			\STATE Select the edge with the largest decrease and add it to $G$
 		\ENDFOR
-		\STATE Return the set of edges that were selected.
+		\STATE Return the set of edges that were selected
 	\end{algorithmic}
 	
 \end{algorithm}
@@ -87,21 +86,21 @@ Last we consider two heuristics that choose edges based on the value of the expr
 	\begin{flushleft}
         		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add\\
 		\vspace{6pt}
-        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization
+        		\textbf{OUTPUT:} A set $S$ of $k$ edges to be added to $G$ that minimize the polarization
 		\\ index $\pi(z)$
 	\end{flushleft}
 	
 	\begin{algorithmic}[1]
 		\FOR {$i = 1:k \ $}
-			\STATE $EdgesToAdd \leftarrow Empty List;$
-			\STATE Compute the $z$ values.
+			\STATE Compute the opinion vector $z$
+			\STATE Compute the $z$ values
 			\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-				\STATE Append to $EddgesToAdd$ the value $D=|z_u - z_v|$.
+				\STATE Compute the value $D=|z_u - z_v|$.
 			\ENDFOR
-			\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
-			\STATE Add the first edge of $EdgesToAdd$ to the graph
+			\STATE Sort the distance values by decreasing order
+			\STATE Add the edge with the biggest distance to $G$
 		\ENDFOR
-		\STATE Return the set of edges that were selected.
+		\STATE Return the set of edges that were selected
 	\end{algorithmic}
 	
 \end{algorithm}
@@ -109,10 +108,11 @@ Last we consider two heuristics that choose edges based on the value of the expr
 \section{Algorithms that do not recompute the opinion vector}
 \label{sec:norecomputeAlgo}
 
-Bellow we explore some heuristics that do not consider the network changes and thus can run more easily in larger datasets.
-Computing the $\pi(z)$ is an expensive operation due to the computation of the inverse matrix. We compute the opinion vector only once and we sort the edges according to the decrease. Then we select the top $k$ edges. At first we can see a variation of the $Greedy$ algorithm. Its implementation is similar to the $Greedy$ but without recomputing the  $\pi(z)$ at each round. 
+We continue by exploring some heuristics that do not consider the network changes and thus can run more easily in larger datasets.
+Computing the $\pi(z)$ is an expensive operation due to the computation of the inverse matrix. At first we can see a variation of the $Greedy$ algorithm. Its implementation is similar to the $Greedy$. We compute the opinion vector only once and we sort the edges according to the decrease. Then we select the top $k$ edges.
 \\
-\\We continue by using a variation of the $FirstTopGreedy$.The $FirstTopGreedyBatch$ heuristic. $FirsTopGreedy$  works exactly like $GreedyBatch$ with the difference that the opinion vector is not recomputed. Let $X$ be the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes that their expressed opinions $\epsilon$ (0,1] sorted by decreasing order. This heuristic is taking the first $k$ nodes of $X$ and $Y$, resulting in $k \times k$ nodes.
+\\
+We continue by using a variation of the $FirstTopGreedy$. The $FirstTopGreedyBatch$ heuristic. $FirsTopGreedy$  works exactly like $GreedyBatch$ with the difference that the opinion vector is not recomputed. Let $X$ be the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes that their expressed opinions $\epsilon$ (0,1] sorted by decreasing order. This heuristic is taking the first $k$ nodes of $X$ and $Y$, resulting in $k \times k$ nodes.
 \clearpage
 
 \begin{algorithm}[H]
@@ -123,20 +123,18 @@ Computing the $\pi(z)$ is an expensive operation due to the computation of the i
 			\begin{flushleft}
         				\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add;
 				\vspace{6pt}\\
-        				\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
+        				\textbf{OUTPUT:} A set $S$ of $k$ edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
 			\end{flushleft}
 			
 			\begin{algorithmic}[1]
-				\STATE $EdgesToAdd \leftarrow Empty List;$
+				\STATE Compute the $z$ values
 				\FOR { each  edge in $|V| \times |V| \textbackslash E$}
-					\STATE Compute the decrease of $\pi(z)$ if edge is added to $G$ and add it to $edgesToAdd$
+					\STATE Compute the decrease of $\pi(z)$ if edge is added to $G$ 
 				\ENDFOR
-				\STATE $Sorted \leftarrow sort(EdgesToAdd)$ by decreasing order;
-				\STATE Select the $k$ edges with the largest decrease and add it to $G$.
-				\STATE Return the set of edges that were selected.
-
+				\STATE Sort the values computed by decreasing order;
+				\STATE Select the $k$ edges with the largest decrease and add it to $G$
+				\STATE Return the set of edges that were selected
 			\end{algorithmic}
-			
 		\end{algorithm}
 
 
@@ -149,17 +147,19 @@ Computing the $\pi(z)$ is an expensive operation due to the computation of the i
 		$X$, the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order\\
 		$Y$, set of nodes that their expressed opinions $\epsilon$ (0,1]  sorted by decreasing order\\
 		\vspace{6pt}
-        		\textbf{OUTPUT:} A set S of k edges to be added to $G$ that minimize the polarization \\ index $\pi(z)$
+        		\textbf{OUTPUT:} A set $S$ of $k$ edges to be added to $G$ that minimize the polarization\\
+		 index $\pi(z)$
 	\end{flushleft}
 	
 	\begin{algorithmic}[1]
 		\STATE $A, B \leftarrow $ first $k$ items of $X$ , $Y$
-		\STATE$Decrease \leftarrow Empty List$;
+				\STATE Compute the $z$ values
 		\FOR { each  edge in $|A| \times |B| \textbackslash E$}
-			\STATE Compute the decrease of $\pi(z)$ if edge is added to the graph;
-			\STATE Append the decrease on the $Decrease$ list;
+			\STATE Compute the decrease of $\pi(z)$ if edge is added to the graph
 		\ENDFOR
-		\STATE Add the first $k$  edges from the $Decrease$ list and return them.
+		\STATE Sort the values computed by decreasing order
+		\STATE Select the $k$ edges with the largest decrease and add it to $G$
+		\STATE Return the set of edges that were selected
 	\end{algorithmic}
 	
 \end{algorithm}
