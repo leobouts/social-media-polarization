@@ -28,13 +28,11 @@
       <change beforePath="$PROJECT_DIR$/figures_generated/GermanWings/GermanWings Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/GermanWings/GermanWings Polarization Decrease.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures_generated/beefban/beefban Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/beefban/beefban Polarization Decrease.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures_generated/books/books Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/books/books Polarization Decrease.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures_generated/final/all/karate.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/final/all/karate.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures_generated/karate/karate Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/karate/karate Polarization Decrease.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Polarization Decrease.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/figures_generated/polblogs/polblogs Polarization Decrease.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/__algorithm_probability_reduction_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__algorithm_probability_reduction_batch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/social_polarization/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/get_mean_pickles.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/get_mean_pickles.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/social_polarization/plot_all_together.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/plot_all_together.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/social_polarization/visualize_mean_probs.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/social_polarization/visualize_mean_probs.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +152,7 @@
       <workItem from="1613472741526" duration="63263000" />
       <workItem from="1613929832112" duration="4521000" />
       <workItem from="1614171260516" duration="24180000" />
+      <workItem from="1614605801384" duration="2368000" />
     </task>
     <servers />
   </component>
@@ -422,7 +421,7 @@
     <state x="652" y="51" width="1256" height="1323" key="search.everywhere.popup/0.25.2560.1345@0.25.2560.1345" timestamp="1612277980574" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/project$main.coverage" NAME="main Coverage Results" MODIFIED="1614556365087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
+    <SUITE FILE_PATH="coverage/project$main.coverage" NAME="main Coverage Results" MODIFIED="1614631839130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
     <SUITE FILE_PATH="coverage/code$main.coverage" NAME="main Coverage Results" MODIFIED="1605133360825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_polarization" />
   </component>
 </project>
