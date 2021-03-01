@@ -33,7 +33,9 @@ def p_reduction(k, graph_in, mode, expected_p_z_mode, probabilities_dictionary):
                                                     probabilities_dictionary,
                                                     True)
 
+    print(addition_info)
     sorted_edges = sorted(addition_info.items(), key=lambda x: x[1], reverse=reverse_flag)
+    print(sorted_edges)
 
     # consider only edges that do not already exist
     for edge in sorted_edges:

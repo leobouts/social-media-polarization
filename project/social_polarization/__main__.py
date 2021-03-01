@@ -75,10 +75,10 @@ def main():
     k = [5, 10, 15, 20]
 
     info = algorithms_driver(k=k,
-                             datasets=['karate', 'books','beefban', 'polblogs', 'GermanWings', 'ClintonTrump'],
+                             datasets=['karate'],
                              algorithms=['pReduction'],
-                             expected_mode='Embeddings',
-                             experiment_comment='pReduction')
+                             expected_mode='Ignore',
+                             experiment_comment='pReduction test')
     #
     # info = algorithms_driver(k=k,
     #                          datasets=['beefban', 'polblogs', 'GermanWings', 'ClintonTrump'],

@@ -1,10 +1,4 @@
 \chapter{Conclusions}
 \label{ch:conclusions}
 
-\noindent We start by applying the heuristics described at~\ref{ch:algorithms} in these 6 datasets. The algorithms perform as expected. The greedy ones have better results but are expensive in time.We can not run the $Greedy$ algorithms in larger datasets due to time limitations.
-
-\begin{itemize}
-  \item The Expressed Opinion heuristic that is based on the distance of the opinions performs very well and close to $Greedy$ and are cheap on time.
-  \item Batch algorithms perform very poorly, even worse than Random. When adding a new edge the Batch algorithms do not recompute the $Z$ vector. In later edge selections they have a false view of the opinions of the network. For example in a batch version of the $ExpressedOpinion$ the nodes that have the most extreme opinions of each side may reused even if their value is changed after an addition and are no longer the ones with the most extreme values.
- \end{itemize}
 
