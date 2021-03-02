@@ -3,53 +3,32 @@
 
 We will now present some work that is related to the work in this thesis. 
 
-\section{Opinion models}
+\section{Opinion Models and Polarization}
 \label{sec:opinionsModels}
 
-How people form their opinions has long been the subject of research in the field of social sciences. Models of opinion formation and dynamics are being used  by computer scientists to explore and quantify polarization, conflict and disagreement on social networks. Opinion models study these quantities and how they change by manipulating the opinions and by changing the network structure of a set of nodes of the social graph. Many of these models are modelling the influence that goes with social interaction and the Friedking-Johnsen model is a very popular one.
-\clearpage
-
-\section{Measuring the Polarization of a Network}
-\label{sec:Submission}
-
-In this paper the polarization index is defined \cite{tsapMatakosTerzi}. The direct link between the Friedkin-Johnsen model and random walks is also explored. Two problems are introduced, the $ModerateInternal$ and the $ModerateExpressed$. When moderating opinions a small set of nodes $T_s$ is being set to zero, in each problem, as their names suggests, internal or external opinions are set to zero. Two algorithms are proposed for the $ModerateInternal problem$. 
+How people form their opinions has long been the subject of research in the field of social sciences. Models of opinion formation and dynamics are being used  by computer scientists to explore and quantify polarization, conflict and disagreement on social networks. Opinion models study these quantities and how they change by manipulating the opinions and by changing the network structure of a set of nodes of the social graph. Many of these models are modelling the influence that goes with social interaction and the Friedkin-Johnsen model is a very popular one. The polarization index we will use for measuring polarization relies on the Friedkin and Johnsen model. We describe both the model and the polarization index in Chapter~\ref{ch:premAndDef}.
 \\
 \\
-A greedy algorithm that finds the set $T_s$ of nodes iteratively according to the biggest decrease it causes and the Binary Orthogonal Matching Pursuit (BOMP) algorithm. For the $ModerateExpressed$ problem the same greedy algorithm is used.
-
-
-\section{Polarization and Disagreement}
-\label{sec:polarizationDisareement}
-
+The polarization index we use in this paper is defined \cite{tsapMatakosTerzi}. The direct link between the Friedkin-Johnsen model and random walks is also explored. Two problems are introduced, the $ModerateInternal$ and the $ModerateExpressed$. When moderating opinions, a small set of nodes $T_s$ is being set to zero, in each problem, as their names suggests, internal or external opinions are set to zero. Two algorithms are proposed for the $ModerateInternal problem$.
+\\
+\\
 Another way of looking at polarization is by combining it with disagreement \cite{musco}. The main problem of minimising polarization and disagreement lies in the opinions of each user and how targeted ads and recommendations influence their opinions.
 Considering the disagreement in combination with polarization a network can choose how to respond in different situations. Their recommendation system could choose between keeping the disagreement low or exposing users to radically different opinions. 
 There are situations that this optimisation can reduce the overall polarization-disagreement in the network by recommending edges in different parts of the network than the ones that agree with the human confirmation bias.
-
-\section{Quantifying and Minimizing Risk of Conflict in Social Networks}
-\label{sec:riskOfConflict}
-
-This paper addresses the main problem in the Friedkin-Johnsen model metrics \cite{chen}. The external opinion of a user, which by definition is hard to measure, combined with the internal opinion which is impossible to be measured. Another problem occurs in the editing of the social graph. When the social graph is edited its is done in a way that minimises the conflict of a certain social issue. This can lead to an increased conflict of one or more social issues inside the network. Chen, Lijffijt and De Bie still use the Friedkin-Johnsen model to evaluate the network conflict but the quantifications depend only on the network topology in a way that the conflict can be reduced over all issues. 
-
-\section{Reducing Controversy by Connecting Opposing Views}
-\label{sec:reducing}
-
-Garimella et al. \cite{garimella} rely on a measure of controversy that is shown to work reliably in multiple domains in contrast with other measures that focus on a single topic. The controversy measure consists of the following steps:
-
-\begin{enumerate}
-  \item Given a topic $t$ they create an endorsement graph $G=(V,E)$. This graph represents users who have generated content relevant to $t$. For example hashtags of a user.
-  
-  \item The nodes of this graph a re partitioned in two disjoint sets $X$ and $Y$. The partition is obtained using a graph-partition algorithm.
-  
-  \item The last step, is computing the controversy measure through a random-walk, thus creating the controversy score controversy. 
-\end{enumerate}
-\vspace{4pt}
-
-\noindent Garimella et al. also states that real graphs often have a star-like structure. Small number of highly popular vertices have a lot of incoming edges. These nodes can be seen as thought leaders and their followers. It is shown that connecting the high degree vertices minimises the controversy score. Probabilities are also incorporated in the sense that a new edge addition may be not accepted by the user.
+\\
+\\
+Chen et al. \cite{chen} addresses the main problem in the Friedkin-Johnsen model metrics. The problem is that the external opinion of a user is hard to measure and the internal opinion is impossible to be known. Another problem occurs in the editing of the social graph. When the social graph is edited to decrease conflict, it is done in a way that minimises the conflict of a certain social issue. This can lead to an increased conflict of one or more social issues inside the network. Chen et al. \cite{chen} use the Friedkin-Johnsen model to evaluate the network conflict but the quantifications depend only on the network topology in a way that the conflict can be reduced over all issues. 
+\\
+\\
+Garimella et al. \cite{garimella} rely on a measure of controversy that is shown to work reliably in multiple domains in contrast with other measures that focus on a single topic. It is shown that connecting the high degree vertices minimises the controversy score. Probabilities are also incorporated in the sense that a new edge addition may be not accepted by the user.
 
 \section{Graph Embeddings and Node2Vec}		
-\label{sec:embeddings}		
+\label{sec:embeddings}
 
-A graph embedding \cite{Leskovec} is the transformation of the properties of the graphs to a vector or a set of vectors. The embedding will capture the topology of the graph and will consider the relationship between nodes. The embedding will be used to make predictions on the graph. Machine learning on graphs is limited while vector spaces have a much bigger toolset available. In essence embeddings are compressed representations in a vector that has a smaller dimension.		
+Link prediction algorithms are based on how similar two different nodes are, what features they have in common, how they are connected to the rest of the network or how many other nodes are connected to a single node. Link prediction is also used in recommendation systems and  information retrieval. For computing these probabilities we will use graph embeddings.		
+\\
+\\
+A graph embedding \cite{Leskovec} is the transformation of the properties of the graphs to a vector or a set of vectors. The embedding captures the topology of the graph and considers the relationships between nodes. The embedding will be used to make predictions on the graph. Machine learning on graphs is limited while vector spaces have a much bigger toolset available. In essence, embeddings are compressed representations in a vector of dimension.		
 \\
 \\
 Node2vec uses random walks to compute acceptance probabilities. There are two parameters introduced, $P$ and $Q$. Parameter $Q$ defines how probable is that the random walk will explore the undiscovered part of the graph, while parameter $P$ defines how probable is that the random walk will return to the previous node and retain a locality.

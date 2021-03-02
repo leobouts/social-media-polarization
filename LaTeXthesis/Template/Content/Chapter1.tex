@@ -2,46 +2,37 @@
 \label{ch:Introduction}
 
 
-\section{Motivation}
+\section{Motivation and Thesis Goal}
 \label{sec:motivation}
 
-Real world events such as Brexit and the 2016 U.S. presidential elections give us a clear hint about the polarization our society is witnessing. Social media polarization has a strong effect on politics, opinion formation and how people interact with each other in a society. Users of social media are now receiving biased information that amplify their own viewpoints. 
+Real world events such as Brexit and the 2016 U.S. presidential elections give us a clear hint about the polarization our society is witnessing. Social media polarization has a strong effect on politics, opinion formation and how people interact with each other in a society. In a polarized social network, users receive biased information that amplifies their own viewpoints. 
 \\
 \\
 Polarization describes the division of people into two contrasting groups or sets of opinions or beliefs. The term is used in various domains such as politics and social studies.
-In social media settings, users tend to join communities of like-minded individuals.
-In these settings the opinions of the users are amplified and reinforced by the continuous  communication and recycling of the same view. These communities are referred to as echo chambers.
-Inside an echo chamber users can easily find information that reinforces their existing opinion without being exposed to opposing views.
-Echo chambers can be created where information is exchanged, whether it’s online or in real life. 
+In social media, users tend to join communities of like-minded individuals and the opinions of the users are amplified and reinforced by the continuous  communication and recycling of the same views. These communities are referred to as echo chambers.
+Echo chambers can be created where information is exchanged, whether it is online or in real life. 
+On social media almost anyone can quickly find like-minded people and countless news sources. 
+This has made echo chambers far more numerous and easy to fall into.
 \\
 \\
-On social media almost anyone can quickly find like-minded people and countless news sources. This has made echo chambers far more numerous and easy to fall into. Echo chambers online are referred to as filter bubbles. Filter bubbles are created by algorithms that keep track of the online behaviour of a user such as search histories, shopping activity and many more. Social media will then use those algorithms to show content that is similar to what the user is already aligned with. This can lead users to adopt a more extreme version of their opinions. 
-Enclosed in their filter bubble, they will ignore everyone else and only acknowledge opinions that fit their own reality. In combination with fake news a malicious entity could use social media as a tool to polarize certain groups of people for their own interest. 
-\\
-\\
-\noindent Our goal is to decrease the polarization by proposing new social connections. These additions are computed using heuristic algorithms. In a real world setting, new social connections are not always accepted.  For example we would not accept friend requests from people we barely know. This is relevant with link prediction. Link prediction is the problem of predicting the existence of a link between two entities in a network in the future. For example the "People you may know" section on Facebook.		
-\\		
-\\		
-Link prediction algorithms are based on how similar two different nodes are, what features they have in common, how they are connected to the rest of the network or how many other nodes are connected to a single node. Link prediction is also used in recommendation systems and  information retrieval. For computing these probabilities we will use graph embeddings.
+An echo chamber leads its members to distrust everybody on the outside of that chamber. This can lead to countless problems on politics, public discourse and poses a threat to the way democracies work. To shield our societies, there is a need for tools for reducing polarization.
 
 
-\section{Thesis Outline}
+\section{Thesis Contributions}
 \label{sec:outline}
 
-We begin by exploring the Friedkin and Johnsen Model. This model uses the terms of internal and external opinion. By repeated averaging and combining these two values we can get the opinion vector of the graph.
-This is a vector that contains information about the opinions of the whole network. Then, by using a metric that quantifies the polarization we can get an image of the social graph.
+In this thesis, we will consider the problem of reducing polarization by proposing new social connections. For measuring polarization we consider the polarization index measure introduced in~\cite{tsapMatakosTerzi}. This metric is based on the popular Friedkin and Johnsen model. This model assumes that users have an internal and an expressed opinion, and that the expressed opinion of a node is computed through repeated averaging of her internal opinion and the expressed opinions of their social circle. The polarization index is defined as the measure of the vector of the expressed opinions. The idea is that the closer this measure to zero, the closer the network to neutrality. We then proceed and define two problems. We ask for the best $k$ edges that, if introduced in the network, they will lead to the greatest reduction of the polarization. 
 \\
 \\
-We then proceed and define our two problems. First, we want to find the best $k$ edges that will lead to the greatest reduction of the polarization metric we use. The selection of the edges is mage with heuristics. The second problem incorporates acceptance probabilities.
-We also observe that the addition of new edges between opposing opinions will not necessary decrease the polarization metric and prove it with a counter-example.
+The second problem takes into account that in a real social network, new social connections are not always accepted. For example, we would not accept friend requests from people we barely know. We thus assume that every missing edge has some probability to appear. These probabilities can be estimated using link recommendation algorithms. The second problem we consider, $k-expected-addition$, asks for the best $k$ edges that if introduced in the network, they will lead to the greatest \emph{expected} reduction of the polarization index.
 \\
 \\
-Our heuristics are based on the intuition that the Friedkin-Johnsen model has the biggest decrease when we connect different and extreme opinions. We classify our heuristics in two categories. In these two categories the heuristics do or do not recompute the opinion vector after the addition of an edge. This is derived from the fact that when adding an edge to the network the structure of the graph changes. The heuristics that consider network changes are the $Greedy$ the $FTGreedy$ and the $Expressed Opinion$. These three are then modified into a batch version that does not consider network changes. We continue by using Graph Embeddings and the $Node2Vec$ algorithm to compute acceptance probabilities. We use these probabilities in a modified version of our heuristics to compute how much we expect the polarization metric to drop. Our heuristics are applied in 6 datasets of various topics and compared with each other. The Greedy heuristics cannot run on graphs that contain a lot of nodes due to time limitations. Chapter 7 concludes in a briefly manner.
+Our heuristics are based on the intuition that the Friedkin and Johnsen model has the biggest polarization decrease when we connect different and extreme opinions. We classify our heuristics in two categories. In these two categories, the heuristics do or do not recompute the opinion vector after the addition of an edge. This is derived from the fact that when adding an edge to the network the structure of the graph changes. The heuristics that consider network changes are the $Greedy$ the $FTGreedy$ and the $Expressed Opinion$. These three are then modified into a batch version that does not consider network changes. We continue by using Graph Embeddings and the $Node2Vec$ algorithm to compute acceptance probabilities. We use these probabilities in a modified version of our heuristics to compute how much we expect the polarization metric to drop. Our heuristics are applied in 6 datasets of various topics and compared with each other. The Greedy heuristics cannot run on graphs that contain a lot of nodes due to time limitations.
 
 \section{Roadmap}
 \label{sec:roadmap}
 
-Chapter~\ref{ch:related} addresses the related work around polarization and decreasing polarization. We see how polarization is measured, the relation of polarization and random walks and how polarization can be combined with disagreement and conflict. Chapter~\ref{ch:premAndDef} defines the Friedkin and Johnsen model and the polarization metric we use. Our 2 problems are also defined there, the $k-Addition$ problem and the $k-Addition-Expected$. Then, a counter-example is provided for the monotonicity of the polarization metric we use. Chapter~\ref{ch:algorithms}  defines our heuristics and chapter~\ref{ch:experiments} presents our datasets and the results of the polarization decrease. Chapter~\ref{sec:prob} continues by including acceptance probabilities in the heuristics and presenting the results of the experiments that include probabilities.  Chapter~\ref{ch:conclusions} briefly concludes.
+Chapter~\ref{ch:related} addresses the related work around polarization and decreasing polarization. We see how polarization is measured, the relation between polarization and random walks and how polarization can be combined with disagreement and conflict. We also briefly review the work on  the $Node2Vec$ algorithm. Chapter~\ref{ch:premAndDef} defines the Friedkin and Johnsen model and the polarization metric we use. Our two problems are also defined there, the $k-Addition$ problem and the $k-Addition-Expected$. Then, a counter-example is provided for the monotonicity of the polarization metric we use. In Chapter~\ref{ch:algorithms},  we describe our algorithms for both problems. Chapter~\ref{ch:experiments} presents our experiments for the two problems we consider.
 
 
 

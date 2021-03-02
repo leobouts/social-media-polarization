@@ -22,9 +22,10 @@ In this section we consider datasets that are separated in two opposing communit
   
 \end{enumerate}
 
+\vspace{23pt}
 
-\section{Dataset statistics}
-\label{sec:stats}
+We present some statistics for the datasets in the Table \ref{tab:statistics}.
+\vspace{36pt}
 
 \begin{table}[H]
  \centering
@@ -50,22 +51,18 @@ In this section we consider datasets that are separated in two opposing communit
  \end{tabular}
  \end{table}
  
-\vspace{20pt}
 \clearpage
 
 \section{Experiments}
 \label{sec:experim}
 
-All experiments were made with an 2,7 GHz Dual-Core Intel Core i5 on the PyCharm IDE. We can only experiment with the $Karate$ and the $Books$ dataset on all the heuristics. The $Greedy$ algorithm cannot run on the rest of the datasets because they contain thousands of nodes. The $Greedy$ algorithm needs to consider changes in the network structure so it is impossible to compute the polarization so many times.
-\\
-\\ 
-The $FirstTopGreedy$ and the $Expressed Opinion$ can run in all datasets and us with a fairly good decrease in polarization compared to the batch algorithms. This decrease can be greater if we consider edge additions that are proportional to the size of the dataset. Greater number of edges would make $FirstTopGreedy$ nonrunnable. The $Expressed Opinion$ can run in our larger datasets with big number of additions.
+We now present experiments with our algorithms for the $k-Addition$ problem. In addition to the heuristics we use two random algorithms. The $Random$, that chooses random edges from all possible combinations and the $RandomDifferent$. The second one chooses random edges between different $z$ opinions. More specifically edges that the multiplication of their expressed opinions is negative ($z_u*z_v < 0$). 
 \\
 \\
-In addition to the heuristics we use two random algorithms. The $Random$, that chooses random edges from all possible combinations and the $RandomDifferent$. The second one chooses random edges between different $z$ opinions. More specifically edges that the multiplication of their expressed opinions is negative ($z_u*z_v < 0$). 
+We can experiment with all algorithms only for the $Karate$ and the $Books$ datasets. The $Greedy$ algorithm, that recomputes $\pi(z)$ for every candidate edge cannot run on the rest of the datasets that contain thousands of nodes.The $FirstTopGreedy$ and the $Expressed Opinion$ run in all datasets.
 \\
 \\
-\noindent We start by applying the heuristics described at~\ref{ch:algorithms} in our 6 datasets. The algorithms perform as expected. The greedy ones have better results but are expensive in time. We can not run the $Greedy$ algorithms in larger datasets due to time limitations. In figure~\ref{fig:heuristics_small} we can see the charts that compare the decrease of the polarization index of the heuristics.
+In figure~\ref{fig:heuristics_small} we plot the decrease of the polarization index of the heuristics for all our algorithms. We make the following observations.
 \clearpage
 
 \begin{figure}[!htbp]
@@ -79,178 +76,79 @@ In addition to the heuristics we use two random algorithms. The $Random$, that c
 \end{figure}
 \clearpage
 
-\begin{itemize}
-  \item The Expressed Opinion heuristic, that is based on the distance of the opinions, performs very well, similar to $Greedy$ and is cheap on time.
-  \item Batch algorithms perform very poorly, even worse than Random. When adding a new edge the Batch algorithms do not recompute the $z$ vector. That means that the heuristic has a false view of the opinions of the network. For example in a batch version of the $ExpressedOpinion$ the nodes that have the most extreme opinions of each side are reused even if their value is changed after an addition and are no longer the ones with the most extreme values.
- \end{itemize}
- 
- \section{A Visualisation of Edge Additions}
-\label{sec:vis}
-In the figures bellow we can see the karate graph before and after adding the top 10 edges proposed by the $Greedy$ algorithm. Blue nodes represent expressed opinions $\epsilon [-1,0)$, red nodes represent expressed opinions $\epsilon (0,1]$ and size shows how central a node is. The size has been computed with the help of the pagerank algorithm. The green edges are the additions proposed by the algorithm. We can clearly see that before adding edges of different opinions the network is polarized in two communities.
+\noindent The Expressed Opinion heuristic, that is based on the distance of the opinions, performs very well. It achieves a decrease very close to $Greedy$ while being significantly faster.
+The $FirstTopGreedy$ does not perform well for medium and large datasets. Even with a small $k$ there is a noticeable amount needed for the algorithm to run. When increasing the $k$ the $FirstTopGreedy$ cannot run due to time limitations. 
+Batch algorithms perform very poorly, even worse than Random. When adding a new edge the Batch algorithms do not recompute the $z$ vector. That means that the heuristic has a false view of the opinions of the network. For example in a batch version of the $ExpressedOpinion$ the nodes that have the most extreme opinions of each side are reused even if their value is changed after an addition and are no longer the ones with the most extreme values.
 \\
 \\
-\begin{figure}[!htbp]
-	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
-		\centering
-		\includegraphics[height=0.2\textheight]{Figures/before_pol}
-		\caption{The karate graph}
-		\label{subfig:before_pol}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[t]{0.45\textwidth}
-		\centering
-		\captionsetup{justification=centering}
-		\includegraphics[height=0.2\textheight]{Figures/after_pol}
-		\caption{The karate graph after adding 10 edges proposed by $Greedy$}
-		\label{subfig:after_pol}
-	\end{subfigure}
-	\vspace{20pt}
-	\hfill
-	\caption{Edge addition between opposed opinions.}
-	\label{fig:top-10-karate}
-\end{figure}
+\noindent To better understand the behaviour of our algorithms, we will visualize the edge additions.
+In figure~\ref{diff} we can see the karate graph before and after adding the top 10 edges proposed by all the algorithms. Blue nodes represent expressed opinions $\epsilon [-1,0)$, red nodes represent expressed opinions $\epsilon (0,1]$ and size shows how central a node is. The size has been computed with the help of the pagerank algorithm. The green edges are the additions proposed by the algorithm.
 \\
+\\
+We observe that the choices of $Greedy$ and $GreedyBatch$ are different. $GreedyBatch$ reuses the same nodes. This is aligned with the way batch algorithms work. By not recomputing the $z$ vector they will always choose the same nodes thinking they are the best candidates. To conclude with these visualisations, when we compare heuristics that do not recompute the $z$ vector we will observe that some nodes participate in edges that will be added multiple times. If the heuristics recompute the $z$ vector the nodes will not be reused.
 \clearpage
 
-\noindent We can continue by visualising and comparing edges additions between the rest of the algorithms. We observe in the comparison of the choices of $Greedy$ and $GreedyBatch$ that the second reuses the same nodes. This is aligned with the way batch algorithms work. By not recomputing the $z$ vector they will always choose the same nodes thinking they are the best candidates. We proceed to compare the $ExpressedOpinion$ at with $FirstTopGreedy$ and $Greedy$. We can clearly see that the nodes that are being selected are discrete and they are not reused. 
-\\
-\\
-To conclude with these visualisations, when we compare heuristics that do not recompute the $z$ vector we will observe that some nodes participate in edges that will be added multiple times. If the heuristics recompute the $z$ vector the nodes will not be reused.
-\\
-\\
 
 \begin{figure}[!htbp]
-	\centering
-	\begin{subfigure}[t]{0.49\textwidth}
-		\centering
-		 \advance\leftskip-0.9cm
-		 \captionsetup{justification=centering}
-		\includegraphics[height=0.25\textheight]{Figures/karate_Greedy_edge_vis}
-		\caption{The karate graph after adding 10 edges proposed by $Greedy$}
-		\label{subfig:greedy}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[t]{0.49\textwidth}
-		\centering
-		\captionsetup{justification=centering}
-		\includegraphics[height=0.25\textheight]{Figures/karate_GBatch_edge_vis}
-		\caption{The karate graph after adding 10 edges proposed by $GreedyBatch$}
-		\label{subfig:gbatch}
-	\end{subfigure}
+	\begin{center}
+	\advance\leftskip-0.7cm
+	\includegraphics[width=1.1\textwidth]{Figures/add6}
 	\vspace{20pt}
-	\hfill
-	\caption{Difference of edges between $Greedy$ and $GreedyBatch$}
-	\label{fig:top-10-karate}
+	\caption{Difference of edge additions between the algorithms}
+	\label{diff}
+	\end{center}
 \end{figure}
-
 \clearpage
 
-\begin{figure}[!htbp]
-	\centering
-	\begin{subfigure}[t]{0.49\textwidth}
-		\centering
-		 \advance\leftskip-0.9cm
-		 \captionsetup{justification=centering}
-		\includegraphics[height=0.25\textheight]{Figures/karate_Expressed Distance_edge_vis}
-		\caption{The karate graph after adding 10 edges proposed by $ExpressedOpinion$}
-		\label{subfig:g2}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[t]{0.49\textwidth}
-		\centering
-		\captionsetup{justification=centering}
-		\includegraphics[height=0.25\textheight]{Figures/karate_FTGreedy_edge_vis}
-		\caption{The karate graph after adding 10 edges proposed by $FirstTopGreedy$}
-		\label{subfig:ftg}
-	\end{subfigure}
-	\vspace{20pt}
-	\hfill
-	\caption{Difference of edges between $ExpressedOpinion$ and $FirstTopGreedy$}
-	\label{fig:top-10-karate3}
-\end{figure}
-
-\vspace{30pt}
-
-\begin{figure}[!htbp]
-	\centering
-	\begin{subfigure}[t]{0.49\textwidth}
-		\centering
-		 \advance\leftskip-0.9cm
-		 \captionsetup{justification=centering}
-		\includegraphics[height=0.25\textheight]{Figures/karate_Expressed Distance_edge_vis}
-		\caption{The karate graph after adding 10 edges proposed by $ExpressedOpinion$}
-		\label{subfig:ge3}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[t]{0.49\textwidth}
-		\centering
-		\captionsetup{justification=centering}
-		\includegraphics[height=0.25\textheight]{Figures/karate_Greedy_edge_vis}
-		\caption{The karate graph after adding 10 edges proposed by $Greedy$}
-		\label{subfig:g3}
-	\end{subfigure}
-	\vspace{20pt}
-	\hfill
-	\caption{Difference of edges between $ExpressedOpinion$ and $Greedy$}
-	\label{fig:top-10-karate3}
-\end{figure}
-
-\clearpage
 
 
 \section{Measuring the median probability}		
 \label{sec:median}
+\vspace{15pt}	
+In these experiments we also measure the median probability of the edges selected by the heuristics and compare it to the ones that were edited to include acceptance probabilities.
+\\
 
-We measure the median probability of the edges selected by the heuristics and compare it to the ones that were edited to include acceptance probabilities. We expect that the edited heuristics will have a higher median value. A new algorithm called $maxProb$ is included that chooses an edge if it is among the edges with the highest acceptance probabilities. This sets an upper limit for the mean probability by having the highest mean probability among all heuristics. This will help us compare the edited heuristics that use acceptance probabilities. We want them to have a relatively higher acceptance probability among the edges they choose. There is a clear increase in the mean probability of the edges the edited heuristics choose.
+
+\subsection{Estimating Acceptance Probabilities}
+\vspace{15pt}		
+Our objective is to predict whether there would be a link between 2 unconnected nodes. At first we will find the pairs of nodes that don't have a link between them.	
+The next step is to label these pairs. This is needed for preparing a training dataset. 
+The edges that are present in the graph will be labeled as $1$ (positive samples) and the unconnected node pairs as $0$ (negative samples).		
+\\
+\\
+\noindent After the labelling we will use the node2vec algorithm to extract node features from the graph. For computing the features of an edge we can add up the features of the nodes of that pair. These features will be trained with a logistic regression model. After the model is trained we will obtain the probabilities of an edge being accepted for every edge. We use the default settings for the $Node2Vec$ algorithm and a 80/20 training/test size for the logistic regression model.
+\\
+\\
+We also consider a new algorithm called $MaxProb$ that chooses the top-$k$ edges with the highest acceptance probabilities. This defines an upper bound for the mean probability and we will use it to compare the edited heuristics that use acceptance probabilities. We want them to have a relatively higher acceptance probability among the edges they choose. There is a clear increase in the mean probability of the edges the edited heuristics choose.
+ \clearpage
+ 
+\subsection{Experimental Results}
+\vspace{15pt}
+In figure~\ref{mean} we show the mean acceptance probability for all our algorithms, the ones that incorporate probabilities (edited heuristics) and the ones that do not, as well as $MaxProb$. The algorithms have small probability compared to the upper bound, the edited algorithms are better and pretty close to the $MaxProb$. The $ExpressedDistance$, that is fast, displays good performance.
+\\
+\\
+\noindent We also compare all the algorithms and $MaxProb$ with respect to the polarization decrease they achieve. In Figure~\ref{m2} we see the polarization index reduction for all the algorithms. In this graph we can see that the polarization is not reduced as much as the original heuristics. This is the tradeoff that the acceptance probabilities create. If we try to reduce the polarization index in a network by not including acceptance probabilities there would be a chance that the decrease would not be good because individuals might reject these recommendations. 
+
 
 \begin{figure}[!htbp]
 	\begin{center}
 	\advance\leftskip-1.5cm
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=1.2\textwidth]{Figures/m2}
-	\caption{Comparison of the median probability}
-	\label{m1}
+	\includegraphics[width=1.2\textwidth]{Figures/mean6}
+	\caption{Comparison of the mean probability}
+	\label{mean}
 	\end{center}
 \end{figure}
 
 \clearpage
-
-\begin{figure}[!htbp]
-	\begin{center}
-	\advance\leftskip-1.3cm
-	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=1\textwidth]{Figures/m1}
-	\caption{Comparison of the median probability}
-	\label{m2}
-	\end{center}
-\end{figure}
-\clearpage
-
-\section{Comparing all the heuristics}		
-\label{sec:all}
-
-In this section we compare all the algorithms together, $maxProb$ is also displayed in the chart. As mentioned before we want the edited heuristics to have a higher acceptance probability among the edges they choose and this can be seen in the figures~\ref{m2} and~\ref{m1}. In these graphs we can see that the polarization is not reduced as much as the original heuristics. This is the tradeoff that the acceptance probabilities create. If we try to reduce the polarization index in a network by not including acceptance probabilities there would be a chance that the decrease would not be as good because individuals could reject these recommendations.
  
 \begin{figure}[!htbp]
 	\begin{center}
 	\advance\leftskip-1.5cm
 	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=1.2\textwidth]{Figures/all2}
-	\caption{Comparison of all the heuristics}
+	\includegraphics[width=1.2\textwidth]{Figures/all 6}
+	\caption{Polarization index reduction}
+	\label{m2}
 	\end{center}
-	\label{all1}
-\end{figure}
-
-\clearpage
-
-\begin{figure}[!htbp]
-	\begin{center}
-	\advance\leftskip-1.3cm
-	\captionsetup{justification=centering,margin=2cm}
-	\includegraphics[width=1\textwidth]{Figures/all1}
-	\caption{Comparison of all the heuristics}
-	\end{center}
-	\label{all2}
 \end{figure}
 

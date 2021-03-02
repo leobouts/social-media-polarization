@@ -2,23 +2,21 @@
 \label{ch:algorithms}
 
 
-In this section we  consider a greedy algorithm and some heuristics for reducing $\pi(z)$. All the heuristics use the intuition that connecting the most extreme opinions of each community can result in great reduction. 
+In this section we  consider greedy and heuristic algorithms for the problems we defined in Chapter~\ref{ch:premAndDef}. All the heuristics use the intuition that connecting the most extreme expressed opinions of each community can result in great reduction. 
 When a new edge is introduced, the graph structure changes. This leads to changes in the opinion vector $z$.
 The recomputation of the $z$ vector is expensive on time due to the computation of the inverse matrix in the $(L+I)^{-1}S$ formula.
 This is why we consider two types of algorithms, those that recompute the $z$ vectors and those that do not.
-All the heuristics run on $\mathcal{O}(n^2)$. This is due to the fact that they need to explore all edge combinations.
 
-\section{Algorithms that recompute the opinion vector}
+
+\section{Algorithms for the k-Addition Problem}
 \label{sec:recomputeAlgos}
 
-We begin with a Greedy algorithm. Greedy algorithms work in stages and during each stage a choice is made which is locally optimal.
-The Greedy algorithm computes the decrease in $\pi(z)$ and selects the edge with the largest decrease every time.
-\\
-\\
-After finding the best edge, the $Greedy$ algorithm adds this edge to the graph. This result in a change of the network structure.
-Then a recomputation of the $z$ vector is happening and  the procedure is repeated.To reduce running times, we  use repeated averaging instead of computing the inverse matrix and limit the accuracy of the convergence.
+The first algorithm we consider is a Greedy algorithm. Greedy algorithms work in stages and during each stage a choice is made which is locally optimal.
+The Greedy algorithm computes the decrease in $\pi(z)$ after adding $(u,v)$ to the graph and selects the edge with the largest decrease every time.
+\clearpage
 
-\vspace{30pt}
+\noindent The Greedy algorithm recomputes the $z$ vector for each candidate edge, and also at the beginning of each iteration. To reduce running times, we  use repeated averaging instead of computing the inverse matrix and limit the accuracy of the convergence. Since we are interested in the relative order of the edges we do not expect a significant difference. The pseudocode of the algorithm is shown in Algorithm \ref{alg:greedyAlgo}. The complexity of the algorithm is $\mathcal{O}(k * n^2 * n^3) = \mathcal{O}(n^3)$. $k$ refers to the $k$ edges of the addition problem, $n^2$ to all the possible edge combinations and $n^3$ is needed for the inverse of the $L+I$ matrix.
+\vspace{20pt}
     		\begin{algorithm}[H]
 		
 			\caption{Greedy}
@@ -32,26 +30,31 @@ Then a recomputation of the $z$ vector is happening and  the procedure is repeat
 			\end{flushleft}
 			
 			\begin{algorithmic}[1]
+				\STATE $S \leftarrow$ empty set 
 				\FOR {$i = 1:k \ $}
 				\STATE Compute the opinion vector $z$
 					\FOR { each  edge in $|V| \times |V| \textbackslash E$}
 						\STATE Compute the decrease of $\pi(z)$ if edge is added to $G$
 					\ENDFOR
-					\STATE Select the edge with the largest decrease and add it to $G$
+					\STATE Select the edge with the largest decrease, add it to $G$ and to $S$
 				\ENDFOR
-				\STATE Return the set of edges that were selected
+				\STATE Return $S$
 			\end{algorithmic}
 		\end{algorithm}
-\vspace{30pt}
+\vspace{20pt}
 
-\noindent A second heuristic we consider is the $FirstTopGreedy$. Let $X$ be the set of nodes of expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes of expressed opinions $\epsilon$ (0,1] sorted by decreasing order. This heuristic use the first $k$ nodes of $X$ and $Y$, resulting in  a $k \times k$ smaller search space. This allows the $FirstTopGreedy$ to reduce the amount of time spend searching for the best edge to add. \noindent 
+\noindent The $Greedy$ algorithm is very slow for large, or medium sized datasets. To reduce the running time we propose the $FirstTopGreedy$ algorithm. Let $X$ be the set of nodes of expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes of expressed opinions $\epsilon$ (0,1] sorted by decreasing order. The algorithm considers the first $k$ nodes of $X$ and $Y$, resulting in  a $k \times k$ search space. This allows the $FirstTopGreedy$ to reduce the amount of time spend searching for the best edge to add. The pseudocode of the algorithm is shown in Algorithm \ref{alg:ftgreedy}. 
+\clearpage
+
+\noindent The complexity of the algorithm is $\mathcal{O}(k * k^2 * n^3) = \mathcal{O}(n^3)$. $k$ refers to the $k$ edges of the addition problem, $k^2$ to the reduced edge combinations space and $n^3$ is needed for the inverse of the $L+I$ matrix.
 \\
 \\
-Last we consider two heuristics that choose edges based on the value of the expressed opinion of their nodes. The Distance of their opinions can be defined as $D=|z_u - z_v|$. This heuristic computes the distance between every edge candidate and then chooses to add the edge with the maximum distance.
-
+Last we consider a heuristic, $ExpressedOpinion$, that chooses edges based on the value of the expressed opinion of their nodes. For a candidate edge $(u,v)$ we compute the distance of the opinions of the endpoints,  defined as $D=|z_u - z_v|$. The algorithm computes the distance between every edge candidate and then chooses to add the edge with the maximum distance. The pseudocode of the algorithm is shown in Algorithm \ref{alg:expressedOpinion}. The complexity of the algorithm is $\mathcal{O}(k * n^2) = \mathcal{O}(n^2)$. $k$ refers to the $k$ edges of the addition problem and $n^2$ to all the possible edge combinations. There is no need to recompute the inverse of the $L+I$ matrix here, thus we see a decrease in the time complexity.
+\\
+\\
 \begin{algorithm}[htbp]
 	\caption{FirstTopGreedy}
-	\label{alg:kgreedy}
+	\label{alg:ftgreedy}
 	
 	\begin{flushleft}
         		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add;\\
@@ -62,16 +65,16 @@ Last we consider two heuristics that choose edges based on the value of the expr
 	\end{flushleft}
 	
 	\begin{algorithmic}[1]
-		\STATE $A \leftarrow $ first $k$ items of $X$
-		\STATE $B \leftarrow $ first $k$ items of $Y$
+		\STATE $A, B \leftarrow $ first $k$ items of $X$ , $Y$
+		\STATE $S \leftarrow$ empty set 
 		\FOR {$i = 1:k \ $}
 			\STATE Compute the opinion vector $z$
 			\FOR { each  edge in $|A| \times |B| \textbackslash E$}
 				\STATE Compute the decrease of $\pi(z)$ if edge is added to the graph
 			\ENDFOR
-			\STATE Select the edge with the largest decrease and add it to $G$
+			\STATE Select the edge with the largest decrease, add it to $G$ and to $S$
 		\ENDFOR
-		\STATE Return the set of edges that were selected
+		\STATE Return $S$
 	\end{algorithmic}
 	
 \end{algorithm}
@@ -91,27 +94,24 @@ Last we consider two heuristics that choose edges based on the value of the expr
 	\end{flushleft}
 	
 	\begin{algorithmic}[1]
+		\STATE $S \leftarrow$ empty set 
 		\FOR {$i = 1:k \ $}
 			\STATE Compute the opinion vector $z$
-			\STATE Compute the $z$ values
 			\FOR { each  edge in $|V| \times |V| \textbackslash E$}
 				\STATE Compute the value $D=|z_u - z_v|$.
 			\ENDFOR
 			\STATE Sort the distance values by decreasing order
-			\STATE Add the edge with the biggest distance to $G$
+			\STATE Add the edge with the biggest distance to $G$ and to $S$
 		\ENDFOR
-		\STATE Return the set of edges that were selected
+		\STATE Return $S$
 	\end{algorithmic}
 	
 \end{algorithm}
-
-\section{Algorithms that do not recompute the opinion vector}
-\label{sec:norecomputeAlgo}
-
-We continue by exploring some heuristics that do not consider the network changes and thus can run more easily in larger datasets. We will also refer to them as batch heuristics. Computing the $\pi(z)$ is an expensive operation due to the computation of the inverse matrix. At first we can see a variation of the $Greedy$ algorithm. Its implementation is similar to the $Greedy$. We compute the opinion vector only once and we sort the edges according to the decrease. Then we select the top $k$ edges.
+\vspace{20pt}
+\noindent Computing the reduction of $\pi(z)$ for each candidate edge at each iteration is expensive even for medium sized graphs. We will now consider variants of the algorithms we described that compute the reduction only once, and sort the edges according to this value and select the top-$k$ edges. We will refer  to them as batch algorithms. 
 \\
 \\
-We continue by using a variation of the $FirstTopGreedy$. The $FirstTopGreedyBatch$ heuristic. $FirsTopGreedy$  works exactly like $GreedyBatch$ with the difference that the opinion vector is not recomputed. Let $X$ be the set of nodes that their expressed opinions $\epsilon$ [-1,0) sorted by increasing order and $Y$ the set of nodes that their expressed opinions $\epsilon$ (0,1] sorted by decreasing order. This heuristic is taking the first $k$ nodes of $X$ and $Y$, resulting in $k \times k$ nodes.
+At first we can see a variation of the $Greedy$ algorithm, the $GreedyBatch$. Its implementation is similar to the $Greedy$. The pseudocode of the algorithm is shown in Algorithm \ref{alg:greedyBatch}. The complexity of the algorithm is $\mathcal{O}(n^2*n^3) = \mathcal{O}(n^3)$. We continue by using a variation of the $FirstTopGreedy$, the $FirstTopGreedyBatch$, in a similar manner. The pseudocode of the algorithm is shown in Algorithm \ref{alg:ftgb}. The complexity of the algorithm is $\mathcal{O}(k^2*n^3) = \mathcal{O}(n^3)$.
 \clearpage
 
 \begin{algorithm}[H]
@@ -126,20 +126,21 @@ We continue by using a variation of the $FirstTopGreedy$. The $FirstTopGreedyBat
 			\end{flushleft}
 			
 			\begin{algorithmic}[1]
+				\STATE $S \leftarrow$ empty set 
 				\STATE Compute the $z$ values
 				\FOR { each  edge in $|V| \times |V| \textbackslash E$}
 					\STATE Compute the decrease of $\pi(z)$ if edge is added to $G$ 
 				\ENDFOR
 				\STATE Sort the values computed by decreasing order;
-				\STATE Select the $k$ edges with the largest decrease and add it to $G$
-				\STATE Return the set of edges that were selected
+				\STATE Select the $k$ edges with the largest decrease, add it to $G$ and $S$
+				\STATE Return $S$
 			\end{algorithmic}
-		\end{algorithm}
+\end{algorithm}
 
 
 \begin{algorithm}[H]
 	\caption{FirstTopGreedyBatch}
-	\label{alg:kgreedy}
+	\label{alg:ftgb}
 	
 	\begin{flushleft}
         		\textbf{INPUT:} Graph $G(V, E)$; $k$ number of edges to add;\\
@@ -152,36 +153,27 @@ We continue by using a variation of the $FirstTopGreedy$. The $FirstTopGreedyBat
 	
 	\begin{algorithmic}[1]
 		\STATE $A, B \leftarrow $ first $k$ items of $X$ , $Y$
-				\STATE Compute the $z$ values
+		\STATE $S \leftarrow$ empty set 
+		\STATE Compute the $z$ values
 		\FOR { each  edge in $|A| \times |B| \textbackslash E$}
 			\STATE Compute the decrease of $\pi(z)$ if edge is added to the graph
 		\ENDFOR
 		\STATE Sort the values computed by decreasing order
-		\STATE Select the $k$ edges with the largest decrease and add it to $G$
-		\STATE Return the set of edges that were selected
+		\STATE Select the $k$ edges with the largest decrease, add it to $G$ and to $S$
+		\STATE Return $S$
 	\end{algorithmic}
 	
 \end{algorithm}
 \clearpage
 
-\section{Computing edge probabilities }		
+\section{Algorithms for the k-Addition-Expected Problem}		
 \label{sec:computingEdge}		
 \vspace{20pt}
-Our objective is to predict whether there would be a link between 2 unconnected nodes. At first we will find the pairs of nodes that don't have a link between them.	
-The next step is to label these pairs. This is needed for preparing a training dataset. 
-The edges that are present in the graph will be labeled as $1$ (positive samples) and the unconnected node pairs as $0$ (negative samples).		
+For the $k-Addition-Expected$ problem we assume that for every candidate edge $(u,v)$ we have computed a probability $P(u,v)$ of the edge being accepted as a recommendation. We want to maximize the expected reduction in the polarization index. Computing the actual expected decrease in the polarization, and selecting the $k$ best edges is a difficult problem. We thus design heuristics that incorporate the probabilities in the operation of the algorithms we described before.
 \\
 \\
-\noindent After the labelling we will use the node2vec algorithm to extract node features from the graph. For computing the features of an edge we can add up the features of the nodes of that pair. These features will be trained with a logistic regression model. After the model is trained we will obtain the probabilities of an edge being accepted for every edge. We use the default settings for the $Node2Vec$ algorithm and a 80/20 training/test size for the logistic regression model.
-\\
-\\
-\noindent Computing the actual expected decrease in the polarization, and selecting the $k$ best edges is a difficult problem. Our goal is to incorporate the probabilities in the operation of the algorithms. We do not expect that the decrease in the polarization index will improve. We will do this as follows. 
-\\
-\\
-Each algorithm computes a value $Val(u,v)$ for each candidate edge, and selects greedily edges with the best value. We will replace this value in the algorithm by $P(u,v)*Val(u,v)$. The quantity $Val(u,v)$ can be either the polarization decrease or the absolute distance of the expressed opinions of nodes $u$ and $v$. In the case that $Val(u,v)$ is the polarization decrease the product $P(u,v)*Val(u,v)$ corresponds to the expected polarization decrease.
-\\
-\\
-In addition in section~\ref{sec:median}  we measure the median probabilities and in section~\ref{sec:all} we display the results of the heuristics and edited heuristics together including a new algorithm called $maxProb$ that chooses an edge if it is among the edges with the highest acceptance probabilities.
+Each algorithm computes a value $Val(u,v)$ for each candidate edge, and selects greedily edges with the best value. We will replace this value in the algorithm by $P(u,v)*Val(u,v)$. The quantity $Val(u,v)$ can be either the polarization decrease or the absolute distance of the expressed opinions of nodes $u$ and $v$. In the case that $Val(u,v)$ is the polarization decrease the product $P(u,v)*Val(u,v)$ corresponds to the expected polarization decrease. The complexity of the algorithms stay the same. These algorithms will have the following names: $pGreedy$, $pFirstTopGreedy$, $pExpressedOpinion$, $pGreedyBatch$, $pFirstTopGreedyBatch$. We will refer to them as edited algorithms.
+
 
 \clearpage
 

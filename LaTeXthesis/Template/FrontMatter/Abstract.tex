@@ -1,14 +1,10 @@
 \chapter*{\abstractname}
 \addstarredchapter{\abstractname} % minitoc
 
-\noindent We know for a fact that opinions are formed through social interactions. Online communities offer public access to social disputes on controversial matters that allow the study and moderation of them. The majority of studies in social networks are based on the Friedkin-Johnsen model.
+\noindent We know for a fact that opinions are formed through social interactions. Online communities offer public access to social disputes on controversial matters that allow the study and moderation of them.
+Users of online communities are receiving biased information that amplify their own viewpoints. This creates a fragmented community and users interact only with individuals that hold the same opinions. In this thesis, we use a metric proposed in \cite{tsapMatakosTerzi} for measuring the polarization of a social graph, which relies on the popular Friedkin and Johnsen model. 
 \\
-\\
-Users of online communities are receiving biased information that amplify their own viewpoints. This creates a fragmented community and users interact only with individuals that hold the same opinions. In this thesis we use a metric, the polarization index, to measure the polarization of a social graph.
-\\
-\\We try to reduce the polarization by connecting individuals. We propose new social connections between different and extreme opinions by following the intuition of the Friedkin-Johnsen model. 
-\\
-\\
-Finally, probabilities are adopted to our heuristic algorithms that now make selections based on how probable is the acceptance of a recommendation of a new social connection. 
+\\We try to reduce the polarization by connecting individuals. We propose new social connections between different and extreme opinions, following the intuition of the Friedkin and Johnsen model. 
+We adapt our algorithms to incorporate the probability of acceptance in their selection. We perform experiments with 6 real datasets. We observe that there is a decrease on the polarization when we connect users with opposing views. As the datasets get larger we need to increase the number of edges we add to see a  significant decrease. When incorporating probabilities we observe that the decrease is not as great as the previous experiments. This is due to the tradeoff between adding the best candidates to reduce the polarization without knowing if they will be accepted or selecting edges that will most likely be accepted but not have the greatest effect on reducing the polarization.
 
 \bigskip
